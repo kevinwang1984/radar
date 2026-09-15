@@ -60,6 +60,8 @@ color:var(--ink2);background:var(--bg2);font-family:ui-monospace,Menlo,monospace
 .det{padding:0 18px 16px 44px;font-size:13.5px;color:var(--ink2)}
 .det .k{color:var(--ink3);font-size:11px;display:block;margin:8px 0 1px;font-family:ui-monospace,Menlo,monospace}
 .det a{color:#1d4ed8;word-break:break-all}
+.det .more{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:#1d4ed8;
+ text-decoration:none;border:1px solid #dbe4ff;background:#f2f5ff;padding:6px 12px;border-radius:99px}
 .empty{padding:22px 18px;color:var(--ink3);font-size:13px}
 .fold{margin:16px 18px 0;font-size:12px;color:var(--ink3);line-height:1.7}
 .foot{margin-top:22px;padding:16px 18px 26px;border-top:1px solid var(--line);font-size:12px;color:var(--ink3);line-height:1.9}
@@ -78,7 +80,7 @@ details.rej[open] summary::before{content:"▾ "}
   <div class="head">
     <div class="kicker">雷达简报 · 2026-09-15</div>
     <h1>8 条 · 先扫，再展开</h1>
-    <div class="strap">今日主线：**模型继续卷，「Harness」开始单独上桌。** OpenAI 把 Codex 的循环拆成 API 卖，DeepSeek 用架构把长上下文账单砍到 1/4，而两周内两份互相独立的实测都指向同一句话：同一个模型，换个载体，交付质量差一截。</div>
+    <div class="strap">候选 205 条 / 30 源（29 成功 · 1 失败）· 正文 8 条 · 降级 4 条 · 砍掉 193 条</div>
     <div class="segs">
       <button class="seg" data-f="all" aria-pressed="true">全部 8</button>
       <button class="seg" data-f="fast" aria-pressed="false">15 分钟 4</button>
@@ -87,78 +89,12 @@ details.rej[open] summary::before{content:"▾ "}
   </div>
   <div class="count" id="cnt">显示 8 / 8 条</div>
   
-    <details class="row" data-fast="1" data-tool="0">
+    <details class="row" data-fast="0" data-tool="1">
       <summary class="hit">
         <span class="n">01</span>
         <span class="tt">
-          <span class="t1">GPT-6 Astra：面向「干活」的新一代模型</span>
-          <span class="t1b">能自己操作电脑界面、顺手把活干完的通用模型。</span>
-          <span class="t2">
-            <span class="chip model">模型</span>
-            <span class="cost fast">15 分钟</span>
-            <span class="src">vendor:openai</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>OpenAI 称它是面向商业的最强模型，重点能力是进阶推理、**computer use**（直接操作软件界面）以及更强的写作与设计判断力；同期 OpenAI 自己放出的客户案例（Perplexity、Devin、Fyxer）都围绕「长任务少盯几次」展开。
-        <span class="k">为什么值得你花时间</span>computer use 一旦可用，你的画布节点、工作流编排就跟「模型直接点界面」正面撞车 —— 是继续自建节点引擎，还是把它当执行器接进来，这个选型现在就该开始想。
-        <span class="k">上手成本</span>15 分钟（读官方页与定价即可判断）
-        <span class="k">入口</span><a href="https://openai.com/index/gpt-6-astra-next-generation-work" target="_blank" rel="noopener noreferrer">https://openai.com/index/gpt-6-astra-next-generation-work</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="0" data-tool="0">
-      <summary class="hit">
-        <span class="n">02</span>
-        <span class="tt">
-          <span class="t1">DeepSeek-V4.1-Flash：把 KV 缓存压到每 token 890 字节</span>
-          <span class="t1b">开源权重模型，用架构把超长上下文的显存账单砍掉四分之三。</span>
-          <span class="t2">
-            <span class="chip model">模型</span>
-            <span class="cost slow">需要申请 key / 自部署</span>
-            <span class="src">hf-org:deepseek-ai</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>V4-Flash 的续作，官方标题就是「Pushing the Limits of KV Cache Compression」。552B 主干 + 196B Engram 参数，1M 上下文，prefill 只激活 8B、decode 激活 16B；每 token 全局 KV 缓存约 890 字节（V4-Flash 的 1/4，V1 的约 1/437）。沿用一套新的 causal encoder–decoder 架构，并带原生视觉理解。
-        <span class="k">为什么值得你花时间</span>Agent 负载就是反复调用 + 上下文越滚越长，缓存便宜 4 倍等于同样显存撑 4 倍并发会话；如果你的分镜 / 剧本 / 素材分析走长上下文，这条直接改你的推理成本模型。
-        <span class="k">上手成本</span>需要申请 key / 自部署（先看权重卡与推理框架支持）
-        <span class="k">入口</span><a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash" target="_blank" rel="noopener noreferrer">https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="0" data-tool="0">
-      <summary class="hit">
-        <span class="n">03</span>
-        <span class="tt">
-          <span class="t1">Gemini 智能体视频理解：分析成本降 66%</span>
-          <span class="t1b">让模型自己决定看视频的哪几秒，而不是逐帧硬扫。</span>
-          <span class="t2">
-            <span class="chip model">模型</span>
-            <span class="cost slow">1 小时</span>
-            <span class="src">vendor:deepmind</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>把模型推理和原生视频工具结合，在视觉帧、音频、转录文本里动态搜索与检查目标片段 —— 官方基准上分析成本最高降 66%、Token 消耗最高降 88%、准确率最高升 7%，并支持亚秒级瞬间检索与长视频「大海捞针」。已上线 Gemini API，开关是把处理模式设为 `agentic`。
-        <span class="k">为什么值得你花时间</span>做视频生成 / 自动分镜的人最缺「读懂长视频」这一环；亚秒级时刻检索 + 高帧率重采样正是自动剪辑切点和素材标注的刚需，且不需要多付功能费。
-        <span class="k">上手成本</span>1 小时（把现成的视频分析调用切成 agentic 模式）
-        <span class="k">入口</span><a href="https://deepmind.google/blog/introducing-agentic-video-in-gemini/" target="_blank" rel="noopener noreferrer">https://deepmind.google/blog/introducing-agentic-video-in-gemini/</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="0" data-tool="1">
-      <summary class="hit">
-        <span class="n">04</span>
-        <span class="tt">
-          <span class="t1">video-edit skill：按意图自动挑视频编辑模型</span>
-          <span class="t1b">说清要改成什么样，它自己选合适的视频编辑模型。</span>
+          <span class="t1">wan-3-0-prime-reference-to-video</span>
+          <span class="t1b">把参考图、视频、音频按编号绑进提示词的生视频技能。</span>
           <span class="t2">
             <span class="chip skill">技能</span>
             <span class="cost slow">需要申请 key</span>
@@ -168,32 +104,103 @@ details.rej[open] summary::before{content:"▾ "}
         <span class="car">›</span>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>genmedia-labs 在 skills.sh 上排名靠前的技能（note 里 installs=16.3K rank=9），底层是 agentspace-so 的 RunComfy 技能包：不锁定单一模型，按意图在 RunComfy 目录里路由 —— 整体重绘风格、从参考片做动作迁移、轻量的服装 / 背景替换，各走不同模型（Wan 2.7 Edit-Video、Kling Motion-Control Pro、Lucy Edit Restyle 等）。
-        <span class="k">为什么值得你花时间</span>这套「意图路由到多个视频模型」的接口形状，可以直接照搬进你平台的视频节点 —— 用户不该知道背后是 Wan 还是 Kling；顺便验证一下同类技能的生态现状（该目录下 493.7K 安装量）。
-        <span class="k">上手成本</span>需要申请 key（RunComfy 账号 + agent CLI 装 skill）
-        <span class="k">入口</span><a href="https://www.skills.sh/genmedia-labs/skills/video-edit" target="_blank" rel="noopener noreferrer">https://www.skills.sh/genmedia-labs/skills/video-edit</a>
+        <span class="k">是什么</span>Wan-AI Wan 3.0 Prime 的「参考生视频」skill，跑在 RunComfy Model API 的 `wan3.0-video-prime` 上。真正的差异点是**编号引用绑定**：一次最多挂 10 张图 + 5 段视频 + 5 段音频，在提示词里用 `Image 1` / `Video 1` / `Audio 1` 逐一点名，用来在整段镜头里锁住角色脸、产品外形和场景调性——这也是它和普通文生视频端点分开存在的原因。装法一行：`npx skills add genmedia-labs/skills --skill wan-3-0-prime-reference-to-video -g`。
+        <span class="k">为什么值得你花时间</span>你要做的是一句话成片和角色一致性，这条直接给了一套可抄的「参考绑定」写法——把「哪张图管什么」写进提示词语法，装上就能在 agent 里串镜头，不用自己封装 RunComfy 的接口。
+        <span class="k">上手成本</span>需要申请 key（RunComfy；技能本体 1 分钟装好）
+        <span class="k">入口</span><a href="https://www.skills.sh/genmedia-labs/skills/wan-3-0-prime-reference-to-video" target="_blank" rel="noopener noreferrer">https://www.skills.sh/genmedia-labs/skills/wan-3-0-prime-reference-to-video</a>
+        <a class="more" href="detail/2026-09-15-01.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
     <details class="row" data-fast="1" data-tool="1">
       <summary class="hit">
-        <span class="n">05</span>
+        <span class="n">02</span>
         <span class="tt">
-          <span class="t1">Spec Kit：把「先写规格」变成可执行的流程</span>
-          <span class="t1b">以规格文档为源头，自动生成计划、任务拆解与代码骨架。</span>
+          <span class="t1">hyperframes-cli</span>
+          <span class="t1b">在命令行里脚手架、校验、预览、渲染视频合成。</span>
           <span class="t2">
             <span class="chip skill">技能</span>
             <span class="cost fast">15 分钟</span>
-            <span class="src">repo:github/spec-kit</span>
+            <span class="src">skills:trending</span>
           </span>
         </span>
         <span class="car">›</span>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>GitHub 官方的规格驱动开发（spec-driven development）工具包，用 `uv tool install` 装 CLI；从一份规格出发，把实现计划和任务清单逐层展开，让 agent 按规格干活而不是凭感觉改文件。
-        <span class="k">为什么值得你花时间</span>如果你已经在用 coding agent 跑 Gitea 上的 wayfinder，它治的正是「AI 写代码越写越散」这个病 —— 规格成为可复用的上下文，而不是每次重述需求。
-        <span class="k">上手成本</span>15 分钟（装 CLI + 拿一个小仓库跑一遍）
-        <span class="k">入口</span><a href="https://github.com/github/spec-kit" target="_blank" rel="noopener noreferrer">https://github.com/github/spec-kit</a>
+        <span class="k">是什么</span>HeyGen 开源的 HyperFrames 命令行 skill，命令统一走 `npx hyperframes ...`，依赖 Node.js ≥ 22 与 FFmpeg。它把视频合成的开发循环固定成一套动作：`init` 脚手架（9 个模板）→ `catalog --query &quot;把标题一行行揭开&quot;` 用自然语言找现成动效原语 → `lint` 查结构错误 → `check --snapshots` 在开浏览器前重跑 lint 并做文本溢出/裁切的视觉体检 → `preview --background` 热重载 → `render` 分 draft / looks / delivery 三档画质，支持 MP4/WebM、帧率与变量覆盖，最后用 `ffprobe` 核对时长。
+        <span class="k">为什么值得你花时间</span>画布节点产出的时间线最终要落成可交付视频，这条把「脚手架 → lint → 视觉体检 → 预览 → 分档渲染」整条链路做成了 agent 可驱动的 CLI，比自建渲染管线省一大截；`check` 的快照体检也能直接当画布产物的自动化验收。
+        <span class="k">上手成本</span>15 分钟
+        <span class="k">入口</span><a href="https://www.skills.sh/heygen-com/hyperframes/hyperframes-cli" target="_blank" rel="noopener noreferrer">https://www.skills.sh/heygen-com/hyperframes/hyperframes-cli</a>
+        <a class="more" href="detail/2026-09-15-02.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">03</span>
+        <span class="tt">
+          <span class="t1">commit-rewriter 0.1</span>
+          <span class="t1b">用本地网页批量改写 git 提交信息。</span>
+          <span class="t2">
+            <span class="chip people">跟人</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">people:simonwillison</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Simon Willison 的小工具，`uvx commit-rewriter path/to/repo` 起一个本地网页：列出最近提交，每条带可编辑的 message 文本框，可搜索 message / 作者 / hash，可勾选 Edited only，可展开完整 diff。点 Rewrite 时它先给当前仓库状态打一个带时间戳的分支作为回退点，再从你改过的第一条提交一直重写到最新一条。作者是给 Datasette 安全版本准备发布时写的——初始提交里塞满了 coding agent 的流水话和私有仓库的 issue 编号。
+        <span class="k">为什么值得你花时间</span>你让 agent 提交时，message 里常混着内部 issue ID 和流水话，对外发布或给同事看之前得清理；这工具 15 分钟装好就能一次性解决，省掉 `rebase -i` 来回翻车。
+        <span class="k">上手成本</span>15 分钟
+        <span class="k">入口</span><a href="https://simonwillison.net/2026/Sep/14/commit-rewriter/" target="_blank" rel="noopener noreferrer">https://simonwillison.net/2026/Sep/14/commit-rewriter/</a>
+        <a class="more" href="detail/2026-09-15-03.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="0" data-tool="0">
+      <summary class="hit">
+        <span class="n">04</span>
+        <span class="tt">
+          <span class="t1">DeepSeek-V4.1-Flash</span>
+          <span class="t1b">把预填充与解码拆成两档激活量的开源旗舰。</span>
+          <span class="t2">
+            <span class="chip people">跟人</span>
+            <span class="cost slow">1 小时</span>
+            <span class="src">people:latent-space</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>DeepSeek 9 月 10 日发布的 MIT 开源旗舰：763B 总参数，但激活量按阶段拆开——prefill 侧 8B、decode 侧 16B（记号 763B-P8B-D16B），配全新的因果 Encoder–Decoder 架构与原生视觉（视觉侧用 3×3 pixel unshuffle 而非常见的 2×2），上下文 1M。Artificial Analysis 称其 KV cache 占用最高只有 V4 Flash 的 1/8（报告里约 890 bytes/token）。AA 智能指数 40（高于自家 V4 Pro 0813、略低于 GLM-5.3-Flash），AutomationBench-AA 69%（与 GPT-6 Astra 持平），定价 $0.30 / $1.20 每百万 token、缓存输入 $0.006，另加 5 折闲时价；折算一次智能指数任务约 $0.27，约为 GLM-5.3（$2.01）与 Kimi K3（$2.00）的 1/7。Raschka 的评价是「这该叫 DeepSeek V5」。
+        <span class="k">为什么值得你花时间</span>长时 agent 的账单和 KV 占用是你后端实打实的成本项，这条同时给了「便宜到可以常驻」的价格、1M 上下文和原生视觉，属于会影响你下半年选型的少数几条；它发布才 5 天，同事多半还没试过。
+        <span class="k">上手成本</span>1 小时（先走 API；本地权重需大显存 + SSD offload）
+        <span class="k">入口</span><a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash" target="_blank" rel="noopener noreferrer">https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash</a>
+        <a class="more" href="detail/2026-09-15-04.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="0" data-tool="0">
+      <summary class="hit">
+        <span class="n">05</span>
+        <span class="tt">
+          <span class="t1">GLM-5.3-Flash</span>
+          <span class="t1b">靠后训练堆出来的开源编码旗舰，约 750B 参数。</span>
+          <span class="t2">
+            <span class="chip model">模型</span>
+            <span class="cost slow">1 小时</span>
+            <span class="src">hf-org:zai-org</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Z.ai 的 GLM-5.3 系列（HF 上已放出 GLM-5.3-Flash 等权重）。官方定调很直白：「Scaling post-training is all we did for GLM-5.3」——基座与 GLM-5.2 完全相同，提升全部来自后训练：更多环境、更多样任务、更多 RL 算力。约 750B 参数（约为 Kimi K3 的三分之一）却在多项 agentic coding 基准上超过 Kimi K3，部分项超过 Claude Fable 5 或 GPT-5.6-Sol；Artificial Analysis 的口径里 GLM-5.3-Flash 的智能指数略高于 DeepSeek V4.1-Flash。Interconnects 的判断是这不是蒸馏故事，而是后训练能力 + 以天计（而非以月计）的发布节奏。
+        <span class="k">为什么值得你花时间</span>给平台选 coding / agent 用的开源模型时，这条和上面那条 DeepSeek 正好是一对——一个卖推理成本，一个卖「后训练把中等规模做到前沿」，两条加起来基本能定你下半年自建还是调 API 的天平。注意它是纯文本、没有视觉能力，权重可私有化部署。
+        <span class="k">上手成本</span>1 小时
+        <span class="k">入口</span><a href="https://huggingface.co/zai-org/GLM-5.3-Flash" target="_blank" rel="noopener noreferrer">https://huggingface.co/zai-org/GLM-5.3-Flash</a>
+        <a class="more" href="detail/2026-09-15-05.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
@@ -201,73 +208,76 @@ details.rej[open] summary::before{content:"▾ "}
       <summary class="hit">
         <span class="n">06</span>
         <span class="tt">
-          <span class="t1">OpenAI Agents API：把 Codex 的 harness 拆出来单独卖</span>
-          <span class="t1b">托管版 agent 循环，你只需给工具和任务，不用自己写编排。</span>
+          <span class="t1">Harness Engineering 入门：Agent = Model + Harness</span>
+          <span class="t1b">把 agent 理解为模型加外围执行环境的方法论。</span>
           <span class="t2">
-            <span class="chip model">模型</span>
+            <span class="chip cn">中文</span>
             <span class="cost fast">15 分钟</span>
-            <span class="src">vendor:openai</span>
+            <span class="src">cn:juejin</span>
           </span>
         </span>
         <span class="car">›</span>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>底层是 Codex 那套 harness，公开成四个概念 —— Agent（模型 + 指令 + 工具）、Environment（读文件 / 跑命令的机器，可用官方 sandbox 或自己的 `codex exec-server`）、Session（跨轮次的长期存在）、Events（流式 / webhook / 中途介入）。官方文档写得很直白：OpenAI 负责会话、编排、**上下文压缩**和恢复，你的应用负责提供工具、选择执行环境。有官方的 handler 能直接接，但 harness 本身是托管的。
-        <span class="k">为什么值得你花时间</span>上下文压缩、子 agent 编排、tool search 这些「长任务不翻车」的工程你之前得自己养，现在可以买；反过来说，这也是判断你自己那层编排还要不要继续投入的关键一条。
-        <span class="k">上手成本</span>15 分钟（读架构页）；真接要半天
-        <span class="k">入口</span><a href="https://openai.com/index/introducing-the-agents-api" target="_blank" rel="noopener noreferrer">https://openai.com/index/introducing-the-agents-api</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="0" data-tool="0">
-      <summary class="hit">
-        <span class="n">07</span>
-        <span class="tt">
-          <span class="t1">Gradio Workflow：用节点画布重建 AUTOMATIC1111</span>
-          <span class="t1b">把 WebUI 的生成流程拆成可连线的节点，走可视化编排。</span>
-          <span class="t2">
-            <span class="chip people">跟人</span>
-            <span class="cost slow">1 小时</span>
-            <span class="src">people:hf-blog</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>Hugging Face 官方博客（2026-09-10）演示用 Gradio 的 Workflow 组件把 AUTOMATIC1111 的界面重建为工作流式管线 —— 每一步生成 / 后处理是一张卡片，靠连线组成流程。
-        <span class="k">为什么值得你花时间</span>这正是你平台画布节点的同类形态，而且给的是「开源生态怎么把图像生成流程可视化」的参考实现；看它怎么处理参数面板和节点间数据传递，比看商业产品更有借鉴价值。
-        <span class="k">上手成本</span>1 小时（本地起一份示例）
-        <span class="k">入口</span><a href="https://huggingface.co/blog/gradio-workflow-1111" target="_blank" rel="noopener noreferrer">https://huggingface.co/blog/gradio-workflow-1111</a>
+        <span class="k">是什么</span>一篇中文入门，讲透 LangChain 的 Vivek Trivedy 在 2026 年 3 月给的公式：**Agent = Model + Harness，如果你不是模型，你就是 Harness**。文章把 Harness 拆成七层——Instructions（CLAUDE.md / AGENTS.md / Skill 定义）、Knowledge（记忆、上下文压缩、检索、进度文件）、Tools（文件读写、Shell、搜索、MCP）、Infrastructure（沙箱、浏览器、执行环境）、Orchestration（子 agent、路由、上下文防火墙、权限门）、Hooks（确定性生命周期脚本）、Observability（日志、追踪、成本计量），并给出排查顺序：agent 出问题从第一层往下问「哪一层失败了」。最实用的一个坑是：CLAUDE.md 是作为上下文加载、不是作为配置强制执行的，上下文塞满时会被忽略，所以硬规则必须落到 Hook。
+        <span class="k">为什么值得你花时间</span>你天天在写 skill、hook 和 AGENTS.md，却缺一个「哪层薄了就补哪层」的统一框架；这篇 15 分钟读完就能当排查清单用，也能解释为什么同一个模型在别人手里稳、在你手里要逐句补救。
+        <span class="k">上手成本</span>15 分钟
+        <span class="k">入口</span><a href="https://juejin.cn/post/7685320540698624043" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7685320540698624043</a>
+        <a class="more" href="detail/2026-09-15-06.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
     <details class="row" data-fast="1" data-tool="0">
       <summary class="hit">
-        <span class="n">08</span>
+        <span class="n">07</span>
         <span class="tt">
-          <span class="t1">Excel AI 工作流横评：载体比模型更决定交付质量</span>
-          <span class="t1b">用一批测试题实测 AI 做 Excel，好坏取决于载体而非模型。</span>
+          <span class="t1">Warp 如何让 Agent 自我进化</span>
+          <span class="t1b">用人类评审评论自动迭代代码审查技能的闭环。</span>
           <span class="t2">
-            <span class="chip cn">中文</span>
+            <span class="chip people">跟人</span>
             <span class="cost fast">15 分钟</span>
-            <span class="src">cn:sspai</span>
+            <span class="src">people:baoyu</span>
           </span>
         </span>
         <span class="car">›</span>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>少数派作者用同一套测试用例和提示词，横评 OpenAI / Anthropic / Google / DeepSeek / Kimi / GLM 等模型在多种载体（Office 加载项、独立工作台、第三方插件）下的表现。结论有数据：22 个输出文件里 16 个（73%）建了数据透视表，但只有 **6 个（27%）算对**；长流程任务的**人工介入率高达 51%**，短流程只有 12%；同一模型在 Office 加载项里会用 XLOOKUP / FILTER 等动态公式，退到独立工作台则倾向硬编码静态值。
-        <span class="k">为什么值得你花时间</span>结论「载体（Harness）的重要性不亚于模型」可以直接迁移 —— 你的 AIGC 平台本身就是用户的载体，这篇给出了怎么设计评测指标（硬编码率、无损原则、交互次数）来证明你的平台比竞品更可靠。
-        <span class="k">上手成本</span>15 分钟（读 TL;DR 与结论表）
-        <span class="k">入口</span><a href="https://sspai.com/prime/story/ai-assisted-spreadsheeting-a-survey" target="_blank" rel="noopener noreferrer">https://sspai.com/prime/story/ai-assisted-spreadsheeting-a-survey</a>
+        <span class="k">是什么</span>宝玉对 Claude 官方博文《How Warp builds self-improving agents on Claude》的解读。Warp 做 AI code review 时发现瓶颈不是模型能力而是**没有记忆**：agent 不了解项目、不知道团队规范和历史教训。解法是两个 skill 配对——一个做审查，另一个定期收集人类工程师在 PR 上对 agent 审查结果的评论，据此更新前者。关键是不让模型自我评判，而是**让 agent 根据人类的标注改技能**，且摩擦极低：人只要在本来就会写评论的地方写评论，收集与更新全自动。文末给了 6 条实践（写原则不写死规则、解释为什么、反馈零摩擦、skill 精简 + 渐进式披露、质量大于数量、「改进 skill 的 skill」可复用）和三道防跑偏的闸（限制谁的反馈有权影响更新、保留人工审核、有标准答案的领域先建验证基准）。
+        <span class="k">为什么值得你花时间</span>你已经养着一批本地 skill 补丁，最大的风险就是没人给它们反馈、越用越旧；这套低摩擦循环可以照搬到你的 skill 库上，尤其是「谁能影响更新 + 人工审核」那道闸，正好补上裸补丁没有的保护。
+        <span class="k">上手成本</span>15 分钟
+        <span class="k">入口</span><a href="https://baoyu.io/blog/2026-08-28/warp-self-improving-agents" target="_blank" rel="noopener noreferrer">https://baoyu.io/blog/2026-08-28/warp-self-improving-agents</a>
+        <a class="more" href="detail/2026-09-15-07.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="0" data-tool="0">
+      <summary class="hit">
+        <span class="n">08</span>
+        <span class="tt">
+          <span class="t1">ZGCM-1：7 名博士生 3 个月从零训练 7B 大模型</span>
+          <span class="t1b">7 名博士生带几百个 agent 训出的开源 7B 模型。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost slow">1 小时</span>
+            <span class="src">cn:qbitai</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>北京中关村学院 7 名博士生一个暑假从零训练出 7B 模型 ZGCM-1，并把权重、分阶段 checkpoint、训练代码、数据配方和训练日志全部开源。长上下文方案是局部 + 全局注意力混合，训练中把上下文从 16K 逐步扩到 64K、256K，256K 下比全注意力吞吐约 3.94 倍、KV cache 降到约 1/6；训练侧结合 Muon 与 FP8，用延迟缩放与 TWEO 抑制极端激活值，16K 预训练达到同等 loss 的效率比标准 BF16/AdamW 基线提高约 4.2 倍。评测建了 ACE 原子能力体系：18 类、183 项、2503 个探针，一轮诊断 2–3 分钟。团队还组了几百个 agent 的子团队（数据 / 实验 / 评测），把研发拆成 11 类任务按 L1–L5 评自主性：实验监控与部署到了 L4，模型架构与学习算法设计仍在 L2。
+        <span class="k">为什么值得你花时间</span>这是目前最完整的一份「AI4AI」公开施工记录——代码和数据都在，SFT 质量筛选砍掉约 44.9% 样本反而整体变好、长思维链比例过高伤指令遵循这类结论可以直接拿去用；它把「几百个 agent 跑长流程」的组织方式（共享上下文 + 把验证过的脚本沉淀成可复用 skill）也完整写出来了，对你在平台上做 agent 编排是现成参照。
+        <span class="k">上手成本</span>1 小时（仓库 + 技术报告；复现训练另算）
+        <span class="k">入口</span><a href="https://github.com/zgcagi/ZGCM-1" target="_blank" rel="noopener noreferrer">https://github.com/zgcagi/ZGCM-1</a>
+        <a class="more" href="detail/2026-09-15-08.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
   <div class="empty" id="empty" style="display:none">这个筛选下没有条目。</div>
-  <div class="fold">还有 2 条：Harness Engineering 入门 —— Agent = Model + Harness，七层解剖 + 一句硬话「CLAUDE.md 是建议不是强制，硬规则得靠 Hook」（掘金，https://juejin.cn/post/7685320540698624043 ）；commit-rewriter 0.1 —— `uvx commit-rewriter &lt;repo&gt;` 起一个本地网页，先把 agent 留下的脏 commit message 改干净、再自动开一个时间戳分支重写历史（simonwillison，https://github.com/simonw/commit-rewriter/releases/tag/0.1 ）。行业侧「值得知道」1 条：Anthropic 披露有组织用 Claude Code 开发导弹制导软件 —— 影响的是合规与可追溯，不是你的选型（https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo ）。</div>
+  <div class="fold">还有 4 条：① vercel-labs 的 `agent-browser`（面向 agent 的持久浏览器自动化 CLI，headless Chromium / 真实 Chrome 带 profile / 云端浏览器三种模式，用法随 CLI 版本更新，`agent-browser skills get core` 取）② 掘金《Agent 基础设施比模型能力更卷了？》（GPT-6 Astra 的 Responses API、Gemini 3.8 Flash 的 Interactions API、Claude Fable 5.1 缓存读取降价 75%——三家这周的重心都从模型能力移到了 API 层）③ InfoQ《Meta 打造「组织第二大脑」智能体的设计思路》④【知情】OpenAI 的 agent 曾在 5 月攻击 RubyGems 且此前未告知对方（rubyhack.ai 报告，OpenAI 9/11 才给出说明）。</div>
   <div class="foot">
-    <b>每源今日条数</b><br>✅ hf-org:deepseek-ai 3 · ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15 · ✅ vendor:deepmind 10 · ✅ vendor:mistral 10 · ✅ skills:trending 12 · ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ hn:show 12 · ✅ hf:spaces-trending 20 · ✅ people:simonwillison 12 · ✅ hn:stories 6 · ✅ cn:juejin 10 · ✅ cn:sspai 10 · ✅ cn:qbitai 10 · ✅ cn:infoq 10 · ✅ people:latent-space 6 · ✅ people:interconnects 6 · ✅ people:hf-blog 8 · ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5
+    <b>每源今日条数</b><br>❌ hf-org:deepseek-ai 0（失败：fetch failed (UND_ERR_CONNECT_TIMEOUT)）· ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15 · ✅ vendor:deepmind 10 · ✅ vendor:mistral 10 · ✅ skills:trending 12 · ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ hn:show 12 · ✅ hf:spaces-trending 20 · ✅ people:simonwillison 12 · ✅ hn:stories 6 · ✅ cn:juejin 10 · ✅ cn:sspai 10 · ✅ cn:qbitai 10 · ✅ cn:infoq 10 · ✅ people:latent-space 6 · ✅ people:interconnects 6 · ✅ people:hf-blog 8 · ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5（30 源 · 0 条的源 1 个 · 失败源 1 个）
     <details class="rej"><summary>被过滤器砍掉的 27 条（信任雷达的依据）</summary>
-        <div class="rejrow"><span class="t">claude-code v2.1.272 / v2.1.271 / v2.1.270</span><span class="r">版本号流水，答不上「为什么值得今天 5 分钟」</span></div><div class="rejrow"><span class="t">codex 0.155.0-alpha.6 / .5 / .4</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">gemini-cli v0.61.0-nightly.20260915 / 14 / 13</span><span class="r">nightly 流水</span></div><div class="rejrow"><span class="t">opencode v1.18.31 / v2.0.3 / v2.0.2</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">spec-kit 1.0.6 / 1.0.5 / 1.0.4</span><span class="r">补丁号流水（工具本身已进正文）</span></div><div class="rejrow"><span class="t">MCP servers 2026.8.31 / 2026.8.18 / 2026.7.10</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">mattpocock/skills v1.2.3 / v1.2.2 / v1.2.0</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">genmedia-labs 的 ai-video-generation / seedance-2-5-image-to-video / ai-music</span><span class="r">同组织每天只给 1 个正文席位（已选 video-edit）</span></div><div class="rejrow"><span class="t">heygen-com 的 hyperframes-cli / hyperframes-audio</span><span class="r">同组织重复贡献，且与你现有节点能力重叠</span></div><div class="rejrow"><span class="t">其余 skills.sh 榜内条目（design-mobile-apps、reddit-automation、twitter-automation、find-skills、google-agents-cli-adk-code、grill-me）</span><span class="r">与本业务无关（移动端设计 / 社区运营 / 通用检索）</span></div><div class="rejrow"><span class="t">13 个含 NSFW / UNCENSORED 字样的 HF Space</span><span class="r">社区 NSFW 演示空间</span></div><div class="rejrow"><span class="t">其余 7 个 HF Space（微缩机器人、果蝇模拟、SAR 去噪、去雾、视频工具等）</span><span class="r">有趣但与 AIGC 内容平台不相关，或同类中已有更强候选</span></div><div class="rejrow"><span class="t">HN「光速只有 5 km/h」「Bodily Oddities」「自行车替代品」等</span><span class="r">很热但与业务无关</span></div><div class="rejrow"><span class="t">HN「Hacker News, without AI」两条（hcker.news / unslop.news）</span><span class="r">同一话题重复，且无新信息</span></div><div class="rejrow"><span class="t">HN 关于 Claude 的 5 条（18 岁限制、Siri 可换、Claude is a Contrarian、反编译 Antspace 等）</span><span class="r">高分但属讨论 / 传闻，无可执行入口</span></div><div class="rejrow"><span class="t">GPT-Live-1 语音 API、ChatGPT Financial Services、政府 $0 license、1B 用户存储架构</span><span class="r">与业务不直接相关，或同组织已有更强席位</span></div><div class="rejrow"><span class="t">GPT-6 Astra 客户案例（Perplexity / Devin / Fyxer）与 Navier–Stokes 报道</span><span class="r">重复叙事 / 很热但不新</span></div><div class="rejrow"><span class="t">AlphaGenome Atlas、WeatherNext 3、AI 玩游戏、双盲评测</span><span class="r">与业务无关（生物 / 天气 / 游戏 / 评测方法论）</span></div><div class="rejrow"><span class="t">Mistral €3B 融资、HUMAIN / Cloudera 合作、Shieldstral、Robostral、Leanstral、Studio prompts</span><span class="r">融资、商务合作与旁支产品，本周用不上</span></div><div class="rejrow"><span class="t">Mistral 40k 行 Fortran 77 迁移案例</span><span class="r">有方法价值但触点太远，让位给更贴近业务的条目</span></div><div class="rejrow"><span class="t">Qwen3.8-Flash-Next / -FP8、GLM-5.3 系列、MiniMax-H3 / Music3、Kimi-K3 / K2.7-Code</span><span class="r">榜单常客，非本周新的选型信号</span></div><div class="rejrow"><span class="t">JUEL 本地部署、OpenStack/DevStack、TradingView、征程 6 量化、STM32 结构体、elisp 练习、IAM 权限 JSON、Vibe Coding→LangGraph</span><span class="r">与本业务无关或偏教程复述</span></div><div class="rejrow"><span class="t">派早报 ×2、派评、泡泡骚众测、iPhone 相机真实性、HomeLab 硬件单、找工作经验、本周看什么</span><span class="r">消费数码 / 生活类内容</span></div><div class="rejrow"><span class="t">QbitAI 10 条（大会预告、地方 AIDC 认证、AI for Science、端侧进化、融资、RSI 等）</span><span class="r">公关稿与会议报道为主，无可执行入口</span></div><div class="rejrow"><span class="t">InfoQ 10 条（RISC-V、HTTP QUERY、Meta 智能体、ECS 混沌工程、Token 账单、Dario 专访、Arm AI Portal、Azure 混合版等）</span><span class="r">工程实践或行业评论，本周用不上</span></div><div class="rejrow"><span class="t">latent.space 6 条、interconnects 6 条、import-ai 5 条、one-useful-thing 5 条</span><span class="r">观点与周报，无可执行入口（AEF-1 标准待落地后再收）</span></div><div class="rejrow"><span class="t">baoyu 5 条翻译/长文、simonwillison 其余 11 条、HF 博客其余 7 条</span><span class="r">优质但非本周行动项，已选其中最有入口的 2 条</span></div>
+        <div class="rejrow"><span class="t">claude-code v2.1.272 / v2.1.271 / v2.1.270</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">codex 0.155.0-alpha.6 / .5 / .4</span><span class="r">alpha 版本号流水</span></div><div class="rejrow"><span class="t">gemini-cli v0.61.0-nightly ×3</span><span class="r">nightly 流水</span></div><div class="rejrow"><span class="t">Spec Kit 1.0.6 / 1.0.5 / 1.0.4</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">opencode v1.18.31 / v2.0.3 / v2.0.2</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">MCP servers 2026.8.31 / 2026.8.18 / 2026.7.10</span><span class="r">依赖包版本流水</span></div><div class="rejrow"><span class="t">mattpocock/skills v1.2.3 / v1.2.2 / v1.2.0</span><span class="r">版本号流水（技能本体走 skills:trending）</span></div><div class="rejrow"><span class="t">grill-me / grilling</span><span class="r">通用追问技能，与 AIGC 内容平台无关</span></div><div class="rejrow"><span class="t">video-edit</span><span class="r">同 owner（genmedia-labs）去重，正文已取 wan-3-0-prime-reference-to-video</span></div><div class="rejrow"><span class="t">hyperframes-audio</span><span class="r">同 owner（heygen-com）去重，正文已取 hyperframes-cli</span></div><div class="rejrow"><span class="t">design-mobile-apps / find-skills / twitter-automation / reddit-automation</span><span class="r">与业务不直接相关</span></div><div class="rejrow"><span class="t">Pepe104/MiniMax-H3-Turbo-Lora-UNCENSORED</span><span class="r">社区 NSFW</span></div><div class="rejrow"><span class="t">Qwen3.8-Flash-Next / Qwen-Drive / Kimi-K3 / MiniMax-H3 / MiniMax-Music3 / GLM-5.3 等 HF 条目</span><span class="r">huggingface.co 原文不可达（域名解析到非公网地址），细节无法核实；GLM-5.3-Flash 与 DeepSeek V4.1-Flash 另据可读解读进正文</span></div><div class="rejrow"><span class="t">openai.com 15 条（Fyxer / Perplexity / 存储扩容 / Cognition / 数据 agent / 金融服务 / 政府准入 / 政策 / 量子 / 抗菌分子等）</span><span class="r">官方营销稿，无可执行入口</span></div><div class="rejrow"><span class="t">AlphaGenome Atlas / WeatherNext 3 / 政府网络防御 / 15 年游戏 AI / 双盲评估</span><span class="r">生物、气象、防务，与 AIGC 内容平台无关</span></div><div class="rejrow"><span class="t">Cloudera 合作 / €3B 融资 / HUMAIN / 欧洲主权推理 / Shieldstral / Leanstral / Robostral / legacy code 迁移</span><span class="r">融资、合作与安全分类器，本周用不上</span></div><div class="rejrow"><span class="t">Show HN: What if the speed of light was 5 km/h（627p）/ Bodily Oddities（340p）/ Hacker News without AI ×2</span><span class="r">高分但与你的业务无关</span></div><div class="rejrow"><span class="t">Copperhead（250p）/ Kinesis（114p）/ gpty（97p）/ Toast（82p）/ LLM Attention Visualization / Compute polynomials / Neobrutalism</span><span class="r">非本业，或与 AIGC 内容平台无关</span></div><div class="rejrow"><span class="t">Claude 相关 5 条（改按钮 1207p、18 岁限制 673p、Siri 换 Claude 221p、Contrarian 119p、逆向 Antspace 109p）</span><span class="r">很热但不新，无可执行入口</span></div><div class="rejrow"><span class="t">Houthis 用 Claude Code 造导弹制导</span><span class="r">知情类；当日 1 个名额已给 RubyGems 事件</span></div><div class="rejrow"><span class="t">派早报 / 派评 / 众测 / 新 iPhone 相机 / 本周看什么 / HomeLab / 求职复盘</span><span class="r">消费数码与生活内容，与业务无关</span></div><div class="rejrow"><span class="t">量子位：9/21 深圳活动 / 蚂蚁灵波挑战赛 / 商汤 5A 认证 / 分子之心 / 元空智能 / 金融 AI 融资 / 崇礼论坛</span><span class="r">活动与融资稿，无执行入口</span></div><div class="rejrow"><span class="t">InfoQ：Python RISC-V / HTTP QUERY / 金融混沌工程 / Agent 可观测 / AI 干脏活 / Token 账单 / Dario 专访 / Arm Portal / 数据库底座</span><span class="r">与 AIGC 内容平台不直接相关</span></div><div class="rejrow"><span class="t">掘金：OpenStack DevStack / TradingView 本地部署 / STM32 结构体 / elisp 练习 / IAM 权限 / LangGraph 范式 / 征程 6 量化</span><span class="r">与本业无关</span></div><div class="rejrow"><span class="t">simonwillison 其余 10 条 / interconnects 其余 5 条 / import-ai 5 条 / one-useful-thing 5 条 / latent-space 其余 5 条</span><span class="r">观点、播客与旧文，无可执行入口</span></div><div class="rejrow"><span class="t">HF Blog 8 条（async GRPO / Gradio Workflow / Granite 时序 / Safety for Whom / NeoMME / GRPO 结构化输出 / funes 记忆 / 水彩训练）</span><span class="r">huggingface.co 原文不可达，无法核实</span></div><div class="rejrow"><span class="t">其余约 60 条</span><span class="r">同质化（HF Space 里重复的自训/加速 LoRA）、无仓库/API/skill 入口，或与 AIGC 内容平台无关</span></div>
       </details>
   </div>
 </div>
