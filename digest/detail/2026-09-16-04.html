@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HiDream-O1-Video-1.0 · 雷达详情</title>
+<title>Vidu S2 · 雷达详情</title>
 <style>
 :root{--ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;--ok:#0f7b53;--warm:#c2410c}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -95,18 +95,18 @@ details.rej[open] summary::before{content:"▾ "}
 <div class="art">
   <a class="back" href="../2026-09-16.html">← 返回简报</a>
   <div class="wrap">
-    <h1>HiDream-O1-Video-1.0</h1>
-    <div class="lead">国产全模态视频模型，一键直出 5–20 秒带声 1080p。</div>
+    <h1>Vidu S2</h1>
+    <div class="lead">对着正在播放的视频实时换装、换人、换背景。</div>
     <div class="metaline">
       <span class="chip cn">中文</span>
-      <span class="cost slow">需要申请 key（模型经智象产品侧接入，暂无公开 API 文档）</span>
+      <span class="cost fast">15 分钟（生数平台，需账号）</span>
       <span class="src">cn:qbitai</span>
     </div>
-    <img src="https://i.qbitai.com/wp-content/uploads/2026/09/bf38818075c8d898629db7bf14f9fe82.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
-    <h2>摘要 · 译自原文</h2><p>智象未来（HiDream.ai）9 月 15 日发布首个原生全模态视频生成模型 HiDream-O1-Video-1.0（简称 HD-V1）。它支持文本、图片、视频等多种模态输入，可一键直出 5–20 秒 1080p 视频；架构上对文本、视频、音频信号联合建模，画面运动牵引声音节奏、台词音效反哺镜头情绪，因此音画同步不是后期拼接出来的。官方给出的两个关键设计是：前置多模态意图理解模块，把口语化、碎片化输入结构化成镜头时长、场景、首帧约束、在场角色、景别、台词与背景声等字段（先规划、后联合生成、再用多模态 Reward 对齐）；以及把时长决策交还内容——苹果从抛出到接住该几秒就几秒，不再为填满 10 秒而让画面空转或慢放。</p><p>首发成绩放在两项第三方评测里：Artificial Analysis Image-to-Video（With Audio）全球第 4，Arena.ai Image-to-Video 第 8。发布同期智象宣布完成 C+ 轮融资，投资方为新微资本、交子资本、工银资本；公司此前的 HiDream-O1-Image、交互式世界模型 HiDream-O1-World、具身世界模型 HiDream-O1-Embodied 分别在各自榜单取得过领先位置，HD-V1 补上了视频这一环。</p>
-    <h2>要点</h2><ul><li>首个原生全模态视频模型，文本 / 图片 / 视频输入，直出 5–20 秒 1080p</li><li>Artificial Analysis Image-to-Video（With Audio）全球第 4；Arena.ai Image-to-Video 第 8</li><li>文本、视频、音频联合建模，口型、环境声与镜头切换同频，避免后期配音错位</li><li>「时长由内容决定」：生成时长按事件逻辑与动作周期自行规划，而非硬套提示词里的秒数</li><li>同期 C+ 轮融资：新微资本、交子资本、工银资本</li></ul>
-    <h2>为什么值得你花时间</h2><p>中文厂里少有的把「音画一体化 + 物理规律」当卖点、且首秀就进第一梯队的视频模型，直接对标你平台的核心生成能力；值得在下一次视频选型时用同一批 prompt 与现有模型对跑，而不是等它铺满全网才知道。</p>
-    <h2>原文</h2><p><a class="src-link" href="https://www.qbitai.com/2026/09/489389.html" target="_blank" rel="noopener noreferrer">https://www.qbitai.com/2026/09/489389.html</a></p>
+    <img src="https://i.qbitai.com/wp-content/uploads/2026/09/de78fdac07eca22c6d4dc5b7db1cd5b9.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><img src="https://i.qbitai.com/wp-content/uploads/2026/09/81a14c82f7f97f5f63a2e1831d883d65.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+    <h2>摘要 · 译自原文</h2><p>生数科技 9 月 16 日发布 Vidu S2，包含两个细分模型并一次放出三个方向。**Vidu S2-Editing** 是实时视频编辑模型，对正在播放的画面提供四类实时编辑：人物换装、更换背景、更换主体角色、风格渲染——相当于对视频做「修图」，换装时服装随动作的形变与遮挡处理得比较真实（袖口半遮首饰的细节成立），作者也点出瑕疵：换色块时仍有涂抹感、戴帽子时头发轻微穿模。**Vidu S2-Avatar** 是实时交互模型，输出分辨率从上一代 540p 提到 720p，动作指令执行明显变强（上一代让数字人跳舞转圈常常「嘴上答应」，这一代能跟着指令动），并支持在互动过程中随时递一张参考图，让它拿起图里的物品、换上指定衣服或进入新场景。</p><p>第三个方向是把生成或编辑的视频转成左右眼画面送进 VR 头显，探索更有纵深感的实时空间视频。文章强调 Vidu S2 发布当天即全量开放，不搞内测、不限名额；从 Vidu S1 到 S2 只隔 69 天，全链路研发由清华大学朱军教授的博士生、生数科技流式视频生成与推理负责人张金涛负责。</p><p>对使用者的意义在文末说得很清楚：直播间的视觉效果、虚拟角色的演出、创意视频的玩法都多出临场发挥的空间——观众弹幕发一句「想看主播穿恐龙服」，下一秒就可能真穿上。</p>
+    <h2>要点</h2><ul><li>S2-Editing 四类实时编辑：实时换装 / 更换背景 / 更换主体角色 / 实时风格渲染，面向直播、虚拟角色演出、创意视频</li><li>S2-Avatar 实时输出从 540p 提升到 720p，支持互动中途接收参考图并执行拿取物品、换装等指令</li><li>发布当天全量开放，不内测不限名额；距 Vidu S1 仅 69 天</li><li>探索中的第三个方向：把生成 / 编辑结果转为左右眼画面送入 VR 头显，做实时空间视频</li><li>已知瑕疵：换色块时有涂抹感，人物戴帽时头发有轻微穿模</li></ul>
+    <h2>为什么值得你花时间</h2><p>实时改视频是直播与虚拟角色演出的直接生产力——观众弹幕说「穿恐龙服」下一帧就换上，这类交互形态你的画布与成片链路迟早要接；先花 15 分钟拿一段现成素材试 S2-Editing 的换装与换背景，比对着榜单比参数更能判断它值不值得进你的选型清单。</p>
+    <h2>原文</h2><p><a class="src-link" href="https://www.qbitai.com/2026/09/490109.html" target="_blank" rel="noopener noreferrer">https://www.qbitai.com/2026/09/490109.html</a></p>
     <div class="who">雷达简报 2026-09-16 · 条目 2026-09-16-04</div>
   </div>
 </div>
