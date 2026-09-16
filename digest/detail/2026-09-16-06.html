@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>同一模型在不同供应商下行为不同 · 雷达详情</title>
+<title>Capsule · 雷达详情</title>
 <style>
 :root{--ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;--ok:#0f7b53;--warm:#c2410c}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -95,18 +95,18 @@ details.rej[open] summary::before{content:"▾ "}
 <div class="art">
   <a class="back" href="../2026-09-16.html">← 返回简报</a>
   <div class="wrap">
-    <h1>同一模型在不同供应商下行为不同</h1>
-    <div class="lead">讲清 OpenRouter 把同一模型路由到不同供应商的坑。</div>
+    <h1>Capsule</h1>
+    <div class="lead">把整个小应用塞进一个文件，双击离线就能跑。</div>
     <div class="metaline">
-      <span class="chip people">跟人</span>
+      <span class="chip tool">小而美</span>
       <span class="cost fast">15 分钟</span>
-      <span class="src">people:simonwillison</span>
+      <span class="src">hn:show</span>
     </div>
-    
-    <h2>摘要 · 译自原文</h2><p>这是一条 Simon Willison 的链接博客（2026-09-11），转的是 Mohamed Moustafa 的《So you want to use OpenRouter?》。OpenRouter 的一大卖点是「自动处理故障转移、并为每次请求挑最划算的选项」，也就是你只调一个端点，由它路由到当前可用的最佳后端供应商。</p><p>问题在于不同供应商跑的是不同的推理软件，优化与配置各不相同，于是同一个 OpenRouter 端点上的同一个模型可能表现出不一样的行为：有的供应商为视觉模型提供的服务甚至不具备视觉能力，reasoning effort 选项的处理方式也有差异。解决办法是控制路由——用 `provider.only` 只允许指定供应商，再用 `/endpoints` 方法列出某个模型 ID 当前有哪些供应商可选。</p>
-    <h2>要点</h2><ul><li>同一模型 ID 经不同供应商，行为可能不同（推理栈与配置不同）</li><li>已知坑：部分供应商的视觉模型没有视觉能力；reasoning effort 处理不一致</li><li>收敛手段：`provider.only` 指定允许的供应商</li><li>查询手段：`/endpoints` 返回某模型 ID 的可用供应商列表</li><li>出自 Mohamed Moustafa 的实践文，Simon Willison 作链接推荐</li></ul>
-    <h2>为什么值得你花时间</h2><p>你的平台大概率会用聚合网关摊薄成本，这条把「便宜但换了后端」这个隐性变量摆上台面；花 15 分钟加一个 provider 白名单和一次端点查询，能省掉「同样 prompt 昨天好好的今天变差」的排查。</p>
-    <h2>原文</h2><p><a class="src-link" href="https://simonwillison.net/2026/Sep/11/so-you-want-to-use-openrouter/" target="_blank" rel="noopener noreferrer">https://simonwillison.net/2026/Sep/11/so-you-want-to-use-openrouter/</a></p>
+    <img src="https://withcapsule.app/og-image.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+    <h2>摘要 · 译自原文</h2><p>Capsule 是一个免费桌面应用容器，主张「Documents that run like apps」：把你的整个应用——界面、媒体资产、本地 SQLite 数据——打包进单个 `.capsule` 文件。它的卖点是把应用变得像文档一样可传递：用 WhatsApp、AirDrop 或邮件发出去，对方点开即用，没有云、没有账号、没有订阅，文件跨 macOS / Windows / Linux。官网用「Summer Recipes.capsule 通过 WhatsApp 分享」这种场景来演示。</p><p>它自带 AI 生成路径，分三步：用提示词描述你要的应用与布局；生成一个自包含的 `.capsule` 容器（HTML 界面 + schema + 本地 SQLite 数据）；再用直接提示或 MCP 编码工具实时改功能、改暗色模式、改 schema，页面里有实时的 AI Capsule Agent 与预览。官网也提供在 ChatGPT / Claude / Gemini 里直接开始的入口。</p><p>分发上提供 macOS 下载、其他平台下载与 Web Preview——可以先用浏览器里的模板（如 Recipe Book）试手感，再决定要不要装宿主播放器。</p>
+    <h2>要点</h2><ul><li>把 UI + 媒体 + 本地 SQLite 打包成单个 `.capsule` 文件，像 PDF 一样通过 WhatsApp / AirDrop / 邮件分发</li><li>无云、无账号、无服务器；文件跨 macOS / Windows / Linux，对方点开即用</li><li>AI 生成三步：描述需求 → 生成自包含容器（HTML + schema + SQLite）→ 用提示或 MCP 工具实时改</li><li>提供 macOS 下载与其他平台下载，另有 Web Preview 可先试模板</li><li>Show HN 讨论 298p</li></ul>
+    <h2>为什么值得你花时间</h2><p>给同事或客户做一个可交互的小工具，过去要么部署内网服务要么发 Excel；用它 15 分钟就能生成带本地库、能离线打开的单文件发出去——比如素材登记表、模型评测结果浏览器，正好绕开「为一个 demo 起一个服务」的成本。</p>
+    <h2>原文</h2><p><a class="src-link" href="https://withcapsule.app/" target="_blank" rel="noopener noreferrer">https://withcapsule.app/</a></p>
     <div class="who">雷达简报 2026-09-16 · 条目 2026-09-16-06</div>
   </div>
 </div>
