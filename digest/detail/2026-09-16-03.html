@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Capsule · 雷达详情</title>
+<title>google-agents-cli-adk-code · 雷达详情</title>
 <style>
 :root{--ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;--ok:#0f7b53;--warm:#c2410c}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -95,18 +95,18 @@ details.rej[open] summary::before{content:"▾ "}
 <div class="art">
   <a class="back" href="../2026-09-16.html">← 返回简报</a>
   <div class="wrap">
-    <h1>Capsule</h1>
-    <div class="lead">把整个小应用塞进一个文件，双击离线就能跑。</div>
+    <h1>google-agents-cli-adk-code</h1>
+    <div class="lead">Google 官方 ADK 智能体写法速查与项目脚手架。</div>
     <div class="metaline">
-      <span class="chip tool">小而美</span>
-      <span class="cost fast">15 分钟</span>
-      <span class="src">hn:show</span>
+      <span class="chip skill">技能</span>
+      <span class="cost slow">1 小时</span>
+      <span class="src">skills:trending</span>
     </div>
-    
-    <h2>摘要 · 译自原文</h2><p>Capsule 是一个免费的桌面应用容器（Show HN 261 分）：把界面（标准 HTML/CSS）、媒体资源和本地 SQLite 数据打包成一个 `.capsule` 文件，像 PDF 或 Word 文档一样用 WhatsApp、AirDrop、邮件发出去，对方点开就带着数据启动，不需要账号、不需要服务器、不需要联网。文件默认跨平台，macOS / Windows / Linux 用同一个文件打开，iOS / Android 官方说在路上。</p><p>它的 AI 生成路径是给外部助手用的：在 ChatGPT / Claude 里让它读 `withcapsule.app/prompt.txt`，按你的描述生成一个完整 capsule；也可以让 AI 或 MCP 编码工具直接改界面、schema，甚至加暗色模式。宿主播放器 v0.4.0 免费下载（macOS 12+、Windows 10+、各 Linux 发行版），另有浏览器里的 Web Preview 可以先试再装。</p>
-    <h2>要点</h2><ul><li>一个 `.capsule` = HTML UI + 媒体 + 本地 SQLite，单文件可分享、可离线运行</li><li>无云、无账号、无网络要求；官方强调零厂商锁定（标准 HTML/CSS）</li><li>AI 生成：ChatGPT / Claude 读 `prompt.txt` 直接产出应用；支持 MCP 编码工具做实时迭代</li><li>宿主播放器 v0.4.0 免费：macOS（Apple Silicon / Intel）、Windows（EXE/MSI）、Debian/Ubuntu、RHEL/Fedora、AppImage</li><li>移动端（iOS 16+ / Android 9+）标注为 coming soon；Web Preview 只能预览、不能存取本机文件</li></ul>
-    <h2>为什么值得你花时间</h2><p>给同事或客户做一个可交互的小工具，过去要部署内网服务；用它 15 分钟就能生成带本地库、能离线打开的单文件发出去——比如素材登记表、模型评测结果浏览器，正好绕开「为一个 demo 起一个服务」的成本。</p>
-    <h2>原文</h2><p><a class="src-link" href="https://withcapsule.app/" target="_blank" rel="noopener noreferrer">https://withcapsule.app/</a></p>
+    <img src="https://www.skills.sh/google/agents-cli/google-agents-cli-adk-code/opengraph-image?1a82f7707f2a479f" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+    <h2>摘要 · 译自原文</h2><p>这是 Google 官方 `agents-cli` 里的 ADK（Agent Development Kit）Python 代码参考技能，等于一份会自己动手的速查表。它开篇就定了两条纪律：先激活 `/google-agents-cli-workflow` 拿到必须的开发阶段，以及在脚手架没出来之前不要写 agent 代码——新项目跑 `agents-cli scaffold create &lt;name&gt;`，已有代码跑 `agents-cli scaffold enhance .`，用 `agents-cli info` 确认项目状态。</p><p>技能的核心是 `references/samples.md` 这份主题索引，收录了沙箱化 / 按用户代码执行、可被 agent 加载的 SKILL.md 技能、跨会话记忆、危险操作前的审批门、工具护栏、按用户凭据、定时或事件触发等成品实现。作者的态度很明确：索引只给名字，代码才算数——克隆对应 recipe、读它的 `AGENTS.md` 再实现；自己手写 Docker 或 E2B 沙箱包装、技能加载器、审核回调、记忆存储，都算「停在名字上」。</p><p>覆盖面还包括工具定义（FunctionTool）、编排原语（SequentialAgent / ParallelAgent / LoopAgent）与状态管理（CallbackContext）。ADK 2.0 的 Workflow API——图式流水线、条件路由、并行处理——是 opt-in 的实验特性，需要 Python 3.11+ 且需用户明确同意。页面显示 237.7K 安装、仓库 google/agents-cli 5.9K 星；安全审计 Gen Agent Trust Hub 与 Socket 通过，Snyk 为 Warn。</p>
+    <h2>要点</h2><ul><li>先脚手架再写代码：`agents-cli scaffold create &lt;name&gt;`，已有代码用 `scaffold enhance .`，`agents-cli info` 查状态</li><li>`references/samples.md` 是成品实现索引：沙箱执行、SKILL.md 加载、跨会话记忆、审批门、工具护栏、按用户凭据、定时 / 事件触发</li><li>编排原语 SequentialAgent / ParallelAgent / LoopAgent，状态走 CallbackContext</li><li>ADK 2.0 Workflow API（图式流水线、条件路由、并行）为 opt-in 实验特性，需 Python 3.11+</li><li>237.7K 安装、仓库 google/agents-cli（5.9K 星）；Snyk 审计为 Warn</li></ul>
+    <h2>为什么值得你花时间</h2><p>你平台的 agent 编排迟早要自己写审批门、护栏、记忆与沙箱这些重复件，这条给的是官方已验证的实现索引加一条脚手架命令；照 recipe 抄比自己拼 CallbackContext 和 FunctionTool 快得多，一小时能把第一个骨架跑起来。</p>
+    <h2>原文</h2><p><a class="src-link" href="https://www.skills.sh/google/agents-cli/google-agents-cli-adk-code" target="_blank" rel="noopener noreferrer">https://www.skills.sh/google/agents-cli/google-agents-cli-adk-code</a></p>
     <div class="who">雷达简报 2026-09-16 · 条目 2026-09-16-03</div>
   </div>
 </div>
