@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>多智能体分解的产出守恒律 · 雷达详情</title>
+<style>
+:root{--ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;--ok:#0f7b53;--warm:#c2410c}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg2);color:var(--ink);
+font:15px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+body{padding:0 0 40px}
+.phone{max-width:460px;margin:0 auto;background:var(--bg);min-height:100vh}
+/* 宽屏（电脑）：容器放宽一倍（460 -> 920），字号与内边距同步放大，读起来不空 */
+@media (min-width:960px){
+  .phone{max-width:920px;box-shadow:0 0 0 1px var(--line)}
+  body{font-size:16px}
+  .head{padding:26px 32px 14px}
+  .count{padding:10px 32px 4px}
+  .hit{padding:14px 32px}
+  .det{padding:0 32px 20px 68px}
+  .fold,.foot{padding-left:32px;padding-right:32px;margin-left:0;margin-right:0}
+  .drift{margin-left:32px;margin-right:32px}
+}
+@media (max-width:520px){.phone{box-shadow:none}}
+.kicker{font-size:11px;letter-spacing:.14em;color:var(--ink3);font-weight:600;
+font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.drift{margin:12px 18px 0;padding:10px 12px;border-radius:10px;background:#fff7ed;
+border:1px solid #fed7aa;color:#9a3412;font-size:13px}
+.head{padding:18px 18px 12px}
+h1{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
+.strap{font-size:12px;color:var(--ink2)}
+.segs{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.seg{font-size:12px;padding:5px 11px;border-radius:99px;border:1px solid var(--line);
+background:#fff;color:var(--ink2);cursor:pointer;font-weight:600;font-family:inherit}
+.seg[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.count{font-size:11px;color:var(--ink3);padding:8px 18px 4px;font-family:ui-monospace,Menlo,monospace}
+.row{border-top:1px solid var(--line)}
+.row:last-of-type{border-bottom:1px solid var(--line)}
+.hit{display:flex;gap:10px;align-items:center;width:100%;text-align:left;padding:12px 18px;
+background:none;border:0;font:inherit;color:inherit;cursor:pointer}
+.hit:active{background:var(--bg2)}
+.n{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--ink3);width:16px;flex:none}
+.tt{flex:1;min-width:0}
+.t1{font-weight:600;font-size:14.5px;line-height:1.35;display:block}
+.t1b{margin-top:2px;font-size:12.5px;color:var(--ink2);line-height:1.45;
+ display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.t2{margin-top:3px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.car{color:var(--ink3);font-size:16px;flex:none;transition:transform .15s}
+.row[open] .car{transform:rotate(90deg)}
+.chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);
+color:var(--ink2);background:var(--bg2);font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
+.chip.model{color:#1d4ed8;border-color:#dbe4ff;background:#f2f5ff}
+.chip.skill{color:#7c2d12;border-color:#ffe4d3;background:#fff6f1}
+.chip.tool{color:#0f7b53;border-color:#d6f0e4;background:#f1fbf6}
+.chip.cn{color:#7e22ce;border-color:#efe0ff;background:#faf5ff}
+.chip.people{color:#0369a1;border-color:#d6ecfb;background:#f2f9ff}
+.chip.method{color:#4a4f5a;border-color:var(--line);background:var(--bg2)}
+.cost{font-weight:700}.cost.fast{color:var(--ok)}.cost.slow{color:var(--warm)}
+.src{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
+.det{padding:0 18px 16px 44px;font-size:13.5px;color:var(--ink2)}
+.det .k{color:var(--ink3);font-size:11px;display:block;margin:8px 0 1px;font-family:ui-monospace,Menlo,monospace}
+.det a{color:#1d4ed8;word-break:break-all}
+.det .more{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:#1d4ed8;
+ text-decoration:none;border:1px solid #dbe4ff;background:#f2f5ff;padding:6px 12px;border-radius:99px}
+.empty{padding:22px 18px;color:var(--ink3);font-size:13px}
+.fold{margin:16px 18px 0;font-size:12px;color:var(--ink3);line-height:1.7}
+.foot{margin-top:22px;padding:16px 18px 26px;border-top:1px solid var(--line);font-size:12px;color:var(--ink3);line-height:1.9}
+.foot b{color:var(--ink2)}
+details.rej{margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}
+details.rej summary{cursor:pointer;font-weight:600;color:var(--ink3);list-style:none}
+details.rej summary::-webkit-details-marker{display:none}
+details.rej summary::before{content:"▸ "}
+details.rej[open] summary::before{content:"▾ "}
+.rejrow{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--bg2);font-size:12px}
+.rejrow .t{flex:1;color:var(--ink2)}.rejrow .r{color:var(--ink3);flex:1.2}
+
+.art{max-width:460px;margin:0 auto;background:var(--bg);min-height:100vh;padding:0 0 70px}
+@media (min-width:960px){ .art{max-width:820px;box-shadow:0 0 0 1px var(--line)} }
+.back{display:inline-block;margin:16px 18px 0;font-size:13px;color:var(--ink3);text-decoration:none}
+.wrap{padding:0 18px}
+@media (min-width:960px){ .wrap{padding:0 40px} .back{margin-left:40px} }
+.art h1{font-size:24px;line-height:1.35;margin:12px 0 8px;letter-spacing:-.02em}
+.art .lead{font-size:15px;color:var(--ink2);margin:0 0 14px;line-height:1.6}
+.art .metaline{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.art img{max-width:100%;height:auto;border-radius:12px;border:1px solid var(--line);margin:10px 0;display:block}
+.art h2{font-size:12px;color:var(--ink3);font-weight:600;margin:26px 0 10px;letter-spacing:.1em;
+ font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.art p{margin:0 0 12px;font-size:15.5px;line-height:1.78}
+.art ul{margin:0;padding-left:20px}
+.art li{margin:0 0 8px;font-size:15px;line-height:1.72}
+.art .src-link{word-break:break-all;color:#1d4ed8}
+.art .who{font-size:12px;color:var(--ink3);margin-top:34px;border-top:1px solid var(--line);padding-top:14px}
+</style>
+</head><body>
+<div class="art">
+  <a class="back" href="../2026-09-17.html">← 返回简报</a>
+  <div class="wrap">
+    <h1>多智能体分解的产出守恒律</h1>
+    <div class="lead">用生产日志算出每加一层子代理只拿回一半。</div>
+    <div class="metaline">
+      <span class="chip cn">中文</span>
+      <span class="cost fast">15 分钟</span>
+      <span class="src">cn:juejin</span>
+    </div>
+    <img src="https://p9-xtjj-sign.byteimg.com/tos-cn-i-73owjymdk6/368297cdd2bb4799a2bb33e678469072~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg57Gz5bCP6Jm-:q75.awebp?rk3s=f64ab15b&amp;x-expires=1790172387&amp;x-signature=8oElbDyJCj7iR1MKFxBgxOYBVQg%3D" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+    <h2>摘要 · 译自原文</h2><p>这篇掘金文章拆的是论文《Decomposition Buys Integrity, Not Yield》（作者 Rong He，arXiv:2609.17464，2026-09-15 提交，cs.MA / cs.AI / cs.DC，附完整实验代码）。它问的是：把任务拆成 agent 树之后，叶子节点发现的东西到底有多少能活着到达根节点。模型很简洁：agent 拿到 b 个条目时保留任意一条的概率是 r(b)=C·b^(−δ)，于是深度 k 的树对 N 个发现的产出是 **C^k·N^(1−δ)**。若 r(b)=1/b，任何树、任何规模的产出都恰好是 1 个发现（作者用 20,000 棵随机不规则树验证到 2.4×10⁻¹⁵）。</p><p>实测数字（来自 600 条生产 deep-research 轨迹）：δ=0.34，置信区间 [0.30, 0.38]，用三种failure mode互不相同的识别方法交叉验证；在「条目边界由工具给定」的 hop 上（b=1 出现 550 次），C=0.571 [0.527, 0.615] 是直接观测而非从幂律外推，样本 16,082 个 hop；另有 1,012 条标注轨迹显示每 16 份子 agent brief 就有 1 份跑偏，μ=0.939，于是每层实际代价 C·μ=0.536——两层只剩 0.287，三层 0.154。文章点出分层的两个正当理由都不在产出上：根节点上下文是唯一贯穿全程且无法廉价遗忘的状态，深度把它的暴露量从 N 降到 N^(1/k)；成本上生产环境的扁平 agent 账单按 N^1.39 增长（不是朴素追加预期的 N²），等花费下两层在 **N=403 个发现**处超过扁平，而任务规模跨 14 个数量级、最优层数只从 2 增到 7 层左右。</p><p>最有工程价值的一条反直觉结论：委托不是对「上下文快满」的应急反应——743,819 次生产工具调用的 hazard 模型（只用决策前信息）显示，上下文每翻一倍委托的 odds ratio 是 0.969，置信区间完全在 1 以下；委托其实是**开局动作**。文中还给了一个下午就能跑完的自测方法：测 C（找「工具返回编号列表 → agent 写一轮输出」的 hop）、测 δ（固定架构让 N 翻倍做回归）、测 μ（抽样标注 brief 与实际行为）。</p>
+    <h2>要点</h2><ul><li>产出模型 C^k·N^(1−δ)：深度每层只贡献 C≤1 的衰减，δ 是指数、无法靠架构摆脱</li><li>600 条生产轨迹测得 δ=0.34 [0.30,0.38]；C=0.571 [0.527,0.615]，观测自 16,082 个 hop</li><li>每 16 份子 agent brief 就有 1 份跑偏（μ=0.939），每层实际代价 C·μ=0.536，两层剩 0.287、三层 0.154</li><li>等花费下两层在 N=403 个发现处超过扁平；任务规模跨 14 个数量级最优层数只增约 7 层</li><li>委托是开局决策而非应急：743,819 次工具调用显示上下文翻倍让委托 odds ratio 降到 0.969</li><li>论文代码见 arXiv:2609.17464 附录（code/、findings.md）</li></ul>
+    <h2>为什么值得你花时间</h2><p>你正在搭的 agent 编排迟早要回答「要不要再拆一层」，这篇给的是可以直接写进设计文档的系数和决策树（N&lt;50 别分层、50–400 看根节点、&gt;400 分 2–3 层），还附了「先测自己的 δ 和 C」的测量方法；15 分钟读完，能立刻给现有链路加一条「子 agent 找到的发现有多少活到了最终输出」的监控。</p>
+    <h2>原文</h2><p><a class="src-link" href="https://juejin.cn/post/7686040694946791433" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7686040694946791433</a></p>
+    <div class="who">雷达简报 2026-09-17 · 条目 2026-09-17-06</div>
+  </div>
+</div>
+</body></html>
