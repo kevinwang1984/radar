@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>google-agents-cli-adk-code · 雷达详情</title>
+<title>ai-avatar-video · 雷达详情</title>
 <style>
 :root{--ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;--ok:#0f7b53;--warm:#c2410c}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -95,18 +95,18 @@ details.rej[open] summary::before{content:"▾ "}
 <div class="art">
   <a class="back" href="../2026-09-16.html">← 返回简报</a>
   <div class="wrap">
-    <h1>google-agents-cli-adk-code</h1>
-    <div class="lead">Google 官方 ADK 智能体写法速查与项目脚手架。</div>
+    <h1>ai-avatar-video</h1>
+    <div class="lead">让照片里的人开口说话、对口型出镜的数字人技能。</div>
     <div class="metaline">
       <span class="chip skill">技能</span>
-      <span class="cost slow">1 小时</span>
+      <span class="cost fast">15 分钟（需 inference.sh 账号）</span>
       <span class="src">skills:trending</span>
     </div>
-    
-    <h2>摘要 · 译自原文</h2><p>这是 Google 官方 `agents-cli` 里的 ADK（Agent Development Kit）Python 代码参考技能，等于一份会自己动手的速查表。它先要求激活 `/google-agents-cli-workflow`，并强调脚手架没出来之前不要写 agent 代码：新项目跑 `agents-cli scaffold create &lt;name&gt;`，已有代码跑 `agents-cli scaffold enhance .`，用 `agents-cli info` 确认项目状态。</p><p>技能的核心是 `references/samples.md` 这份主题索引，收录了沙箱化/按用户代码执行、可被 agent 加载的 SKILL.md 技能、跨会话记忆、危险操作前的审批门、工具护栏、按用户凭据、定时或事件触发等成品实现；作者明确说只记住名字不算数，要克隆对应 recipe、读它的 `AGENTS.md` 再实现，手写 Docker 或 E2B 沙箱包装、技能加载器、审查回调、记忆存储都属于「停在名字上」。覆盖内容包括 FunctionTool 定义、SequentialAgent / ParallelAgent / LoopAgent 编排、CallbackContext 状态管理；ADK 2.0 的 Workflow API（图式流水线、条件路由、并行）是需要 Python 3.11+ 且需用户明确同意的 opt-in 实验特性。页面显示 237.5K 安装、仓库 5.9K 星。</p>
-    <h2>要点</h2><ul><li>先 `agents-cli scaffold create &lt;name&gt;`（或 `scaffold enhance .`）再写代码，没有脚手架不动手</li><li>`references/samples.md` 是成品实现索引：沙箱执行、SKILL.md 加载、跨会话记忆、审批门、工具护栏、按用户凭据、定时触发</li><li>编排原语：SequentialAgent / ParallelAgent / LoopAgent；状态走 CallbackContext</li><li>ADK 2.0 Workflow API（图式流水线、条件路由、并行）为 opt-in 实验特性，需 Python 3.11+</li><li>237.5K 安装、仓库 5.9K 星；仓库 google/agents-cli</li></ul>
-    <h2>为什么值得你花时间</h2><p>你平台的 agent 编排迟早要自己写审批门、护栏、记忆与沙箱这些重复件，这条给的是官方已验证的实现索引加一条脚手架命令；照 recipe 抄比自己拼 CallbackContext 和 FunctionTool 快得多，一小时能把第一个骨架跑起来。</p>
-    <h2>原文</h2><p><a class="src-link" href="https://www.skills.sh/google/agents-cli/google-agents-cli-adk-code" target="_blank" rel="noopener noreferrer">https://www.skills.sh/google/agents-cli/google-agents-cli-adk-code</a></p>
+    <img src="https://www.skills.sh/101-skills/superpowers/ai-avatar-video/opengraph-image?1a82f7707f2a479f" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+    <h2>摘要 · 译自原文</h2><p>这是 101-skills/superpowers 仓库里的数字人与口播视频技能，原始出处是 inference-sh/skills。它的作用是把 inference.sh 的命令行工具（`belt`）封装成 agent 可以直接调用的动作，用来生成 AI avatar 与 talking-head 视频，省掉自己对接推理服务的那一层。</p><p>用法分两步：先装技能 `npx skills add https://github.com/101-skills/superpowers --skill ai-avatar-video`，再做一次 `belt login` 认证（页面同时提示需要装 belt CLI）。技能本体很薄，价值主要在「把数字人生成变成 agent 的一个可调用步骤」这件事上。</p><p>页面显示累计安装 101.2K，仓库为 101-skills/superpowers，首次收录于 2026-08-31。安全审计里 Gen Agent Trust Hub 与 Snyk 通过，Socket 给的是 Warn，装之前值得点开看一眼告警内容。</p>
+    <h2>要点</h2><ul><li>能力：AI 数字人 / talking-head 口播视频，经 inference.sh 的 `belt` CLI 调用</li><li>安装两步：`npx skills add https://github.com/101-skills/superpowers --skill ai-avatar-video`，然后 `belt login`</li><li>页面显示 101.2K 安装，仓库 101-skills/superpowers，首次收录 2026-08-31</li><li>安全审计：Agent Trust Hub / Snyk 通过，Socket 为 Warn</li><li>需要 inference.sh 账号才有可用的推理额度</li></ul>
+    <h2>为什么值得你花时间</h2><p>数字人口播是内容平台里最容易被业务方点名的能力，而你现在的画布节点还没有它；这条给的是现成调用入口而不是又一篇论文，15 分钟就能出一段 talking-head，用来判断「自建还是接第三方」比读参数快得多。</p>
+    <h2>原文</h2><p><a class="src-link" href="https://www.skills.sh/101-skills/superpowers/ai-avatar-video" target="_blank" rel="noopener noreferrer">https://www.skills.sh/101-skills/superpowers/ai-avatar-video</a></p>
     <div class="who">雷达简报 2026-09-16 · 条目 2026-09-16-02</div>
   </div>
 </div>
