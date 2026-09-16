@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>高效电商 AI 智能体解剖指南 · 雷达详情</title>
+<title>Qwen3.8-Flash-Next · 雷达详情</title>
 <style>
 :root{--ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;--ok:#0f7b53;--warm:#c2410c}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -95,18 +95,18 @@ details.rej[open] summary::before{content:"▾ "}
 <div class="art">
   <a class="back" href="../2026-09-16.html">← 返回简报</a>
   <div class="wrap">
-    <h1>高效电商 AI 智能体解剖指南</h1>
-    <div class="lead">Anthropic 拆解电商 agent 的架构、延迟与评估。</div>
+    <h1>Qwen3.8-Flash-Next</h1>
+    <div class="lead">开源多模态模型，下一代 Qwen 架构预览。</div>
     <div class="metaline">
-      <span class="chip people">跟人</span>
-      <span class="cost fast">15 分钟</span>
-      <span class="src">people:baoyu</span>
+      <span class="chip model">模型</span>
+      <span class="cost slow">1 小时（先走 Qwen Cloud API；本地权重需自备推理）</span>
+      <span class="src">hf-org:Qwen</span>
     </div>
-    <img src="https://s.baoyu.io/imgs/2026-09-02/the-anatomy-of-effective-commerce-agents/cover.jpg" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
-    <h2>摘要 · 译自原文</h2><p>Anthropic 官方博文《A guide to the anatomy of effective commerce agents》的中译（宝玉译，2026-09-02）。文章基于一年里与零售商、电商平台、旅游娱乐电信客户的合作，给出一套已在生产运行的电商 agent 架构：把一个模型放在标准 agent 循环里，用技能覆盖长尾，用工具去调用你已有的搜索排序、购物车、库存、促销、分析系统。它明确反对「每个垂直领域一个子智能体」：每次交接都是丢状态的操作，会同时损失回复质量、多烧几倍 token、增加几秒延迟；正确做法是单一 agent 加技能做模块化，子智能体只留给需要独立上下文窗口的深度研究这类任务。提示词与技能的分界按使用频率定：与三分之一以上流量相关的指令进系统提示词，安全与法律底线永远进提示词，其余长尾做成技能。</p><p>工程细节很密：工具返回结果即上下文，只回推理需要的字段（典型反面是每条结果都带长图片 URL），错误要给明确指令而不是裸 403；把每个 UI 组件做成工具（`present_products` / `present_itinerary` / `present_plan_comparison`），格式由服务器验证、历史记录也天然可重放，还让模型知道用户说的「第一个酒店」是哪个；延迟要同时优化端到端与感知两端（提前预载上下文、并行调用、参数流完就急切分发），提示词缓存把读取成本降到 1/10，做得好的电商部署命中率 90–99%；记忆放自己的数据库、异步写入、分三层读取（常挂上下文 / 每轮预取 / 查询工具）；安全由 Harness 在代码层兜底，下单与改价只能生成带服务器 ID 的暂存更改、批准后才 apply，所有第三方内容一律当不可信输入净化；评估评快照状态而非路径，并给每个正向用例配反向雷区用例，上线要灰度、留一键关技能的开关。文末给了参考实现 github.com/anthropics/commerce-agents。</p>
-    <h2>要点</h2><ul><li>单 agent + 技能 &gt; 每领域一个子 agent：交接丢状态、token 翻倍、多几秒延迟</li><li>指令分界：与 ≥1/3 流量相关的进系统提示词，长尾做技能，安全底线永远在提示词</li><li>把 UI 组件做成工具（present_products 等），格式由服务器保证，也解决「第几个」的指代</li><li>提示词缓存读取成本约为全新输入的 1/10，成熟电商部署命中率 90–99%</li><li>安全靠 Harness：写入只能是带服务器 ID 的暂存更改，审批后 apply_change；第三方内容必须净化</li><li>评估评快照不评路径，每个正向用例配一个反向雷区用例；参考实现 github.com/anthropics/commerce-agents</li></ul>
-    <h2>为什么值得你花时间</h2><p>你正在搭的正是「一个 agent + 一批技能 + 一批工具」的内容平台，这篇等于把 Anthropic 在电商场景踩过的坑列成清单——延迟预算怎么分、技能与提示词怎么切、钱和安全的边界画在哪，读完可以直接对着自己的架构改一版。</p>
-    <h2>原文</h2><p><a class="src-link" href="https://baoyu.io/translations/2026-09-02/the-anatomy-of-effective-commerce-agents" target="_blank" rel="noopener noreferrer">https://baoyu.io/translations/2026-09-02/the-anatomy-of-effective-commerce-agents</a></p>
+    <img src="https://cdn-thumbnails.huggingface.co/social-thumbnails/models/Qwen/Qwen3.8-Flash-Next.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><img src="https://qianwen-res.oss-accelerate.aliyuncs.com/Qwen3.8-Flash-Next/architecture.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+    <h2>摘要 · 译自原文</h2><p>这是 Qwen 放出的开放权重模型，官方定位很明确：它是「支撑 Qwen4 的架构实验预览」，围绕现代 LLM 核心组件如何在规模上协作做了一次重新设计。三处核心变更：**混合注意力配 QSA**——把原来的 Gated DeltaNet 与 Gated Attention 组合，改成 Gated DeltaNet 与 Qwen Sparse Attention 配对，QSA 在 micro-block 粒度而非单 token 粒度做选择，官方说这能显著压低长上下文延迟，而 agentic 负载正在成为主流用法；**Gated Residual**——用逐元素的、数据相关的读门，加每分支的标量写门，来调制加宽残差流里的信息，换取更细的表达力同时保住训练稳定性与低推理开销；**N-gram Embedding**——官方把它当成 MoE 之外的另一条参数扩展轴，靠短 n-gram 索引，算力需求更低、也更适合 offload 到内存受限的加速器。</p><p>规格：125B 总参 / 6B 激活，另加 51B n-gram embedding 与 4B MTP；48 层；512 专家（10 routed + 1 shared）；Gated DeltaNet 线性注意力头 V 侧 48、QK 侧 16；QSA 预算 512 blocks 或 2048 tokens；原生上下文 262,144，可扩到 1,000,000；带视觉编码器；对话模板里支持 xhigh / medium / low 三档推理强度。训练配方上，Muon 与 AdamW 按权重类别分工，并取消了传统的 batch-size warmup，直接从目标 batch size 起步。</p><p>许可证是 qwen-community-1.0；官方提示托管推理走 Qwen Cloud，其中生产版 Qwen3.8-Flash 默认 1M 上下文并内置工具。权重兼容 Transformers、vLLM、SGLang、TokenSpeed 等。</p>
+    <h2>要点</h2><ul><li>架构预览定位：支撑下一代 Qwen4，官方称这是「如何高效扩展」而非单纯堆参数的一次回答</li><li>QSA 在 micro-block 粒度做稀疏选择，而非按单 token；长上下文延迟明显下降</li><li>N-gram Embedding 是不走 MoE 的参数扩展轴，省算力且便于 offload 到内存受限加速器</li><li>规格：125B 总参 / 6B 激活 + 51B n-gram + 4B MTP，48 层，512 专家，原生 262,144 上下文可扩至 1,000,000</li><li>许可证 qwen-community-1.0；生产版走 Qwen Cloud（默认 1M 上下文 + 内置工具）</li></ul>
+    <h2>为什么值得你花时间</h2><p>这是「开源模型下一步怎么扩参」的另一条路线——不堆 MoE 而是堆 n-gram embedding，6B 激活配 1M 上下文，直接关系到你下半年自建推理的成本结构；权重已经能下，下周就能用同一批长上下文与视觉任务和 DeepSeek V4.1-Flash 对跑，判断要不要把它写进选型。</p>
+    <h2>原文</h2><p><a class="src-link" href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next" target="_blank" rel="noopener noreferrer">https://huggingface.co/Qwen/Qwen3.8-Flash-Next</a></p>
     <div class="who">雷达简报 2026-09-16 · 条目 2026-09-16-07</div>
   </div>
 </div>
