@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>开源模型许可证与最新产物盘点（Interconnects #24） · 雷达详情</title>
+<title>MiniMax-H3 · 雷达详情</title>
 <style>
 :root{--ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;--ok:#0f7b53;--warm:#c2410c}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -95,18 +95,18 @@ details.rej[open] summary::before{content:"▾ "}
 <div class="art">
   <a class="back" href="../2026-09-16.html">← 返回简报</a>
   <div class="wrap">
-    <h1>开源模型许可证与最新产物盘点（Interconnects #24）</h1>
-    <div class="lead">开源模型选型盘点：许可证收紧，架构换代。</div>
+    <h1>MiniMax-H3</h1>
+    <div class="lead">开源全模态生成系统，直出带立体声的 2K 视频。</div>
     <div class="metaline">
-      <span class="chip people">跟人</span>
-      <span class="cost fast">15 分钟</span>
-      <span class="src">people:interconnects</span>
+      <span class="chip model">模型</span>
+      <span class="cost fast">15 分钟（走在线 API，需 key；本地部署另算）</span>
+      <span class="src">hf-org:MiniMaxAI</span>
     </div>
-    <img src="https://substackcdn.com/image/fetch/$s_!IEWy!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7f3d7cd7-e6db-43f4-82e8-63bc295c25df_4239x2643.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
-    <h2>摘要 · 译自原文</h2><p>这是 Interconnects 的开源产物月报第 24 期（Sep 08, 2026，署名 Florian Brand 与 Nathan Lambert；付费墙后的完整盘点未抓取到，以下来自可读部分）。文章的主线是许可证：早期开源模型流行自定义协议，2025 年 DeepSeek R1 转 MIT 后一批中国模型跟进 MIT/Apache；到 2026 年风向又变——西方实验室转向开放许可证（Google Gemma-4、Meta Muse-Glimmer 都改用 Apache 2.0），而前沿的中国模型开始收紧：Kimi K3 要求做推理或微调服务者签商业协议，MiniMax M3 设营收门槛并列禁用场景。</p><p>本期最新的例子是 GLM-5.3：从 GLM-5.2 及更早的 MIT 换成自定义协议，其中一条规定若 Licensee 或其关联方经营 Model as a Service 业务、且任意连续 12 个月总收入超过 100 亿美元，则商用前必须通过 Z.AI 的安全审查。作者指出 100 亿美元门槛虽然远高于同类协议，但协议里没有定义「关联方 / affiliates」（中文版写「关联方」，在中国法律里有定义），这会给采用带来不确定性。模型 picks 部分：Motif-3（MIT，小体量高分）、dots3-note-prev（小红书，用内部 harness 在 IMO 2026 拿满分）、Qwen3.8-Flash-Next（125B-A6B、51B n-gram embeddings、GDN + Qwen Sparse Attention 的下一代架构预览）、腾讯 Hy4-preview（目前有过度思考问题）、NVIDIA Nemotron-3.5-Lightning-30B-A3B（全面提速）、蚂蚁 Ling-3.0-flash（KDA + Gated MLA 混合设计，另有 7.9B-A1.3B 小杯）、Qwen3.8-2.4T-A95B（阿里开放最大杯，但自定义许可且同尺寸下性能靠后）。</p>
-    <h2>要点</h2><ul><li>GLM-5.3 由 MIT 改为自定义许可：MaaS 业务连续 12 个月营收超 100 亿美元需先过 Z.AI 安全审查；协议未定义「关联方」</li><li>Kimi K3、MiniMax M3 亦收紧（商业协议/营收门槛）；Gemma-4、Muse-Glimmer 转 Apache 2.0</li><li>Qwen3.8-Flash-Next：125B 总参 / A6B 激活，51B n-gram embeddings，GDN + Qwen Sparse Attention</li><li>其他 picks：Motif-3（MIT）、dots3-note-prev（IMO 2026 满分）、Hy4-preview、Nemotron-3.5-Lightning-30B-A3B、Ling-3.0-flash、Qwen3.8-2.4T-A95B</li><li>付费墙后的完整盘点未抓取到，模型细节以可读部分为准</li></ul>
-    <h2>为什么值得你花时间</h2><p>只要你打算私有化部署或对外提供推理服务，许可证现在和跑分一样是选型的一等公民——GLM 这一改，等于把「半年后还能不能商用」变成了要法务确认的问题；15 分钟扫一遍就能避免把一个要返工的模型写进架构。</p>
-    <h2>原文</h2><p><a class="src-link" href="https://www.interconnects.ai/p/latest-open-artifacts-24-motif-3" target="_blank" rel="noopener noreferrer">https://www.interconnects.ai/p/latest-open-artifacts-24-motif-3</a></p>
+    <img src="https://cdn-thumbnails.huggingface.co/social-thumbnails/models/MiniMaxAI/MiniMax-H3.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+    <h2>摘要 · 译自原文</h2><p>MiniMax 放出的开源全模态生成系统 H3（HF 上 5.35K likes、105 条社区讨论），定位是「通用全模态生成系统」：统一理解由文本、图像、视频、音频组成的多模态上下文，并生成带原生立体声的视频。规格上，输出时长 4–15 秒、帧率 24 FPS、音频 32kHz 立体声，默认短边 768 像素，2K 需要经 H3-Regenerate-2K 这一步；画幅覆盖 21:9 到 9:16；台词稳定支持 11 种语言（阿拉伯语、中文、英语、法语、德语、意大利语、日语、韩语、葡萄牙语、俄语、西班牙语）。</p><p>输入侧有两个主变体：**H3-Base-FL2VA** 走首尾帧模式，支持 0 / 1 / 2 张输入图，分别对应文生视频、首帧或尾帧生视频、首尾帧生视频；**H3-Base-Ref2VA** 走全模态参考模式，图像 ≤9 张、视频 ≤3 段（每段 2–15 秒、合计 ≤15 秒）、音频 ≤3 段（同样每段 2–15 秒），所有类型文件总数上限 12。系统还包含第三个模块 H3-Context-IR：输入越复杂，它越重要——专门把多模态指令理解并改写成模型好懂的 Context Intermediate Representation，官方明确建议把它并入生成管线，或按 Prompting Guidance 自建。</p><p>入口比较齐全：在线 API 分全球（platform.minimax.io）与中国（platform.minimaxi.com）两套，另有海螺 AI 应用（hailuoai.video）、GitHub 仓库（MiniMax-AI/MiniMax-H3，含官方提示词 skills）、ModelScope 镜像与 Discord。许可证不是标准开源协议，而是自订的 minimax-h3-community-license-agreement，商用前需要读一遍。</p>
+    <h2>要点</h2><ul><li>输出 4–15 秒、24 FPS、32kHz 立体声、短边默认 768 像素；2K 需经 H3-Regenerate-2K</li><li>两个变体：H3-Base-FL2VA（首 / 尾 / 首尾帧，0–2 张图）、H3-Base-Ref2VA（≤9 图 + 各 ≤3 段音视频，文件总数 ≤12）</li><li>H3-Context-IR 负责把复杂输入改写成中间表示，官方建议并入生成管线</li><li>台词稳定支持 11 种语言；画幅覆盖 21:9 / 16:9 / 4:3 / 1:1 / 3:4 / 9:16</li><li>入口：在线 API（platform.minimax.io / platform.minimaxi.com）、海螺应用、GitHub 与官方提示词 skills；许可证为 minimax-h3-community-license-agreement</li></ul>
+    <h2>为什么值得你花时间</h2><p>这是少有把「画面 + 立体声 + 多语言台词」在一次生成里做掉的开源权重，正好卡在你平台最贵的那一环（先出画面再回头配音的返工）；下周就能用官方 API 拿同一批 prompt 和 Seedance / Vidu 对跑，也能评估它能否替掉你现在的配音拼接链路。</p>
+    <h2>原文</h2><p><a class="src-link" href="https://huggingface.co/MiniMaxAI/MiniMax-H3" target="_blank" rel="noopener noreferrer">https://huggingface.co/MiniMaxAI/MiniMax-H3</a></p>
     <div class="who">雷达简报 2026-09-16 · 条目 2026-09-16-05</div>
   </div>
 </div>
