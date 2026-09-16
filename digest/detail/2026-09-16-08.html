@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>从 RAG 到 Agentic RAG：让模型决定「要不要检索」 · 雷达详情</title>
+<title>上下文工程：决定 Agent 跑到第 50 轮还能不能干活 · 雷达详情</title>
 <style>
 :root{--ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;--ok:#0f7b53;--warm:#c2410c}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -95,18 +95,18 @@ details.rej[open] summary::before{content:"▾ "}
 <div class="art">
   <a class="back" href="../2026-09-16.html">← 返回简报</a>
   <div class="wrap">
-    <h1>从 RAG 到 Agentic RAG：让模型决定「要不要检索」</h1>
-    <div class="lead">给 RAG 加一个「要不要检索」的路由节点。</div>
+    <h1>上下文工程：决定 Agent 跑到第 50 轮还能不能干活</h1>
+    <div class="lead">用五个动作管理 Agent 每一轮该看到什么。</div>
     <div class="metaline">
       <span class="chip cn">中文</span>
       <span class="cost fast">15 分钟</span>
       <span class="src">cn:juejin</span>
     </div>
     
-    <h2>摘要 · 译自原文</h2><p>一篇中文实操短文（2026-09-15，约 6 分钟读完），用 LangGraph 把最基础的 RAG 升级成「会判断」的流水线。作者以《天龙八部》知识库为例：普通 RAG 只有 Question → Retrieve → Generate 一条固定链路，用户问「什么是向量数据库」时它照样去小说库检索，返回一堆无关片段——问题不在 Milvus 也不在 Embedding，而在程序没有决策能力。</p><p>改造只加一个 `route_question` 节点：用 `model.withStructuredOutput(ZodSchema)` 把问题严格分类成 simple / complex 并附理由（不让模型自由发挥），再用 `.addConditionalEdges()` 根据 `state.strategy` 决定走 `directAnswer` 还是 `retrieve → rag_generate`。作者强调 LangGraph 的关键认知是「Node 决定做什么，Edge 决定接下来做什么」，以及「节点读取当前 State，返回自己想修改的部分」。文章也坦承这还很初级，并指出下一个缺口是 `grade_documents`：向量检索只保证语义相似、不保证真能回答问题，直接生成仍会幻觉。</p>
-    <h2>要点</h2><ul><li>Naive RAG 的问题是只会检索、不会判断；解法是让 LLM 参与控制流</li><li>路由节点用 `withStructuredOutput(ZodSchema)` 输出 `{strategy: simple|complex, reason}`</li><li>`.addConditionalEdges()` 按 strategy 分流：directAnswer 或 retrieve → rag_generate</li><li>LangGraph 心智模型：Node 决定做什么，Edge 决定接下来做什么；节点只返回要改的 State 字段</li><li>下一步缺口是 `grade_documents`——检索结果相关性不等于可回答性</li></ul>
-    <h2>为什么值得你花时间</h2><p>这是把「固定流水线」改成「状态驱动执行图」的最小可用样本，代码全在文里，15 分钟能照抄进你平台的知识问答链路；如果你正在给内容平台做素材检索，这个路由节点是最便宜的第一刀。</p>
-    <h2>原文</h2><p><a class="src-link" href="https://juejin.cn/post/7685648064543031342" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7685648064543031342</a></p>
+    <h2>摘要 · 译自原文</h2><p>一篇讲 agent 上下文管理的中文实操文。它的起点是一个常见困惑：同一个模型、同一份工具列表，两个 Agent 在第 10 轮时看起来差不多，到第 50 轮却可能完全不同——一个还能准确说出刚改了哪些文件、测试为什么没过、下一步做什么，另一个开始重复读文件、忘记用户约束，甚至改动已经确认过的代码。作者认为这通常不是模型智商掉了，而是上下文管理出了问题：模型能力由提供商决定，开发者真正能控制的是每一轮把什么放进上下文、什么留在外面。</p><p>文章把手段整理成五个可组合动作：Offload（信息太挤，先搬到文件或数据库）、Reduce（太长就压成摘要、占位符或更短表示）、Retrieve（不在窗口里就按需检索回来）、Isolate（一个窗口装不下就拆成多个独立上下文）、Cache（重复计算贵就复用结果）。其中 Offload 被排在第一优先级——工具执行结果是典型例子，一次 Grep 可能返回几百行、一次网页读取几万字符，Agent 当前只需要知道「在哪些文件里命中了什么」，完整内容写盘、需要时再 Read。</p><p>压缩被拆成三层递进：Microcompact 不改消息结构也不删整段对话，只把没人再用的旧工具结果替换成 `[Old tool result content cleared]`，消息还在、轮次仍可追踪；Snip 更激进，直接从历史头部删消息，内容永久丢失，所以需要状态系统标记哪些消息不能删；再往上才是摘要。另一组关键区分是「全量预填充」与「Just-in-time」：JIT 按成本递增使用工具——先 Glob 按文件名找相关文件只拿路径，再 Grep 搜关键词拿命中行，最后才 Read 读最可疑的文件。RAG 与 Agentic Search 都属于 JIT，区别在于「要不要搜」由系统在生成前决定，还是交给 Agent 在循环里动态决定。</p>
+    <h2>要点</h2><ul><li>五个动作：Offload / Reduce / Retrieve / Isolate / Cache，是组合拳而非五选一</li><li>Offload 优先：工具结果落盘，上下文里只留「日志文件在哪、下一步为什么需要它」</li><li>压缩三层：Microcompact（只清旧工具结果，消息结构不变）→ Snip（从头部删消息，永久丢失）→ 摘要</li><li>JIT 按成本递增用工具：Glob 拿路径 → Grep 拿命中行 → Read 读可疑文件</li><li>RAG 与 Agentic Search 都是 JIT，区别在「要不要搜」由系统还是由 Agent 决定</li></ul>
+    <h2>为什么值得你花时间</h2><p>你正在搭的 agent 要跑几十轮的长流程，这份清单给的正是「哪一层该丢什么、什么时候丢」的操作口径，连 microcompact 的替换文案和工具的成本阶梯都能直接搬进你的 harness；15 分钟读完就能给现有链路挑出一两处该 offload 的地方。</p>
+    <h2>原文</h2><p><a class="src-link" href="https://juejin.cn/post/7685644889096486963" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7685644889096486963</a></p>
     <div class="who">雷达简报 2026-09-16 · 条目 2026-09-16-08</div>
   </div>
 </div>
