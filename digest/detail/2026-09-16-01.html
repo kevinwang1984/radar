@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>video-edit · 雷达详情</title>
+<title>seedance-2-5-reference-to-video · 雷达详情</title>
 <style>
 :root{--ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;--ok:#0f7b53;--warm:#c2410c}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -95,18 +95,18 @@ details.rej[open] summary::before{content:"▾ "}
 <div class="art">
   <a class="back" href="../2026-09-16.html">← 返回简报</a>
   <div class="wrap">
-    <h1>video-edit</h1>
-    <div class="lead">按意图自动选模型改视频：换装、动作迁移、重绘。</div>
+    <h1>seedance-2-5-reference-to-video</h1>
+    <div class="lead">用参考图锁人物、参考片带运镜，直出带声视频。</div>
     <div class="metaline">
       <span class="chip skill">技能</span>
-      <span class="cost fast">15 分钟（需 RunComfy 账号 / API key）</span>
+      <span class="cost fast">15 分钟（RunComfy 需账号 / key）</span>
       <span class="src">skills:trending</span>
     </div>
-    
-    <h2>摘要 · 译自原文</h2><p>这是 genmedia-labs 发布在 skills.sh 上的一个 agent 技能，作用是把「视频编辑」按意图路由到 RunComfy 目录里最合适的模型。它不绑定单一模型：通用换风格走 Wan 2.7 Edit-Video，需要从参考片段搬运动作走 Kling 2.6 Motion-Control Pro，只想轻量地换装或换背景又要保住人物身份，则走 Lucy Edit Restyle；技能自带对应的提示词写法与 `runcomfy run` 调用示例。</p><p>装法是一行 `npx skills add https://github.com/genmedia-labs/skills --skill video-edit`（正文提到的 `-g` 可全局安装）。页面显示安装量 504.3K，在今天的趋势榜上排第 2（候选池 note 记 16.6K installs）；仓库为 genmedia-labs/skills，代码同时在 agentspace-so/runcomfy-skills 下。</p><p>安全审计里 Gen Agent Trust Hub 与 Socket 通过、Snyk 给了 Warn，装之前值得看一眼 Snyk 的告警内容。</p>
-    <h2>要点</h2><ul><li>三种意图对应三个模型：Wan 2.7 Edit-Video（通用改写）、Kling 2.6 Motion-Control Pro（参考片段迁动作）、Lucy Edit Restyle（身份稳定的换装/换背景）</li><li>安装一行命令，`npx skills add https://github.com/genmedia-labs/skills --skill video-edit`</li><li>调用统一走 RunComfy：需 `runcomfy login` 或 CI 里设 `RUNCOMFY_TOKEN`</li><li>skills.sh 趋势榜第 2；仓库 genmedia-labs/skills（7 星）</li><li>安全审计：Agent Trust Hub / Socket 通过，Snyk 为 Warn</li></ul>
-    <h2>为什么值得你花时间</h2><p>视频编辑正要进你的画布节点，这条把「哪种编辑意图配哪个模型」做成了可调用的技能，省掉你在三个模型间逐个试错；15 分钟装上就能拿一段素材跑通换装或换背景。</p>
-    <h2>原文</h2><p><a class="src-link" href="https://www.skills.sh/genmedia-labs/skills/video-edit" target="_blank" rel="noopener noreferrer">https://www.skills.sh/genmedia-labs/skills/video-edit</a></p>
+    <img src="https://www.skills.sh/genmedia-labs/skills/seedance-2-5-reference-to-video/opengraph-image?1a82f7707f2a479f" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+    <h2>摘要 · 译自原文</h2><p>这是 genmedia-labs 发布在 skills.sh 上的一个 agent 技能，封装的是 Seedance 2.5 的「参考生视频」能力，跑在 RunComfy 的模型目录上。页面把它的差异点写得很直接：**参考条件生成 + 交付分辨率**——人物身份、产品几何与美术方向来自你给的参考图栈，而不是靠提示词描述；输出直接落在 1080p，不需要从草稿放大。运镜由一段短参考片提供，提示词只负责导演动作，成品带同步音频。</p><p>官方给的适用场景是角色成片（consistent character finals）、产品参考片与风格锁定的品牌短片。装法一行：`npx skills add genmedia-labs/skills --skill seedance-2-5-reference-to-video -g`，也可以走 `npx skills add https://github.com/genmedia-labs/skills --skill seedance-2-5-reference-to-video`。模型侧还有 480p 草稿档可以先试。</p><p>页面显示该技能累计安装 173.8K（趋势榜 note 记的是 24 小时窗口 16.6K、排名第 2），仓库为 genmedia-labs/skills（GitHub 7 星），首次收录于 12 天前。安全审计三项全部通过：Gen Agent Trust Hub Pass、Socket Pass、Snyk Pass——这是同批 genmedia-labs 技能里少见的干净结果（同 owner 的 video-edit 当时 Snyk 是 Warn）。</p>
+    <h2>要点</h2><ul><li>参考栈决定身份与美术方向，提示词只导演动作；输出直达 1080p（另有 480p 草稿档）</li><li>安装：`npx skills add genmedia-labs/skills --skill seedance-2-5-reference-to-video -g`</li><li>调用走 RunComfy，需要 RunComfy 账号 / key</li><li>趋势榜第 2（24 小时 16.6K 安装）；技能页累计 173.8K 安装，仓库 genmedia-labs/skills</li><li>安全审计：Gen Agent Trust Hub / Socket / Snyk 三项全部 Pass</li></ul>
+    <h2>为什么值得你花时间</h2><p>你要做的是一句话成片和角色一致性，这条把「哪张图管身份、哪段片管运镜」做成了可调用的技能，省掉自己在 Seedance 接口上拼参考栈；15 分钟装上就能拿一张人像加一段运镜片跑通一条 1080p 带声成片，正好和昨天那条 Wan 3.0 Prime 参考生视频放在一起做选型对比。</p>
+    <h2>原文</h2><p><a class="src-link" href="https://www.skills.sh/genmedia-labs/skills/seedance-2-5-reference-to-video" target="_blank" rel="noopener noreferrer">https://www.skills.sh/genmedia-labs/skills/seedance-2-5-reference-to-video</a></p>
     <div class="who">雷达简报 2026-09-16 · 条目 2026-09-16-01</div>
   </div>
 </div>
