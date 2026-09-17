@@ -52,21 +52,20 @@ background:none;border:0;font:inherit;color:inherit;cursor:pointer;list-style:no
 
 /* ── 展开态：整条（摘要头 + 正文区）合起来是**一张卡** ──────────────────
    折叠态 = 白底、只有细线分隔，安静地排成一列（这是拿来扫读的）。
-   展开态 = 整圈浅蓝**轮廓**收边，左边加粗成蓝色脊线；摘要头和正文区同属一个蓝色系，
-            只靠**深浅 + 一条分隔线**区分。正文区原来压成白底，看着像贴在条目下面的
-            另一块东西，而不是"这一条展开了" —— 现在两者是一体的。
-   之所以要做得这么明确：之前只有箭头转 90 度，看不出展开的是哪一条、展开到哪儿为止。 */
-.row[open]{background:#eef3ff;border-color:#c2d4fc;border-left-color:#1d4ed8}
+   展开态 = 整圈**中性灰**轮廓收边，左边加粗成一条蓝色脊线；摘要头和正文区同属一个
+            灰阶、只差深浅，看着是"这一条展开了"而不是"下面贴了另一块东西"。
+   底色**刻意用灰不用蓝**：第一版把摘要头和正文区都染成浅蓝，一整块大面积蓝底压着字，
+   读起来发闷、也显得比实际更"重"。蓝色只留给脊线和星标这种小面积强调。 */
+.row[open]{background:#f5f6f9;border-color:#d9dde7;border-left-color:#2f5bd7}
 .row[open] + .row{border-top-color:transparent} /* 别和上面那张卡的下轮廓叠成两像素 */
 .row[open] .hit{background:transparent}
-.row[open] .n{color:#1d4ed8;font-weight:700}
-.row[open] .t1{color:#1e3a8a}
+.row[open] .n{color:#2f5bd7;font-weight:700}
 .row[open] .t1b{-webkit-line-clamp:3}
-.row[open] .car{color:#1d4ed8;transform:rotate(90deg)}
-.row[open] .det{background:#e6edfd;border-top:1px solid #d3dffc;color:#3f4553;
+.row[open] .car{color:#2f5bd7;transform:rotate(90deg)}
+.row[open] .det{background:#edeff4;border-top:1px solid #e2e5ed;color:#3f4553;
  animation:detin .18s ease-out}
-.row[open] .det .k{color:#65708a} /* 底变深了，小标签得跟着压深一点才够清楚 */
-.row[open] .det .more{background:#fff;border-color:#b9cdfb} /* 浅蓝按钮在深底上会糊掉 */
+.row[open] .det .k{color:#69738c} /* 底变深了，小标签得跟着压深一点才够清楚 */
+.row[open] .det .more{background:#fff;border-color:#ccd6ec} /* 浅蓝按钮在灰底上会糊掉 */
 @keyframes detin{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.row[open] .det{animation:none}}
 .chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);
@@ -84,6 +83,32 @@ color:var(--ink2);background:var(--bg2);font-family:ui-monospace,Menlo,monospace
 .det a{color:#1d4ed8;word-break:break-all}
 .det .more{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:#1d4ed8;
  text-decoration:none;border:1px solid #dbe4ff;background:#f2f5ff;padding:6px 12px;border-radius:99px}
+
+/* ── 收藏 ───────────────────────────────────────────────────────────────
+   星标是行内一个独立可点的小按钮：点它**只收藏、不展开**（在 click 里 preventDefault
+   拦掉 summary 的默认展开行为）。它故意做得比箭头显眼：箭头是"看更多"，星是"留下"。
+   颜色只用星星该有的琥珀色，不跟正文抢注意力（页面主色是灰 + 一个克制的蓝）。 */
+.star{flex:none;border:0;background:none;padding:2px 0 2px 6px;cursor:pointer;font:inherit;
+ font-size:19px;line-height:1;color:#c9ced8;transition:color .15s,transform .12s}
+.star:hover{color:#d9a406}
+.star:active{transform:scale(.85)}
+.star[aria-pressed="true"]{color:#e8a90c}
+/* 收藏盒：只在有收藏时才出现（否则每天早上都挂一个空盒子，是噪音） */
+.favbox{margin:0 18px 12px;border:1px solid #ece5cf;background:#fffdf6;border-radius:10px}
+.favbox>summary{cursor:pointer;list-style:none;padding:9px 12px;font-size:12.5px;font-weight:700;
+ color:#8a6d1f;font-family:ui-monospace,Menlo,monospace}
+.favbox>summary::-webkit-details-marker{display:none}
+.favbox>summary::before{content:"▸ "}
+.favbox[open]>summary::before{content:"▾ "}
+.favlist{padding:0 12px}
+.favrow{padding:7px 0;border-top:1px solid #f2eddd}
+.favt{display:block;font-size:13.5px;font-weight:600;color:#1d4ed8;text-decoration:none;line-height:1.4}
+.favo{margin-top:2px;font-size:12px;color:var(--ink2);line-height:1.45}
+.favm{display:flex;gap:10px;align-items:center;margin-top:3px}
+.favd{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
+.favrm,.favcopy{border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:99px;
+ font:inherit;font-size:11px;padding:2px 9px;cursor:pointer}
+.favcopy{display:block;margin:6px 12px 11px}
 .empty{padding:22px 18px;color:var(--ink3);font-size:13px}
 .fold{margin:16px 18px 0;font-size:12px;color:var(--ink3);line-height:1.7}
 .foot{margin-top:22px;padding:16px 18px 26px;border-top:1px solid var(--line);font-size:12px;color:var(--ink3);line-height:1.9}
@@ -112,12 +137,21 @@ details.rej[open] summary::before{content:"▾ "}
 .art li{margin:0 0 8px;font-size:15px;line-height:1.72}
 .art .src-link{word-break:break-all;color:#1d4ed8}
 .art .who{font-size:12px;color:var(--ink3);margin-top:34px;border-top:1px solid var(--line);padding-top:14px}
+/* 详情页的星标和列表页共用一套逻辑，只是排在大标题右边、做得更大一点（这页只有它一个动作） */
+.art .titlerow{display:flex;gap:10px;align-items:flex-start}
+.art .titlerow h1{flex:1;min-width:0}
+.art .titlerow .star{font-size:27px;padding:14px 0 0}
 </style>
 </head><body>
 <div class="art">
   <a class="back" href="../2026-09-16.html">← 返回简报</a>
   <div class="wrap">
-    <h1>Qwen3.8-Flash-Next</h1>
+    <div class="titlerow">
+      <h1>Qwen3.8-Flash-Next</h1>
+      <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+        data-id="2026-09-16-07" data-date="2026-09-16" data-t="Qwen3.8-Flash-Next"
+        data-o="开源多模态模型，下一代 Qwen 架构预览。" data-hd="1">☆</button>
+    </div>
     <div class="lead">开源多模态模型，下一代 Qwen 架构预览。</div>
     <div class="metaline">
       <span class="chip model">模型</span>
@@ -132,4 +166,89 @@ details.rej[open] summary::before{content:"▾ "}
     <div class="who">雷达简报 2026-09-16 · 条目 2026-09-16-07</div>
   </div>
 </div>
+<script>
+function favOK(){try{localStorage.setItem('radar.probe','1');localStorage.removeItem('radar.probe');return true}catch(e){return false}}
+var FAV_ON=favOK();
+function favEsc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function favAll(){if(!FAV_ON)return[];try{var a=JSON.parse(localStorage.getItem('radar.fav.v1')||'[]');return a instanceof Array?a:[]}catch(e){return[]}}
+function favSave(a){if(!FAV_ON)return;try{localStorage.setItem('radar.fav.v1',JSON.stringify(a))}catch(e){}}
+function favToggle(o){
+  var a=favAll(),i=-1,k;
+  for(k=0;k<a.length;k++){if(a[k].id===o.id){i=k;break}}
+  if(i>=0){a.splice(i,1)}else{a.unshift({id:o.id,date:o.date,t:o.t,o:o.o,hd:o.hd,ts:Date.now()})}
+  favSave(a);return i<0;
+}
+/* 相对路径，所以本机 file:// 打开和线上 Pages 打开都能点 */
+function favURL(x){return location.pathname.replace(/[^/]*$/,'')+(x.hd?'detail/'+x.id+'.html':x.date+'.html')}
+function favPaint(){
+  var a=favAll(),ids={},k;
+  for(k=0;k<a.length;k++){ids[a[k].id]=1}
+  document.querySelectorAll('.star').forEach(function(b){
+    var on=!!ids[b.dataset.id];
+    b.setAttribute('aria-pressed',on?'true':'false');
+    b.textContent=on?'★':'☆';
+    b.title=on?'取消收藏':'收藏这一条';
+    var row=b.closest('.row');
+    if(row)row.classList.toggle('fav',on);
+  });
+  var n=document.getElementById('favn');if(n)n.textContent=String(a.length);
+  var c=document.getElementById('favcnt');if(c)c.textContent=String(a.length);
+  var box=document.getElementById('favbox');
+  if(box)box.style.display=a.length?'':'none';   /* 一条收藏都没有时，别在页面上挂个空盒子 */
+  var list=document.getElementById('favlist');
+  if(list){
+    var h='';
+    for(k=0;k<a.length;k++){
+      var x=a[k];
+      h+='<div class="favrow"><a class="favt" href="'+favURL(x)+'">'+favEsc(x.t)+'</a>'
+       +'<div class="favo">'+favEsc(x.o)+'</div>'
+       +'<div class="favm"><span class="favd">'+favEsc(x.date)+'</span>'
+       +'<button class="favrm" type="button" data-id="'+favEsc(x.id)+'">移除</button></div></div>';
+    }
+    list.innerHTML=h;
+  }
+}
+function favWire(){
+  if(!FAV_ON){
+    /* 浏览器不给存（Safari 打开 file:// 就是这样）→ 干脆不显示星标，免得点了没反应 */
+    document.querySelectorAll('.star').forEach(function(b){b.style.display='none'});
+    return;
+  }
+  document.querySelectorAll('.star').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();   /* 关键：点星只收藏，不展开这一条 */
+      favToggle({id:b.dataset.id,date:b.dataset.date,t:b.dataset.t,o:b.dataset.o,hd:b.dataset.hd==='1'});
+      favPaint();
+      if(typeof afterFav==='function')afterFav();
+    });
+  });
+  var box=document.getElementById('favbox');
+  if(box)box.addEventListener('click',function(e){
+    var rm=e.target.closest('.favrm');
+    if(!rm)return;
+    e.preventDefault();
+    favSave(favAll().filter(function(x){return x.id!==rm.dataset.id}));
+    favPaint();
+    if(typeof afterFav==='function')afterFav();
+  });
+  var cp=document.getElementById('favcopy');
+  if(cp)cp.addEventListener('click',function(){
+    var a=favAll(),lines=[],k;
+    for(k=0;k<a.length;k++)lines.push('- '+a[k].date+' · '+a[k].t+' — '+location.origin+favURL(a[k]));
+    var txt=lines.join(String.fromCharCode(10));
+    var done=function(ok){cp.textContent=ok?'已复制':'复制失败，请长按选择';setTimeout(function(){cp.textContent='复制清单'},1800)};
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)});
+    }else{
+      var ta=document.createElement('textarea');ta.value=txt;
+      ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
+      var ok=false;try{ok=document.execCommand('copy')}catch(e){}
+      document.body.removeChild(ta);done(ok);
+    }
+  });
+  favPaint();
+}
+
+favWire();
+</script>
 </body></html>
