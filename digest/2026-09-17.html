@@ -52,21 +52,20 @@ background:none;border:0;font:inherit;color:inherit;cursor:pointer;list-style:no
 
 /* ── 展开态：整条（摘要头 + 正文区）合起来是**一张卡** ──────────────────
    折叠态 = 白底、只有细线分隔，安静地排成一列（这是拿来扫读的）。
-   展开态 = 整圈浅蓝**轮廓**收边，左边加粗成蓝色脊线；摘要头和正文区同属一个蓝色系，
-            只靠**深浅 + 一条分隔线**区分。正文区原来压成白底，看着像贴在条目下面的
-            另一块东西，而不是"这一条展开了" —— 现在两者是一体的。
-   之所以要做得这么明确：之前只有箭头转 90 度，看不出展开的是哪一条、展开到哪儿为止。 */
-.row[open]{background:#eef3ff;border-color:#c2d4fc;border-left-color:#1d4ed8}
+   展开态 = 整圈**中性灰**轮廓收边，左边加粗成一条蓝色脊线；摘要头和正文区同属一个
+            灰阶、只差深浅，看着是"这一条展开了"而不是"下面贴了另一块东西"。
+   底色**刻意用灰不用蓝**：第一版把摘要头和正文区都染成浅蓝，一整块大面积蓝底压着字，
+   读起来发闷、也显得比实际更"重"。蓝色只留给脊线和星标这种小面积强调。 */
+.row[open]{background:#f5f6f9;border-color:#d9dde7;border-left-color:#2f5bd7}
 .row[open] + .row{border-top-color:transparent} /* 别和上面那张卡的下轮廓叠成两像素 */
 .row[open] .hit{background:transparent}
-.row[open] .n{color:#1d4ed8;font-weight:700}
-.row[open] .t1{color:#1e3a8a}
+.row[open] .n{color:#2f5bd7;font-weight:700}
 .row[open] .t1b{-webkit-line-clamp:3}
-.row[open] .car{color:#1d4ed8;transform:rotate(90deg)}
-.row[open] .det{background:#e6edfd;border-top:1px solid #d3dffc;color:#3f4553;
+.row[open] .car{color:#2f5bd7;transform:rotate(90deg)}
+.row[open] .det{background:#edeff4;border-top:1px solid #e2e5ed;color:#3f4553;
  animation:detin .18s ease-out}
-.row[open] .det .k{color:#65708a} /* 底变深了，小标签得跟着压深一点才够清楚 */
-.row[open] .det .more{background:#fff;border-color:#b9cdfb} /* 浅蓝按钮在深底上会糊掉 */
+.row[open] .det .k{color:#69738c} /* 底变深了，小标签得跟着压深一点才够清楚 */
+.row[open] .det .more{background:#fff;border-color:#ccd6ec} /* 浅蓝按钮在灰底上会糊掉 */
 @keyframes detin{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.row[open] .det{animation:none}}
 .chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);
@@ -84,6 +83,32 @@ color:var(--ink2);background:var(--bg2);font-family:ui-monospace,Menlo,monospace
 .det a{color:#1d4ed8;word-break:break-all}
 .det .more{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:#1d4ed8;
  text-decoration:none;border:1px solid #dbe4ff;background:#f2f5ff;padding:6px 12px;border-radius:99px}
+
+/* ── 收藏 ───────────────────────────────────────────────────────────────
+   星标是行内一个独立可点的小按钮：点它**只收藏、不展开**（在 click 里 preventDefault
+   拦掉 summary 的默认展开行为）。它故意做得比箭头显眼：箭头是"看更多"，星是"留下"。
+   颜色只用星星该有的琥珀色，不跟正文抢注意力（页面主色是灰 + 一个克制的蓝）。 */
+.star{flex:none;border:0;background:none;padding:2px 0 2px 6px;cursor:pointer;font:inherit;
+ font-size:19px;line-height:1;color:#c9ced8;transition:color .15s,transform .12s}
+.star:hover{color:#d9a406}
+.star:active{transform:scale(.85)}
+.star[aria-pressed="true"]{color:#e8a90c}
+/* 收藏盒：只在有收藏时才出现（否则每天早上都挂一个空盒子，是噪音） */
+.favbox{margin:0 18px 12px;border:1px solid #ece5cf;background:#fffdf6;border-radius:10px}
+.favbox>summary{cursor:pointer;list-style:none;padding:9px 12px;font-size:12.5px;font-weight:700;
+ color:#8a6d1f;font-family:ui-monospace,Menlo,monospace}
+.favbox>summary::-webkit-details-marker{display:none}
+.favbox>summary::before{content:"▸ "}
+.favbox[open]>summary::before{content:"▾ "}
+.favlist{padding:0 12px}
+.favrow{padding:7px 0;border-top:1px solid #f2eddd}
+.favt{display:block;font-size:13.5px;font-weight:600;color:#1d4ed8;text-decoration:none;line-height:1.4}
+.favo{margin-top:2px;font-size:12px;color:var(--ink2);line-height:1.45}
+.favm{display:flex;gap:10px;align-items:center;margin-top:3px}
+.favd{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
+.favrm,.favcopy{border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:99px;
+ font:inherit;font-size:11px;padding:2px 9px;cursor:pointer}
+.favcopy{display:block;margin:6px 12px 11px}
 .empty{padding:22px 18px;color:var(--ink3);font-size:13px}
 .fold{margin:16px 18px 0;font-size:12px;color:var(--ink3);line-height:1.7}
 .foot{margin-top:22px;padding:16px 18px 26px;border-top:1px solid var(--line);font-size:12px;color:var(--ink3);line-height:1.9}
@@ -107,9 +132,15 @@ details.rej[open] summary::before{content:"▾ "}
       <button class="seg" data-f="all" aria-pressed="true">全部 8</button>
       <button class="seg" data-f="fast" aria-pressed="false">15 分钟 5</button>
       <button class="seg" data-f="tool" aria-pressed="false">技能工具 1</button>
+      <button class="seg" data-f="fav" aria-pressed="false">★ 收藏 <span id="favn">0</span></button>
     </div>
   </div>
   <div class="count" id="cnt">显示 8 / 8 条</div>
+  <details class="favbox" id="favbox" style="display:none">
+    <summary>我的收藏 <span id="favcnt">0</span></summary>
+    <div class="favlist" id="favlist"></div>
+    <button class="favcopy" id="favcopy" type="button">复制清单</button>
+  </details>
   
     <details class="row" data-fast="1" data-tool="1">
       <summary class="hit">
@@ -124,6 +155,9 @@ details.rej[open] summary::before{content:"▾ "}
           </span>
         </span>
         <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-09-17-01" data-date="2026-09-17" data-t="seedance-2-5-image-to-video"
+          data-o="把一张静图加上运镜提示，变成带声音的短片段。" data-hd="1">☆</button>
       </summary>
       <div class="det">
         <span class="k">是什么</span>genmedia-labs 发在 skills.sh 的 Seedance 2.5「单图生视频」技能，今天趋势榜第 8（16.4K 安装，收录 12 天）。它和 09-16 简报里我发过的那条同族技能是 **两条不同的路**：那条是「参考生视频」（多张参考图管身份、一段参考片管运镜、1080p 带声），这条是**单图窄路**——只给一张图和一句运镜提示，输出 4–30 秒、720p，可选同步原生音频，画幅跟着输入图走；页面自己写明「没有画幅控制、没有多参考输入」，因为不能有任何东西跟源图抢身份、服装和构图。跑在 RunComfy 托管的 ByteDance Seedance 2.5 API 上，一行装：`npx skills add genmedia-labs/skills --skill seedance-2-5-image-to-video -g`；安全审计 Gen Agent Trust Hub / Socket / Snyk 三项 Pass。
@@ -147,6 +181,9 @@ details.rej[open] summary::before{content:"▾ "}
           </span>
         </span>
         <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-09-17-02" data-date="2026-09-17" data-t="Gemini Omni 1.1 Flash"
+          data-o="给生成视频加续写、首尾帧和 4K 输出。" data-hd="1">☆</button>
       </summary>
       <div class="det">
         <span class="k">是什么</span>Google 8 月 27 日发布的开发者版生成视频更新。四件事：**场景续写**可以接着已有视频往下生成，这次能吃进前 10 秒上下文（上一代只参考最后 1 秒），按 10 秒一档、累计最长 40 秒；**首尾帧插值**给定起始帧和结束帧，中间整段连续生成，适合环绕、变焦、无缝循环镜头；**360p 草稿**比 720p 快最多 60%、成本约三分之一，专给快速试稿和分镜迭代；**最高 4K 上采样**（默认 1080p）；多模态输入还能带最多 3 秒视频参考。调用是 `gemini-omni-1.1-flash`，续写用 `previous_interaction_id` 串上一次结果，走 Gemini API / AI Studio / Agent Platform，等价的 Flash 已经进了 Adobe Firefly、Figma Weave、Runway。
@@ -170,6 +207,9 @@ details.rej[open] summary::before{content:"▾ "}
           </span>
         </span>
         <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-09-17-03" data-date="2026-09-17" data-t="Jev（TypeSafe System One Models）"
+          data-o="只做判断、不写文字的分类路由模型，成本极低。" data-hd="1">☆</button>
       </summary>
       <div class="det">
         <span class="k">是什么</span>TypeSafe 9 月 15 日发布的 System One 模型 Jev，创始人 Diogo Almeida 是 ChatGPT 共同作者，两年 stealth 做出的新训练方式叫 RLCD（calibrated decisions）。它不做自回归文本生成，而是「给状态 + 类型化问题，直接返回结构化答案」：三种原语 Choice（从列表选）、Score（按 rubric 打分）、Noul（命题真假 0–1），一次 API 调用可以混着问多个问题、并行独立求值，返回带概率分布和置信度，**从结构上就不存在解析失败和工具调用参数错误**（官方对比图里 Jev 工具调用错误率 0%）。价格每百万输入 token $0.042、输出按「低到不可测」计；官方口径同等任务质量对标 GPT-5.6 Terra 而成本约 1/100，推文口径是快 20–200 倍、便宜 40–400 倍。代价是它不能生成自由文本。目前是 early access 申请制，文档和 quick start 已公开。
@@ -193,6 +233,9 @@ details.rej[open] summary::before{content:"▾ "}
           </span>
         </span>
         <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-09-17-04" data-date="2026-09-17" data-t="Claude Cowork 与 chat 合并为一个 Claude"
+          data-o="聊天与任务代理合并，交付物变成文档和幻灯片。" data-hd="1">☆</button>
       </summary>
       <div class="det">
         <span class="k">是什么</span>Anthropic 9 月 16 日的产品变更：Cowork 和 chat 合并成一个 Claude，同时新出 Claude Docs（一起写文档）与 Claude Slides（直接起草幻灯片、可用 PowerPoint / PDF 导出、也能直接从 Claude 里演示），Design 也进了普通对话。它不再让你选「这活儿该放哪」，由 Claude 自己判断任务需要什么能力，Cowork 与 Design 的能力在任何一段对话里可用，上下文、Skills、Connectors 全部沿用；可以设置成「默认每步先问」或「先干、只在需要细看时找你」，并支持把任务排成每周一自动开始（关掉笔记本也能继续）。先给 Pro / Max，网页 / 桌面 / 移动几周内铺开，Team 与 Free 随后。
@@ -216,6 +259,9 @@ details.rej[open] summary::before{content:"▾ "}
           </span>
         </span>
         <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-09-17-05" data-date="2026-09-17" data-t="Gradio Workflow1111（用节点图重建 A1111）"
+          data-o="用节点画布重写 A1111，管线可复制可改。" data-hd="1">☆</button>
       </summary>
       <div class="det">
         <span class="k">是什么</span>HF 官方 9 月 10 日的实战文章 + Space：Workflow1111 用 **11 条媒体管线、73 个节点**把 AUTOMATIC1111 的功能集重建成一张画布图——文生图、高清修复、图生图、prompt matrix、VLM interrogate、检测转 inpaint 遮罩、ControlNet 系 annotator、背景移除、PNG Info、图生视频。节点只用四类算子：`fn`（Python 函数）、`model`（经 InferenceClient 调模型）、`space`（调用别的 Gradio Space）、`dataset`（Hub 数据集行）；生成参数会写回 PNG 元数据供 PNG Info 读回，每个输出都能直接当 API 调，Space 可一键 duplicate 之后自己重接线。文章还专门有一节讲它相对 ComfyUI 的定位。
@@ -239,6 +285,9 @@ details.rej[open] summary::before{content:"▾ "}
           </span>
         </span>
         <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-09-17-06" data-date="2026-09-17" data-t="多智能体分解的产出守恒律"
+          data-o="用生产日志算出每加一层子代理只拿回一半。" data-hd="1">☆</button>
       </summary>
       <div class="det">
         <span class="k">是什么</span>掘金 9 月 16 日对论文《Decomposition Buys Integrity, Not Yield》（Rong He，arXiv:2609.17464，9 月 15 日提交，附完整实验代码）的中文拆解。核心模型：agent 拿到 b 个条目时保留任一条的概率是 r(b)=C·b^(−δ)，于是深度 k 的树最终产出是 **C^k·N^(1−δ)**——任务规模和架构是分离的两项，架构只能贡献每层 C≤1 的衰减，而 δ 这个指数谁都躲不掉。实测取自 600 条生产 deep-research 轨迹：δ=0.34 [0.30,0.38]；在「工具给定条目边界」的 hop 上直接观测（不是外推）到 C=0.571、共 16,082 个 hop；另有 1,012 条标注轨迹显示每 16 份子 agent brief 就有 1 份跑偏，μ=0.939，于是每层实际代价 C·μ=0.536，两层只剩 0.287、三层 0.154。文章还给了三条反直觉结论：分层买的是「根节点上下文」（N → N^(1/k)，它是唯一无法廉价遗忘的状态）、等花费下两层要到 N=403 个发现才胜过扁平、以及**委托是开局决策而不是上下文快满时的应急**（743,819 次生产工具调用的 hazard 模型显示上下文翻倍反而让委托概率略降，odds ratio 0.969）。
@@ -262,6 +311,9 @@ details.rej[open] summary::before{content:"▾ "}
           </span>
         </span>
         <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-09-17-07" data-date="2026-09-17" data-t="基于「行为评估」准则评估智能体"
+          data-o="把 agent 测试从看结果改成断言它的每一步动作。" data-hd="1">☆</button>
       </summary>
       <div class="det">
         <span class="k">是什么</span>掘金 9 月 16 日文章，解读 Google 9 月 9 日 Harness Engineering 文章提出的 Behavioral Evaluation。问题场景很具体：模型没变、业务没变，只改了 System Prompt、Tool Schema 或加了个工具，跑 benchmark 成功率反而降了，而端到端分数只告诉你「变差了」，不告诉你「哪一步坏了」。做法是把 agent 当软件测：除了 `assert response == expected`，还要 `assert agent.called_tool(&quot;test_runner&quot;)`——改完 Build 文件有没有跑 validator、写完代码有没有调测试、引用的是不是正确的仓库、信息不全时是追问还是瞎猜。文章用电商售后「帮我退掉耳机」举例：只看结果是 PASS（「已提交退款申请」），打开 trace 才发现它查错了订单、没确认发货状态。
@@ -285,6 +337,9 @@ details.rej[open] summary::before{content:"▾ "}
           </span>
         </span>
         <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-09-17-08" data-date="2026-09-17" data-t="Gemini 视频理解进入 agentic 模式"
+          data-o="让模型自己决定看视频的哪几秒，省 88% token。" data-hd="1">☆</button>
       </summary>
       <div class="det">
         <span class="k">是什么</span>Google DeepMind 9 月 1 日发布，覆盖 Gemini 3.7 Flash / 3.6 Flash / 3.5 Flash-Lite。原来的做法是「静态」抽帧：按固定帧率（默认 1 FPS）把整段视频喂给模型，长视频要么烧 token 要么丢细节；换成 agentic 之后，模型带着目标在视频里主动搜索、回看、放大——内部工具按需加载相关片段，自行决定看哪一段、用几倍帧率、看画面还是听音轨还是读转写。官方数字：token 消耗最多降 88%、分析成本最多降 66%、准确率最多提 7%，其中 3.7 Flash 落在准确率-成本帕累托前沿。能力清单直指以前做不了的事：**亚秒级片段定位**（1 FPS 必漏的切点，可做精确自动剪辑）、多小时视频里的 needle-in-a-haystack、对可疑时间窗临时提高帧率做异常检测、精确计数。开启方式只是把 API 配置里的 processing 设成 `&quot;agentic&quot;`，按标准 token 计费、无额外功能费；Google AI Studio 与 Gemini Enterprise Agent Platform 都能用，未来说要驱动 YouTube 的 Ask YouTube。
@@ -304,6 +359,88 @@ details.rej[open] summary::before{content:"▾ "}
   </div>
 </div>
 <script>
+function favOK(){try{localStorage.setItem('radar.probe','1');localStorage.removeItem('radar.probe');return true}catch(e){return false}}
+var FAV_ON=favOK();
+function favEsc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function favAll(){if(!FAV_ON)return[];try{var a=JSON.parse(localStorage.getItem('radar.fav.v1')||'[]');return a instanceof Array?a:[]}catch(e){return[]}}
+function favSave(a){if(!FAV_ON)return;try{localStorage.setItem('radar.fav.v1',JSON.stringify(a))}catch(e){}}
+function favToggle(o){
+  var a=favAll(),i=-1,k;
+  for(k=0;k<a.length;k++){if(a[k].id===o.id){i=k;break}}
+  if(i>=0){a.splice(i,1)}else{a.unshift({id:o.id,date:o.date,t:o.t,o:o.o,hd:o.hd,ts:Date.now()})}
+  favSave(a);return i<0;
+}
+/* 相对路径，所以本机 file:// 打开和线上 Pages 打开都能点 */
+function favURL(x){return location.pathname.replace(/[^/]*$/,'')+(x.hd?'detail/'+x.id+'.html':x.date+'.html')}
+function favPaint(){
+  var a=favAll(),ids={},k;
+  for(k=0;k<a.length;k++){ids[a[k].id]=1}
+  document.querySelectorAll('.star').forEach(function(b){
+    var on=!!ids[b.dataset.id];
+    b.setAttribute('aria-pressed',on?'true':'false');
+    b.textContent=on?'★':'☆';
+    b.title=on?'取消收藏':'收藏这一条';
+    var row=b.closest('.row');
+    if(row)row.classList.toggle('fav',on);
+  });
+  var n=document.getElementById('favn');if(n)n.textContent=String(a.length);
+  var c=document.getElementById('favcnt');if(c)c.textContent=String(a.length);
+  var box=document.getElementById('favbox');
+  if(box)box.style.display=a.length?'':'none';   /* 一条收藏都没有时，别在页面上挂个空盒子 */
+  var list=document.getElementById('favlist');
+  if(list){
+    var h='';
+    for(k=0;k<a.length;k++){
+      var x=a[k];
+      h+='<div class="favrow"><a class="favt" href="'+favURL(x)+'">'+favEsc(x.t)+'</a>'
+       +'<div class="favo">'+favEsc(x.o)+'</div>'
+       +'<div class="favm"><span class="favd">'+favEsc(x.date)+'</span>'
+       +'<button class="favrm" type="button" data-id="'+favEsc(x.id)+'">移除</button></div></div>';
+    }
+    list.innerHTML=h;
+  }
+}
+function favWire(){
+  if(!FAV_ON){
+    /* 浏览器不给存（Safari 打开 file:// 就是这样）→ 干脆不显示星标，免得点了没反应 */
+    document.querySelectorAll('.star').forEach(function(b){b.style.display='none'});
+    return;
+  }
+  document.querySelectorAll('.star').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();   /* 关键：点星只收藏，不展开这一条 */
+      favToggle({id:b.dataset.id,date:b.dataset.date,t:b.dataset.t,o:b.dataset.o,hd:b.dataset.hd==='1'});
+      favPaint();
+      if(typeof afterFav==='function')afterFav();
+    });
+  });
+  var box=document.getElementById('favbox');
+  if(box)box.addEventListener('click',function(e){
+    var rm=e.target.closest('.favrm');
+    if(!rm)return;
+    e.preventDefault();
+    favSave(favAll().filter(function(x){return x.id!==rm.dataset.id}));
+    favPaint();
+    if(typeof afterFav==='function')afterFav();
+  });
+  var cp=document.getElementById('favcopy');
+  if(cp)cp.addEventListener('click',function(){
+    var a=favAll(),lines=[],k;
+    for(k=0;k<a.length;k++)lines.push('- '+a[k].date+' · '+a[k].t+' — '+location.origin+favURL(a[k]));
+    var txt=lines.join(String.fromCharCode(10));
+    var done=function(ok){cp.textContent=ok?'已复制':'复制失败，请长按选择';setTimeout(function(){cp.textContent='复制清单'},1800)};
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)});
+    }else{
+      var ta=document.createElement('textarea');ta.value=txt;
+      ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
+      var ok=false;try{ok=document.execCommand('copy')}catch(e){}
+      document.body.removeChild(ta);done(ok);
+    }
+  });
+  favPaint();
+}
+
 var f='all';
 var rows=[].slice.call(document.querySelectorAll('.row'));
 var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -324,7 +461,8 @@ rows.forEach(function(r){
 function apply(){
   var shown=0;
   rows.forEach(function(r){
-    var ok = f==='all' || (f==='fast'&&r.dataset.fast==='1') || (f==='tool'&&r.dataset.tool==='1');
+    var ok = f==='all' || (f==='fast'&&r.dataset.fast==='1') || (f==='tool'&&r.dataset.tool==='1')
+      || (f==='fav'&&r.classList.contains('fav'));
     r.style.display = ok ? '' : 'none';
     if(ok) shown++;
     // 被筛掉时顺手合上：留着它"开着"没意义，切回来还会自己弹开
@@ -335,6 +473,9 @@ function apply(){
   document.querySelectorAll('.seg').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.f===f)); });
 }
 document.querySelectorAll('.seg').forEach(function(b){ b.addEventListener('click',function(){ f=b.dataset.f; apply(); }); });
+/* 收藏变了要重算筛选：正在看「★ 收藏」时取消收藏，那一条得当场消失 */
+function afterFav(){ apply(); }
+favWire();
 apply();
 </script>
 </body></html>
