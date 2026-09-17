@@ -17,7 +17,7 @@ body{padding:0 0 40px}
   .head{padding:26px 32px 14px}
   .count{padding:10px 32px 4px}
   .hit{padding:14px 32px}
-  .det{padding:0 32px 20px 68px}
+  .det{padding:12px 32px 20px 68px}
   .fold,.foot{padding-left:32px;padding-right:32px;margin-left:0;margin-right:0}
   .drift{margin-left:32px;margin-right:32px}
 }
@@ -34,10 +34,12 @@ h1{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
 background:#fff;color:var(--ink2);cursor:pointer;font-weight:600;font-family:inherit}
 .seg[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
 .count{font-size:11px;color:var(--ink3);padding:8px 18px 4px;font-family:ui-monospace,Menlo,monospace}
-.row{border-top:1px solid var(--line)}
+/* 每一行左边常驻 3px 透明边框：展开时只把颜色点亮，宽度不变 —— 否则一展开内容会横向抖一下 */
+.row{border-top:1px solid var(--line);border-left:3px solid transparent}
 .row:last-of-type{border-bottom:1px solid var(--line)}
 .hit{display:flex;gap:10px;align-items:center;width:100%;text-align:left;padding:12px 18px;
-background:none;border:0;font:inherit;color:inherit;cursor:pointer}
+background:none;border:0;font:inherit;color:inherit;cursor:pointer;list-style:none}
+.hit::-webkit-details-marker{display:none}
 .hit:active{background:var(--bg2)}
 .n{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--ink3);width:16px;flex:none}
 .tt{flex:1;min-width:0}
@@ -45,8 +47,22 @@ background:none;border:0;font:inherit;color:inherit;cursor:pointer}
 .t1b{margin-top:2px;font-size:12.5px;color:var(--ink2);line-height:1.45;
  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .t2{margin-top:3px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
-.car{color:var(--ink3);font-size:16px;flex:none;transition:transform .15s}
-.row[open] .car{transform:rotate(90deg)}
+.car{color:var(--ink3);font-size:16px;flex:none;transition:transform .15s,color .15s}
+
+/* ── 展开态：和折叠态一眼分得开 ────────────────────────────────────────
+   折叠态 = 白底、只有细线分隔，安静地排成一列（这是拿来扫读的）。
+   展开态 = 整条换淡蓝底 + 左侧一条**贯通到底**的蓝色脊线，序号/标题/箭头转强调色，
+            正文区再单独落成一块**白底面板**（和淡蓝的摘要头形成落差）。
+   之前只有一个箭头转 90 度，等于没给信号：看不出展开的是哪一条、展开区到哪儿为止。 */
+.row[open]{background:#f6f8ff;border-left-color:#1d4ed8}
+.row[open] .hit{background:transparent}
+.row[open] .n{color:#1d4ed8;font-weight:700}
+.row[open] .t1{color:#1e3a8a}
+.row[open] .t1b{-webkit-line-clamp:3}
+.row[open] .car{color:#1d4ed8;transform:rotate(90deg)}
+.row[open] .det{background:#fff;border-top:1px solid #e2e8fa;animation:detin .18s ease-out}
+@keyframes detin{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.row[open] .det{animation:none}}
 .chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);
 color:var(--ink2);background:var(--bg2);font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
 .chip.model{color:#1d4ed8;border-color:#dbe4ff;background:#f2f5ff}
@@ -57,7 +73,7 @@ color:var(--ink2);background:var(--bg2);font-family:ui-monospace,Menlo,monospace
 .chip.method{color:#4a4f5a;border-color:var(--line);background:var(--bg2)}
 .cost{font-weight:700}.cost.fast{color:var(--ok)}.cost.slow{color:var(--warm)}
 .src{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
-.det{padding:0 18px 16px 44px;font-size:13.5px;color:var(--ink2)}
+.det{padding:12px 18px 16px 44px;font-size:13.5px;color:var(--ink2)}
 .det .k{color:var(--ink3);font-size:11px;display:block;margin:8px 0 1px;font-family:ui-monospace,Menlo,monospace}
 .det a{color:#1d4ed8;word-break:break-all}
 .det .more{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:#1d4ed8;
