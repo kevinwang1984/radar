@@ -3,8 +3,51 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>find-skills · 雷达详情</title>
+<script>
+(function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
+var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
+document.documentElement.setAttribute('data-theme',d?'dark':'light');})();
+</script>
 <style>
-:root{--ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;--ok:#0f7b53;--warm:#c2410c}
+:root{
+  color-scheme:light;
+  --ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;
+  --ok:#0f7b53;--warm:#c2410c;--link:#1d4ed8;
+  --tap:#f7f8fa;--seg-bg:#fff;--seg-on-ink:#fff;--btn-bg:#fff;
+  --c-model:#1d4ed8;--c-model-bg:#f2f5ff;--c-model-line:#dbe4ff;
+  --c-skill:#7c2d12;--c-skill-bg:#fff6f1;--c-skill-line:#ffe4d3;
+  --c-tool:#0f7b53;--c-tool-bg:#f1fbf6;--c-tool-line:#d6f0e4;
+  --c-cn:#7e22ce;--c-cn-bg:#faf5ff;--c-cn-line:#efe0ff;
+  --c-people:#0369a1;--c-people-bg:#f2f9ff;--c-people-line:#d6ecfb;
+  --c-method:#4a4f5a;--c-method-bg:#f7f8fa;--c-method-line:#e6e8ec;
+  --card-bg:#f5f6f9;--card-line:#d9dde7;--card-spine:#2f5bd7;--card-det:#edeff4;
+  --card-sep:#e2e5ed;--card-k:#69738c;--card-det-ink:#3f4553;
+  --more-bg:#f2f5ff;--more-line:#dbe4ff;--more-bg-on:#fff;--more-line-on:#ccd6ec;
+  --star:#c9ced8;--star-on:#e8a90c;--star-hover:#d9a406;
+  --fav-bg:#fffdf6;--fav-line:#ece5cf;--fav-ink:#8a6d1f;--fav-sep:#f2eddd;
+  --drift-bg:#fff7ed;--drift-line:#fed7aa;--drift-ink:#9a3412;
+}
+/* 暗色。**只覆盖变量**，不动任何规则 —— 所以明暗两套永远不会走偏。
+   JS 会把 data-theme 落到 <html> 上：auto 由脚本解析成实际的 light/dark，
+   所以 CSS 里不需要再写一遍 @media (prefers-color-scheme)。 */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ink:#e4e7ee;--ink2:#a6adbb;--ink3:#79808e;--line:#2a2f38;--bg:#14161a;--bg2:#0e1013;
+  --ok:#54c894;--warm:#f2935e;--link:#7fa6ff;
+  --tap:#1b1f27;--seg-bg:#1c212a;--seg-on-ink:#14161a;--btn-bg:#1c212a;
+  --c-model:#8fb4ff;--c-model-bg:#182338;--c-model-line:#28395a;
+  --c-skill:#f0a97f;--c-skill-bg:#2a1e17;--c-skill-line:#44301f;
+  --c-tool:#6ed3a4;--c-tool-bg:#14291f;--c-tool-line:#204434;
+  --c-cn:#c6a4f2;--c-cn-bg:#221a30;--c-cn-line:#372a4b;
+  --c-people:#74c2e8;--c-people-bg:#132530;--c-people-line:#1f3d4d;
+  --c-method:#a6adbb;--c-method-bg:#1c212a;--c-method-line:#2a2f38;
+  --card-bg:#1c212a;--card-line:#333a46;--card-spine:#5b82f0;--card-det:#171b22;
+  --card-sep:#2b313b;--card-k:#8b93a3;--card-det-ink:#c3c9d4;
+  --more-bg:#1b2740;--more-line:#2c3d5f;--more-bg-on:#20242d;--more-line-on:#343c4a;
+  --star:#4c525e;--star-on:#f0b429;--star-hover:#ffc94d;
+  --fav-bg:#1f1b12;--fav-line:#3a3221;--fav-ink:#dcb862;--fav-sep:#2b2618;
+  --drift-bg:#2a1c12;--drift-line:#4a3320;--drift-ink:#f0a97f;
+}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0;background:var(--bg2);color:var(--ink);
 font:15px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
@@ -24,15 +67,22 @@ body{padding:0 0 40px}
 @media (max-width:520px){.phone{box-shadow:none}}
 .kicker{font-size:11px;letter-spacing:.14em;color:var(--ink3);font-weight:600;
 font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.drift{margin:12px 18px 0;padding:10px 12px;border-radius:10px;background:#fff7ed;
-border:1px solid #fed7aa;color:#9a3412;font-size:13px}
+.drift{margin:12px 18px 0;padding:10px 12px;border-radius:10px;background:var(--drift-bg);
+border:1px solid var(--drift-line);color:var(--drift-ink);font-size:13px}
 .head{padding:18px 18px 12px}
 h1{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
 .strap{font-size:12px;color:var(--ink2)}
 .segs{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
 .seg{font-size:12px;padding:5px 11px;border-radius:99px;border:1px solid var(--line);
-background:#fff;color:var(--ink2);cursor:pointer;font-weight:600;font-family:inherit}
-.seg[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+background:var(--seg-bg);color:var(--ink2);cursor:pointer;font-weight:600;font-family:inherit}
+.seg[aria-pressed="true"]{background:var(--ink);color:var(--seg-on-ink);border-color:var(--ink)}
+/* 主题开关：在 kicker 那一行的最右边。三态循环 自动 → 亮 → 暗 → 自动，
+   按钮上显示的是**当前**状态（而不是"点了会变成什么"）—— 后者每次都得在脑子里转一道 */
+.kickerrow{display:flex;gap:10px;align-items:center;justify-content:space-between}
+.themebtn{flex:none;border:1px solid var(--line);background:var(--btn-bg);color:var(--ink3);
+ border-radius:99px;font:inherit;font-size:11px;font-weight:600;padding:3px 10px;cursor:pointer;
+ font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
+.themebtn:active{transform:scale(.96)}
 .count{font-size:11px;color:var(--ink3);padding:8px 18px 4px;font-family:ui-monospace,Menlo,monospace}
 /* 四条边都预留：折叠态只留最上面那条细线，左右和下边是**透明**占位 ——
    展开时把整圈轮廓点亮，宽度不变（否则一展开内容会横向抖一下）。左边留 3px 给脊线。 */
@@ -41,7 +91,7 @@ background:#fff;color:var(--ink2);cursor:pointer;font-weight:600;font-family:inh
 .hit{display:flex;gap:10px;align-items:center;width:100%;text-align:left;padding:12px 18px;
 background:none;border:0;font:inherit;color:inherit;cursor:pointer;list-style:none}
 .hit::-webkit-details-marker{display:none}
-.hit:active{background:var(--bg2)}
+.hit:active{background:var(--tap)}
 .n{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--ink3);width:16px;flex:none}
 .tt{flex:1;min-width:0}
 .t1{font-weight:600;font-size:14.5px;line-height:1.35;display:block}
@@ -56,57 +106,57 @@ background:none;border:0;font:inherit;color:inherit;cursor:pointer;list-style:no
             灰阶、只差深浅，看着是"这一条展开了"而不是"下面贴了另一块东西"。
    底色**刻意用灰不用蓝**：第一版把摘要头和正文区都染成浅蓝，一整块大面积蓝底压着字，
    读起来发闷、也显得比实际更"重"。蓝色只留给脊线和星标这种小面积强调。 */
-.row[open]{background:#f5f6f9;border-color:#d9dde7;border-left-color:#2f5bd7}
+.row[open]{background:var(--card-bg);border-color:var(--card-line);border-left-color:var(--card-spine)}
 .row[open] + .row{border-top-color:transparent} /* 别和上面那张卡的下轮廓叠成两像素 */
 .row[open] .hit{background:transparent}
-.row[open] .n{color:#2f5bd7;font-weight:700}
+.row[open] .n{color:var(--card-spine);font-weight:700}
 .row[open] .t1b{-webkit-line-clamp:3}
-.row[open] .car{color:#2f5bd7;transform:rotate(90deg)}
-.row[open] .det{background:#edeff4;border-top:1px solid #e2e5ed;color:#3f4553;
+.row[open] .car{color:var(--card-spine);transform:rotate(90deg)}
+.row[open] .det{background:var(--card-det);border-top:1px solid var(--card-sep);color:var(--card-det-ink);
  animation:detin .18s ease-out}
-.row[open] .det .k{color:#69738c} /* 底变深了，小标签得跟着压深一点才够清楚 */
-.row[open] .det .more{background:#fff;border-color:#ccd6ec} /* 浅蓝按钮在灰底上会糊掉 */
+.row[open] .det .k{color:var(--card-k)} /* 底变深了，小标签得跟着压深一点才够清楚 */
+.row[open] .det .more{background:var(--more-bg-on);border-color:var(--more-line-on)}
 @keyframes detin{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.row[open] .det{animation:none}}
 .chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);
 color:var(--ink2);background:var(--bg2);font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
-.chip.model{color:#1d4ed8;border-color:#dbe4ff;background:#f2f5ff}
-.chip.skill{color:#7c2d12;border-color:#ffe4d3;background:#fff6f1}
-.chip.tool{color:#0f7b53;border-color:#d6f0e4;background:#f1fbf6}
-.chip.cn{color:#7e22ce;border-color:#efe0ff;background:#faf5ff}
-.chip.people{color:#0369a1;border-color:#d6ecfb;background:#f2f9ff}
-.chip.method{color:#4a4f5a;border-color:var(--line);background:var(--bg2)}
+.chip.model{color:var(--c-model);border-color:var(--c-model-line);background:var(--c-model-bg)}
+.chip.skill{color:var(--c-skill);border-color:var(--c-skill-line);background:var(--c-skill-bg)}
+.chip.tool{color:var(--c-tool);border-color:var(--c-tool-line);background:var(--c-tool-bg)}
+.chip.cn{color:var(--c-cn);border-color:var(--c-cn-line);background:var(--c-cn-bg)}
+.chip.people{color:var(--c-people);border-color:var(--c-people-line);background:var(--c-people-bg)}
+.chip.method{color:var(--c-method);border-color:var(--c-method-line);background:var(--c-method-bg)}
 .cost{font-weight:700}.cost.fast{color:var(--ok)}.cost.slow{color:var(--warm)}
 .src{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
 .det{padding:12px 18px 16px 44px;font-size:13.5px;color:var(--ink2)}
 .det .k{color:var(--ink3);font-size:11px;display:block;margin:8px 0 1px;font-family:ui-monospace,Menlo,monospace}
-.det a{color:#1d4ed8;word-break:break-all}
-.det .more{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:#1d4ed8;
- text-decoration:none;border:1px solid #dbe4ff;background:#f2f5ff;padding:6px 12px;border-radius:99px}
+.det a{color:var(--link);word-break:break-all}
+.det .more{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--link);
+ text-decoration:none;border:1px solid var(--more-line);background:var(--more-bg);padding:6px 12px;border-radius:99px}
 
 /* ── 收藏 ───────────────────────────────────────────────────────────────
    星标是行内一个独立可点的小按钮：点它**只收藏、不展开**（在 click 里 preventDefault
    拦掉 summary 的默认展开行为）。它故意做得比箭头显眼：箭头是"看更多"，星是"留下"。
    颜色只用星星该有的琥珀色，不跟正文抢注意力（页面主色是灰 + 一个克制的蓝）。 */
 .star{flex:none;border:0;background:none;padding:2px 0 2px 6px;cursor:pointer;font:inherit;
- font-size:19px;line-height:1;color:#c9ced8;transition:color .15s,transform .12s}
-.star:hover{color:#d9a406}
+ font-size:19px;line-height:1;color:var(--star);transition:color .15s,transform .12s}
+.star:hover{color:var(--star-hover)}
 .star:active{transform:scale(.85)}
-.star[aria-pressed="true"]{color:#e8a90c}
+.star[aria-pressed="true"]{color:var(--star-on)}
 /* 收藏盒：只在有收藏时才出现（否则每天早上都挂一个空盒子，是噪音） */
-.favbox{margin:0 18px 12px;border:1px solid #ece5cf;background:#fffdf6;border-radius:10px}
+.favbox{margin:0 18px 12px;border:1px solid var(--fav-line);background:var(--fav-bg);border-radius:10px}
 .favbox>summary{cursor:pointer;list-style:none;padding:9px 12px;font-size:12.5px;font-weight:700;
- color:#8a6d1f;font-family:ui-monospace,Menlo,monospace}
+ color:var(--fav-ink);font-family:ui-monospace,Menlo,monospace}
 .favbox>summary::-webkit-details-marker{display:none}
 .favbox>summary::before{content:"▸ "}
 .favbox[open]>summary::before{content:"▾ "}
 .favlist{padding:0 12px}
-.favrow{padding:7px 0;border-top:1px solid #f2eddd}
-.favt{display:block;font-size:13.5px;font-weight:600;color:#1d4ed8;text-decoration:none;line-height:1.4}
+.favrow{padding:7px 0;border-top:1px solid var(--fav-sep)}
+.favt{display:block;font-size:13.5px;font-weight:600;color:var(--link);text-decoration:none;line-height:1.4}
 .favo{margin-top:2px;font-size:12px;color:var(--ink2);line-height:1.45}
 .favm{display:flex;gap:10px;align-items:center;margin-top:3px}
 .favd{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
-.favrm,.favcopy{border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:99px;
+.favrm,.favcopy{border:1px solid var(--line);background:var(--btn-bg);color:var(--ink2);border-radius:99px;
  font:inherit;font-size:11px;padding:2px 9px;cursor:pointer}
 .favcopy{display:block;margin:6px 12px 11px}
 .empty{padding:22px 18px;color:var(--ink3);font-size:13px}
@@ -124,8 +174,11 @@ details.rej[open] summary::before{content:"▾ "}
 .art{max-width:460px;margin:0 auto;background:var(--bg);min-height:100vh;padding:0 0 70px}
 @media (min-width:960px){ .art{max-width:820px;box-shadow:0 0 0 1px var(--line)} }
 .back{display:inline-block;margin:16px 18px 0;font-size:13px;color:var(--ink3);text-decoration:none}
+/* 详情页顶部一行：返回 + 主题开关（同一套开关，两页行为一致） */
+.art .toprow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:16px 18px 0}
+.art .toprow .back{margin:0}
 .wrap{padding:0 18px}
-@media (min-width:960px){ .wrap{padding:0 40px} .back{margin-left:40px} }
+@media (min-width:960px){ .wrap{padding:0 40px} .art .toprow{margin-left:40px;margin-right:40px} }
 .art h1{font-size:24px;line-height:1.35;margin:12px 0 8px;letter-spacing:-.02em}
 .art .lead{font-size:15px;color:var(--ink2);margin:0 0 14px;line-height:1.6}
 .art .metaline{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
@@ -135,7 +188,7 @@ details.rej[open] summary::before{content:"▾ "}
 .art p{margin:0 0 12px;font-size:15.5px;line-height:1.78}
 .art ul{margin:0;padding-left:20px}
 .art li{margin:0 0 8px;font-size:15px;line-height:1.72}
-.art .src-link{word-break:break-all;color:#1d4ed8}
+.art .src-link{word-break:break-all;color:var(--link)}
 .art .who{font-size:12px;color:var(--ink3);margin-top:34px;border-top:1px solid var(--line);padding-top:14px}
 /* 详情页的星标和列表页共用一套逻辑，只是排在大标题右边、做得更大一点（这页只有它一个动作） */
 .art .titlerow{display:flex;gap:10px;align-items:flex-start}
@@ -144,7 +197,10 @@ details.rej[open] summary::before{content:"▾ "}
 </style>
 </head><body>
 <div class="art">
-  <a class="back" href="../2026-09-18.html">← 返回简报</a>
+  <div class="toprow">
+    <a class="back" href="../2026-09-18.html">← 返回简报</a>
+    <button class="themebtn" id="themebtn" type="button">◐ 自动</button>
+  </div>
   <div class="wrap">
     <div class="titlerow">
       <h1>find-skills</h1>
@@ -167,6 +223,36 @@ details.rej[open] summary::before{content:"▾ "}
   </div>
 </div>
 <script>
+var THEME_ORDER=['auto','light','dark'];
+var THEME_LABEL={auto:'◐ 自动',light:'☀ 亮',dark:'☾ 暗'};
+function themeMode(){try{var m=localStorage.getItem('radar.theme');return THEME_ORDER.indexOf(m)>=0?m:'auto'}catch(e){return 'auto'}}
+function themeApply(){
+  var m=themeMode();
+  var dark=(m==='dark')||(m==='auto'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
+  document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+  var b=document.getElementById('themebtn');
+  if(b){
+    b.textContent=THEME_LABEL[m];   /* 显示的是**当前**状态，不是"点了会变成什么" */
+    b.title='主题：'+(m==='auto'?'跟随系统':(m==='dark'?'暗色':'亮色'))+'（点击切换）';
+  }
+}
+function themeWire(){
+  var b=document.getElementById('themebtn');
+  if(b)b.addEventListener('click',function(){
+    var i=THEME_ORDER.indexOf(themeMode());
+    var next=THEME_ORDER[(i+1)%THEME_ORDER.length];
+    try{localStorage.setItem('radar.theme',next)}catch(e){}
+    themeApply();
+  });
+  /* 停在"自动"时，系统换了主题要跟着换（不用刷新页面） */
+  if(window.matchMedia){
+    var mq=window.matchMedia('(prefers-color-scheme: dark)');
+    var h=function(){if(themeMode()==='auto')themeApply()};
+    if(mq.addEventListener)mq.addEventListener('change',h);else if(mq.addListener)mq.addListener(h);
+  }
+  themeApply();
+}
+
 function favOK(){try{localStorage.setItem('radar.probe','1');localStorage.removeItem('radar.probe');return true}catch(e){return false}}
 var FAV_ON=favOK();
 function favEsc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
@@ -249,6 +335,7 @@ function favWire(){
   favPaint();
 }
 
+themeWire();
 favWire();
 </script>
 </body></html>
