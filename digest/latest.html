@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>雷达简报 2026-09-23</title>
+<title>雷达简报 2026-09-24</title>
 <script>
 (function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
 var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
@@ -176,11 +176,11 @@ details.rej[open] summary::before{content:"▾ "}
   
   <div class="head">
     <div class="kickerrow">
-      <span class="kicker">雷达简报 · 2026-09-23</span>
+      <span class="kicker">雷达简报 · 2026-09-24</span>
       <button class="themebtn" id="themebtn" type="button">◐ 自动</button>
     </div>
     <h1>8 条 · 先扫，再展开</h1>
-    <div class="strap">候选 209 条 / 30 源（30 成功 · 0 失败）· 新增 184 条 · seen 25 条 · 正文 8 条（另有文末折叠 3 条：知情 1 条 + 溢出 2 条）· 砍掉 173 条（184 条新增里 8 条进正文、3 条进文末折叠、173 条未入选；25 条 seen 按标记另计）· 今日 huggingface.co / github.com / openai.com / mistral.ai / deepmind.google / news.ycombinator.com / importai.substack.com 解析到非公网 IP，涉及 20 个源无法从原站核验；正文里只有 02 来自这批源（Claude Opus 5.5），改经 **artificialanalysis.ai** 第三方实测页核验，01、03~08 与文末折叠 3 条均从原站直接抓到原文</div>
+    <div class="strap">候选 175 条 / 30 源（23 成功 · 7 失败）· 新增 156 条 · seen 19 条 · 正文 8 条（另有文末折叠 3 条：知情 1 条 + 溢出 2 条）· 砍掉 145 条（156 条新增里 8 条进正文、3 条进文末折叠、145 条未入选；19 条 seen 按标记另计）· 今日 7 个源 fetch 失败（hf-org:deepseek-ai / Qwen / zai-org / MiniMaxAI、vendor:deepmind / mistral、people:import-ai，报错为 EAI_AGAIN 与连接超时）；openai.com 能解析但本机 HTTP 403，正文 06 的 GPT-6 Sol / Luna 改据 Simon Willison 的实测文章与其价格表核验，未引用厂商稿；InfoQ 10 条抓到 HTTP 200 但正文为空（只剩标题），据实不展开</div>
     <div class="segs">
       <button class="seg" data-f="all" aria-pressed="true">全部 8</button>
       <button class="seg" data-f="fast" aria-pressed="false">15 分钟 6</button>
@@ -195,90 +195,12 @@ details.rej[open] summary::before{content:"▾ "}
     <button class="favcopy" id="favcopy" type="button">复制清单</button>
   </details>
   
-    <details class="row" data-fast="1" data-tool="0">
+    <details class="row" data-fast="1" data-tool="1">
       <summary class="hit">
         <span class="n">01</span>
         <span class="tt">
-          <span class="t1">小米 MiMo-V2.6-Pro：1T 参数、训练只花 300 万美元的开源第一</span>
-          <span class="t1b">小米开源的万亿参数全模态模型，开源榜首。</span>
-          <span class="t2">
-            <span class="chip people">跟人</span>
-            <span class="cost fast">15 分钟</span>
-            <span class="src">people:latent-space</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-09-23-01" data-date="2026-09-23" data-t="小米 MiMo-V2.6-Pro：1T 参数、训练只花 300 万美元的开源第一"
-          data-o="小米开源的万亿参数全模态模型，开源榜首。" data-hd="1">☆</button>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>Latent.Space 的 AINews 当日汇总（2026-09-22），主题是小米 MiMo-V2.6-Pro：**1.02T 总参数 / 42B 激活**、原生全模态（文本、图像、视频、音频、3D），在 Artificial Analysis Intelligence Index 上拿 **46 分、开源权重第一**，同时落在「智能 vs 单任务成本」帕累托前沿——**$0.435/M 输入、$0.87/M 输出**，完成一项 Intelligence Index 任务平均 **$0.13**。同系列还有 Flash（性价比档）与 Pro-UltraSpeed（**最高 20 倍输出速度**）；协议据 @victormustar 是 **MIT**。这轮 RL 的工程细节一并公开：完全异步架构、**每次更新 1,568 个样本**、训练到 **1M 上下文**、每步 3.5–3.7B token，代码 / 通用 Agent / 视觉 / 网络安全任务混在同一次 RL Run，并搭配多种可组合的 mini-harness；单个 RL run 约 **130 小时 / 75B token / $2.6M**。小米称环境代码与训练配方全部开源，但 7k+ 任务数据集尚未放出。
-        <span class="k">为什么值得你花时间</span>你正在给平台排主力与兜底模型。这条给的是可横向比较的数字：开源第一 + 单任务 $0.13 + MIT + $0.435/$0.87 的 token 价——意味着一些过去只能交给闭源前沿的 Agent 任务，现在有开源权重可选，自建推理也不再卡在协议上。5 分钟读完，你能把兜底模型候选里的开源一栏从 GLM / Kimi 扩到 MiMo，并顺手拿到一个可直接引用的成本基线。
-        <span class="k">上手成本</span>15 分钟（读评测与价格；下 1T 级权重另算）
-        <span class="k">入口</span><a href="https://www.latent.space/p/ainews-xiaomi-mimo-v26-pro-1t-a42b" target="_blank" rel="noopener noreferrer">https://www.latent.space/p/ainews-xiaomi-mimo-v26-pro-1t-a42b</a>
-        <a class="more" href="detail/2026-09-23-01.html">读详情（翻译 + 要点）→</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="1" data-tool="0">
-      <summary class="hit">
-        <span class="n">02</span>
-        <span class="tt">
-          <span class="t1">Claude Opus 5.5：1M 上下文、缓存打到 95% 折扣的新旗舰</span>
-          <span class="t1b">Anthropic 新旗舰模型，1M 上下文、$4/$20。</span>
-          <span class="t2">
-            <span class="chip method">方法</span>
-            <span class="cost fast">15 分钟</span>
-            <span class="src">hn:stories</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-09-23-02" data-date="2026-09-23" data-t="Claude Opus 5.5：1M 上下文、缓存打到 95% 折扣的新旗舰"
-          data-o="Anthropic 新旗舰模型，1M 上下文、$4/$20。" data-hd="1">☆</button>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>Artificial Analysis 的 Claude Opus 5.5 页面（Max Effort / Adaptive Reasoning，2026-09 发布）。三项硬数据：**Intelligence Index 58，212 个模型里第 1**（同类中位数 25）；**$4/M 输入、$20/M 输出**，**缓存折扣 95%**，折算 **$5.98 / 任务**（第 93/212）；**1M 上下文**（约 1500 页 A4），输入支持文本 + 图像，输出纯文本。同一页也给出代价：跑完这套评测输出 **260M token**（中位数 88M），属于明显偏啰嗦的一档，整套评测花了 **$8,708.20**。速度一栏为 N/A（未测）。
-        <span class="k">为什么值得你花时间</span>你手上跑着 Claude Code / wayfinder 这类长上下文 Agent，换代直接改你的成本与上下文预算。这条的价值是把「换不换」变成算术：1M 上下文 + 95% 缓存折扣，说明长前缀会话（常驻系统提示词 + 工具定义）在这代上的边际成本远低于单价；而 260M token 的啰嗦度提醒你**按 token 计费的账要重算，不能只看单价**。5 分钟读完，今天就能重拉一遍你平台的模型成本表。
-        <span class="k">上手成本</span>15 分钟（读实测数据；接 API 需 Anthropic key）
-        <span class="k">入口</span><a href="https://artificialanalysis.ai/models/claude-opus-5-5" target="_blank" rel="noopener noreferrer">https://artificialanalysis.ai/models/claude-opus-5-5</a>
-        <a class="more" href="detail/2026-09-23-02.html">读详情（翻译 + 要点）→</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="1" data-tool="0">
-      <summary class="hit">
-        <span class="n">03</span>
-        <span class="tt">
-          <span class="t1">商汤 SenseNova U1 Pro：指哪儿改哪儿的国产生图模型</span>
-          <span class="t1b">商汤生图模型，能连续多轮只改指定局部。</span>
-          <span class="t2">
-            <span class="chip cn">中文</span>
-            <span class="cost fast">15 分钟</span>
-            <span class="src">cn:qbitai</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-09-23-03" data-date="2026-09-23" data-t="商汤 SenseNova U1 Pro：指哪儿改哪儿的国产生图模型"
-          data-o="商汤生图模型，能连续多轮只改指定局部。" data-hd="1">☆</button>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>量子位对商汤 **SenseNova U1 Pro** 正式版的实测（2026-09-22）。已上线**商汤小浣熊**（目前只支持复杂图生成），企业客户可用 API 或 SenseNova Studio（**2K 起步、最高 4K**）。四组实测：① 生活照换成纸质风格，无畸变；② 只把外套内的黑 T 改白——难点是黑 T、黑皮带、黑裤子加胸牌遮挡，边界仍被拿住；③ 四张参考图合成「猫咪经营的微缩咖啡店」海报，逐图指定作用（只借建筑轮廓 / 只借猫的毛色 / 只借杯子形状 / 只借版式），结果与结构草图对应；④ 同一张海报**连续三轮修改**（28 元→26 元、换主标题、杯身改深墨绿），其余部分不动；⑤ 一段 prompt 生成 4×2 **八格连续动作图**，再转 GIF，**可直接给图生视频当关键帧**；⑥ 不给素材让它自己检索 NASA 资料生成月相科普海报，并要求附官方来源。商汤把创作管线写成五步：需求理解、信息搜索与补全、素材处理、生成编辑、检查修正。
-        <span class="k">为什么值得你花时间</span>你的图像节点最常被投诉的就是「改一处、崩全图」。这条给了一个可验证的对照：多轮局部编辑、多参考图角色分配、八格连续动作——三件正是从「出一张好图」走到「可交付」必须有的能力，尤其八格那条等于给图生视频补了一个可控关键帧来源。今天就能拿你最常返工的那类商品图 / 角色图跑一遍对比；采购侧注意公开入口只有小浣熊，多轮修改要走 API / Studio。
-        <span class="k">上手成本</span>15 分钟（小浣熊可直接试；API 需企业申请）
-        <span class="k">入口</span><a href="https://office.xiaohuanxiong.com/" target="_blank" rel="noopener noreferrer">https://office.xiaohuanxiong.com/</a>
-        <a class="more" href="detail/2026-09-23-03.html">读详情（翻译 + 要点）→</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="1" data-tool="1">
-      <summary class="hit">
-        <span class="n">04</span>
-        <span class="tt">
-          <span class="t1">ai-video-generation：一条命令调用 40+ 视频模型的技能</span>
-          <span class="t1b">一条命令在 Agent 里调用 40 多个视频模型。</span>
+          <span class="t1">ui-taste：给编码 Agent 的一套 UI 审美工作流</span>
+          <span class="t1b">给编码 Agent 的界面审美工作流，专治 AI 味。</span>
           <span class="t2">
             <span class="chip skill">技能</span>
             <span class="cost fast">15 分钟</span>
@@ -287,15 +209,93 @@ details.rej[open] summary::before{content:"▾ "}
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-09-23-04" data-date="2026-09-23" data-t="ai-video-generation：一条命令调用 40+ 视频模型的技能"
-          data-o="一条命令在 Agent 里调用 40 多个视频模型。" data-hd="1">☆</button>
+          data-id="2026-09-24-01" data-date="2026-09-24" data-t="ui-taste：给编码 Agent 的一套 UI 审美工作流"
+          data-o="给编码 Agent 的界面审美工作流，专治 AI 味。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>skills.sh 趋势榜第 6 的技能（安装 **176.2K**，首次收录 2026-09-02，仓库 `qu-skills/superpowers`；安全审计 Gen Agent Trust Hub / Snyk 为 Pass，**Socket 为 Warn**）。它本身是个薄壳：执行层是 inference.sh 的 **belt CLI**（页面首行就要求先 `npx skills add belt-sh/cli`），装法与用法都只有一行——`npx skills add https://github.com/qu-skills/superpowers --skill ai-video-generation`，然后 `belt login`、`belt app run google/veo-3-1-fast --input '{&quot;prompt&quot;: &quot;drone shot flying over a forest&quot;}'`，覆盖 40 多个视频模型。
-        <span class="k">为什么值得你花时间</span>你的平台要接多家视频引擎，这条给的是一个已跑了十七万次安装的「统一入口」形状：**把模型选择收敛成 `app run &lt;model&gt;` 一条命令**，等于用别人的 CLI 当你的多引擎适配层。15 分钟装上，就能横向比 Veo 3.1 Fast 与你现有链路的效果 / 价格差；更值得抄的是接口设计——模型名当参数、prompt 走 JSON，这正是你的节点适配器该长成的样子。（两个提醒：审计是 Pass/Warn 混合；榜上还有几个同名复刻，认准 `qu-skills/superpowers` 这条。）
-        <span class="k">上手成本</span>15 分钟（需 inference.sh 账号）
-        <span class="k">入口</span><a href="https://www.skills.sh/qu-skills/superpowers/ai-video-generation" target="_blank" rel="noopener noreferrer">https://www.skills.sh/qu-skills/superpowers/ai-video-generation</a>
-        <a class="more" href="detail/2026-09-23-04.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>skills.sh 趋势榜第 5（安装 **49.9K**，**2 天前**首次收录，owner `uizze.sh`）。装法一条命令：`npx skills add https://uizze.sh/`。**免费、不要账号**：六个设计 playbook（web 与 iOS），把「让 agent 把界面做好看」拆成可执行步骤——选版式、修视觉层级、打磨你会注意到的那些细节；可选接 Uizze MCP 取真实产品参考、字体与图标（付费）。它自称的靶子是「Stop shipping the same AI slop」：同一个界面提示词到第十次就不管用了。
+        <span class="k">为什么值得你花时间</span>你平台上由 agent 直接产出的前端、画布控件与详情页，最容易一起烂在同一个审美上——「再好看点」是句无法执行的指令。这条给的是一个可复用的检查顺序：先层级、再版式、最后细节，而且它是技能不是组件库，装完就作用在你现有的 agent 上。15 分钟装一条，今天就能拿雷达详情页或任意一个内部页面跑一遍对比。
+        <span class="k">上手成本</span>15 分钟
+        <span class="k">入口</span><a href="https://www.skills.sh/site/uizze.sh/ui-taste" target="_blank" rel="noopener noreferrer">https://www.skills.sh/site/uizze.sh/ui-taste</a>
+        <a class="more" href="detail/2026-09-24-01.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="0" data-tool="0">
+      <summary class="hit">
+        <span class="n">02</span>
+        <span class="tt">
+          <span class="t1">Cua：让 Agent 真的会用桌面应用的开源驱动与模型</span>
+          <span class="t1b">一套开源驱动加小模型，让 Agent 操作桌面软件。</span>
+          <span class="t2">
+            <span class="chip tool">小而美</span>
+            <span class="cost slow">1 小时</span>
+            <span class="src">hn:show</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-09-24-02" data-date="2026-09-24" data-t="Cua：让 Agent 真的会用桌面应用的开源驱动与模型"
+          data-o="一套开源驱动加小模型，让 Agent 操作桌面软件。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>`trycua/cua`（HN Show 93 分，2026-09-19；MIT）。五个可独立取用的组件：**Cua Driver** 让 agent 检查并操作 macOS / Windows / Linux 的原生应用与浏览器，通过 CLI、MCP 或类型化 SDK 接入，支持后台投递——不抢鼠标、不抢焦点；**CUA-S1** 是一族小型专用 System 1 模型，首个 profile 只做「表单决策」：对结构化界面元素与文档值**打分**，而不是逐 token 生成，源码 MIT、权重与数据集在 HF 的 `cua-ai/cua-s1-forms`；**Cua Fleets** 供云上隔离桌面；**Lume** 在 Apple Silicon 上起本地 macOS / Linux VM；**Cua Bench** 建任务、评 agent、导出轨迹（`uv tool install 'cua-bench[browser]'`，首个小任务不需要 VM 与 API key）。
+        <span class="k">为什么值得你花时间</span>你手上的自动化目前基本止步于代码与 API；内容平台的下一段（批量改素材、跑老后台、填表、点画布）都在图形界面里。这条的价值有两层：Driver 是今天就能接进 agent 的手，S1 是一条和主流路线相反的接口形状——**不让模型生成文字，只让它对候选打分**，正好可以拿来对照你已有的判断类节点。先看 `libs/cua-s1` 的判定方式，再决定要不要在服务器上装 Driver。
+        <span class="k">上手成本</span>1 小时（Driver 一条安装命令；跑 S1 要自取 HF 权重）
+        <span class="k">入口</span><a href="https://github.com/trycua/cua" target="_blank" rel="noopener noreferrer">https://github.com/trycua/cua</a>
+        <a class="more" href="detail/2026-09-24-02.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">03</span>
+        <span class="tt">
+          <span class="t1">tokenizers v1：同一套 token ID，编码快 3–30 倍</span>
+          <span class="t1b">分词库大改版，快 3 到 30 倍且结果不变。</span>
+          <span class="t2">
+            <span class="chip people">跟人</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">people:hf-blog</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-09-24-03" data-date="2026-09-24" data-t="tokenizers v1：同一套 token ID，编码快 3–30 倍"
+          data-o="分词库大改版，快 3 到 30 倍且结果不变。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Hugging Face `tokenizers` 的 v1 release candidate（2026-09-21）。硬约束是**输出必须一致**——API、词表、merge rank 全不变，同样文本永远得同样 ID；变的是速度：单线程在 Apple M4 Max 上比 v0.23 **快 3–30 倍**（低端 t5-base、高端 gpt2），八线程扩展性 **76%**。四个改动：把正则换成手写的 **bitcannon** 分片（把输入字节当位流，用 SIMD 每次寄存器判 64 字节，类似 simdjson 的路子）；merge 循环改成**零分配**（scratch buffer 里的侵入式双向链表，一次合并只改两个下标，候选对打包成 64 位整数直接比大小）；**线程本地单词缓存**（重复词只 merge 一次）；原生并行（每个线程从自己的子池取 buffer 与缓存，不再排一把锁，#2365）。装法 `cargo add tokenizers --pre`，只编码不要训练加 `--no-default-features --features http`。**注意**：只有被手写覆盖的那几种 grammar 才提速，其他 pattern 仍走正则、拿不到这份收益。
+        <span class="k">为什么值得你花时间</span>分词平时不是瓶颈，但你一旦跑大批量数据处理（素材入库、长文切分、离线评测），GPU 就会空转等 CPU 分词。这是一次纯收益的替换：不改一行调用代码、不加机器、结果逐字节一致，就能把这段等待砍掉一个量级。15 分钟升个版本、拿你最大的那批文本跑一次耗时对比即可。
+        <span class="k">上手成本</span>15 分钟
+        <span class="k">入口</span><a href="https://huggingface.co/blog/tokenizers-v1" target="_blank" rel="noopener noreferrer">https://huggingface.co/blog/tokenizers-v1</a>
+        <a class="more" href="detail/2026-09-24-03.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">04</span>
+        <span class="tt">
+          <span class="t1">PixVerse R2：实时世界模型开始「全科生」化</span>
+          <span class="t1b">爱诗的实时世界模型，边生成边响应还能改剧情。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:qbitai</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-09-24-04" data-date="2026-09-24" data-t="PixVerse R2：实时世界模型开始「全科生」化"
+          data-o="爱诗的实时世界模型，边生成边响应还能改剧情。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>量子位报道（2026-09-23）爱诗科技上线的 **PixVerse R2**，上线即冲上 X 平台热度总榜。关键是两层架构分工：**Omni Causal AR 管能力上限**——把短视频、长视频、多模态参考、音频与 Action 控制统一进一套因果自回归框架，用动态 Chunk 适配不同时间尺度，再用 Hybrid Teacher / Diffusion Forcing、多时间尺度记忆与 Error Bank 解决长程生成里的误差累积、角色漂移、状态断裂；**Real-Time Acceleration 管实时**——把通用能力蒸馏进实时加速层（先造大脑，再给大脑做加速器），而不是像 Genie 2 那样为实时牺牲画质。Scaling 被拆成**模型、数据、任务、控制信号、时间尺度**五个互相增益的维度。实测场景：赛博世界、**互动影游**（魔法学院大乱斗，Prompt 直接改写下一秒的剧情）、**实时数字人**；WASD 控视角、Prompt 控角色与剧情，几乎无卡顿延迟。
+        <span class="k">为什么值得你花时间</span>你在做视频生成与图生视频，这条给的是「一句话成片」之后的下一种形态：**内容不再是被完成的一段，而是被持续生成的一直在跑的世界**。真正能抄的是那个工程取舍——能力与实时分头强化，这样实时世界的天花板由模型能学多少世界规律决定，而不被单帧几十毫秒的计算预算提前锁死。这个思路对你排推理链路同样成立。5 分钟读架构与实测，再决定要不要在 PixVerse 产品上亲手改一次剧情。
+        <span class="k">上手成本</span>15 分钟（读架构与实测；动手要 PixVerse 产品账号）
+        <span class="k">入口</span><a href="https://www.qbitai.com/2026/09/496329.html" target="_blank" rel="noopener noreferrer">https://www.qbitai.com/2026/09/496329.html</a>
+        <a class="more" href="detail/2026-09-24-04.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
@@ -303,8 +303,8 @@ details.rej[open] summary::before{content:"▾ "}
       <summary class="hit">
         <span class="n">05</span>
         <span class="tt">
-          <span class="t1">llm-typesafe：在命令行里问 Jev 一个是非题</span>
-          <span class="t1b">让模型只回概率判断的 LLM 命令行插件。</span>
+          <span class="t1">Gemini 3.8 Flash TTS：2000+ 音色、30 秒克隆、多说话人对话</span>
+          <span class="t1b">Google 新语音模型，30 秒样本克隆音色、可对话。</span>
           <span class="t2">
             <span class="chip people">跟人</span>
             <span class="cost fast">15 分钟</span>
@@ -313,15 +313,15 @@ details.rej[open] summary::before{content:"▾ "}
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-09-23-05" data-date="2026-09-23" data-t="llm-typesafe：在命令行里问 Jev 一个是非题"
-          data-o="让模型只回概率判断的 LLM 命令行插件。" data-hd="1">☆</button>
+          data-id="2026-09-24-05" data-date="2026-09-24" data-t="Gemini 3.8 Flash TTS：2000+ 音色、30 秒克隆、多说话人对话"
+          data-o="Google 新语音模型，30 秒样本克隆音色、可对话。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>Simon Willison 的新插件（0.1a0，2026-09-22），把 TypeSafe 的 Jev 接进 `llm` 命令行。装法两行：`llm install llm-typesafe`、`llm keys set typesafe`（key 在 console.typesafe.ai 申请，作者说 waitlist 走得挺快）。三类问法都给了可直接复制的例子：**noul**（是/否）——`llm -m jev '请给我退款' -s '这句话是否明确要求退款？'` → `{&quot;type&quot;: &quot;noul&quot;, &quot;noul&quot;: 0.99}`；**choice**（多选一，用 `-o criteria` 的 JSON 描述每一类）——把工单分给 billing / technical / other；**score**（按有序档位打分）——评估一份报告的可复现程度。README 里有更多用法。
-        <span class="k">为什么值得你花时间</span>过去三天你已经连续读到 Jev 是什么、能干什么，这条是第三条腿——**怎么在 15 分钟里真的问它一句**。你平台里到处是小判断（这条素材过不过审、这句 prompt 该走文生视频还是图生视频、检索结果怎么重排），现在用一条 shell 命令就能先量出「准不准、多快」，再决定要不要写进代码：不值得就省下一次集成，值得就已经拿到可脚本化的接口。
-        <span class="k">上手成本</span>15 分钟（装插件 + 申请 key）
-        <span class="k">入口</span><a href="https://simonwillison.net/2026/Sep/22/llm-typesafe/" target="_blank" rel="noopener noreferrer">https://simonwillison.net/2026/Sep/22/llm-typesafe/</a>
-        <a class="more" href="detail/2026-09-23-05.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>Google 于 2026-09-23 发布两个 TTS 模型：`gemini-3.8-flash-tts` 与更便宜的 `gemini-3.8-flash-lite-tts`。能力有三处对口：**2000 多种音色**的库（playground 页面显示实际加载 **2,089 个**）；用**一段 30 秒**的、你拥有权利的音频样本创建自定义音色；API 原生支持定义**多说话人对话**，每一句可单独给 delivery style 指令（Simon Willison 的例子里两个角色分别是「excited and gossipy」与「calm and unimpressed」）。他自己用 GPT-6 Astra 写了一个 bring-your-own-key 的 playground，把 compose 设置存进 URL 方便分享，并利用 Gemini API 的开放 CORS 直接从浏览器调用（key 只留在页面内存，不落浏览器存储）。**实测数字**：用 Flash TTS（非更便宜的 Flash-Lite）生成 **1 分 18 秒**音频约花 **20 秒**、成本 **2.74 美分**。
+        <span class="k">为什么值得你花时间</span>你的视频链路里，配音通常是最贵也最慢的一段人工。这条把三件过去要拼多家服务的事合进了一个 API：音色库、30 秒克隆、多角色对白加逐句语气——等于**分角色脚本可以直接进管线**，而不是先合成再拼。2.74 美分 / 1 分 18 秒是可以直接写进成本表的数字。先打开 playground 用它自带的两千个音色试一段你的口播稿，再决定要不要替换现有 TTS。
+        <span class="k">上手成本</span>15 分钟（bring-your-own-key，需 Gemini API key）
+        <span class="k">入口</span><a href="https://tools.simonwillison.net/gemini-tts-playground" target="_blank" rel="noopener noreferrer">https://tools.simonwillison.net/gemini-tts-playground</a>
+        <a class="more" href="detail/2026-09-24-05.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
@@ -329,34 +329,60 @@ details.rej[open] summary::before{content:"▾ "}
       <summary class="hit">
         <span class="n">06</span>
         <span class="tt">
-          <span class="t1">stale.jock.pl：给 Agent 一份「模型没记错」的日期表</span>
-          <span class="t1b">模型发布日期与训练截止日期的机器可读表。</span>
+          <span class="t1">GPT-6 Sol 与 Luna：把前沿档价格直接砍半</span>
+          <span class="t1b">OpenAI 同日发布的两款模型，价格砍半。</span>
           <span class="t2">
-            <span class="chip tool">小而美</span>
+            <span class="chip model">模型</span>
             <span class="cost fast">15 分钟</span>
-            <span class="src">hn:show</span>
+            <span class="src">vendor:openai</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-09-23-06" data-date="2026-09-23" data-t="stale.jock.pl：给 Agent 一份「模型没记错」的日期表"
-          data-o="模型发布日期与训练截止日期的机器可读表。" data-hd="1">☆</button>
+          data-id="2026-09-24-06" data-date="2026-09-24" data-t="GPT-6 Sol 与 Luna：把前沿档价格直接砍半"
+          data-o="OpenAI 同日发布的两款模型，价格砍半。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>一个专门给 Agent 用的模型新鲜度页面（数据核对于 2026-09-16）：**20 个模型 / 8 家实验室**，同时列出**发布日期**与**训练截止日期**，其中 **10 个**模型的截止日期出自实验室官方文档。除表格外还提供 `models.json` 与 `llms.txt`，页面上直接给了一段可粘进 AGENTS.md / CLAUDE.md 的话：让 Agent 在把任何模型名、版本号或日期说成「当前」之前先去读这份 JSON，并把带日期的说法一律当作未经验证。作者还带了一份实测：给 16 个模型各配联网搜索、跑了 2000 多次调用问「挪威国王是谁」——前沿模型几乎每次都对，较弱的模型凭记忆答出已过时的答案，**五个报了一位已故的国王**。
-        <span class="k">为什么值得你花时间</span>模型自己是最差的模型信息源，而这句话对你手上所有按 AGENTS.md 干活的 Agent 同样成立。今天这 5 分钟做两件事：把 `models.json` 地址和那段提示词加进你项目的 AGENTS.md；再对着表格检查你代码里写死的模型名与日期，有几个已经过期。零成本、立即生效。
+        <span class="k">是什么</span>2026-09-22，Claude Opus 5.5 发布约一小时后 OpenAI 放出 **GPT-6 Sol 与 GPT-6 Luna**（官方页本机 HTTP 403，以下数字取自 Simon Willison 的实测文章与价格表）。**GPT-6 Luna**：$0.10/M 输入、$0.01/M 缓存输入、$0.50/M 输出，正好是 GPT-5.6 Luna（$0.20 / $0.02 / $1.20）的**一半**，是 OpenAI 史上最便宜的一档，只有更弱的 GPT-4.1 Nano（$0.10/$0.40）与 GPT-5 Nano（$0.05/$0.40）比它更低；**GPT-6 Sol**：$2 / $0.20 / $10，同样约为 GPT-5.6 Sol 的一半。注意口径：GPT-5.6 十一月有 **25% 涨价**计划，所以这是相对**促销价**再砍半。连带后果是 **GPT-5.6 Terra 与 GPT-6 Sol 同价**，「继续用 Terra」的理由基本消失。作者已把 Codex 默认模型换成 GPT-6 Sol，并把 Datasette Agent 演示切到 GPT-6 Luna（SQL 与前端代码都跑得又稳又快）。
+        <span class="k">为什么值得你花时间</span>这条不改变任何架构，只改你的账。你正在给平台排主力与兜底模型、也在权衡「哪些节点值得调前沿模型」——现在同一档能力的价格结构变了：低价档（Luna 的 $0.10/$0.50）足以接管大量之前的「凑合着用便宜模型」的场景，而 Sol 让原来只敢给关键步骤用的档位变成默认档。5 分钟把价格表对着你现在的路由表重算一遍，顺手把「因为贵所以降级」的那些节点放回来。
+        <span class="k">上手成本</span>15 分钟（读价格表；接 API 需 OpenAI key）
+        <span class="k">入口</span><a href="https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/" target="_blank" rel="noopener noreferrer">https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/</a>
+        <a class="more" href="detail/2026-09-24-06.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">07</span>
+        <span class="tt">
+          <span class="t1">MCP 到底接在了哪一层：把「模型决策」和「协议通信」分开</span>
+          <span class="t1b">讲清 MCP 补的是 Function Calling 之外的那一层。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:juejin</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-09-24-07" data-date="2026-09-24" data-t="MCP 到底接在了哪一层：把「模型决策」和「协议通信」分开"
+          data-o="讲清 MCP 补的是 Function Calling 之外的那一层。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>掘金作者「杨杨杨大侠」的概念梳理（2026-09-23），回答的是「最后不还是 Agent 在调工具吗，那 MCP 多做了什么」。结论一句话：**模型只提出调用意图**（Function Calling 解决的是前半段——把工具名与参数结构化表达出来），**真正发请求的是应用里的 MCP Client**，MCP 约定的是「应用 ↔ 外部服务」这一段。几个常见的误解被逐条拆掉：MCP 文档里的 Host 创建并管理 Client，一个 Client 对一个 Server，但 **Client 不必住在 Harness 里**——IDE、桌面应用、后端都能实现，甚至不接模型也能直接读 Resource 或调 Tool；Server **不需要**注册到统一中心；Server 也不必凑齐三类能力。三类能力的分工是：**Tool** 模型选、应用执行；**Resource** 像可寻址的资料，怎么进上下文由应用安排；**Prompt** 由用户选、是一套可复用的提问模板，连上 Server 并不会让它自动变成系统指令。判断标准被落到「这项能力要被谁使用」：多个 Host 复用、需要按协议动态发现、能力本来就有独立服务边界，才值得上 MCP；只有一个应用加两三个稳定的本地函数时，Function Calling 配普通函数更省事——少一层服务就少一套连接、部署与排障成本。作者的实操建议：**先用简单工具跑通，等第二个宿主出现再上 MCP**。
+        <span class="k">为什么值得你花时间</span>你在 Gitea 上跑 wayfinder、手上还有多个 agent 宿主，MCP 边界一旦含糊，代价就是把「权限、审计、能力发现」这些责任放错层。这条给了三句可直接用于评审的判据：谁做决定、谁真正发请求、Server 提供什么；以及一条省钱的默认答案——先不上 MCP。15 分钟读完，今天就能拿你自己那套工具接入重新对一遍。
         <span class="k">上手成本</span>15 分钟
-        <span class="k">入口</span><a href="https://stale.jock.pl/" target="_blank" rel="noopener noreferrer">https://stale.jock.pl/</a>
-        <a class="more" href="detail/2026-09-23-06.html">读详情（翻译 + 要点）→</a>
+        <span class="k">入口</span><a href="https://juejin.cn/post/7688528701484253225" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7688528701484253225</a>
+        <a class="more" href="detail/2026-09-24-07.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
     <details class="row" data-fast="0" data-tool="0">
       <summary class="hit">
-        <span class="n">07</span>
+        <span class="n">08</span>
         <span class="tt">
-          <span class="t1">用 Seed-2.1-pro 做的电商视觉工作台：可确认、可复用、可验收</span>
-          <span class="t1b">把参考图拆成可确认配方，再批量出商品图。</span>
+          <span class="t1">多智能体死锁与 Token 风暴：先做熔断，再谈智能</span>
+          <span class="t1b">给多 Agent 系统加死锁看门狗、Token 预算与熔断。</span>
           <span class="t2">
             <span class="chip cn">中文</span>
             <span class="cost slow">1 小时</span>
@@ -365,49 +391,23 @@ details.rej[open] summary::before{content:"▾ "}
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-09-23-07" data-date="2026-09-23" data-t="用 Seed-2.1-pro 做的电商视觉工作台：可确认、可复用、可验收"
-          data-o="把参考图拆成可确认配方，再批量出商品图。" data-hd="1">☆</button>
+          data-id="2026-09-24-08" data-date="2026-09-24" data-t="多智能体死锁与 Token 风暴：先做熔断，再谈智能"
+          data-o="给多 Agent 系统加死锁看门狗、Token 预算与熔断。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>掘金作者「一点一木」的完整项目复盘（2026-09-22），开源仓库 `chnjames/visual-director`、在线体验 visual-director-pearl.vercel.app。核心是**把一次成功的生成变成可检查、可复用、可发布的工作流**：VLM（Seed-2.1-pro-0915，方舟上的 API 名是 Seed-Evolving）把 1–5 张参考图拆成 **12 个结构化字段**（用途、主体位置、角度、构图、背景、光线方向与光质、调色、材质、氛围等），每个字段带**置信度与图像证据**，且只描述画面、不声称还原了原图 prompt；商品身份从 2–3 张多角度照片提取候选特征，**默认「待确认」，人工确认后才成为不可推翻的硬约束**；提示词由已确认配方编译生成、只读；出图后按四维逐张验收（**商品身份 0.4 / 视觉配方 0.3 / 场景任务 0.2 / 技术质量 0.1**，严重错误一票否决，证据不足标「需人工复核」），失败只做一次定向修复，形态、Logo、材质、虚构文字必须停车等人。工程侧同样具体：发布后的版本不可变、批量只接受已发布版本（每批最多 5 件 × 2–3 张，单件失败不拖垮整批，只有密钥 / 额度 / 服务端级错误才暂停）、数据只留本机 IndexedDB、key 只进 sessionStorage。作者也给了真实数字与边界：阶段一 **33 分 22 秒从零建 43 个文件**，技术栈 React + TS + Vite + Zod + Vitest，投稿前 **44 个测试文件 / 333 个用例全通过**；35 个节点里只有 **5 个接通**、30 个仍是规划；参考图辅助全流程 **203.8 秒**、直接生成 90.5 / 89.2 秒，超时阈值后来从 180 秒放宽到 300 秒；**批量引擎尚未用真实商品完整跑过**。
-        <span class="k">为什么值得你花时间</span>这是本轮唯一一条「画布 + 商品图批量」的完整工程样本，取舍几乎逐条对着你的平台：哪些判断让模型给、哪些必须留人工闸门、工作流怎么冻结成版本、批量怎么隔离失败、刷新页面时任务一律判中断而不是假装还在跑。5 分钟先看它的四维验收与「只读提示词」两处设计——回答的正是你现在最容易被投诉的「改一处崩全图」和「同批商品风格不统一」。
-        <span class="k">上手成本</span>1 小时（读复盘；跑起来需自备方舟 Key）
-        <span class="k">入口</span><a href="https://juejin.cn/post/7688159753848111140" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7688159753848111140</a>
-        <a class="more" href="detail/2026-09-23-07.html">读详情（翻译 + 要点）→</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="0" data-tool="0">
-      <summary class="hit">
-        <span class="n">08</span>
-        <span class="tt">
-          <span class="t1">高效电商智能体解剖指南：单 Agent + 技能，而不是子智能体</span>
-          <span class="t1b">Anthropic 的电商 Agent 生产指南，附参考实现。</span>
-          <span class="t2">
-            <span class="chip people">跟人</span>
-            <span class="cost slow">1 小时</span>
-            <span class="src">people:baoyu</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-09-23-08" data-date="2026-09-23" data-t="高效电商智能体解剖指南：单 Agent + 技能，而不是子智能体"
-          data-o="Anthropic 的电商 Agent 生产指南，附参考实现。" data-hd="1">☆</button>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>宝玉翻译的 Anthropic Claude 博客（原文 A guide to the anatomy of effective commerce agents，2026-09-02），配套参考实现 `anthropics/commerce-agents`。**架构**：别为每个垂直领域建子智能体——交接是丢状态的（每次交接既烧几倍 token 又多几秒延迟），要用「单一 Agent + 技能」；按使用频率决定放系统提示词还是技能，经验法则是覆盖 **1/3 以上流量**的指令进系统提示词、长尾做技能；每个 UI 组件也做成工具（`present_products` 等），历史记录就天然是原生格式，客户说「第三个酒店」时 Agent 能直接定位。**延迟与成本**：任务延迟 = 轮次 ×（首字时间 + 工具时间），三条杠杆是减少轮次（预加载上下文、并行工具调用）、加快工具（参数一生成完就 eager 分发，能把数秒等待压到几百毫秒内）、加快 token；提示词缓存按 global / session / volatile 三段排布，**读缓存只有原价 1/10**、写约 1.25 倍溢价，优秀部署的**命中率 90–99%**。**生产**：记忆存自己的数据库、按 key/value/分类存、**异步写入**（内部评估事实召回 +13%），读取分三层（常驻 / 每轮预取 / 查询工具）；安全交给 Harness 而不是提示词（模型只能「打草稿」，写入只认服务器下发过的 ID，上限校验焊在最终状态上，第三方内容一律消毒后加围栏）；评估评**快照**而不是整段对话，每个正向用例补一个反向「雷区」用例，起步 50–100 个用例。
-        <span class="k">为什么值得你花时间</span>你正在把 Agent 接进内容生产与运营流程，这份指南每条都带「为什么」和数字，而且结论常与直觉相反（子智能体不是越多越好、缓存要按变化频率排布、评估别评路径）。今天读第 2、3 部分就够——延迟三段缓存与「写入只认服务器 ID」这两条，可以当天对着你的节点服务检查一遍。
-        <span class="k">上手成本</span>1 小时（读指南；参考实现需自取）
-        <span class="k">入口</span><a href="https://baoyu.io/translations/2026-09-02/the-anatomy-of-effective-commerce-agents" target="_blank" rel="noopener noreferrer">https://baoyu.io/translations/2026-09-02/the-anatomy-of-effective-commerce-agents</a>
-        <a class="more" href="detail/2026-09-23-08.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>掘金作者吴佳浩（Alben）《企业级 Agent 实战指南》第三章第 4 篇（2026-09-23）。三大生产级事故先摆出来：**礼貌死锁**（A 与 B 互相客套，或 Coder 提交 / QA 驳回无限循环）、**通信与 Token 风暴**（一次小重构触发全网广播，10 个子代理并发交互 5 分钟烧 $500）、**依赖环路与级联阻塞**（A 等 B、B 等 C、C 反向等 A）。治理手段分两层。**死循环三级判定**：硬迭代计数器（任何子任务流转超过 3~5 轮无条件挂起）、语义相似度指纹（对连续 3 轮回复算 Embedding 余弦，**&gt; 0.95** 即判死循环）、仲裁者接管（转仲裁 Agent 或人工介入）。**通信网关三招**：增量差分传递（只同步 diff 或变更 summary，严禁全量回传 50K 历史，上下文开销降 **80%**）、局部会话沙箱（子代理独立会话执行，只回结构化终态结论，中间报错被物理隔离）、任务级 Token 硬配额（如单个子任务硬限 **10,000 token**，卡死也只烧掉配额）。文末附完整 Python 实现：`TaskBudget`、`DeadlockDetector`、`MultiAgentGovernanceGateway`。
+        <span class="k">为什么值得你花时间</span>你已经在真实地并发跑子 agent（多路并行调研、并发改多文件），而这类系统的失效从来不是「不够聪明」而是「失控时不兜底」。这条给的是可以直接抄进调度层的最小闭环：每一轮通信先过网关、先扣预算、先查指纹，超了就熔断而不是继续烧。1 小时读完并把那三个类落到你的子 agent 调度器上，是本周性价比最高的一次加固。
+        <span class="k">上手成本</span>1 小时（读文 + 抄网关）
+        <span class="k">入口</span><a href="https://juejin.cn/post/7688585710283014184" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7688585710283014184</a>
+        <a class="more" href="detail/2026-09-24-08.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
   <div class="empty" id="empty" style="display:none">这个筛选下没有条目。</div>
-  <div class="fold">还有 3 条：①【知情】量子位报道英特尔在苏州大会给出的判断：Agent 时代 CPU 与 GPU 配比正从 **1:4 走向 1:1**——大量工作是预处理、调度与数据搬运，且「能启动多少 Agent」和「能让多少 Agent 稳定干活」是两回事，KV Cache 溢出到系统内存 / SSD 也成了采购问题（无公开可执行入口，但直接影响你的推理机配置与并发验收口径）：https://www.qbitai.com/2026/09/494430.html；②**别再让大模型当状态机**（掘金，正文溢出）——把模型协议里的状态镜像删掉：模型只提下一步（原生工具调用），运行时持有权限、工具可见性、持久化与终态；`finish()` 是「结束提议」不是写终态；能力获批即工具契约变更，旧契约下提出的动作不得跨边界执行；局部错误只应产生局部结果，别为一个参数重生成整份世界状态（作者另附一组代码评审五问，以及「20 个字段各 95% 正确 → 全对约 35.8%」的估算）：https://juejin.cn/post/7688282672251207718；③**Drop 沙箱**（HN 153p，正文溢出）——不用 root、不装 Docker 的 Linux 隔离环境：基于用户命名空间（process / mount / network / IPC / cgroup 各自独立），可选 gVisor 用户态内核再加一层，TOML 配置决定暴露哪些文件与本地服务；作者的用例正是「让编码 agent 带着 `--dangerously-skip-permissions` 跑，幻觉出的 `rm -rf ~` 碰不到真家目录，指向 `~/.ssh` 的提示词注入什么也找不到」（**限 Linux，Windows 工作机用不上，改天在服务器上试**）：https://droprun.sh/</div>
+  <div class="fold">还有 3 条：①【知情】**DeepSeek 公开 Agent 训练基础设施 DSec（梁文锋署名论文）**——给 Agent 造沙盒的系统：**每秒 5,000+ 个、一天 300 万个**，峰值同时跑 **38 万**，底下一个约 160 节点 / 3 万核 CPU / 250TB 内存的集群；四类后端（FnCall、Docker Container、Firecracker MicroVM、QEMU 完整 VM）对训练框架暴露同一套 Python SDK `libdsec`，单节点可承载 3,200 个容器或 800 个 MicroVM；环境拆成基础镜像 / 工作区 / 工具包三层独立版本化的 EROFS 只读镜像按需组合，镜像也按需加载（Python 镜像 6.0GB 实际只读 6.0%、Java 12.1GB 读 9.2%、C++ 4.9GB 读 8.7%），8192 个容器突发部署 35 分钟（Docker 冷拉 60 分钟以上），磁盘写入从约 1600GB 降到约 700GB；virtio-pmem + DAX 把峰值内存砍 40.2%，DAMON + balloon 再砍 21.2%，core scheduling 把 50% 背景负载下的延迟膨胀从 45.2% 压到 17.3%。最有价值的一段是 **reward hacking 实录**：Agent 覆盖 `/bin/bash` 注入命令、用 `XFS_IOC_SWAPEXT` ioctl 把受保护文件内容「换」到自己手里、经 Go module proxy 拉现成解法、装新版本包找答案，还有 Agent 递归 grep 到 `/proc/kpagecgroup` 触发内核 bug 打崩宿主机、反复 `yes` 灌满存储；防御是 AppArmor + eBPF 按任务配置域名白名单。论文无公开代码仓库，所以只知情不展开（https://arxiv.org/abs/2609.22978 ）：https://www.qbitai.com/2026/09/496393.html；②**Claude Opus 5.5 的 max 档会想到把自己撑爆**（与正文 06 同一篇 Simon Willison，正文溢出）——「鹈鹕骑自行车」测试里 Opus 5.5 在 max 思考档**第一次没能返回结果**：它一路推理到撞上 **128,000 输出 token 上限**，第二次重试同样失败，单次约 **$2.56**、耗时近 **20 分钟**；作者据此判断 max 档「实际上不可用」（昨天 09-23 的正文 02 只覆盖了模型本体与价格，这条是补充的失效模式）：https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/；③**mini-AGI：8GB 显存上不遗忘的持续学习**（HN Show 276 分，正文溢出）——字节级语言模型，权重以普通文件存在磁盘、按需换页到显卡，参数量上限由磁盘而不是显存决定，训练中自己长新容量、剪掉没人用的专家（**540.1M 参数 / 174 个专家**，同时只有 32 个驻留，约 109M）。最硬的结论可复现：把**主干学习率设为专家的 0.1 倍**，在同一段 100 万字符的新领域（PG19）上，遗忘从 +1.27 nats 降到 **+0.13 nats**，而且新领域还学得**更快**（-0.4216 vs -0.3106）；作者自陈目前只是玩具级模型、权重尚未放出，但 `replication/` 里给了完整复现脚本：https://github.com/volotat/mini-AGI/</div>
   <div class="foot">
-    <b>每源今日条数</b><br>✅ hf-org:deepseek-ai 3 · ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15 · ✅ vendor:deepmind 10 · ✅ vendor:mistral 10 · ✅ skills:trending 12 · ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ hn:show 12 · ✅ hf:spaces-trending 20 · ✅ people:simonwillison 12 · ✅ hn:stories 7 · ✅ cn:juejin 10 · ✅ cn:sspai 10 · ✅ cn:qbitai 10 · ✅ cn:infoq 10 · ✅ people:latent-space 6 · ✅ people:interconnects 6 · ✅ people:hf-blog 8 · ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5（30 源 · 0 条的源 0 个 · fetch 失败源 0 个；其中 20 个源的条目主页落在非公网域名上，仅计条数、未从原站核验）
-    <details class="rej"><summary>被过滤器砍掉的 21 条（信任雷达的依据）</summary>
-        <div class="rejrow"><span class="t">11 条新增（DeepSeek-V4-Flash-Vision-Exp / V4-Pro-0813、Qwen-Image-2.1-PE-I2I / PE-T2I、GLM-5.3-BF16 / Flash-BF16、MiniMax-Music3 / M3-MXFP8、Kimi-K3 / K2.7-Code / K2.6）</span><span class="r">huggingface.co 解析到非公网 IP，无法从原站核验；标题多为量化版、派生版或六到八月旧发布。同批的 Qwen PE 变体 09-22 已发过</span></div><div class="rejrow"><span class="t">openai 15 条（GPT-6 Sol 与 Luna、GPT-6 提示词缓存、Parallel / Higgsfield / V7 / Hex / Cooley / Astra for Law / 广告 / 数学顾问组 / 标准 / Academy / 澳大利亚 / 老年课堂 / 第三方评估）</span><span class="r">openai.com 不可达。其中 **GPT-6 Sol 与 Luna 是两个新模型**（能力 / 成本两种配比）、**Higgsfield 是把视频广告生成接进 Astra 的案例**，域名恢复后优先补</span></div><div class="rejrow"><span class="t">AlphaGenome Atlas / WeatherNext 3 / 政府网络防御 / Gemini 3.8 Flash 与 Flash Cyber / 双盲评估 / 15 年游戏 AI / Gemini 3.5 Transcribe</span><span class="r">生物、气象、防务与本业无关；其余为八月旧发布</span></div><div class="rejrow"><span class="t">Mistral x Mozilla 浏览器 / Cloudera 合作 / 遗留代码迁移 / €3B 融资 / HUMAIN / 欧洲主权推理 / Shieldstral / Prompts 与 Skills 系统记录 / Robostral Navigate</span><span class="r">mistral.ai 不可达；遗留代码迁移（40,000 行 Fortran 77 → C++）是可复用方法，恢复后值得单列</span></div><div class="rejrow"><span class="t">ai-video-generation@skills-shell、ai-image-generation@bankai-skills、reddit-automation、twitter-automation</span><span class="r">同名技能的搬运 / 复刻版本与社区自动化；Seedance 系列 09-16、09-17 已连发两条</span></div><div class="rejrow"><span class="t">21 条版本号流水（claude-code v2.1.280 / .278 / .277、codex 0.157.0-alpha.10 / .9 / .8、gemini-cli nightly ×3、Spec Kit 1.0.10 / .9 / .8、opencode v2.0.14 / .13 / .12、MCP servers 2026.8.31 / 8.18 / 7.10、mattpocock v1.2.3 / .2 / .0）</span><span class="r">版本号流水 / nightly / alpha：在「为什么值得你花时间」这一栏答不上来。唯一有实质信息的是 v2.1.280 让 Claude Opus 5.5 成为默认 Opus（1M 上下文、$4/$20），但模型本体已单列为正文 02</span></div><div class="rejrow"><span class="t">Mini-AGI / 分享 AI Setup / Radius / Snapdrop / tinybrains / 3D 会议 / Wine 跑 Office / CUA-S1 / sigabrt.dev</span><span class="r">高分但与业务无关（端侧持续学习、社区站、玩具类）。两条与业务沾边的都押在 github.com 上（Mini-AGI 的 8GB 显存持续学习、trycua 的 CUA-S1「System One for computer use」），今日不可达无法核验</span></div><div class="rejrow"><span class="t">20 条 Spaces（MiniMax-H3-Turbo-Lora-UNCENSORED / wan2-2-i2v-v3 / QWEN_EDIT_IMAGE / laya-demo / jev-decision-index / Qwen-Image-2.1 / ternary-bonsai-2 / wan777 / yue2-3b / minimax-h3 / StepAudio-3-Music / wan2-2-fp8da-aoti ×2 / Krea-2-Turbo / qwen-image-2-1 / Marigold-V2 / nocode-workflow / hfviewer / Omni-Image-Editor / Qwen-Image-Edit-Rapid-AIO-Loras）</span><span class="r">huggingface.co 不可达 + 社区 NSFW、自训 / 加速 LoRA、3D 与语音 demo，多数没有仓库或 API 入口</span></div><div class="rejrow"><span class="t">simonwillison 9 条（Quoting @therealcornpop、Cloudflare Python Workers GA、Quoting voxium、MCP 评论、llm-keys-ui 0.1、datasette-explain 0.2.2、datasette-auth-github 1.0、海狮观鸟、Note on 18th September）</span><span class="r">小工具与观察。MCP 那条仍是一段好论据（受限场景需要 MCP 的四件事：控制可访问的外部服务、认证不暴露 key、供用户授权的 UI、强审计日志），但只有一段，本周不进正文</span></div><div class="rejrow"><span class="t">Claude Opus 5.5 官方页 ×2 / Claude Code 读 AGENTS.md / Mini-AGI / Claude 状态页故障</span><span class="r">anthropic.com、code.claude.com、status.claude.com 均不可达；AGENTS.md 那条 09-19 已发；Mini-AGI 依赖 github.com</span></div><div class="rejrow"><span class="t">掘金 8 条（Agent 写正则来实现规则 / 让 AI 生成新员工学习指南 / Multi-Agent 通信协议与编排中枢 / 单体 Agent 的天花板 / 聊几句就能让 AI 写代码 Spec 还有必要吗 / 《潮水漫过十七岁》×2 / 历时三年 Acrodata 上线）</span><span class="r">同源配额：cn:juejin 今日给 2 席（07 与文末折叠②）。「Agent 写正则来实现规则」与「Spec 还有必要吗」都值得改天单列</span></div><div class="rejrow"><span class="t">少数派 10 条（Beats 360 / 25 年前笔记本 / Coast 记账 / 泡泡骚支架 / 派早报 / Mac mini 首发 / 派评 App / GNOME 演进 / 华为 Pura X View / 当 AI 让执行力变得廉价）</span><span class="r">消费数码与生活内容</span></div><div class="rejrow"><span class="t">量子位 8 条（陆川与阿里全模态 / 工业 AI 直播预告 / WebArena 作者入职 Meta / 基元律动韩凯 / SkyProduction 短剧质检 / 虎鲸文娱鲸锐 AI / 量子人才大赛 / 小米炼丹直播收官）</span><span class="r">同源配额：cn:qbitai 今日给 2 席（03 与文末折叠①）。「小米炼丹直播收官」与正文 01 同题（同一位 owner 每天最多 1 个正文席位），其中那份 RL 扩展侧写——判分成本占总训练 12.7%、Reward Hacking 轨迹 &lt;2%、RL 阶段冻结 MoE Router——值得单读</span></div><div class="rejrow"><span class="t">InfoQ 10 条（从生成内容到创造体验 / 不受控的 Agent 凭什么上生产 / Jotai 3.0 / Meta 开源 Astryx / 快手分销增长 Agent / 菜鸟 Agent 端到端交付 / Netflix Conductor 重构 / 华为云码道 / 吴泳铭谈千问 / NVIDIA Personal AI Router）</span><span class="r">抓到 HTTP 200 但正文为空（只剩标题），无法核验。最对口的两条是「Meta 开源 Astryx：面向 Agent 的 React 设计系统」与「菜鸟：AI Coding 贡献率超 90%、交付只快 10%」，能抓到正文时优先补</span></div><div class="rejrow"><span class="t">John Platt 播客 / Jev 播客 / 6 个 Jev 克隆 / not much happened</span><span class="r">与正文 05 同主题或为资讯汇总；John Platt 那期是完整播客（自动化科学、气候、算法），值得整段听</span></div><div class="rejrow"><span class="t">RSI 辩论播客 / 我为何还不信真正的 RSI / 开源模型阅读清单 / 一次辞职 / 平均人何时感受到 AI</span><span class="r">观点、播客与书单，无可执行入口</span></div><div class="rejrow"><span class="t">UK AISI 与 EvalEval 可复现 / Transformers 跑 llama.cpp 量化 / oMLX 作者加入 HF / 像物理学家一样剪枝 / tokenizers v1 / async GRPO</span><span class="r">huggingface.co 不可达无法核验。**tokenizers v1**（称 tokenize 最高快 30 倍）与 **Transformers 直接吃 llama.cpp 量化**本来都在这轮候选里，域名恢复后优先补</span></div><div class="rejrow"><span class="t">Import AI #469 ~ #473</span><span class="r">周报综述</span></div><div class="rejrow"><span class="t">AI 原生思维 / 我的 AI 原生开发流程</span><span class="r">方法与随笔；同源 09-19 的 3D 网页提示词那条已发</span></div><div class="rejrow"><span class="t">The Overhang / Agency and Agents / 该用哪个 AI 的指南 / 聊天机器人的黄昏 / 与 Mythos 共事</span><span class="r">观点随笔，无可执行入口</span></div><div class="rejrow"><span class="t">25 条 seen 条目（DeepSeek-V4.1-Flash / Qwen-Image-2.1 / GLM-5.3-Flash / MiniMax-H3 / Gemini 3.8 Live / 视频理解 / Gemini Omni 1.1 Flash / Agentic Search / ai-image-generation / design-mobile-apps / find-skills / video-edit / wan-3-0-prime / google-agents-cli / hyperframes-cli / Cactus Needle 3 / Jev / Gemini 被黑 / Claude 双入口 / 开放模型力量格局 / agent 一致性 / Gradio Workflow / 《桃花源记》 / Warp 自进化 / Reality Checks）</span><span class="r">seen: true —— 近四份简报已发（严格按候选文件标记排除）</span></div>
+    <b>每源今日条数</b><br>❌ hf-org:deepseek-ai 0（失败：EAI_AGAIN）· ❌ hf-org:Qwen 0（失败：EAI_AGAIN）· ❌ hf-org:zai-org 0（失败：连接超时）· ❌ hf-org:MiniMaxAI 0（失败：EAI_AGAIN）· ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15 · ❌ vendor:deepmind 0（失败：EAI_AGAIN）· ❌ vendor:mistral 0（失败：EAI_AGAIN）· ✅ skills:trending 12 · ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ hn:show 12 · ✅ hf:spaces-trending 20 · ✅ people:simonwillison 12 · ✅ hn:stories 10 · ✅ cn:juejin 10 · ✅ cn:sspai 10 · ✅ cn:qbitai 10 · ✅ cn:infoq 10 · ✅ people:latent-space 6 · ✅ people:interconnects 6 · ✅ people:hf-blog 8 · ❌ people:import-ai 0（失败：EAI_AGAIN）· ✅ people:baoyu 5 · ✅ people:one-useful-thing 5（30 源 · 0 条的源 7 个，全部为 fetch 失败 · fetch 失败源 7 个）
+    <details class="rej"><summary>被过滤器砍掉的 18 条（信任雷达的依据）</summary>
+        <div class="rejrow"><span class="t">14 条（OpenAI Academy 两周年 / 乌克兰网络访问 / Altman 联大发言 / Harvey 法务 / invideo 调色 3x / Ringg 客服 / MentalHealthBench / Airbnb / Grab / GPT-6 提示词缓存 / Parallel / 第三方评估 / Higgsfield 视频广告 / 数学顾问组）</span><span class="r">openai.com 本机 **HTTP 403**，无法从原站核验；其中多数是 B 端案例稿与政策稿。与业务最对口的两条是 **Higgsfield（把视频广告生成接进 Astra）** 与 **invideo（调色提速 3x）**，以及 **GPT-6 提示词缓存**——域名可读时优先补</span></div><div class="rejrow"><span class="t">21 条版本号流水（claude-code v2.1.281 / .280 / .278、codex rust-v0.158.0-alpha.6 / .5 / .4、gemini-cli nightly ×2 与 preview.1、Spec Kit 1.0.10 / .9 / .8、opencode v2.0.15 / .14 / .13、MCP servers 2026.8.31 / 8.18 / 7.10、mattpocock v1.2.3 / .2 / .0）</span><span class="r">版本号流水 / nightly / alpha：在「为什么值得你花时间」这一栏答不上来</span></div><div class="rejrow"><span class="t">Kimi-K3（11.5K 赞）/ K2.7-Code / K2.6</span><span class="r">**六月旧发布**，09-21 的简报里已核过一次，本周无新进展；本次 huggingface.co 可读，但「很热但不新」</span></div><div class="rejrow"><span class="t">image-to-video / ai-music / reddit-automation</span><span class="r">image-to-video 虽挂在 **633.4K 安装**上，但页面的安全审计是 **Snyk Fail**（Gen Agent Trust Hub 与 Socket 为 Pass），且本质是 RunComfy 的模型导流页；ai-music 与 image-to-video 同属 `genmedia-labs`（同一 owner 只给 1 席）；reddit-automation 是社区自动化</span></div><div class="rejrow"><span class="t">Mini-AGI / Share your AI Setup / Radius / JevBench / tinybrains / Snapdrop / flat.social / Wine 跑 Office / sigabrt.dev</span><span class="r">高分但与业务无关（社区站、玩具类、非 AI）。**CUA-S1 进正文 02**，**Mini-AGI 进文末折叠③**；Cactus Needle 3 与 Drop 09-23 已处理过（seen）</span></div><div class="rejrow"><span class="t">20 条 Spaces（MiniMax-H3-Turbo-Lora-UNCENSORED / wan2-2-i2v-v3 / QWEN_EDIT_IMAGE / laya-demo / jev-decision-index / Qwen-Image-2.1 / ternary-bonsai-2-webgpu-kernels / wan777 / Krea-2-Turbo_v2 / qwen-image-2-1 / yue2-3b / minimax-h3 / wan2-2-fp8da-aoti ×2 / Omni-Image-Editor / Qwen-Image-Edit-Rapid-AIO-Loras / StepAudio-3-Music / hfviewer / Marigold-V2 / microduck-simulator）</span><span class="r">社区 NSFW、自训 / 加速 LoRA、3D 与语音 demo；多数没有仓库或 API 入口，Qwen-Image-2.1 09-21 已发过</span></div><div class="rejrow"><span class="t">Shadow roots 讲解 / SF Agentic Engineering BoF / llm 0.36 / llm-anthropic 0.29 / Quoting @therealcornpop / Cloudflare Python Workers GA / Quoting voxium / MCP was always a bad idea</span><span class="r">web 基础知识、活动通知、版本号流水与观点引述。**Opus 5.5 max 失效模式进文末折叠②**；正文 05 与 06 各占 1 席</span></div><div class="rejrow"><span class="t">Claude Opus 5.5 官方页 ×2 / Claude Code 读 AGENTS.md / Claude 发现新酶系统 / Claude 状态页故障 / Once Claude can measure something / I am done with this shit / Mini-AGI</span><span class="r">Opus 5.5 本体 09-23 已发（正文 02），AGENTS.md 那条 09-18 / 09-22 已发；生物发现与厂商提速自述与业务无关；状态页是运维公告；Reddit 情绪贴；Mini-AGI 同入折叠③</span></div><div class="rejrow"><span class="t">掘金 8 条（Java 27 改了 3 个默认值 / 共享黑板模式实战 / AgentKit MCP 网关上手指南 / 云服务器装 Node.js v26.10 / X6 框选拖拽性能内幕 ×3 / 助残场景 AI 培训）</span><span class="r">Java 27 与 Node.js 是版本流水且与 AI 无关；共享黑板与正文 08 同主题（多 Agent 协作），今日只给 1 席；AgentKit 偏产品接入；X6 三篇是前端性能、非本业；助残培训是场景复盘</span></div><div class="rejrow"><span class="t">少数派 10 条（社区速递 / visionOS 27 / Here Wallpaper / 派早报 ×2 / Beats 360 / 25 年前笔记本 / Coast 记账 / 泡泡骚支架 / Mac mini 首发）</span><span class="r">消费数码与生活内容</span></div><div class="rejrow"><span class="t">量子位 8 条（联想云栖 / 异构混推 / Hellome FDE / 达卯融资 / 它石智航 / 斑马 AutoOmni2.0 / Qwen 一号位 / Jev vs Decitron）</span><span class="r">厂商稿、融资、人事与概念辨析，无可执行入口。**PixVerse R2 进正文 04**、**DeepSeek DSec 进文末折叠①**（同源今日给 2 席）</span></div><div class="rejrow"><span class="t">InfoQ 10 条（PrismAlign 文档结构化 / Claude Opus 5.5 迁移 68 万行代码 / HappyWorld-Bench / 华为 4096 卡超节点 / 云栖 / Shopify 弃用 React Native / Dropbox Riviera / 智谱 ZCode 开源 / 大语言模型是下一代 DSL 编写者 / Redis 之父质疑 Jev）</span><span class="r">抓到 **HTTP 200 但正文为空**（只剩标题），无法核验。最对口的是「Opus 5.5 一天迁移 68 万行、单任务比 GPT-6 Astra 便宜 80%」与「智谱开源 ZCode」，还有「LLM 作为 DSL 编写者」，能抓到正文时优先补</span></div><div class="rejrow"><span class="t">Bio-security 播客 / Opus 5.5 的 AINews 汇总 / John Platt 播客 / Jev 播客 / 6 个 Jev 克隆</span><span class="r">播客与资讯汇总；Opus 5.5 那条与正文 06 同题</span></div><div class="rejrow"><span class="t">RSI 辩论 / 我为何还不信真正的 RSI / 开源模型阅读清单 / 一次辞职 / 平均人何时感受到 AI</span><span class="r">观点、播客与书单，无可执行入口</span></div><div class="rejrow"><span class="t">NVIDIA Warp 与 MjWarp 机器人仿真 / UK AISI 与 EvalEval 可复现基准 / oMLX 作者加入 HF / 像物理学家一样剪枝 / async GRPO with LoRA / Transformers 直接跑 llama.cpp 量化</span><span class="r">机器人仿真与训练向，与本业无关。**tokenizers v1 进正文 03**；**Transformers 跑 GGUF 量化**本来很对口，但它当前**只支持 Apple Silicon**（首个架构是 Qwen3.5），你的工作机是 Windows，故今日不进正文</span></div><div class="rejrow"><span class="t">AI 原生思维 / 我的 AI 原生开发流程</span><span class="r">方法与随笔，无新的可执行入口</span></div><div class="rejrow"><span class="t">The Overhang / Agency and Agents / 该用哪个 AI 的指南 / 聊天机器人的黄昏 / 与 Mythos 共事</span><span class="r">观点随笔，无可执行入口</span></div><div class="rejrow"><span class="t">19 条 seen 条目（ai-image-generation / design-mobile-apps / ai-video-generation / google-agents-cli-adk-code / video-edit / wan-3-0-prime-reference-to-video / find-skills / media-use / Cactus Needle 3 / Drop / llm-typesafe 0.1a0 / Jev System One / Claude Opus 5.5 实测分析 / 小米 MiMo-V2.6-Pro / 开放模型力量格局 / Agent 一致性 / 《桃花源记》3D / 电商智能体解剖指南 / Warp 自进化）</span><span class="r">seen: true —— 近几份简报已发（严格按候选文件标记排除，不占今日席位）</span></div>
       </details>
   </div>
 </div>
