@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>雷达简报 2026-10-02</title>
+<script>
+(function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
+var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
+document.documentElement.setAttribute('data-theme',d?'dark':'light');})();
+</script>
+<style>
+:root{
+  color-scheme:light;
+  --ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;
+  --ok:#0f7b53;--warm:#c2410c;--link:#1d4ed8;
+  --tap:#f7f8fa;--seg-bg:#fff;--seg-on-ink:#fff;--btn-bg:#fff;
+  --c-model:#1d4ed8;--c-model-bg:#f2f5ff;--c-model-line:#dbe4ff;
+  --c-skill:#7c2d12;--c-skill-bg:#fff6f1;--c-skill-line:#ffe4d3;
+  --c-tool:#0f7b53;--c-tool-bg:#f1fbf6;--c-tool-line:#d6f0e4;
+  --c-cn:#7e22ce;--c-cn-bg:#faf5ff;--c-cn-line:#efe0ff;
+  --c-people:#0369a1;--c-people-bg:#f2f9ff;--c-people-line:#d6ecfb;
+  --c-method:#4a4f5a;--c-method-bg:#f7f8fa;--c-method-line:#e6e8ec;
+  --card-bg:#f5f6f9;--card-line:#d9dde7;--card-spine:#2f5bd7;--card-det:#edeff4;
+  --card-sep:#e2e5ed;--card-k:#69738c;--card-det-ink:#3f4553;
+  --more-bg:#f2f5ff;--more-line:#dbe4ff;--more-bg-on:#fff;--more-line-on:#ccd6ec;
+  --star:#c9ced8;--star-on:#e8a90c;--star-hover:#d9a406;
+  --fav-bg:#fffdf6;--fav-line:#ece5cf;--fav-ink:#8a6d1f;--fav-sep:#f2eddd;
+  --drift-bg:#fff7ed;--drift-line:#fed7aa;--drift-ink:#9a3412;
+}
+/* 暗色。**只覆盖变量**，不动任何规则 —— 所以明暗两套永远不会走偏。
+   JS 会把 data-theme 落到 <html> 上：auto 由脚本解析成实际的 light/dark，
+   所以 CSS 里不需要再写一遍 @media (prefers-color-scheme)。 */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ink:#e4e7ee;--ink2:#a6adbb;--ink3:#79808e;--line:#2a2f38;--bg:#14161a;--bg2:#0e1013;
+  --ok:#54c894;--warm:#f2935e;--link:#7fa6ff;
+  --tap:#1b1f27;--seg-bg:#1c212a;--seg-on-ink:#14161a;--btn-bg:#1c212a;
+  --c-model:#8fb4ff;--c-model-bg:#182338;--c-model-line:#28395a;
+  --c-skill:#f0a97f;--c-skill-bg:#2a1e17;--c-skill-line:#44301f;
+  --c-tool:#6ed3a4;--c-tool-bg:#14291f;--c-tool-line:#204434;
+  --c-cn:#c6a4f2;--c-cn-bg:#221a30;--c-cn-line:#372a4b;
+  --c-people:#74c2e8;--c-people-bg:#132530;--c-people-line:#1f3d4d;
+  --c-method:#a6adbb;--c-method-bg:#1c212a;--c-method-line:#2a2f38;
+  --card-bg:#1c212a;--card-line:#333a46;--card-spine:#5b82f0;--card-det:#171b22;
+  --card-sep:#2b313b;--card-k:#8b93a3;--card-det-ink:#c3c9d4;
+  --more-bg:#1b2740;--more-line:#2c3d5f;--more-bg-on:#20242d;--more-line-on:#343c4a;
+  --star:#4c525e;--star-on:#f0b429;--star-hover:#ffc94d;
+  --fav-bg:#1f1b12;--fav-line:#3a3221;--fav-ink:#dcb862;--fav-sep:#2b2618;
+  --drift-bg:#2a1c12;--drift-line:#4a3320;--drift-ink:#f0a97f;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg2);color:var(--ink);
+font:15px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+body{padding:0 0 40px}
+.phone{max-width:460px;margin:0 auto;background:var(--bg);min-height:100vh}
+/* 宽屏（电脑）：容器放宽一倍（460 -> 920），字号与内边距同步放大，读起来不空 */
+@media (min-width:960px){
+  .phone{max-width:920px;box-shadow:0 0 0 1px var(--line)}
+  body{font-size:16px}
+  .head{padding:26px 32px 14px}
+  .count{padding:10px 32px 4px}
+  .hit{padding:14px 32px}
+  .det{padding:12px 32px 20px 68px}
+  .fold,.foot{padding-left:32px;padding-right:32px;margin-left:0;margin-right:0}
+  .drift{margin-left:32px;margin-right:32px}
+}
+@media (max-width:520px){.phone{box-shadow:none}}
+.kicker{font-size:11px;letter-spacing:.14em;color:var(--ink3);font-weight:600;
+font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.drift{margin:12px 18px 0;padding:10px 12px;border-radius:10px;background:var(--drift-bg);
+border:1px solid var(--drift-line);color:var(--drift-ink);font-size:13px}
+.head{padding:18px 18px 12px}
+h1{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
+.strap{font-size:12px;color:var(--ink2)}
+.segs{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.seg{font-size:12px;padding:5px 11px;border-radius:99px;border:1px solid var(--line);
+background:var(--seg-bg);color:var(--ink2);cursor:pointer;font-weight:600;font-family:inherit}
+.seg[aria-pressed="true"]{background:var(--ink);color:var(--seg-on-ink);border-color:var(--ink)}
+/* 主题开关：在 kicker 那一行的最右边。三态循环 自动 → 亮 → 暗 → 自动，
+   按钮上显示的是**当前**状态（而不是"点了会变成什么"）—— 后者每次都得在脑子里转一道 */
+.kickerrow{display:flex;gap:10px;align-items:center;justify-content:space-between}
+.themebtn{flex:none;border:1px solid var(--line);background:var(--btn-bg);color:var(--ink3);
+ border-radius:99px;font:inherit;font-size:11px;font-weight:600;padding:3px 10px;cursor:pointer;
+ font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
+.themebtn:active{transform:scale(.96)}
+.count{font-size:11px;color:var(--ink3);padding:8px 18px 4px;font-family:ui-monospace,Menlo,monospace}
+/* 四条边都预留：折叠态只留最上面那条细线，左右和下边是**透明**占位 ——
+   展开时把整圈轮廓点亮，宽度不变（否则一展开内容会横向抖一下）。左边留 3px 给脊线。 */
+.row{border:1px solid transparent;border-top-color:var(--line);border-left-width:3px}
+.row:last-of-type{border-bottom-color:var(--line)}
+.hit{display:flex;gap:10px;align-items:center;width:100%;text-align:left;padding:12px 18px;
+background:none;border:0;font:inherit;color:inherit;cursor:pointer;list-style:none}
+.hit::-webkit-details-marker{display:none}
+.hit:active{background:var(--tap)}
+.n{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--ink3);width:16px;flex:none}
+.tt{flex:1;min-width:0}
+.t1{font-weight:600;font-size:14.5px;line-height:1.35;display:block}
+.t1b{margin-top:2px;font-size:12.5px;color:var(--ink2);line-height:1.45;
+ display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.t2{margin-top:3px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.car{color:var(--ink3);font-size:16px;flex:none;transition:transform .15s,color .15s}
+
+/* ── 展开态：整条（摘要头 + 正文区）合起来是**一张卡** ──────────────────
+   折叠态 = 白底、只有细线分隔，安静地排成一列（这是拿来扫读的）。
+   展开态 = 整圈**中性灰**轮廓收边，左边加粗成一条蓝色脊线；摘要头和正文区同属一个
+            灰阶、只差深浅，看着是"这一条展开了"而不是"下面贴了另一块东西"。
+   底色**刻意用灰不用蓝**：第一版把摘要头和正文区都染成浅蓝，一整块大面积蓝底压着字，
+   读起来发闷、也显得比实际更"重"。蓝色只留给脊线和星标这种小面积强调。 */
+.row[open]{background:var(--card-bg);border-color:var(--card-line);border-left-color:var(--card-spine)}
+.row[open] + .row{border-top-color:transparent} /* 别和上面那张卡的下轮廓叠成两像素 */
+.row[open] .hit{background:transparent}
+.row[open] .n{color:var(--card-spine);font-weight:700}
+.row[open] .t1b{-webkit-line-clamp:3}
+.row[open] .car{color:var(--card-spine);transform:rotate(90deg)}
+.row[open] .det{background:var(--card-det);border-top:1px solid var(--card-sep);color:var(--card-det-ink);
+ animation:detin .18s ease-out}
+.row[open] .det .k{color:var(--card-k)} /* 底变深了，小标签得跟着压深一点才够清楚 */
+.row[open] .det .more{background:var(--more-bg-on);border-color:var(--more-line-on)}
+@keyframes detin{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.row[open] .det{animation:none}}
+.chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);
+color:var(--ink2);background:var(--bg2);font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
+.chip.model{color:var(--c-model);border-color:var(--c-model-line);background:var(--c-model-bg)}
+.chip.skill{color:var(--c-skill);border-color:var(--c-skill-line);background:var(--c-skill-bg)}
+.chip.tool{color:var(--c-tool);border-color:var(--c-tool-line);background:var(--c-tool-bg)}
+.chip.cn{color:var(--c-cn);border-color:var(--c-cn-line);background:var(--c-cn-bg)}
+.chip.people{color:var(--c-people);border-color:var(--c-people-line);background:var(--c-people-bg)}
+.chip.method{color:var(--c-method);border-color:var(--c-method-line);background:var(--c-method-bg)}
+.cost{font-weight:700}.cost.fast{color:var(--ok)}.cost.slow{color:var(--warm)}
+.src{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
+.det{padding:12px 18px 16px 44px;font-size:13.5px;color:var(--ink2)}
+.det .k{color:var(--ink3);font-size:11px;display:block;margin:8px 0 1px;font-family:ui-monospace,Menlo,monospace}
+.det a{color:var(--link);word-break:break-all}
+.det .more{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--link);
+ text-decoration:none;border:1px solid var(--more-line);background:var(--more-bg);padding:6px 12px;border-radius:99px}
+
+/* ── 收藏 ───────────────────────────────────────────────────────────────
+   星标是行内一个独立可点的小按钮：点它**只收藏、不展开**（在 click 里 preventDefault
+   拦掉 summary 的默认展开行为）。它故意做得比箭头显眼：箭头是"看更多"，星是"留下"。
+   颜色只用星星该有的琥珀色，不跟正文抢注意力（页面主色是灰 + 一个克制的蓝）。 */
+.star{flex:none;border:0;background:none;padding:2px 0 2px 6px;cursor:pointer;font:inherit;
+ font-size:19px;line-height:1;color:var(--star);transition:color .15s,transform .12s}
+.star:hover{color:var(--star-hover)}
+.star:active{transform:scale(.85)}
+.star[aria-pressed="true"]{color:var(--star-on)}
+/* 收藏盒：只在有收藏时才出现（否则每天早上都挂一个空盒子，是噪音） */
+.favbox{margin:0 18px 12px;border:1px solid var(--fav-line);background:var(--fav-bg);border-radius:10px}
+.favbox>summary{cursor:pointer;list-style:none;padding:9px 12px;font-size:12.5px;font-weight:700;
+ color:var(--fav-ink);font-family:ui-monospace,Menlo,monospace}
+.favbox>summary::-webkit-details-marker{display:none}
+.favbox>summary::before{content:"▸ "}
+.favbox[open]>summary::before{content:"▾ "}
+.favlist{padding:0 12px}
+.favrow{padding:7px 0;border-top:1px solid var(--fav-sep)}
+.favt{display:block;font-size:13.5px;font-weight:600;color:var(--link);text-decoration:none;line-height:1.4}
+.favo{margin-top:2px;font-size:12px;color:var(--ink2);line-height:1.45}
+.favm{display:flex;gap:10px;align-items:center;margin-top:3px}
+.favd{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
+.favrm,.favcopy{border:1px solid var(--line);background:var(--btn-bg);color:var(--ink2);border-radius:99px;
+ font:inherit;font-size:11px;padding:2px 9px;cursor:pointer}
+.favcopy{display:block;margin:6px 12px 11px}
+.empty{padding:22px 18px;color:var(--ink3);font-size:13px}
+.fold{margin:16px 18px 0;font-size:12px;color:var(--ink3);line-height:1.7}
+.foot{margin-top:22px;padding:16px 18px 26px;border-top:1px solid var(--line);font-size:12px;color:var(--ink3);line-height:1.9}
+.foot b{color:var(--ink2)}
+details.rej{margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}
+details.rej summary{cursor:pointer;font-weight:600;color:var(--ink3);list-style:none}
+details.rej summary::-webkit-details-marker{display:none}
+details.rej summary::before{content:"▸ "}
+details.rej[open] summary::before{content:"▾ "}
+.rejrow{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--bg2);font-size:12px}
+.rejrow .t{flex:1;color:var(--ink2)}.rejrow .r{color:var(--ink3);flex:1.2}
+</style>
+</head><body>
+<div class="phone">
+  
+  <div class="head">
+    <div class="kickerrow">
+      <span class="kicker">雷达简报 · 2026-10-02</span>
+      <button class="themebtn" id="themebtn" type="button">◐ 自动</button>
+    </div>
+    <h1>8 条 · 先扫，再展开</h1>
+    <div class="strap">候选 218 条 / 33 源（33 成功 · 0 源失败 · 1 个 0 条源）· 新增 178 条 · seen 40 条 · 正文 8 条（另有文末折叠 1 项：知情 1 项）· 砍掉 193 条（40 条 seen 标记 + 153 条未入选）· `docs:deepseek-api` 今日 0 条（无 fetch 错误，属「今天没变化」而非死源）</div>
+    <div class="segs">
+      <button class="seg" data-f="all" aria-pressed="true">全部 8</button>
+      <button class="seg" data-f="fast" aria-pressed="false">15 分钟 8</button>
+      <button class="seg" data-f="tool" aria-pressed="false">技能工具 1</button>
+      <button class="seg" data-f="fav" aria-pressed="false">★ 收藏 <span id="favn">0</span></button>
+    </div>
+  </div>
+  <div class="count" id="cnt">显示 8 / 8 条</div>
+  <details class="favbox" id="favbox" style="display:none">
+    <summary>我的收藏 <span id="favcnt">0</span></summary>
+    <div class="favlist" id="favlist"></div>
+    <button class="favcopy" id="favcopy" type="button">复制清单</button>
+  </details>
+  
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">01</span>
+        <span class="tt">
+          <span class="t1">Gemini 4 Argon 发布：百万 token 输出，价格约为 Astra 一半</span>
+          <span class="t1b">谷歌新旗舰模型，单次输出上限提到百万 token。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:qbitai</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-10-02-01" data-date="2026-10-02" data-t="Gemini 4 Argon 发布：百万 token 输出，价格约为 Astra 一半"
+          data-o="谷歌新旗舰模型，单次输出上限提到百万 token。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Google DeepMind 2026-09-30 发布 Gemini 4 Argon（`blog.google` 我是**不可达**的，以下据量子位 10-01 的复盘与 Latent.Space 收录的第三方评测）。能力侧：DeepSWE v1.1 **77.9%**（Claude Opus 5.5 74.2%、GPT-6 Astra 74.1%）、CWE-bench v1 漏洞修复 **68%**（与 Astra 并列第一）、Vals Index **68.90%** 登顶、Text Arena **1525 分第一**、Code Arena WebDev 第八（比 Gemini 3.8 Flash High 提升 21 名）；Artificial Analysis 智能指数 53，与 Astra 打平、高于 GPT-6.1 Sol 一分，提升主要来自**更少幻觉**（AA-Omniscience 15% vs Astra 51%）与更强的智能体能力（AutomationBench-AA 77.5% 第一）。价格：标准 **$4/$20 每百万输入/输出 token**，五折优惠期 **$2/$10**、缓存输入再打 95% 折，优惠期单题成本约 **$1.99**（Astra $3.26）。**最高 100 万 token 输出**是这代的主打（此前的 64K 级别；Artificial Analysis 是用新的 Long Decode Continuation 暂停/续跑功能测到的）。官方给的两个内部案例：数据中心内存优化方案落地后预计释放 **300+ TiB** 内存；Agent 反复实验替换掉视频解码器 **3.2 万行 SIMD** 代码，Rust 移植版**提速 2.7 倍**且输出一致。
+        <span class="k">为什么值得你花时间</span>你做 AIGC 内容平台，模型侧每次换代都要重算两笔账——**长输出的可行边界**与**单次任务的成本**。这条两个数字都变了：百万 token 输出意味着「一次调用交付一支完整分镜/一份长稿/一次大批量改写」第一次不需要靠外部拼接；$2/$10 的优惠价把「长输出」的单价压到 Opus 5.5 与 Astra 之下。今天能落地的动作是**把 Argon 加进你的候选清单并标上两个待验项**：一是「用了 62K 输出 token/任务 vs Astra 的 27K」（Artificial Analysis 口径）说明省钱来自单价而非效率，批量任务要按 token 而不是按次计费；二是 30 个 Vibe Code Bench 应用全对、但 Terminal Bench 4 只有 57%（落后 Sonnet 5.5 / Opus 5.5 / Astra），**前端与终端类任务别只看总分**。还有一条必须记住的边界：**Argon 目前只对 Fairwind 计划里的政府与受信网络安全团队开放**，你要用还得等，所以今天的正确动作是记下参数与价格、调整选型判断，不是改代码。
+        <span class="k">上手成本</span>15 分钟（读两篇复盘 + 记下价格与两个待验项；模型本身暂未对普通开发者开放）
+        <span class="k">入口</span><a href="https://www.qbitai.com/2026/10/499663.html" target="_blank" rel="noopener noreferrer">https://www.qbitai.com/2026/10/499663.html</a>
+        <a class="more" href="detail/2026-10-02-01.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">02</span>
+        <span class="tt">
+          <span class="t1">Ledge：能把命令跑起来的 Markdown 笔记</span>
+          <span class="t1b">Markdown 笔记里直接运行 Shell、SQL 与 AI 提示。</span>
+          <span class="t2">
+            <span class="chip tool">小而美</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">hn:show</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-10-02-02" data-date="2026-10-02" data-t="Ledge：能把命令跑起来的 Markdown 笔记"
+          data-o="Markdown 笔记里直接运行 Shell、SQL 与 AI 提示。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Ledge（`ledge.sh`，Apache-2.0，仓库 `ledgesh/ledge`）是给「把命令写在笔记里的人」做的可运行笔记：**每个笔记有自己的持久 shell**，光标停在代码块上按 ⌘↩ 就地运行、输出流在代码块下面，`cd`、导出的变量、激活的 virtualenv 会带进下一次运行；⇧⌘↩ 把代码块丢进笔记自己的终端抽屉，运行中的块还能接收输入（sudo 密码、`[y/N]` 都能在输出面板里答）。开箱支持 Shell、Python、Node、Ruby、PHP、`redis`、`sql`（走 `psql &quot;$DATABASE_URL&quot;`），TypeScript 用内置 Bun 跑；`prompt` 代码块把提示词发给 Agent、回复流在下面。工程侧的关键设计有四条：**`profile:` 把密钥放在笔记目录外**（`~/.config/ledge/profiles/&lt;name&gt;.env`，笔记里只有名字，同步与备份都带不走密钥）、**`host:` 让整个笔记的代码块通过你的 ssh 在远端执行**（密钥、agent、`~/.ssh/config`、2FA 照常可用）、**锁定笔记在磁盘上按口令加密**（Agent 与搜索都读不到正文）、**内置 MCP server**（`claude mcp add ledge -- ledge mcp`，Agent 可按标题读写笔记，且有「没有删除工具、锁定笔记对任何 Agent 拒绝正文」的硬边界）。笔记就是普通文件夹里的 Markdown，同步即同步文件夹（iCloud / Dropbox / git / Syncthing），另有 `curl -fsSL https://ledge.sh/server.sh | sh` 把笔记放到自己的服务器上、手机端当窗口看。
+        <span class="k">为什么值得你花时间</span>你每天在做的事正是「在一个文件夹里跑命令、再把结论留在某处」——radar 的 `run-daily.cmd`、wayfinder 的票、DSH 的 subagent 都是这个形状，而现在这三者的「命令」与「记录」是分开的。Ledge 值 15 分钟的地方不是笔记功能，是**四件你已经在手工做的事被收进了一个入口**：密钥靠 profile 不进笔记（对应你 10-01 正文 01 记的「密钥不进 Agent 环境」）；命令可指定在远端主机跑（你的 Windows 机器 + Linux 服务器场景）；笔记对 Agent 有明确的读写边界与加密区；以及 MCP 让它直接进 Claude Code。可以照抄的三条约定：**没有删除工具**、**加密笔记对 Agent 一律拒读**、**Agent 按标题而不是路径寻址**（改名不失效）。反面也要说清：Windows 需要 WSL，移动端只是服务器窗口（手机不存笔记），它是 Apache-2.0 的新项目、别指望生产级运维。
+        <span class="k">上手成本</span>15 分钟（装客户端 + 拿一篇现有 note 跑通「命令输出落在笔记里」）
+        <span class="k">入口</span><a href="https://ledge.sh" target="_blank" rel="noopener noreferrer">https://ledge.sh</a>
+        <a class="more" href="detail/2026-10-02-02.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="1">
+      <summary class="hit">
+        <span class="n">03</span>
+        <span class="tt">
+          <span class="t1">ios-design：让 Agent 按 iPhone 原生模式做界面</span>
+          <span class="t1b">给 Agent 一份 iOS 界面规范与真实产品参考。</span>
+          <span class="t2">
+            <span class="chip skill">技能</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">skills:trending</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-10-02-03" data-date="2026-10-02" data-t="ios-design：让 Agent 按 iPhone 原生模式做界面"
+          data-o="给 Agent 一份 iOS 界面规范与真实产品参考。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>skills.sh 趋势榜第 11 名（`uizze.sh/ios-design`，安装量 166.6K，页面标注 First Seen 7 天前）的技能，定位是 **iPhone UI/UX 的设计与评估**：用原生交互模式与真实产品参考，定义屏幕层级、实现导航与表单，并在**键盘弹出、动态字体、不同机型**这三类约束下检查布局。它的边界写得很硬：**不替换项目现有框架**——SwiftUI、UIKit、React Native 都照原样用，不迁移 app、不安装 UI kit、不为局部改动重建导航；审计任务只产出结论，实现任务只改被要求的那条流程。运行方式是 `npx skills add https://uizze.sh/`；技能本身免费，**连接 Uizze MCP 之后 Agent 能在实现过程中检索真实 iOS 屏幕参考、字体与图标**（该连接需付费，公开参考库不需要）。反面提示：技能页没有给出 Security audits 区块（同榜的 `ai-music` 有 Gen Agent Trust Hub / Socket / Snyk 三项），装之前自己看一眼权限。
+        <span class="k">为什么值得你花时间</span>你的平台迟早要出一个手机端或分享页，「一眼不像原生应用」是这类页面最贵的返工来源，而这条把判断标准写成了可执行的清单：**先读屏幕与它的导航、共享组件、设计 token，再定最小 iOS 版本与机型范围**。三条可以直接搬进你的评审约定：**键盘 / 字号 / 机型三类约束必须显式检查**（不是美观问题，是可用性问题）；**审计与实现分两种任务、产出物不同**；**框架不动**——这条尤其值得记，它防的正是「Agent 顺手重写项目结构」这类事故。另外它是「技能薄壳 + 付费参考库」这个形态的又一个样本（你 09-29 / 09-30 / 10-01 连记过三次），今天可以顺手对表：薄壳免费、能力在托管库里收钱。
+        <span class="k">上手成本</span>15 分钟（装技能 + 让 Agent 审一个现有页面；接 Uizze MCP 需要付费）
+        <span class="k">入口</span><a href="https://www.skills.sh/site/uizze.sh/ios-design" target="_blank" rel="noopener noreferrer">https://www.skills.sh/site/uizze.sh/ios-design</a>
+        <a class="more" href="detail/2026-10-02-03.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">04</span>
+        <span class="tt">
+          <span class="t1">Olmo-core 3：面向大型 MoE 的开源训练基础设施</span>
+          <span class="t1b">训练大型 MoE 大模型的开源训练基础设施。</span>
+          <span class="t2">
+            <span class="chip people">跟人</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">people:hf-blog</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-10-02-04" data-date="2026-10-02" data-t="Olmo-core 3：面向大型 MoE 的开源训练基础设施"
+          data-o="训练大型 MoE 大模型的开源训练基础设施。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>（未能抓取原文，以下据标题与摘要）Hugging Face Blog 2026-10-01 发布 **Olmo-core 3**，作者是 Allen AI（`allenai/olmocore3`），定位是**面向大型 MoE 的开放、可扩展训练基础设施**。`huggingface.co` 与 `github.com` 今天在我这侧都不可达，所以这条只有标题与摘要能确认：**Olmo 系列一直以「开放权重 + 开放数据 + 开放训练代码」为卖点**，Olmo-core 是它对外放出的训练框架本体，第 3 代把重点放到了 MoE 规模的训练侧。其余细节（并行策略、吞吐数字、支持的硬件与显存配方）本轮**无法核验，不作推断**；要评估请在网络可用时直接读原文与仓库。
+        <span class="k">为什么值得你花时间</span>你的平台不训练底座模型，这条的价值不在「去训一个 MoE」，而在**它是一份「别人打算怎么把训练侧公开」的样本**：开放权重之外连训练代码与数据配方一起放出来，正在变成开源模型阵营的交付标准；你做模型选型与合规评估（能否自建微调、能否审计数据来源）时，「训练侧开放到什么程度」会是一条越来越硬的判据。就今天的 5 分钟而言，这条例行的定位是**留一个待办标记**：等 `huggingface.co` 可达时读它，重点看两条——**它公布的吞吐 / 显存配方是否覆盖单机小规模**，以及**许可与数据条款是否允许商用微调**。如果你下周本来就要评估「自训 / 微调 vs 调 API」，它值得排进那一轮的阅读清单。
+        <span class="k">上手成本</span>15 分钟（读博客与仓库；本轮未能抓取原文，建议网络可达时补读）
+        <span class="k">入口</span><a href="https://huggingface.co/blog/allenai/olmocore3" target="_blank" rel="noopener noreferrer">https://huggingface.co/blog/allenai/olmocore3</a>
+        <a class="more" href="detail/2026-10-02-04.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">05</span>
+        <span class="tt">
+          <span class="t1">一次 HTTPS 请求的全链路：879 字节是怎么来的</span>
+          <span class="t1b">一次 HTTPS 请求逐层封装与解封装的完整拆解。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:juejin</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-10-02-05" data-date="2026-10-02" data-t="一次 HTTPS 请求的全链路：879 字节是怎么来的"
+          data-o="一次 HTTPS 请求逐层封装与解封装的完整拆解。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>掘金 10-01 的一篇协议栈梳理，把「浏览器访问一个页面」从 DNS 到物理层逐层拆开，每层都给出了具体字节数与系统调用顺序。最有用的是那张**开销账**：500 字节的 HTTP 体 + 约 300 字节头 = 800 字节；加 TLS Record 头 5 字节 + AEAD 标签 16 字节 = 821；加 TCP 头 20 = 841；加 IP 头 20 = 861；加以太网帧头 14 + FCS 4 = **879 字节——协议开销 379 字节，开销率 75%**。由此推出 MTU 分层：以太网 1500 → MSS 1460（1500 − IP 20 − TCP 20）→ TLS Record 有效载荷 1439（再减 21），并点名 **PPPoE 场景 MTU 1492 → MSS 1452，需要 PMTUD 探测**，而「**PMTUD 黑洞**（ICMP 3/4 被防火墙丢弃）」是常见性能问题。时序账也很具体：同机房首次 HTTPS 约 **30ms = DNS 5 + TCP 握手 10 + TLS 握手 10 + HTTP 往返 5**，并注明 TLS 1.3 的 0-RTT 可省到 20ms、HTTP/3 连接迁移省掉重连开销。逐跳转发的部分强调了三条不变量：**IP 头端到端不变、MAC 每跳重写、TTL 每跳递减**，中间路由器只处理到网络层（DPI 与 NAT 是例外）。
+        <span class="k">为什么值得你花时间</span>你每天在跟上传、下载、流式返回、跨机房调用打交道，这条给的是**一个可以用来估数与吵架的账本**。三个具体收益：**带宽与成本估算**——按 75% 协议开销率算 CDN 与出网账单，比拍脑袋准；**排障顺序**——「下载慢」先分清是 DNS、握手还是往返，30ms 的分解表直接当 checklist；**设计依据**——75% 的开销率正好解释了为什么头部压缩（HPACK）与多路复用值得上，也解释了为什么你的流式接口在小块高频返回时会被头开销吃掉。它是一篇整理稿而非一手实验（作者自己标注是「synthesis 页」、数字为经验量级），所以**当教材读、别当基准引用**。
+        <span class="k">上手成本</span>15 分钟（读「数据包大小估算」「MTU 与分片」「完整时序」三节）
+        <span class="k">入口</span><a href="https://juejin.cn/post/7691166815721209897" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7691166815721209897</a>
+        <a class="more" href="detail/2026-10-02-05.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">06</span>
+        <span class="tt">
+          <span class="t1">测试金字塔：分层是成本结构，不是用例比例</span>
+          <span class="t1b">按成本结构决定每类测试放在哪一层的判据。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:juejin</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-10-02-06" data-date="2026-10-02" data-t="测试金字塔：分层是成本结构，不是用例比例"
+          data-o="按成本结构决定每类测试放在哪一层的判据。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>掘金 10-01 的一篇方法论整理，核心论点一句话就说完了：**金字塔表达的是成本结构（越往上越慢、越贵、越脆），不是用例数量的 KPI**。它做了三件比常见科普更有用的事。第一，**拆穿比例数字**：网上流传的「单测 70% / 集成 20% / E2E 10%」**没有权威出处**，是对 Mike Cohn 示意图的口语化转述，本文明确不给推荐比例。第二，**按语境换形状**：单体 + 领域逻辑密集 → 金字塔；前端 / UI 重、逻辑薄 → 测试奖杯（Kent C. Dodds，静态检查 + 集成最厚）；微服务、跨服务装配复杂 → 蜂巢（契约测试为主体）；不变式只有一条——**反馈越快、定位越准的测试应该越多**。第三，**把成本拆成四个维度**（编写、执行、维护、失败信噪比），并指出最被低估的是 **E2E 的维护成本是超线性上升**（随 UI / 环境变更反复触发），同时诚实标注「1 个 E2E ≈ 10 个单测、50 倍维护成本」这类倍数是**流传广但无可靠出处的经验值，只能当数量级直觉、不能进预算**。落地部分是四条判据（是否必须跨进程、依赖能否 mock、失败定位是否唯一、该逻辑变更频率高不高）加一张 CI 分层表：每次 commit 单元 + 静态检查 &lt; 2–5 分钟直接阻断合并；每个 MR 加服务 / 契约 &lt; 15–30 分钟；合主干加集成 + 冒烟 E2E &lt; 1–2 小时；夜间跑全量 E2E + 性能 + 长稳。
+        <span class="k">为什么值得你花时间</span>你在 Gitea 上给 wayfinder 之类的项目跑 `/implement`，每次收尾都要决定「测什么、测到哪一层」，而 Agent 写测试时的默认倾向正好是反的——**它爱写端到端**（看起来最像「验证过」），于是每加一条 E2E，未来每次改 UI 都要为它付一次维护费。这条给你的是当场可用的拒绝理由与替代方案：**用四条判据把用例往下层压**（能 mock 就别起真环境、失败定位不唯一就拆开），**用 CI 分层表给「跑多久」定预算**，以及**别再把覆盖率比例当考核指标**（把指标换成 CI 反馈时长 + flaky 率 + 逃逸率）。最后一条对你尤其相关：LLM 应用的测试是金字塔的变形——**评测集 + 门禁取代大量单测**，这与你 09-30 记过的「先固定任务、再横向比钱和时间」是同一套思路。
+        <span class="k">上手成本</span>15 分钟（读「二、其他分层模型」「四、反模式」「五、分层策略怎么落地」三节）
+        <span class="k">入口</span><a href="https://juejin.cn/post/7691201978225344554" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7691201978225344554</a>
+        <a class="more" href="detail/2026-10-02-06.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">07</span>
+        <span class="tt">
+          <span class="t1">AI 应用胶水层：一个人单干时 Node 的 50 个场景与 6 个优化</span>
+          <span class="t1b">Node 做 AI 应用胶水层与并发的选型清单。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:juejin</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-10-02-07" data-date="2026-10-02" data-t="AI 应用胶水层：一个人单干时 Node 的 50 个场景与 6 个优化"
+          data-o="Node 做 AI 应用胶水层与并发的选型清单。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>掘金 10-01 的一篇选型盘点（作者自述单干、按 7 大类列 50 个场景、每类给表 + 可抄代码 + 优化对照）。与你的工作最近的是第七类「AI 应用胶水层」（44–50 号）：RAG 问答后端、Agent 任务编排（异步流 + SSE 推回前端）、语音 / 图片 pipeline、爬虫加向量入库、按 token 计费的 AI 网关、Prompt 评测 harness、支付 / AI 异步的 Webhook 回调。优化对照表给了 6 招与量级：`fetch` 用 keepAlive 的 undici Agent（QPS 翻 2–3 倍）、`pipeline` 替代 `readFile`（2GB 文件内存恒定）、`node:cluster` 按核 fork（4 核近线性）、Redis 缓存热点 60s、重活扔 `worker_threads`（p99 800ms → 90ms）、大 JSON 流式解析（事件循环 lag 300ms → 5ms）。作者也把边界写在明处：CPU 密集转码、强事务账务、硬实时与超大单体不要硬上 Node；并点名了一条 Agent 场景的安全约定——**模型输出必须过白名单校验再执行，完成状态必须独立查库、不要信模型自己说的**。局限他自己认了：样本只有两台机器、没算 p 值、数字以仓库 main 为准。
+        <span class="k">为什么值得你花时间</span>你平台里的「一句话成片」正是**长任务 + 流式进度 + 按 token 计费**的组合，这条列的三件事你都会碰到：**流式返回与按块计费**（作者给的写法是边收 chunk 边累加，别等流结束）、**Webhook 先验签、先落库、再回 200**（重试会打爆你的队列）、**模型输出不许直通 `exec`**。它省时间的点在于这些不是新知识，而是**一份可抄的默认配置**：与其从零调，不如对着这 6 条优化先量一遍自己的 p99 和内存，看哪条已经踩了。需要扣掉的信誉分：作者自称「群友实测」「我自己账单」的地方都不是可复现实验，凡是要进预算的数字，自己去打一遍 autocannon。
+        <span class="k">上手成本</span>15 分钟（读第七类 +「优化对照表」两节；跑 Benchmark 另算）
+        <span class="k">入口</span><a href="https://juejin.cn/post/7691227873459028006" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7691227873459028006</a>
+        <a class="more" href="detail/2026-10-02-07.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">08</span>
+        <span class="tt">
+          <span class="t1">Agentic AIGC 驱动的广告素材修复实践（QCon 上海）</span>
+          <span class="t1b">用 Agent 在生成环节保住广告素材合规。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:infoq</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-10-02-08" data-date="2026-10-02" data-t="Agentic AIGC 驱动的广告素材修复实践（QCon 上海）"
+          data-o="用 Agent 在生成环节保住广告素材合规。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>InfoQ 中国站 10-01 的 QCon 上海议题稿，标题为《生成即合规：Agentic AIGC 驱动的广告素材修复实践》。**必须说明核验状态**：`infoq.cn` 在我这侧仍是前端渲染，`web_fetch` 只返回标题（拿到的是同一句话，无正文），因此这条的**议题内容、方案细节与讲者均未能核验**，以下只据标题与摘要判断，不作推断。可确认的只有三点：它来自 InfoQ 的 QCon 上海议题渠道（工程实践定位，非厂商稿）；主题是 **Agentic AIGC 用在广告素材的修复**上；主张是**「生成即合规」**——把合规做进生成环节，而不是生成之后再补救。
+        <span class="k">为什么值得你花时间</span>标题里的主张正好压在你平台的一条真实链路上：**广告素材是「生成 → 审核 → 返修」的循环业务，返修成本和安全风险都在「先产出再发现违规」这个顺序里**。你 09-29 记过「AIGC 内容平台的合规要靠独立一层」，10-01 记过「不能假设模型自带护栏」，这条如果内容成立，就是**同一判断在具体业务形态（广告素材）上的落地讲法**——把审核前移成生成时的一条约束，而不是事后打补丁。今天只花 5 分钟的话，做一件事就够：**记住关键词「生成即合规 / 素材修复」去 InfoQ 搜这篇，等正文可读或视频放出时再看**；如果你手上正有素材审核的需求，把它排进选型清单。反面如实说：**这一条本轮证据最薄**（只有标题），我保留它进正文的理由是业务相关度最高且来源是工程实践的 QCon 渠道，而不是我核验到了什么——如果你更希望正文只放核实过的东西，这条就是第一个该被替换的位置。
+        <span class="k">上手成本</span>15 分钟（读正文；本轮只有标题，可能需要等正文或视频）
+        <span class="k">入口</span><a href="https://www.infoq.cn/article/TLjNcyBg9Z72HV5kJ2kp" target="_blank" rel="noopener noreferrer">https://www.infoq.cn/article/TLjNcyBg9Z72HV5kJ2kp</a>
+        <a class="more" href="detail/2026-10-02-08.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+  <div class="empty" id="empty" style="display:none">这个筛选下没有条目。</div>
+  
+  <div class="foot">
+    <b>每源今日条数</b><br>✅ hf-org:deepseek-ai 3 · ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15 · ✅ vendor:deepmind 10 · ✅ vendor:mistral 10 · ✅ skills:trending 12 · ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ repo:deepseek-ai/deepseek-harness 3 · ✅ commit:deepseek-ai/deepseek-harness 6 · ❌ docs:deepseek-api 0（今日无变化，非 fetch 失败）· ✅ hn:show 12 · ✅ hf:spaces-trending 20 · ✅ people:simonwillison 12 · ✅ hn:stories 7 · ✅ cn:juejin 10 · ✅ cn:sspai 10 · ✅ cn:qbitai 10 · ✅ cn:infoq 10 · ✅ people:latent-space 6 · ✅ people:interconnects 6 · ✅ people:hf-blog 8 · ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5（33 源 · 0 条的源 1 个 · fetch 失败源 0 个）
+    <details class="rej"><summary>被过滤器砍掉的 21 条（信任雷达的依据）</summary>
+        <div class="rejrow"><span class="t">11 条旧发布与量化变体（`DeepSeek-V4.1-Flash`、`DeepSeek-V4-Flash-Vision-Exp`、`DeepSeek-V4-Pro-0813`、`GLM-5.3-Flash-BF16`、`GLM-5.3-BF16`、`MiniMax-Music3`、`MiniMax-H3`、`MiniMax-M3-MXFP8`、`Kimi-K3`、`Kimi-K2.7-Code`、`Kimi-K2.6`）（另 4 条 seen 见末行）</span><span class="r">6–9 月的旧发布、同款模型的 BF16 / MXFP8 变体与「又被重新列一遍」的高星模型（`Kimi-K3` 是 6 月 13 日、likes 11570），**本周无新进展**；**`huggingface.co` 本轮不可达（解析到非公网 IP）**，也无法核验</span></div><div class="rejrow"><span class="t">3 条（Qwen-Image-2.1、Qwen-Image-2.1-PE-I2I、Qwen-Image-2.1-PE-T2I）</span><span class="r">seen: true 或 9 月旧发布，能力无变化</span></div><div class="rejrow"><span class="t">15 条（The eternal complement、Albertsons 零售、The Den 用 ChatGPT Work、模型蒸馏攻击、小企业 AI 培训、GPT-6.1 Sol、DevDay 2026 Recap、dots、澳大利亚网络事件、前沿训练安全案例、Lenfest 资助、Codex Originals 征集、Basis 报税、Proaction、Academy 两周年）</span><span class="r">B 端案例稿、政策稿、合作稿与征集稿，无可上手入口；**GPT-6.1 Sol 与 DevDay 已于 09-30 正文 05 发过**，这两条是同一事件的原始公告；**`openai.com` 昨日 HTTP 403、本轮未能二次核验**</span></div><div class="rejrow"><span class="t">10 条（Hallo Deutschland、Cloudera 合作、遗留代码现代化、€3B 融资、HUMAIN、区域推理与新欧洲算力、prompt 治理、Mozilla 合作、Agentic Search、Shieldstral）</span><span class="r">融资、合作与 B 端案例稿，无可上手入口；最新一条停在 09-28</span></div><div class="rejrow"><span class="t">9 条（`ai-image-generation`、`reddit-automation`、`ui-taste`、`design-mobile-apps`、`ai-video-generation`、`find-skills`、`video-edit`、`image-to-video`、`seedance-2-5-reference-to-video`、`wan-3-0-prime-reference-to-video`、`agent-browser`）</span><span class="r">`ai-image-generation` 是 `inference-sh` 的 belt CLI 薄壳（208.7K 安装、仓库 `magentosh/superpowers`），与 09-29 正文 03 能力无变化；`reddit-automation` 是社区平台自动化；其余 9 条 seen。**`ios-design` 进正文 03**（同 owner 今日只给 1 席）</span></div><div class="rejrow"><span class="t">28 条版本号流水（claude-code v2.1.287 / .286 / .285；codex 0.162.0-alpha.1 / .161.0-alpha.13 / .12；gemini-cli v0.64.0-nightly ×2 / v0.63.0-preview.0；Spec Kit 1.0.13 / .12 / .11；opencode v2.0.21 / v1.18.34 / v2.0.20；MCP servers 2026.8.31 / 8.18 / 7.10；mattpocock/skills v1.2.3 / .2 / 1.2.0；dsh v0.2.0-rc.2 / .rc.1 / v0.1.7-rc.2，以及 5 条 dsh commit）</span><span class="r">版本号流水 / nightly / alpha：在「为什么值得你花时间」这一栏答不上来。**唯一想留下的是 claude-code v2.1.287 的 Claude Mods（插件可修改更深层行为 + 内置 `You should know` 侧侧 Agent）**，但它是一串流水里的一行、且 `github.com` 本轮不可达无法核验，故仍按规则入表；dsh 自身版本对你而言是**工具环境**而非选题</span></div><div class="rejrow"><span class="t">16 条（Real-time Solar System、Jev Plays Pokémon、HN.watch、Ledge.sh、Destroy Any Website with Stickman、NSL – WSL for Linux、PaperMono、Free alternative to graphics design、JBR-001 桌面机器人、Dental Scope、Reladraw、Lofi Cities，另 4 条 seen）</span><span class="r">玩具、审美与个人工具类。`NSL`（WSL for Linux）有仓库但与本业无关。**`Ledge.sh` 进正文 02**（同源今日只给 1 席）</span></div><div class="rejrow"><span class="t">20 条 Spaces（Qwen-Image-2.1、QWEN_EDIT_IMAGE、wan777、MiniMax-H3-Turbo-Lora-UNCENSORED、Krea-2-Turbo_v2、qwen-image-2.1-uncensored-gguf、qwen-image-2.1-uncensored-aio-loras、Qwen-Image-2.1-viggle-turbo、minimax-h3、laya-demo、OpenVuln、kv-i2v、qwen-image-2-1-studio、nemotron-diarization、Omni-videos-custom-auto_prompt、qwen-image-2-1、Qwen-Image-Edit-Rapid-AIO-Loras、MiMo-RL-Envs-Explorer、jev-decision-index、chessfly）</span><span class="r">与 09-27 / 09-28 / 09-30 / 10-01 基本同一批（0 条 seen、位次几乎未动），是社区 NSFW、自训 / 加速 LoRA 与语音 demo。**本轮 `huggingface.co` 完全不可达**，20 条一条都没能打开，入选判断只依据标题与位次——这不是「不值得占席位」的结论，而是「今天无法评估」，记在明处</span></div><div class="rejrow"><span class="t">9 条（Quoting Matthew Green、He Built This City 博物馆模型、Quoting Anthropic Frontier Red Team、GPT 6.1 Sol 评论、Quoting @joedaroo、Quoting Muse AI Agent、S3 Is the Future、Bluesky reply bot checker）（另 3 条 seen 见末行）</span><span class="r">推文引用、HN 评论、博物馆见闻与个人小工具。**`Quoting Matthew Green`（Agent 之间通过共享 package cache 传递指令、构成蠕虫的两半）今天确实可读**，判断值得记但只值一句话，已并入正文 01／08 的话题脉络而不单占席位；`Quoting Anthropic Frontier Red Team` 是 10-01 正文 06 的同一事件</span></div><div class="rejrow"><span class="t">6 条（Claude partial outage、Alan Kay 谈香农视频、Sonnet 5.5 原始公告、Prompting Claude Opus 5.5，另 2 条 seen）</span><span class="r">`Sonnet 5.5`（882 分）是 09-29 正文 01 的同一事件；outage 是状态页；Alan Kay 是视频。`Prompting Claude Opus 5.5` 已于 10-01 表内说明过（质量够但让位）</span></div><div class="rejrow"><span class="t">10 条（AI Agent 面试题库、ai agent + redis 缓存、Opus5.5 做赛车游戏、OpenAI 再融 300 亿、JavaScript 隐式转换踩坑、containerd 如何拉取镜像、OmniGame 技术白皮书，另 3 条见上）</span><span class="r">面试题库、缓存入门、踩坑记录、融资稿与前端小游戏，无可上手入口。**`测试金字塔` 进正文 06、`协议栈数据流全景分析` 进正文 05、`Node.js 50 个场景` 进正文 07**（同源今日 2 正文席，第三条已在 10-01 表内说明过让位）</span></div><div class="rejrow"><span class="t">10 条（Bungie 的列车、2Do 详解、国庆自驾用 Agent、派早报 ×2、社区速递、Apple Watch Series 12、ColorOS17、派评 App、Termux 安卓开发服务器）</span><span class="r">消费数码与生活内容。`Termux`（不 root 在安卓上跑 AI Agent 与微型 Linux）形态有趣但与你的业务无关</span></div><div class="rejrow"><span class="t">9 条（OpenAI 推理之父访谈、工业 AI 直播回顾、Anthropic 给智谱打广告、GPT-6 Astra 接宇树 G1、DeepSeek DSec、36 家敲钟的机器人公司、DeepSeek 昇腾组件、Manus 2.0、何恺明 NAT-ARC）（另 1 条 seen 见末行）</span><span class="r">访谈、直播回顾、融资与厂商稿。**`Gemini 4 Argon` 进正文 01**（同源今日 1 正文席 + 1 折叠线索）。**`何恺明团队 NAT-ARC` 是今天最可惜的漏网**：纯视觉解 ARC、ImageNet MAE 预训练 + 每道题单独 LoRA，单模型 0.6B 拿 63.4% pass@2、集成 70.2%（对照专用 8B LLM 的 71.6%），并首次证明预训练能修好视觉路线的 scaling（无预训练时 large→huge 反而掉点）——**但论文未给代码仓库**，按「论文只收带代码的」不占席位；`GPT-6 Astra 接宇树 G1` 与 `Manus 2.0` 分别是 09-30 / 10-01 的延伸</span></div><div class="rejrow"><span class="t">9 条（Cloudflare Worker 多租户 SaaS、Elastic Beanstalk 跑上 EKS、GitOps 与合规、Google 开源 AX、GitLab Duo 自托管、DeepSeek 昇腾组件、火山引擎语音内容编辑、算力荒评估报告、意图驱动数据治理）</span><span class="r">**`infoq.cn` 今日仍只返回标题（正文前端渲染）**，正文 08 因此标注为「未核验」。`火山引擎语音内容编辑模型` 是业务相关度最高的一条，但 **`docs.volcengine.com` 昨日同样前端渲染、正文返回空**，连模型名都无法确认，连续第二天按核验口径不收录；其余为厂商稿、版本发布与 B 端实践</span></div><div class="rejrow"><span class="t">6 条（Why Dwarkesh is Wrong about Computer Use、AINews DevDay 汇总、Claude Code's Next Era 播客、AMD 收购 World Labs、Opus 5.5 讲解视频、AINews Gemini 4）（另 0 条 seen）</span><span class="r">播客与资讯汇总，无可执行入口。**`AINews Gemini 4 Argon` 是正文 01 的核验来源之一，也是文末折叠那 5 条零散发布的唯一出处**（同源今日 1 正文席的支撑材料 + 1 折叠项）</span></div><div class="rejrow"><span class="t">6 条（RSI 辩论、我为何还不信真正的 RSI、开源模型阅读清单、一次辞职、平均人何时感受到 AI、开放模型力量格局）</span><span class="r">观点、播客与书单，无可执行入口</span></div><div class="rejrow"><span class="t">7 条（NVIDIA Kumo Tabular、MCP Agent 来源核验、Holo4、LFM2.5-VL-DSpark、UK AISI 与 EvalEval 基准、oMLX 作者加入 HF、Open TTS Leaderboard）</span><span class="r">训练、机器人与基准方法向，与本业无关。**`Olmo-core 3` 进正文 04**（同源今日只给 1 席，且该条本轮未能抓取原文）</span></div><div class="rejrow"><span class="t">5 条（Import AI 474–470）</span><span class="r">通讯稿与观点汇总，无可执行入口；**`importai.substack.com` 本轮不可达**</span></div><div class="rejrow"><span class="t">5 条（AI 原生思维、AI 原生开发流程、GPT 6 Astra 做桃花源记、电商 Agent 解剖、Warp 自我进化）</span><span class="r">8 月旧文与翻译稿，最新一条停在 08-31</span></div><div class="rejrow"><span class="t">5 条（The Dot and the Swarm、The Overhang、Agency and Agents、该用哪个 AI 的指南、聊天机器人的黄昏）</span><span class="r">观点随笔，无可执行入口。`The Dot and the Swarm`（10-01）值得记的名字是「Bitter Lesson 的产品化」，但仍无可执行入口</span></div><div class="rejrow"><span class="t">40 条 seen 条目（DeepSeek-V4.1-Flash、Qwen-Image-2.1 三条、GLM-5.3-Flash、MiniMax-Music3 / H3、ui-taste / design-mobile-apps / ai-video-generation / find-skills / video-edit / image-to-video / seedance / wan-3-0-prime / agent-browser、Gemini 3.8 Live 系四条、Mistral 三条、Photo Scrubber / DevDay 直播 / Claude Sonnet 5.5 / 2026 in LLMs、Prompting Claude Opus 5.5 / nine loops / Reladraw / Lofi Cities / Sonnet 5.5、Opus 5.5 讲解视频 / AMD 收购、Manus 2.0、baoyu 三条）</span><span class="r">seen: true —— 近几份简报已发（严格按候选文件标记排除，不占今日席位；`docs:deepseek-api` 今日 0 条，属「今天没变化」而非失败源）</span></div>
+      </details>
+  </div>
+</div>
+<script>
+var THEME_ORDER=['auto','light','dark'];
+var THEME_LABEL={auto:'◐ 自动',light:'☀ 亮',dark:'☾ 暗'};
+function themeMode(){try{var m=localStorage.getItem('radar.theme');return THEME_ORDER.indexOf(m)>=0?m:'auto'}catch(e){return 'auto'}}
+function themeApply(){
+  var m=themeMode();
+  var dark=(m==='dark')||(m==='auto'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
+  document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+  var b=document.getElementById('themebtn');
+  if(b){
+    b.textContent=THEME_LABEL[m];   /* 显示的是**当前**状态，不是"点了会变成什么" */
+    b.title='主题：'+(m==='auto'?'跟随系统':(m==='dark'?'暗色':'亮色'))+'（点击切换）';
+  }
+}
+function themeWire(){
+  var b=document.getElementById('themebtn');
+  if(b)b.addEventListener('click',function(){
+    var i=THEME_ORDER.indexOf(themeMode());
+    var next=THEME_ORDER[(i+1)%THEME_ORDER.length];
+    try{localStorage.setItem('radar.theme',next)}catch(e){}
+    themeApply();
+  });
+  /* 停在"自动"时，系统换了主题要跟着换（不用刷新页面） */
+  if(window.matchMedia){
+    var mq=window.matchMedia('(prefers-color-scheme: dark)');
+    var h=function(){if(themeMode()==='auto')themeApply()};
+    if(mq.addEventListener)mq.addEventListener('change',h);else if(mq.addListener)mq.addListener(h);
+  }
+  themeApply();
+}
+
+function favOK(){try{localStorage.setItem('radar.probe','1');localStorage.removeItem('radar.probe');return true}catch(e){return false}}
+var FAV_ON=favOK();
+function favEsc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function favAll(){if(!FAV_ON)return[];try{var a=JSON.parse(localStorage.getItem('radar.fav.v1')||'[]');return a instanceof Array?a:[]}catch(e){return[]}}
+function favSave(a){if(!FAV_ON)return;try{localStorage.setItem('radar.fav.v1',JSON.stringify(a))}catch(e){}}
+function favToggle(o){
+  var a=favAll(),i=-1,k;
+  for(k=0;k<a.length;k++){if(a[k].id===o.id){i=k;break}}
+  if(i>=0){a.splice(i,1)}else{a.unshift({id:o.id,date:o.date,t:o.t,o:o.o,hd:o.hd,ts:Date.now()})}
+  favSave(a);return i<0;
+}
+/* 相对路径，所以本机 file:// 打开和线上 Pages 打开都能点 */
+function favURL(x){return location.pathname.replace(/[^/]*$/,'')+(x.hd?'detail/'+x.id+'.html':x.date+'.html')}
+function favPaint(){
+  var a=favAll(),ids={},k;
+  for(k=0;k<a.length;k++){ids[a[k].id]=1}
+  document.querySelectorAll('.star').forEach(function(b){
+    var on=!!ids[b.dataset.id];
+    b.setAttribute('aria-pressed',on?'true':'false');
+    b.textContent=on?'★':'☆';
+    b.title=on?'取消收藏':'收藏这一条';
+    var row=b.closest('.row');
+    if(row)row.classList.toggle('fav',on);
+  });
+  var n=document.getElementById('favn');if(n)n.textContent=String(a.length);
+  var c=document.getElementById('favcnt');if(c)c.textContent=String(a.length);
+  var box=document.getElementById('favbox');
+  if(box)box.style.display=a.length?'':'none';   /* 一条收藏都没有时，别在页面上挂个空盒子 */
+  var list=document.getElementById('favlist');
+  if(list){
+    var h='';
+    for(k=0;k<a.length;k++){
+      var x=a[k];
+      h+='<div class="favrow"><a class="favt" href="'+favURL(x)+'">'+favEsc(x.t)+'</a>'
+       +'<div class="favo">'+favEsc(x.o)+'</div>'
+       +'<div class="favm"><span class="favd">'+favEsc(x.date)+'</span>'
+       +'<button class="favrm" type="button" data-id="'+favEsc(x.id)+'">移除</button></div></div>';
+    }
+    list.innerHTML=h;
+  }
+}
+function favWire(){
+  if(!FAV_ON){
+    /* 浏览器不给存（Safari 打开 file:// 就是这样）→ 干脆不显示星标，免得点了没反应 */
+    document.querySelectorAll('.star').forEach(function(b){b.style.display='none'});
+    return;
+  }
+  document.querySelectorAll('.star').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();   /* 关键：点星只收藏，不展开这一条 */
+      favToggle({id:b.dataset.id,date:b.dataset.date,t:b.dataset.t,o:b.dataset.o,hd:b.dataset.hd==='1'});
+      favPaint();
+      if(typeof afterFav==='function')afterFav();
+    });
+  });
+  var box=document.getElementById('favbox');
+  if(box)box.addEventListener('click',function(e){
+    var rm=e.target.closest('.favrm');
+    if(!rm)return;
+    e.preventDefault();
+    favSave(favAll().filter(function(x){return x.id!==rm.dataset.id}));
+    favPaint();
+    if(typeof afterFav==='function')afterFav();
+  });
+  var cp=document.getElementById('favcopy');
+  if(cp)cp.addEventListener('click',function(){
+    var a=favAll(),lines=[],k;
+    for(k=0;k<a.length;k++)lines.push('- '+a[k].date+' · '+a[k].t+' — '+location.origin+favURL(a[k]));
+    var txt=lines.join(String.fromCharCode(10));
+    var done=function(ok){cp.textContent=ok?'已复制':'复制失败，请长按选择';setTimeout(function(){cp.textContent='复制清单'},1800)};
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)});
+    }else{
+      var ta=document.createElement('textarea');ta.value=txt;
+      ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
+      var ok=false;try{ok=document.execCommand('copy')}catch(e){}
+      document.body.removeChild(ta);done(ok);
+    }
+  });
+  favPaint();
+}
+
+var f='all';
+var rows=[].slice.call(document.querySelectorAll('.row'));
+var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+// 手风琴：任何时候只留一条展开，点开新的、旧的那条自动合上。
+// 不这么做的话八条能全开着 = 整份简报被摊平，"先扫再展开"的分诊就白做了。
+rows.forEach(function(r){
+  r.addEventListener('toggle',function(){
+    if(!r.open) return;
+    rows.forEach(function(o){ if(o!==r&&o.open) o.open=false; });
+    // 刚合上的那条如果在本条上方，页面会整体上移、把本条顶出视口 —— 拉回来
+    if(r.getBoundingClientRect().top<8){
+      r.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'});
+    }
+  });
+});
+
+function apply(){
+  var shown=0;
+  rows.forEach(function(r){
+    var ok = f==='all' || (f==='fast'&&r.dataset.fast==='1') || (f==='tool'&&r.dataset.tool==='1')
+      || (f==='fav'&&r.classList.contains('fav'));
+    r.style.display = ok ? '' : 'none';
+    if(ok) shown++;
+    // 被筛掉时顺手合上：留着它"开着"没意义，切回来还会自己弹开
+    else if(r.open) r.open=false;
+  });
+  document.getElementById('cnt').textContent='显示 '+shown+' / '+rows.length+' 条';
+  document.getElementById('empty').style.display = shown ? 'none' : '';
+  document.querySelectorAll('.seg').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.f===f)); });
+}
+document.querySelectorAll('.seg').forEach(function(b){ b.addEventListener('click',function(){ f=b.dataset.f; apply(); }); });
+/* 收藏变了要重算筛选：正在看「★ 收藏」时取消收藏，那一条得当场消失 */
+function afterFav(){ apply(); }
+themeWire();
+favWire();
+apply();
+</script>
+</body></html>
