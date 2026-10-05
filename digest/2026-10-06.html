@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>雷达简报 2026-10-06</title>
+<script>
+(function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
+var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
+document.documentElement.setAttribute('data-theme',d?'dark':'light');})();
+</script>
+<style>
+:root{
+  color-scheme:light;
+  --ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;
+  --ok:#0f7b53;--warm:#c2410c;--link:#1d4ed8;
+  --tap:#f7f8fa;--seg-bg:#fff;--seg-on-ink:#fff;--btn-bg:#fff;
+  --c-model:#1d4ed8;--c-model-bg:#f2f5ff;--c-model-line:#dbe4ff;
+  --c-skill:#7c2d12;--c-skill-bg:#fff6f1;--c-skill-line:#ffe4d3;
+  --c-tool:#0f7b53;--c-tool-bg:#f1fbf6;--c-tool-line:#d6f0e4;
+  --c-cn:#7e22ce;--c-cn-bg:#faf5ff;--c-cn-line:#efe0ff;
+  --c-people:#0369a1;--c-people-bg:#f2f9ff;--c-people-line:#d6ecfb;
+  --c-method:#4a4f5a;--c-method-bg:#f7f8fa;--c-method-line:#e6e8ec;
+  --card-bg:#f5f6f9;--card-line:#d9dde7;--card-spine:#2f5bd7;--card-det:#edeff4;
+  --card-sep:#e2e5ed;--card-k:#69738c;--card-det-ink:#3f4553;
+  --more-bg:#f2f5ff;--more-line:#dbe4ff;--more-bg-on:#fff;--more-line-on:#ccd6ec;
+  --star:#c9ced8;--star-on:#e8a90c;--star-hover:#d9a406;
+  --fav-bg:#fffdf6;--fav-line:#ece5cf;--fav-ink:#8a6d1f;--fav-sep:#f2eddd;
+  --drift-bg:#fff7ed;--drift-line:#fed7aa;--drift-ink:#9a3412;
+}
+/* 暗色。**只覆盖变量**，不动任何规则 —— 所以明暗两套永远不会走偏。
+   JS 会把 data-theme 落到 <html> 上：auto 由脚本解析成实际的 light/dark，
+   所以 CSS 里不需要再写一遍 @media (prefers-color-scheme)。 */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ink:#e4e7ee;--ink2:#a6adbb;--ink3:#79808e;--line:#2a2f38;--bg:#14161a;--bg2:#0e1013;
+  --ok:#54c894;--warm:#f2935e;--link:#7fa6ff;
+  --tap:#1b1f27;--seg-bg:#1c212a;--seg-on-ink:#14161a;--btn-bg:#1c212a;
+  --c-model:#8fb4ff;--c-model-bg:#182338;--c-model-line:#28395a;
+  --c-skill:#f0a97f;--c-skill-bg:#2a1e17;--c-skill-line:#44301f;
+  --c-tool:#6ed3a4;--c-tool-bg:#14291f;--c-tool-line:#204434;
+  --c-cn:#c6a4f2;--c-cn-bg:#221a30;--c-cn-line:#372a4b;
+  --c-people:#74c2e8;--c-people-bg:#132530;--c-people-line:#1f3d4d;
+  --c-method:#a6adbb;--c-method-bg:#1c212a;--c-method-line:#2a2f38;
+  --card-bg:#1c212a;--card-line:#333a46;--card-spine:#5b82f0;--card-det:#171b22;
+  --card-sep:#2b313b;--card-k:#8b93a3;--card-det-ink:#c3c9d4;
+  --more-bg:#1b2740;--more-line:#2c3d5f;--more-bg-on:#20242d;--more-line-on:#343c4a;
+  --star:#4c525e;--star-on:#f0b429;--star-hover:#ffc94d;
+  --fav-bg:#1f1b12;--fav-line:#3a3221;--fav-ink:#dcb862;--fav-sep:#2b2618;
+  --drift-bg:#2a1c12;--drift-line:#4a3320;--drift-ink:#f0a97f;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg2);color:var(--ink);
+font:15px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+body{padding:0 0 40px}
+.phone{max-width:460px;margin:0 auto;background:var(--bg);min-height:100vh}
+/* 宽屏（电脑）：容器放宽一倍（460 -> 920），字号与内边距同步放大，读起来不空 */
+@media (min-width:960px){
+  .phone{max-width:920px;box-shadow:0 0 0 1px var(--line)}
+  body{font-size:16px}
+  .head{padding:26px 32px 14px}
+  .count{padding:10px 32px 4px}
+  .hit{padding:14px 32px}
+  .det{padding:12px 32px 20px 68px}
+  .fold,.foot{padding-left:32px;padding-right:32px;margin-left:0;margin-right:0}
+  .drift{margin-left:32px;margin-right:32px}
+}
+@media (max-width:520px){.phone{box-shadow:none}}
+.kicker{font-size:11px;letter-spacing:.14em;color:var(--ink3);font-weight:600;
+font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.drift{margin:12px 18px 0;padding:10px 12px;border-radius:10px;background:var(--drift-bg);
+border:1px solid var(--drift-line);color:var(--drift-ink);font-size:13px}
+.head{padding:18px 18px 12px}
+h1{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
+.strap{font-size:12px;color:var(--ink2)}
+.segs{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.seg{font-size:12px;padding:5px 11px;border-radius:99px;border:1px solid var(--line);
+background:var(--seg-bg);color:var(--ink2);cursor:pointer;font-weight:600;font-family:inherit}
+.seg[aria-pressed="true"]{background:var(--ink);color:var(--seg-on-ink);border-color:var(--ink)}
+/* 主题开关：在 kicker 那一行的最右边。三态循环 自动 → 亮 → 暗 → 自动，
+   按钮上显示的是**当前**状态（而不是"点了会变成什么"）—— 后者每次都得在脑子里转一道 */
+.kickerrow{display:flex;gap:10px;align-items:center;justify-content:space-between}
+.themebtn{flex:none;border:1px solid var(--line);background:var(--btn-bg);color:var(--ink3);
+ border-radius:99px;font:inherit;font-size:11px;font-weight:600;padding:3px 10px;cursor:pointer;
+ font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
+.themebtn:active{transform:scale(.96)}
+.count{font-size:11px;color:var(--ink3);padding:8px 18px 4px;font-family:ui-monospace,Menlo,monospace}
+/* 四条边都预留：折叠态只留最上面那条细线，左右和下边是**透明**占位 ——
+   展开时把整圈轮廓点亮，宽度不变（否则一展开内容会横向抖一下）。左边留 3px 给脊线。 */
+.row{border:1px solid transparent;border-top-color:var(--line);border-left-width:3px}
+.row:last-of-type{border-bottom-color:var(--line)}
+.hit{display:flex;gap:10px;align-items:center;width:100%;text-align:left;padding:12px 18px;
+background:none;border:0;font:inherit;color:inherit;cursor:pointer;list-style:none}
+.hit::-webkit-details-marker{display:none}
+.hit:active{background:var(--tap)}
+.n{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--ink3);width:16px;flex:none}
+.tt{flex:1;min-width:0}
+.t1{font-weight:600;font-size:14.5px;line-height:1.35;display:block}
+.t1b{margin-top:2px;font-size:12.5px;color:var(--ink2);line-height:1.45;
+ display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.t2{margin-top:3px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.car{color:var(--ink3);font-size:16px;flex:none;transition:transform .15s,color .15s}
+
+/* ── 展开态：整条（摘要头 + 正文区）合起来是**一张卡** ──────────────────
+   折叠态 = 白底、只有细线分隔，安静地排成一列（这是拿来扫读的）。
+   展开态 = 整圈**中性灰**轮廓收边，左边加粗成一条蓝色脊线；摘要头和正文区同属一个
+            灰阶、只差深浅，看着是"这一条展开了"而不是"下面贴了另一块东西"。
+   底色**刻意用灰不用蓝**：第一版把摘要头和正文区都染成浅蓝，一整块大面积蓝底压着字，
+   读起来发闷、也显得比实际更"重"。蓝色只留给脊线和星标这种小面积强调。 */
+.row[open]{background:var(--card-bg);border-color:var(--card-line);border-left-color:var(--card-spine)}
+.row[open] + .row{border-top-color:transparent} /* 别和上面那张卡的下轮廓叠成两像素 */
+.row[open] .hit{background:transparent}
+.row[open] .n{color:var(--card-spine);font-weight:700}
+.row[open] .t1b{-webkit-line-clamp:3}
+.row[open] .car{color:var(--card-spine);transform:rotate(90deg)}
+.row[open] .det{background:var(--card-det);border-top:1px solid var(--card-sep);color:var(--card-det-ink);
+ animation:detin .18s ease-out}
+.row[open] .det .k{color:var(--card-k)} /* 底变深了，小标签得跟着压深一点才够清楚 */
+.row[open] .det .more{background:var(--more-bg-on);border-color:var(--more-line-on)}
+@keyframes detin{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.row[open] .det{animation:none}}
+.chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);
+color:var(--ink2);background:var(--bg2);font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
+.chip.model{color:var(--c-model);border-color:var(--c-model-line);background:var(--c-model-bg)}
+.chip.skill{color:var(--c-skill);border-color:var(--c-skill-line);background:var(--c-skill-bg)}
+.chip.tool{color:var(--c-tool);border-color:var(--c-tool-line);background:var(--c-tool-bg)}
+.chip.cn{color:var(--c-cn);border-color:var(--c-cn-line);background:var(--c-cn-bg)}
+.chip.people{color:var(--c-people);border-color:var(--c-people-line);background:var(--c-people-bg)}
+.chip.method{color:var(--c-method);border-color:var(--c-method-line);background:var(--c-method-bg)}
+.cost{font-weight:700}.cost.fast{color:var(--ok)}.cost.slow{color:var(--warm)}
+.src{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
+.det{padding:12px 18px 16px 44px;font-size:13.5px;color:var(--ink2)}
+.det .k{color:var(--ink3);font-size:11px;display:block;margin:8px 0 1px;font-family:ui-monospace,Menlo,monospace}
+.det a{color:var(--link);word-break:break-all}
+.det .more{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--link);
+ text-decoration:none;border:1px solid var(--more-line);background:var(--more-bg);padding:6px 12px;border-radius:99px}
+
+/* ── 收藏 ───────────────────────────────────────────────────────────────
+   星标是行内一个独立可点的小按钮：点它**只收藏、不展开**（在 click 里 preventDefault
+   拦掉 summary 的默认展开行为）。它故意做得比箭头显眼：箭头是"看更多"，星是"留下"。
+   颜色只用星星该有的琥珀色，不跟正文抢注意力（页面主色是灰 + 一个克制的蓝）。 */
+.star{flex:none;border:0;background:none;padding:2px 0 2px 6px;cursor:pointer;font:inherit;
+ font-size:19px;line-height:1;color:var(--star);transition:color .15s,transform .12s}
+.star:hover{color:var(--star-hover)}
+.star:active{transform:scale(.85)}
+.star[aria-pressed="true"]{color:var(--star-on)}
+/* 收藏盒：只在有收藏时才出现（否则每天早上都挂一个空盒子，是噪音） */
+.favbox{margin:0 18px 12px;border:1px solid var(--fav-line);background:var(--fav-bg);border-radius:10px}
+.favbox>summary{cursor:pointer;list-style:none;padding:9px 12px;font-size:12.5px;font-weight:700;
+ color:var(--fav-ink);font-family:ui-monospace,Menlo,monospace}
+.favbox>summary::-webkit-details-marker{display:none}
+.favbox>summary::before{content:"▸ "}
+.favbox[open]>summary::before{content:"▾ "}
+.favlist{padding:0 12px}
+.favrow{padding:7px 0;border-top:1px solid var(--fav-sep)}
+.favt{display:block;font-size:13.5px;font-weight:600;color:var(--link);text-decoration:none;line-height:1.4}
+.favo{margin-top:2px;font-size:12px;color:var(--ink2);line-height:1.45}
+.favm{display:flex;gap:10px;align-items:center;margin-top:3px}
+.favd{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
+.favrm,.favcopy{border:1px solid var(--line);background:var(--btn-bg);color:var(--ink2);border-radius:99px;
+ font:inherit;font-size:11px;padding:2px 9px;cursor:pointer}
+.favcopy{display:block;margin:6px 12px 11px}
+.empty{padding:22px 18px;color:var(--ink3);font-size:13px}
+.fold{margin:16px 18px 0;font-size:12px;color:var(--ink3);line-height:1.7}
+.foot{margin-top:22px;padding:16px 18px 26px;border-top:1px solid var(--line);font-size:12px;color:var(--ink3);line-height:1.9}
+.foot b{color:var(--ink2)}
+details.rej{margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}
+details.rej summary{cursor:pointer;font-weight:600;color:var(--ink3);list-style:none}
+details.rej summary::-webkit-details-marker{display:none}
+details.rej summary::before{content:"▸ "}
+details.rej[open] summary::before{content:"▾ "}
+.rejrow{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--bg2);font-size:12px}
+.rejrow .t{flex:1;color:var(--ink2)}.rejrow .r{color:var(--ink3);flex:1.2}
+</style>
+</head><body>
+<div class="phone">
+  
+  <div class="head">
+    <div class="kickerrow">
+      <span class="kicker">雷达简报 · 2026-10-06</span>
+      <button class="themebtn" id="themebtn" type="button">◐ 自动</button>
+    </div>
+    <h1>7 条 · 先扫，再展开</h1>
+    <div class="strap">候选 308 条 / 33 源（32 成功 · 0 源失败 · 1 个 0 条源）· 新增 217 条 · seen 91 条 · 正文 7 条 · 砍掉 301 条（91 条 seen 标记 + 210 条未入选）· `docs:deepseek-api` 今日 0 条（无 fetch 错误，属「今天没变化」而非死源）</div>
+    <div class="segs">
+      <button class="seg" data-f="all" aria-pressed="true">全部 7</button>
+      <button class="seg" data-f="fast" aria-pressed="false">15 分钟 6</button>
+      <button class="seg" data-f="tool" aria-pressed="false">技能工具 1</button>
+      <button class="seg" data-f="fav" aria-pressed="false">★ 收藏 <span id="favn">0</span></button>
+    </div>
+  </div>
+  <div class="count" id="cnt">显示 7 / 7 条</div>
+  <details class="favbox" id="favbox" style="display:none">
+    <summary>我的收藏 <span id="favcnt">0</span></summary>
+    <div class="favlist" id="favlist"></div>
+    <button class="favcopy" id="favcopy" type="button">复制清单</button>
+  </details>
+  
+    <details class="row" data-fast="0" data-tool="0">
+      <summary class="hit">
+        <span class="n">01</span>
+        <span class="tt">
+          <span class="t1">Gemini 4 Argon：DeepMind 的新旗舰，最先拿到的是政府与网络防御方</span>
+          <span class="t1b">DeepMind 新旗舰，单次输出可达百万级 token。</span>
+          <span class="t2">
+            <span class="chip model">模型</span>
+            <span class="cost slow">需要申请</span>
+            <span class="src">vendor:deepmind</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-10-06-01" data-date="2026-10-06" data-t="Gemini 4 Argon：DeepMind 的新旗舰，最先拿到的是政府与网络防御方"
+          data-o="DeepMind 新旗舰，单次输出可达百万级 token。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Google DeepMind 09-30 发布的下一代前沿模型（候选元数据口径：**1M 输出**），也是 GDM 对 Astra / Fable 那一档的正面回答。关键限制写在开放范围上：**目前不是公开可用**，只向「政府用户与 Fairwind 计划内的可信网络防御方」开放，普通开发者与平台方今天拿不到 API。**【未能核验】** `deepmind.google` 解析到非公网段，今天打不开原始公告页；这几句只依据候选文件自带的标题与摘要，以及第三方报道（[TNW](https://thenextweb.com/news/google-gemini-4-argon-cyber-defenders-fairwind)）——**没有一手核验，所以本条目我不给任何跑分，也不建议你按它做架构决策**。
+        <span class="k">为什么值得你花时间</span>值是负的，但负值也是值——**它今天给你的信息是「这一档暂时不在你的采购清单里」，而不是「快去接」**，知道这件事本身能省掉一次无效的调研。真正值得记的是那一栏数字的形状：**输出 1M token 意味着「一次生成一整份长剧本 / 一整套分镜表」第一次变成模型侧的能力，而不是你工程侧的分块拼装活**。如果你的内容管线里有「把长剧本切块喂给模型、再把结果拼回来」这类代码，它就是在补模型能力的窟窿——**这类补丁该记下来，等这一档模型对你开放时，它们是第一批可以删掉的代码**。今天可做：把「输出上限」加进你的选型表（多数选型表只有上下文长度和价格两列），并在旁边写清这一档的准入状态。
+        <span class="k">上手成本</span>需要申请（且当前仅限政府与 Fairwind 计划内的网络防御方，个人开发者路径未公开）
+        <span class="k">入口</span><a href="https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/" target="_blank" rel="noopener noreferrer">https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/</a>
+        <a class="more" href="detail/2026-10-06-01.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">02</span>
+        <span class="tt">
+          <span class="t1">novel_to_comic：先锁定整卷剧本，再允许画一格</span>
+          <span class="t1b">把小说改编成完整漫画，剧本先锁死再出图。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:juejin</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-10-06-02" data-date="2026-10-06" data-t="novel_to_comic：先锁定整卷剧本，再允许画一格"
+          data-o="把小说改编成完整漫画，剧本先锁死再出图。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>`aiskyhub/novel_to_comic`，一个 Codex 插件 + 通用技能，**2026-10-05 当天 5 次提交**（首发就在最近几天）。它把「小说 → 完整漫画」拆成一条不许跳步的顺序：**本卷原文归档 → 按章循环（完整读本章 → 细节清单 → 逐场详细剧本 → 逐格分镜 → 对照原文核查）→ 本卷汇总审查 → 本卷锁定 → 基准人设 → 逐章出图验收 → 排版 → 交付**，并写死一条铁律：**剧本锁定前不许生成任何一张图**。质量门是一票否决的三轮自校验——`coverage`（逐段对照原文，**用概括旁白跳过剧情过程，与自创情节同罪**）、`continuity`（因果 / 身份 / 状态 / 伏笔，且每处转折都要有原文支撑）、`comic`（可绘制性、对白归属、阅读顺序），三份报告必须对应**同一个剧本指纹**，出图前还要先跑 `assert-art`。工程细节上最值得抄的是三处：① **按容量自适应合图**——不设固定格数上限，按画布原生像素与每格最小细节预算规划批次，合并生成后**无损分格**，每格最多 3 次尝试、逐格验收，不合格的只重排那一组；② **图文分离**——生图模型只画画面，**对白由程序按字体排进页面**（它明确点出模型直接写对白会错字、缺笔画，而重生成会把已经满意的人物画变）；③ **文档即状态**——书名目录 + 分卷目录两层，`source_texts/`、`split_texts/`、每卷 `status.md` / `notes.md` / `deliverables.md`，中断后不用翻聊天记录。**【镜像核验】** 仓库在 `github.com` 不可达，README 与 SKILL.md 参数是经 `r.jina.ai` 读到的。**要扣掉的分给足**：仓库**只有 1 star、0 fork、5 次提交**，是作者自用工具，没有社区验证；格数参考（约 2000 字中文 ≈ 50–80 格）是它的经验值，不是行业标准。
+        <span class="k">为什么值得你花时间</span>你做的是 AIGC 内容平台，而这份 SKILL.md 是今天候选里**唯一一份把「AI 做长内容」的返工点逐条写出来的生产规范**——它解决的正是你迟早会遇到的那三个坑：**一致性**（人设基准 + 多角度表情板，主角跨页不能变脸）、**顺序**（先审因果再出图，避免画到第 30 页才发现前面漏了伏笔）、**文字可控**（画面归模型、文字归程序）。三个可以直接搬进你自己管线的点：① **「本轮锁定后不许回溯出图」**——你的分镜 / 出图环节如果现在是边画边改，加一道「剧本指纹 + 锁定」能砍掉大部分返修；② **一票否决只给「忠实度」**——它把「漏关键剧情」和「自创情节」并列为阻断性缺陷，这条判据对你做「一句话成片」同样成立（生成的镜头有没有忠实覆盖脚本，比画面好不好看更该一票否决）；③ **每格 3 次尝试上限**——这是控制成本的具体闸门，比「省着点用」这种口号有用。**今天可做**：读它的 SKILL.md 里「不可跳过的顺序」与「主代理与并行子代理」两节（15 分钟），把「剧本指纹 + 锁定」和「每格重试上限」两条抄进你自己的出图流程。
+        <span class="k">上手成本</span>15 分钟（只读 SKILL.md 抄流程；真跑通要从 Codex Marketplace 装插件，且依赖 ChatGPT 生图模型，另需 1 小时以上）
+        <span class="k">入口</span><a href="https://github.com/aiskyhub/novel_to_comic" target="_blank" rel="noopener noreferrer">https://github.com/aiskyhub/novel_to_comic</a>
+        <a class="more" href="detail/2026-10-06-02.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="1">
+      <summary class="hit">
+        <span class="n">03</span>
+        <span class="tt">
+          <span class="t1">Claude Code Mods：插件从「加工具」变成「改行为」</span>
+          <span class="t1b">让插件改 Claude Code 深层行为的机制。</span>
+          <span class="t2">
+            <span class="chip skill">技能</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">repo:anthropics/claude-code</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-10-06-03" data-date="2026-10-06" data-t="Claude Code Mods：插件从「加工具」变成「改行为」"
+          data-o="让插件改 Claude Code 深层行为的机制。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Claude Code `v2.1.287`（10-01 发布）新增的 **Claude Mods**——插件不再只能加工具和命令，而是**可以修改更深层的行为**；同版还内置了一个 mod **`You should know`**：由一个侧翼 agent 盯着你的会话，**标记你或 Claude 可能漏掉的东西**，用 `/plugin enable cc-plugin-you-should-know@builtin` 打开（限开了 telemetry 的第一方会话）。紧接着的 `v2.1.288`（10-02）给 mod 补了 `$.ui.selection()`（返回你上次在 fullscreen 里选中的文本），并给 `/code-review` 加了 `--max-findings &lt;n&gt;|all`；`v2.1.289`（10-03）给队友（agent teams）加了 `agent.spawn`、把 agent id 统一到插件 hook 事件上、并在 `$.agent.list()` 里加了 idle / waiting 状态。修的东西里有一条对你特别实在：**中途 API 超时不再让整轮失败，非交互会话与子 agent 会从部分响应继续**。**【镜像核验】** `github.com` 不可达，三个版本的 release notes 是经 `r.jina.ai` 读到的；我只核验了这三个版本，更早的没看。
+        <span class="k">为什么值得你花时间</span>你每天都在 Claude Code 里跑 `/implement`、又恰好**一直在给自己写技能和补丁**——这条正好落在两者中间：**技能能改的是 Claude「怎么做事」，Mods 能改的是 Claude Code「这个工具本身怎么运转」**，这是两件不同的事，而你要的「少打断、危险动作必停」这种约束，过去只能靠 CLAUDE.md 里的约定（10-05 正文 06 讲的正是那个办法），现在有了第二个落点。三处可搬的：① **「侧翼 agent 盯梢，只标记不接管」**——和你现在用并发子 agent 做复查是同一个形状，但它的分工更清楚（一个专门负责「你可能漏了什么」），这个角色可以单独拆出来跑；② **`$.ui.selection()`** 说明 mod 能拿到你的界面状态（选中的文本、所在的行），**「把用户当前选中的东西当输入」是比「把整个上下文当输入」便宜得多的做法**，你自己的画布 / 工作台也该有这么一条通道；③ **`--max-findings`** 承认了「一次报太多问题等于没报」——你跑 `/code-review` 时可以直接用它把两轴复查的产出压到一次能读完的量。**今天可做**：升级到 2.1.289，然后 `claude plugin list` 看一遍现有插件在新 Mods 机制下的状态，再决定要不要开 `You should know`。
+        <span class="k">上手成本</span>15 分钟（升级 + 看一遍插件列表；要自己写 mod 则是 1 小时以上）
+        <span class="k">入口</span><a href="https://github.com/anthropics/claude-code/releases" target="_blank" rel="noopener noreferrer">https://github.com/anthropics/claude-code/releases</a>
+        <a class="more" href="detail/2026-10-06-03.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">04</span>
+        <span class="tt">
+          <span class="t1">SCM：在你自己机器上搜「视频里的哪一秒」</span>
+          <span class="t1b">macOS 本地应用，用自然语言搜到视频的某一秒。</span>
+          <span class="t2">
+            <span class="chip tool">小而美</span>
+            <span class="cost fast">1 小时</span>
+            <span class="src">hn:show</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-10-06-04" data-date="2026-10-06" data-t="SCM：在你自己机器上搜「视频里的哪一秒」"
+          data-o="macOS 本地应用，用自然语言搜到视频的某一秒。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>`allenv0/SCM`（Screen Memories），HN 10-04 上到 163 分的开源 macOS 应用：**本地优先**——不注册、不上传、推理全在本机（首次下载模型权重约 435MB，之后完全离线）。它把「搜素材」拆成**五个模式**：**Files**（按语义搜整张照片 / 整段视频）、**Scenes**（ffmpeg 先做镜头切分再做嵌入，**命中落在具体镜头并跳到时间码**，每个视频最多贡献 3 个场景、并且有噪声门——没匹配就老实说没匹配）、**OCR**（Tesseract，英文常开 + 35 种语言可开，匹配词在缩略图上用琥珀色框出来）、**Dialogue**（Whisper 转录上的**字面精确检索**，分三档：连续整句 / 同一句或 ≤8 秒窗口内全部词 / 同一视频内全部词）、**LLMs**（可选，llama.cpp sidecar 绑在 loopback 上，用已抽取的对白 + OCR + 文件名作答并给可点击的编号引用）。硬件与模型都写得很明白：四个可切换视觉模型（默认 CLIP ViT-L/14@336，约 480–570ms/张，**另有 SigLIP-2-B/16 快档约 50–100ms/张**），五个视频采样档（Eco 60s/点 → Ultra Pro 2.5s/点，**每档先告诉你实测耗时与磁盘占用**）。安装是 Homebrew（Apple Silicon，macOS 12+）。**【镜像核验】** 仓库在 `github.com` 不可达，README 是经 `r.jina.ai` 读到的，我没在 Mac 上实际装过。
+        <span class="k">为什么值得你花时间</span>你主力是 Windows，**这条你多半不会装**——所以先说清楚它凭什么占今天一个席位：它解决的问题是**「素材一多就找不回来」**，而这正是你这种做视频 / 图像生成平台的团队一定会撞上的问题（生成得越多，越找不到上周那条能用的镜头）。它的设计里有四处可以脱离 macOS 直接搬走：① **把「搜索」按粒度分层**——文件 / 镜头 / 文字 / 台词是四种不同的检索，而不是一个框搜所有；② **给每档采样预设标明实测代价再让你选**（你现在的生成参数预设也可以照这个形状做：先告诉用户这一档要多久、占多少盘）；③ **噪声门与诚实底线**——相似度不够就返回「无匹配」，而不是把最像的一条硬塞给你，**这是素材检索最容易做坏的地方**；④ **模型可换但要重新嵌入，且先给即时结果再后台补尾巴**——换模型这种重活不该阻塞用户。**今天可做**：只读上面这四处设计，对着你自己的素材库 / 资产列表看一遍「现在要找到某条素材要几步」。
+        <span class="k">上手成本</span>1 小时（macOS 用户 `brew install --cask allenv0/scm/scm` 后等首次索引；你如果是 Windows 就只读设计，15 分钟）
+        <span class="k">入口</span><a href="https://github.com/allenv0/SCM" target="_blank" rel="noopener noreferrer">https://github.com/allenv0/SCM</a>
+        <a class="more" href="detail/2026-10-06-04.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">05</span>
+        <span class="tt">
+          <span class="t1">33 个代理、0 个素材文件：让 Agent 用代码生成整个 3D 游戏</span>
+          <span class="t1b">零素材，33 个代理纯代码做出 3D 游戏。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:juejin</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-10-06-05" data-date="2026-10-06" data-t="33 个代理、0 个素材文件：让 Agent 用代码生成整个 3D 游戏"
+          data-o="零素材，33 个代理纯代码做出 3D 游戏。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>掘金上的实战复盘（作者 沧沧凉凉，10-05）：给 Claude Code 一段完整需求（three.js、第三人称 3D 动作解谜、五个章节加一个 Boss，**需求里一个字没提素材**），模型自己在架构文档里定了一条规矩——**不用任何外部素材，一张图、一个模型文件、一段音频都不要，全部用代码生成**。成品《云海神殿》在浏览器里可完整通关：**模型是代码拼的几何体、贴图是程序画的、音效和背景音乐用 WebAudio 实时合成，仓库里没有素材文件**（[在线试玩](https://skytemple.cclliang.com/)）。做法是同一条多代理工作流：**先写两份「合同」**（`ARCHITECTURE.md` 定模块名 / 接口 / 事件名 / 文件归属，`GAME_DESIGN.md` 定所有数值）→ **单个代理搭地基并向所有模块写「桩」**（保证任何模块没做完游戏都能启动）→ **8 个系统并行**（每个代理一个 git worktree、只改自己名下的文件、看到的其他模块全是桩）→ 合并 → 集成代理 → 3 个内容代理做五章 + Boss → **两轮 QA**（第一轮 4 个代理按「能不能通关 / 战斗手感 / 画面性能 / 界面音频」，第二轮换「第一次玩的玩家 / 美术总监 / 专门找茬」，用真实键盘事件写机器人脚本实测）。作者给了**完整的 token 账**：33 个代理分六个阶段，合计约 **1180 万** token（另有三次被额度打断的记录），最终 **128 个文件、约 4.9 万行代码、123 次提交、27 套自动化测试**，9 个检查点在 M2 Pro 上稳定 60 帧。**【原站核验】** 这篇文章我读了全文（`juejin.cn` 可达）；**但它没有公开仓库**，唯一可执行入口是在线试玩。
+        <span class="k">为什么值得你花时间</span>这是今天最贵也最值的一条——**它把「多代理做长任务」从概念变成了有数字、有失败、有粒度选择的施工记录**，而你要的正是这个：不是「多代理很强」，是「几个代理、按什么拆、什么时候会崩」。三个具体可搬的点：① **用两份文档当「合同」**——33 个代理之间不能通信，接口对齐全靠它；你现在的并发子 agent 是各自带任务描述的，**加一份共享的接口约定会把「合起来才发现对不上」提前到开工前**；② **粒度是先「一个代理搭骨架 + 给所有模块留桩」，再「8 个并行」**——不是一开始就全拆，**先让系统在任何时刻都可启动**，这是他敢并行的前提；③ **8 个并发降到 3 个才跑完，而且原因不是模型不行**——每个代理开场都要把合同和相关代码读一遍，8 个一起断、再一起重来，**大半额度花在重复读文档上**。这条对你现在的并发使用方式是一记实打实的提醒：并发的瓶颈经常是「每个 agent 的固定启动开销」而不是任务总量。附加一条可复用的模板：**QA 按角色分视角**（「第一次玩的玩家」「美术总监」「专门找茬」），比按功能分模块更容易找出真人会报的问题——那两轮一共报了 49 个，其中包括「推方块能卡进栏杆缝里导致只能重开」和「Boss 只要 34–49 秒就被打死」。**今天可做**：把 ① ③ 两条用在你下一轮多代理改造上（先加合同文档、把并发从 8 降到 3）。
+        <span class="k">上手成本</span>15 分钟（读复盘 + 试玩；照搬工作流到自己项目约半天）
+        <span class="k">入口</span><a href="https://juejin.cn/post/7692498648035819563" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7692498648035819563</a>
+        <a class="more" href="detail/2026-10-06-05.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">06</span>
+        <span class="tt">
+          <span class="t1">JavaManus：不到 30 个 Java 文件，和五个真实踩坑</span>
+          <span class="t1b">不到 30 文件的 Java Agent 框架，附踩坑。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost fast">1 小时</span>
+            <span class="src">cn:juejin</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-10-06-06" data-date="2026-10-06" data-t="JavaManus：不到 30 个 Java 文件，和五个真实踩坑"
+          data-o="不到 30 文件的 Java Agent 框架，附踩坑。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>掘金上的设计实现解析（作者 狼爷，10-05），配套开源项目 `jasperzxy/JavaManus`：**纯 Java 的 ReAct Agent**，基于 **Spring AI 1.1.0 + Spring Boot 3.4**，默认 LLM 走火山引擎 Ark（豆包），**整体不到 30 个 Java 文件**。架构是四层塔：`ManusAgent`（只负责装配工具）→ `ToolCallAgent`（think → act → observe 编排）→ `ReActAgent`（`step() = think() + act()` 骨架）→ `BaseAgent`（纯状态机 + Memory + 步数控制 + 卡死检测 + 事件分发）。四个关键决策写得很清楚：**手动编排工具调用**（关掉 Spring AI 的 `internalToolExecutionEnabled` 自动执行，自己控制时机，才能截断输出 / 触发事件 / 识别 terminate 工具）、**`maxObserve` 截断超长工具输出**（否则读一次几万行的文件就撑爆 context）、**Memory 用滑动窗口**（`maxMessages` 上限，超了丢最早的）、**SSE + 虚拟线程**推送 `thought` / `tool_call` / `tool_result` / `complete` / `error`。文章最值钱的是五个「代码看起来没问题但会挂死」的真实坑：① **`PythonExecute` 的超时机制完全失效**——先 `getInputStream().readAllBytes()` 再 `waitFor(timeout)`，而 `readAllBytes` 要等到进程退出才有 EOF，**死循环时它永远不返回，超时检查根本没机会执行**；修法是 `CompletableFuture` 异步读输出、先 `waitFor` 再拿结果、超时 `destroyForcibly`。② **文件编辑工具没有沙箱限制**——只校验「是不是绝对路径」，Agent 能读写 `/etc/passwd`；修法是 `workspaceRoot` + 路径归一化前缀校验。③ `System.out.println` 把完整 prompt 打到控制台（含用户输入与工具参数）。④ **LLM 调用失败后向 memory 写错误消息继续循环**，下一轮继续失败，**一直烧到 `maxSteps`**；改成直接终止。⑤ **卡死检测误判**——原来统计历史里所有重复的 assistant 消息，改成**只统计连续重复**。还有一对判断很干净：**工具执行失败要把完整错误信息原样返回给 LLM**（它自己能从 `FileNotFoundError: 'python'` 推理出改用 `python3`，2.3 秒后自纠），**而 LLM 调用失败要直接终止**（重试大概率还是失败）。**【原站核验】** 文章读了全文；**【镜像核验】** 仓库地址经 `r.jina.ai` 打开（`github.com` 不可达），我去核实时读到 **1 star**、且只有 main 一个分支——同样是作者自用项目。
+        <span class="k">为什么值得你花时间</span>今天的候选中，这条和你在 DSH harness 上做的事**重合度最高**——你正在用的这套东西，核心就是「状态机 + 工具调用编排 + 记忆 + 沙箱 + 卡死检测 + 步数控制」，而它把每一步都用不到 30 个文件摊开给你看，还附了五个真实的坑。**最该带走的是那两条与「失败」有关的判断**：**超时保护不能写在读取之后**（这是并发 / 子进程代码里最隐蔽的一类顺序错误，你的工具执行层只要有「读子进程输出」就同样中招）、**错误分两种、处理方式必须相反**（工具失败 → 交回模型自己纠错；模型调用失败 → 立刻终止，否则就是拿配额换一个必然重复的失败）。另外三处直接对应你的架构决策：**`maxObserve` 截断**（你给模型喂工具输出时有没有上限？）、**滑动窗口记忆 + `maxMessages`**（对应你 10-05 正文 07 讲的「状态写进文件而不是留在对话里」，这是同一个约束的两种解法）、**prototype 作用域的 Agent 实例**（有状态的 Agent 不能做单例，这个坑在多用户平台上会以非常难查的方式暴露）。**今天可做**：只读第六章「工程实践中的几个真实坑」（15 分钟），对着你自己的工具执行层检查两件事——有没有「先读流再 waitFor」的顺序、有没有给工具输出设上限。
+        <span class="k">上手成本</span>1 小时（JDK + Spring Boot 3.4 起工程；只读踩坑一节 15 分钟）
+        <span class="k">入口</span><a href="https://juejin.cn/post/7692742889198387200" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7692742889198387200</a>
+        <a class="more" href="detail/2026-10-06-06.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">07</span>
+        <span class="tt">
+          <span class="t1">硬预算上限：软上限那封警告邮件救不了你</span>
+          <span class="t1b">按量计费服务应默认带硬性预算上限，超了就切断。</span>
+          <span class="t2">
+            <span class="chip people">跟人</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">people:simonwillison</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-10-06-07" data-date="2026-10-06" data-t="硬预算上限：软上限那封警告邮件救不了你"
+          data-o="按量计费服务应默认带硬性预算上限，超了就切断。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Simon Willison 10-03 的观点文（**【原站核验】**，全文已读）：主张**按量计费的服务与 API 应当默认提供「硬性」预算上限**——「超过 $X/月就切断并返回错误」，并明确指出**软上限（超了发一封警告邮件）不够用**：没人想在早上醒来时发现那个跑飞的服务在自己睡觉时又烧掉了几百（或者几千）美元。他给了一个很具体的交互形状：**硬上限应当是默认值**，想「活得危险一点」的人可以主动勾掉，而勾选框旁边的字要写清楚后果——「移除预算上限。我的应用不会在超出配置的预算时被关闭，后续费用由我承担」。文中给了两条已落地的对照：**AWS 09-16 的新 builder 体验**（可以为项目设月度花费上限，**达到上限后项目当月暂停**，文中提醒该功能还在限量放开）与 **Google Cloud 7 月上线的 Spend Caps**（可对项目内特定服务设月度金额上限）。结尾还有一条对 agent 的期待：**agent 应该开始偏好推荐带硬上限的供应商**，并提醒新手别把应用部署在会无限计费的服务上。**同时值得记的第二组数字**（同一作者的 10-04 实测，因同源去重按规则不能单占一席，数字并入这里）：他重跑了一个「算出和、但只用英文单词写答案」的基准，把 GPT-4o 换成本地 `Qwen3.8-27B-Q4_K_M.gguf`——**关掉推理时 5,070 个用例总准确率只有 23.57%，1–3 位数还有 97.04%、10–13 位数只剩 6.44%，而格式合规率高达 96.17%**；**打开中等推理后在 169 个用例里对了 167 个**（单次跑，作者自己注明换种子结果会不同）。
+        <span class="k">为什么值得你花时间</span>你做的是一个**会调用按量计费 API 的平台**（模型推理、视频生成、图像生成），而**「一次跑飞的循环」在你的场景里是真实可能发生的**——10-05 正文 07 那条讲 Loop Engineering 时留下的数字你还记得：**1 分钟一次的循环跑满 24 小时就是 1440 次调用**；如果那个循环里挂的是视频生成，账单的形状和代码循环完全不是一个量级。这条值 5 分钟的原因不是它的观点新颖，而是**它把「该做成什么样」写成了可以直接抄的规格**：默认硬上限、超限即切断并返回错误、关掉要显式勾选并写明后果。三个可以立刻做的动作：① **给你平台里每一个「用户可配置的自动执行」都加一条硬上限**（不只是钱的总额，也可以是单次任务的最大步数 / 最大生成次数——你在 harness 里已经有 `max_steps`，把它暴露成用户可见的额度就是同一件事）；② **在你的账单链路里区分「警告」和「切断」**，只有后者算保护；③ **把「供应商有没有硬上限」加进你的模型 / API 选型表**——这条判据在你同时接多家视频生成 API 的时候，比价格差几个点更值钱。**那组本地模型的数字回答的是另一个问题：省下来的推理时间会以什么形式还回去**——**96.17% 的格式合规率意味着失败是静默的**（输出长得完全正确，数字是错的），所以凡是「格式必须对、数字也必须对」的环节（分镜序号、时长 / 分辨率参数、批量重命名、素材编号），**别把推理关掉**，哪怕你跑的是本地模型；反过来说，**格式合规率不是质量指标**，你的生成结果验收如果只看「结构对不对 / 能不能解析」，这组数字就是一个反例。**今天可做**：找出你平台里唯一一个「能让 API 无限跑」的入口，今天先给它加一个最笨的计数器上限。
+        <span class="k">上手成本</span>15 分钟（读结论 + 给自己的调用链加一条硬上限）
+        <span class="k">入口</span><a href="https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/" target="_blank" rel="noopener noreferrer">https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/</a>
+        <a class="more" href="detail/2026-10-06-07.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+  <div class="empty" id="empty" style="display:none">这个筛选下没有条目。</div>
+  <div class="fold">还有 1 条：【知情】**Hinton 发了首篇 RSI 论文，而 Gemini 4 Argon 只对「可信网络防御方」开放**——两件事指向同一个方向：**「AI 造下一代 AI」这条流水线开始有论文了**（量子位 10-05 报道，标题口径为 RSI 自改进；**未核验原文，也无仓库 / API**，故只占这一行：https://www.qbitai.com/2026/10/501705.html ）。它与正文 01 那条「1M 输出、但只向政府与 Fairwind 计划内防御方开放」是同一枚硬币的两面——**能力在往上走，准入在往里收**，值得知道，但本周没有任何可执行入口。</div>
+  <div class="foot">
+    <b>每源今日条数</b><br>✅ hf-org:deepseek-ai 3 · ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15 · ✅ vendor:deepmind 10 · ✅ vendor:mistral 10 · ✅ skills:trending 12 · ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ repo:deepseek-ai/deepseek-harness 3 · ✅ commit:deepseek-ai/deepseek-harness 6 · ❌ docs:deepseek-api 0（今日无变化，非 fetch 失败）· ✅ hn:show 12 · ✅ hf:spaces-trending 20 · ✅ people:simonwillison 12 · ✅ hn:stories 7 · ✅ cn:juejin 10 · ✅ cn:sspai 10 · ✅ cn:qbitai 10 · ✅ cn:infoq 10 · ✅ people:latent-space 6 · ✅ people:interconnects 6 · ✅ people:hf-blog 8 · ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5（33 源 · 32 成功 · 0 源 fetch 失败 · 1 个 0 条源）
+    <details class="rej"><summary>被过滤器砍掉的 21 条（信任雷达的依据）</summary>
+        <div class="rejrow"><span class="t">15 条（`DeepSeek-V4-Flash-Vision-Exp`、`DeepSeek-V4-Pro-0813`、`Qwen-Image-2.1` 系列、`GLM-5.3-Flash-BF16`、`GLM-5.3-BF16`、`MiniMax-M3-MXFP8`、`Kimi-K3`、`Kimi-K2.7-Code`、`Kimi-K2.6` 等）</span><span class="r">**`huggingface.co` 今天不可达，15 条一条都打不开**。从候选文件自带的 likes 看（`Kimi-K3` 1.16 万、`GLM-5.3-Flash` 2715），主体是 4–9 月的旧发布与 BF16 / MXFP8 / PE 量化变体——**量化变体尤其典型：它是「同一个模型的另一种精度」，回答不了「为什么值今天 5 分钟」**</span></div><div class="rejrow"><span class="t">9 条（EU 文本溯源规则、ChatGPT 广告格式、Chatham、The eternal complement、Albertsons、The Den、模型蒸馏攻击、小企业 AI、澳大利亚、安全案例、Lenfest 等）</span><span class="r">**`openai.com` 今天不可达，15 条一条都打不开**（DNS 解析到非公网段）。**`A model guide for the GPT-6 family`（10-02）是这一源里唯一有实用入口的一条**，但它**连续第四天卡在 openai.com 不可达**——昨天、前天、大前天都因同一原因被砍，按口径不能凭标题入正文；其余是 B 端案例稿、政策稿与合作稿</span></div><div class="rejrow"><span class="t">10 条（Gemini 4 Argon、SynthID Bio、Private AI Compute、AlphaGenome Atlas、WeatherNext 3、主动网络防御、Gemini 3.8 Flash ×2、3.8 Live 系列）</span><span class="r">**`Gemini 4 Argon` 进正文 01**（候选里唯一落在近两周的新模型，且已在条目里标明「未能核验、不给跑分」）。`SynthID Bio`（给 AI 生成的蛋白质打水印并保持生物功能）是科研方向；`Gemini 4 Argon` 那一档的第三方报道见正文 01；其余 8 条是 9 月初到中旬的旧发布或已 seen</span></div><div class="rejrow"><span class="t">10 条（Hallo Deutschland、Mistral–Cloudera、遗留代码现代化、€3B 融资、HUMAIN、区域推理与新欧洲算力、prompt / skill 治理、Mozilla 合作、Agentic Search、Shieldstral）</span><span class="r">融资、合作与 B 端案例稿，无可上手入口；**最新一条停在 09-28**。`mistral.ai` 今天我没有单独测可达性，故这里只按标题判断，**不作为「不可达」结论**</span></div><div class="rejrow"><span class="t">12 条（`ai-image-generation`、`hyperframes-creative` / `registry` / `keyframes` / `audio`、`reddit-automation` 为今日新增，另 7 条 seen）</span><span class="r">**三条理由，逐条记**：① **`heygen-com/hyperframes` 一家今天占了 rank 7 / 9 / 10 / 12（加号里还有 5 条，本包共 52 个技能、1060 万总安装）**，按「同一个 owner 每天最多 1 个正文席位」**该 owner 今天 0 席**；它的技术契约与提示词结构已分别于 09-20 / 09-21 / 10-03 / 10-05 发过，今天没有新增内容。② **`ai-image-generation` 的 19.9K 安装量不是热度证据**——我打开了它的技能页：它是 **inference.sh 的 `belt` CLI 薄壳**，源技能属 `inference-sh/skills`，挂它的 `magentosh/superpowers` 是**复刻镜像，GitHub 实时显示 1 star / 0 fork**；今天榜上仍有大量**同构克隆包**（`magentosh` / `101-skills` / `skills-shell` / `its-a-skill-issue` / `bankai-skills` / `qu-skills` 互相搬运 `ai-video-generation` / `twitter-automation` 等同名技能），**这是榜单位置本身的信号问题，不是选题**。③ `reddit-automation` 我打开了技能页：doany.ai 团队的 Reddit 营销技能（**797.3K 安装而仓库 12 star**，同一问题），**与你的业务无关**</span></div><div class="rejrow"><span class="t">22 条版本号流水（claude-code v2.1.289 / .288；codex 0.162.0-alpha.16 / .15 / .14；gemini-cli v0.64.0-nightly ×3；Spec Kit 1.1.0 / 1.0.13 / 1.0.12；opencode v2.0.23 / .22 / .21；MCP servers 2026.8.31 / 8.18 / 7.10；mattpocock/skills v1.3.1 / v1.3.0 / v1.2.3；dsh v0.2.1-alpha.1 / v0.2.0-rc.2 / .rc.1）+ 6 条 dsh commit</span><span class="r">版本号流水 / nightly / alpha：在「为什么值得你花时间」这一栏答不上来。**`claude-code v2.1.287`（Claude Mods）进了正文 03**，其余按规则入表。`commit:deepseek-ai/deepseek-harness` 6 条是 release / vendor 版本线，**`dsh` 自身版本对你是正在使用的工具环境而非选题**</span></div><div class="rejrow"><span class="t">12 条（Real-time Solar System 526k 小行星、Glashütte Trash Clock、NSL「Linux 的 WSL」、Lego AI 生成器、Audionaut 多轨音频编辑器、JBR-001 桌面机器人、Dental Scope、Pi pod、开源模型路由等）</span><span class="r">**`SCM`（AI 搜照片与视频每一帧）进正文 04**（仓库经镜像核验）。**`news.ycombinator.com` 本轮不可达，12 条的讨论页与分数都无法核验**；`Pi pod`（在自托管服务器上跑隔离 pi 沙箱，AGPL-3.0、CLI + 服务端 + 沙箱 + iOS / Android + 单 Compose 自托管）今天**确实很值得看**，仓库与文档站都读到了（镜像核验），但今天沙箱 / 基础设施方向的席位已被 03 与 04 占满，且它与正文 04 的「本地优先」是同一类基础设施判断，**同类只留一条**；其余为玩具、审美与个人工具</span></div><div class="rejrow"><span class="t">20 条 Spaces（`MiniMax-H3-Turbo-Lora-UNCENSORED`、`qwen-image-2.1-uncensored` ×2、`wan777`、`QWEN_EDIT_IMAGE`、`kv-i2v`、`zai-org/OpenVuln`、`multi-harness-rl`、`MiMo-RL-Envs-Explorer`、`chessfly`、`LTX-2.3-10Eros`、`bfs-best-face-swap`、`Omni-videos`、`jev-decision-index` 等）</span><span class="r">**`huggingface.co` 今天不可达，20 条一条都打不开**。从标题与 likes 看，主体仍是社区 NSFW 微调（`UNCENSORED` / `10Eros` / `face-swap`）与自训加速 LoRA——**这类内容在候选里长期占位，按规则属「社区 NSFW」，不入正文**</span></div><div class="rejrow"><span class="t">7 条（Claude partial outage、开源模型路由、Pi pod、Anthropic 报案、宗教学者会见 Anthropic 等）</span><span class="r">`开源模型路由`（Weave Router）**已于 10-05 正文 03 发过**，同 URL 同事件，按去重规则排除；`Pi pod` 见上一栏；`Claude partial outage` 是状态页；`Anthropic reported diary entry to police`（10-05，474 分）**是一条真正的行业风险事件**——据报道一名佛罗里达女性把与 Claude 的对话当日记写、Anthropic 将其中一条报告给警方，她面临重罪指控（[TechSpot](https://www.techspot.com/news/114091-florida-woman-used-claude-diary-anthropic-reported-shoot.html)，**该站今天不可达，未能核验**），按「知情类每天最多 1 条且只进文末折叠行」的规则，今天那一席给了正文 01 相关的那条，故它入表；`Religious scholars` 是 NYT 报道（无入口）</span></div><div class="rejrow"><span class="t">12 条（Qwen3.8 本地基准、默认硬预算上限、9 月赞助者通讯、Rex's Dino Store、pwasm 0.2a0、Quoting Matthew Green、He Built This City、Quoting Anthropic Frontier Red Team、GPT 6.1 Sol 评论、llm-anthropic 0.30，另 2 条 seen）</span><span class="r">**`10-03 默认硬预算上限` 进正文 07**，该 owner 今天占满 1 席。**`10-04 Qwen3.8 本地基准` 被我撤下**——它是同源第二条，按「同一个 owner 每天最多 1 个正文席位」不能单占一席（这一条我一开始判错了，复核时撤稿，正文因此从 8 条降为 7 条，它的核心数字并进了正文 07）；**它本身是好内容**（关掉推理时 5,070 个用例准确率 23.57%、格式合规率 96.17%，打开推理后 169 例对 167），所以把数字保留在正文里而不是整条丢掉。其余是推文引用、博物馆见闻与赞助者通讯</span></div><div class="rejrow"><span class="t">10 条（33 个代理做 3D 游戏、Metal Pipeline Cache、315 之后 AI 改规矩、Lucene 搜索 Bean、独立开发者富矿、QML PathView、JavaManus、小说转漫画、LangChain 回调、LangChain 记忆）</span><span class="r">**`33 个代理做 3D 游戏` 进正文 05、`JavaManus` 进正文 06**（同源 2 席、**不同作者**：沧沧凉凉 / 狼爷）。**`小说转漫画` 的仓库信息已并入正文 02**（正文 02 的入口是它的 GitHub 仓库，来源写 `cn:juejin` 是因为我是从这篇文章发现它的）。**`LangChain 回调与可观测` 与 `Lucene 搜索 Bean` 今天抓只拿到 `Please wait...` 占位，未能核验**；`Metal Pipeline Cache`（把「正在创建」当一等状态处理重复编译、reset 竞态、失败传播与递归等待）是很好的并发工程文，但与你今天的判断无关；其余为通用后端与前端</span></div><div class="rejrow"><span class="t">10 条（iOS 27 通知自动化、iPhone 18 Pro、CMF Clip Pro、本周看什么、Bungie 的列车、新版 2Do、派早报 ×2、社区速递 160、Apple Watch Series 12）</span><span class="r">消费数码与生活内容（手机、耳机、手表、系统与影视），**与你的业务无关**</span></div><div class="rejrow"><span class="t">10 条（诺贝尔奖光遗传学、Hinton 首篇 RSI 论文、OpenAI 限时 28 天、AI 算力硬合作、最火 AI 岗位 FDE、DeepSeek 扩招、Jev 估值 100 亿美元，另 3 条 seen）</span><span class="r">**`Hinton 首篇 RSI 论文` 并入文末知情行**（它与正文 01 的准入收紧是同一枚硬币的两面）。`诺贝尔奖光遗传学` 是生物；`AI 算力硬合作` 是芯片制造；`FDE 岗位`、`DeepSeek 扩招`、`Jev 估值` 是招聘、融资与轶事——**都答不上「为什么值今天 5 分钟」**</span></div><div class="rejrow"><span class="t">10 条（C2PA 不够可信、Cloudflare 1.1.1.1 省 100TB、DataAgent、Java 新闻汇总 ×2、Agent 的记忆不在对话里、企业级 Agent Infra、Andrew Kelley 专访、Graphify、别再给 Agent 一个「毛坯房」）</span><span class="r">**`infoq.cn` 今天只返回前端壳（拿得到 `&lt;title&gt;`、拿不到正文）**，10 条正文全部无法核验——这一条本身就是今天要记的失败可见性信息。其中 `Agent 的记忆不在对话里`（把企业数仓沉淀为可治理的共享语义记忆，一条实测结论很值：**只注入实体与关系、不带指标口径时，回答正确率反而低于完全不注入**）与 `企业级 Agent Infra：从安全沙箱到网络管控与身份治理` 与你高度相关，**但两条都没有仓库、没有 API，属会议演讲**，故不入正文；`Graphify`（10-04 正文 01）与 `别再给 Agent 一个「毛坯房」`（10-04 正文 06 ADE）是**昨天已发的同一事件**，只因 URL 不同未被标 seen；Java 汇总与 Zig 专访与 AI 业务无关</span></div><div class="rejrow"><span class="t">6 条（AINews not much happened today、Academia is for Ambition、Why Dwarkesh is Wrong、AINews Pi 1.0、Airbnb Inside-Out AI 等）</span><span class="r">播客与资讯汇总，无可执行入口。**`[AINews] not much happened today`（10-03）正文只有一句 &quot;a quiet day.&quot;**——这是「今天行业本身安静」的直接证据，与今天模型轴只有 1 条互相印证</span></div><div class="rejrow"><span class="t">6 条（RSI 辩论、我为何还不信真正的 RSI、开源模型阅读清单、一次辞职、平均人何时感受到 AI、开放模型力量格局）</span><span class="r">观点、播客与书单，无可执行入口；**最新一条停在 09-22**</span></div><div class="rejrow"><span class="t">8 条（微软 `The Agent Said It Was Done. The Database Disagreed.`、`Open-sourcing AstaBrief`、`AutoSynthData`、`Getting the Source Right`、`Holo4`、`Welcome RL Environments to the hub`、NVIDIA Kumo Tabular 等）</span><span class="r">**`huggingface.co` 今天不可达，8 条一条都打不开**。**`Welcome RL Environments to the hub`（09-28）值得单独记一句**：它与 `hf:spaces-trending` 里成批出现的 `FineEnvs/*` RL 环境 Space（`multi-harness-rl`、`MiMo-RL-Envs-Explorer`）指向同一件事——**HF 正在把「RL 训练环境」做成一等公民**；这是关于训练侧基础设施的判断，但今天打不开原文、也没有可执行入口，故入表</span></div><div class="rejrow"><span class="t">5 条（Import AI 471–475）</span><span class="r">通讯稿与观点汇总，无可执行入口；**最新一条（475，10-05）讲 swarm scaling / GDM 给生物打水印 / AI 科学经济，与今天的选题重叠但不提供入口**</span></div><div class="rejrow"><span class="t">5 条（AI 原生思维、我的 AI 原生开发流程、GPT 6 Astra 做桃花源记、电商 Agent 解剖、Warp 自我进化）</span><span class="r">8 月旧文与翻译稿，**最新一条停在 08-31**；内容质量不差，但已过一个多月且无可执行入口</span></div><div class="rejrow"><span class="t">5 条（`The Dot and the Swarm`、The Overhang、Agency and Agents、该用哪个 AI 的指南、聊天机器人的黄昏）</span><span class="r">观点随笔，无可执行入口；`The Dot and the Swarm`（10-01）已于 10-05 被读过并判定为「属观点随笔」，其余四条更旧</span></div><div class="rejrow"><span class="t">91 条 seen 条目（`DeepSeek-V4.1-Flash`、`Qwen-Image-2.1` 三条、`GLM-5.3-Flash`、`MiniMax-Music3 / H3`、Gemini 3.8 Live 系列 ×3、Mistral 三条、skills 榜 7 条（`ui-taste` / `design-mobile-apps` / `hyperframes-animation` / `hyperframes-studio` / `find-skills` / `ai-video-generation` 等）、`Viggle/Qwen-Image-2.1-viggle-turbo`、`photo scrubber` / DevDay 直播、AINews Gemini 4 / Pi 1.0、开放模型力量格局、Open TTS Leaderboard、baoyu 三条、`别再把攻略全甩给 AI` 等）</span><span class="r">seen: true —— 近几份简报已发（严格按候选文件标记排除，不占今日席位）</span></div>
+      </details>
+  </div>
+</div>
+<script>
+var THEME_ORDER=['auto','light','dark'];
+var THEME_LABEL={auto:'◐ 自动',light:'☀ 亮',dark:'☾ 暗'};
+function themeMode(){try{var m=localStorage.getItem('radar.theme');return THEME_ORDER.indexOf(m)>=0?m:'auto'}catch(e){return 'auto'}}
+function themeApply(){
+  var m=themeMode();
+  var dark=(m==='dark')||(m==='auto'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
+  document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+  var b=document.getElementById('themebtn');
+  if(b){
+    b.textContent=THEME_LABEL[m];   /* 显示的是**当前**状态，不是"点了会变成什么" */
+    b.title='主题：'+(m==='auto'?'跟随系统':(m==='dark'?'暗色':'亮色'))+'（点击切换）';
+  }
+}
+function themeWire(){
+  var b=document.getElementById('themebtn');
+  if(b)b.addEventListener('click',function(){
+    var i=THEME_ORDER.indexOf(themeMode());
+    var next=THEME_ORDER[(i+1)%THEME_ORDER.length];
+    try{localStorage.setItem('radar.theme',next)}catch(e){}
+    themeApply();
+  });
+  /* 停在"自动"时，系统换了主题要跟着换（不用刷新页面） */
+  if(window.matchMedia){
+    var mq=window.matchMedia('(prefers-color-scheme: dark)');
+    var h=function(){if(themeMode()==='auto')themeApply()};
+    if(mq.addEventListener)mq.addEventListener('change',h);else if(mq.addListener)mq.addListener(h);
+  }
+  themeApply();
+}
+
+function favOK(){try{localStorage.setItem('radar.probe','1');localStorage.removeItem('radar.probe');return true}catch(e){return false}}
+var FAV_ON=favOK();
+function favEsc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function favAll(){if(!FAV_ON)return[];try{var a=JSON.parse(localStorage.getItem('radar.fav.v1')||'[]');return a instanceof Array?a:[]}catch(e){return[]}}
+function favSave(a){if(!FAV_ON)return;try{localStorage.setItem('radar.fav.v1',JSON.stringify(a))}catch(e){}}
+function favToggle(o){
+  var a=favAll(),i=-1,k;
+  for(k=0;k<a.length;k++){if(a[k].id===o.id){i=k;break}}
+  if(i>=0){a.splice(i,1)}else{a.unshift({id:o.id,date:o.date,t:o.t,o:o.o,hd:o.hd,ts:Date.now()})}
+  favSave(a);return i<0;
+}
+/* 相对路径，所以本机 file:// 打开和线上 Pages 打开都能点 */
+function favURL(x){return location.pathname.replace(/[^/]*$/,'')+(x.hd?'detail/'+x.id+'.html':x.date+'.html')}
+function favPaint(){
+  var a=favAll(),ids={},k;
+  for(k=0;k<a.length;k++){ids[a[k].id]=1}
+  document.querySelectorAll('.star').forEach(function(b){
+    var on=!!ids[b.dataset.id];
+    b.setAttribute('aria-pressed',on?'true':'false');
+    b.textContent=on?'★':'☆';
+    b.title=on?'取消收藏':'收藏这一条';
+    var row=b.closest('.row');
+    if(row)row.classList.toggle('fav',on);
+  });
+  var n=document.getElementById('favn');if(n)n.textContent=String(a.length);
+  var c=document.getElementById('favcnt');if(c)c.textContent=String(a.length);
+  var box=document.getElementById('favbox');
+  if(box)box.style.display=a.length?'':'none';   /* 一条收藏都没有时，别在页面上挂个空盒子 */
+  var list=document.getElementById('favlist');
+  if(list){
+    var h='';
+    for(k=0;k<a.length;k++){
+      var x=a[k];
+      h+='<div class="favrow"><a class="favt" href="'+favURL(x)+'">'+favEsc(x.t)+'</a>'
+       +'<div class="favo">'+favEsc(x.o)+'</div>'
+       +'<div class="favm"><span class="favd">'+favEsc(x.date)+'</span>'
+       +'<button class="favrm" type="button" data-id="'+favEsc(x.id)+'">移除</button></div></div>';
+    }
+    list.innerHTML=h;
+  }
+}
+function favWire(){
+  if(!FAV_ON){
+    /* 浏览器不给存（Safari 打开 file:// 就是这样）→ 干脆不显示星标，免得点了没反应 */
+    document.querySelectorAll('.star').forEach(function(b){b.style.display='none'});
+    return;
+  }
+  document.querySelectorAll('.star').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();   /* 关键：点星只收藏，不展开这一条 */
+      favToggle({id:b.dataset.id,date:b.dataset.date,t:b.dataset.t,o:b.dataset.o,hd:b.dataset.hd==='1'});
+      favPaint();
+      if(typeof afterFav==='function')afterFav();
+    });
+  });
+  var box=document.getElementById('favbox');
+  if(box)box.addEventListener('click',function(e){
+    var rm=e.target.closest('.favrm');
+    if(!rm)return;
+    e.preventDefault();
+    favSave(favAll().filter(function(x){return x.id!==rm.dataset.id}));
+    favPaint();
+    if(typeof afterFav==='function')afterFav();
+  });
+  var cp=document.getElementById('favcopy');
+  if(cp)cp.addEventListener('click',function(){
+    var a=favAll(),lines=[],k;
+    for(k=0;k<a.length;k++)lines.push('- '+a[k].date+' · '+a[k].t+' — '+location.origin+favURL(a[k]));
+    var txt=lines.join(String.fromCharCode(10));
+    var done=function(ok){cp.textContent=ok?'已复制':'复制失败，请长按选择';setTimeout(function(){cp.textContent='复制清单'},1800)};
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)});
+    }else{
+      var ta=document.createElement('textarea');ta.value=txt;
+      ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
+      var ok=false;try{ok=document.execCommand('copy')}catch(e){}
+      document.body.removeChild(ta);done(ok);
+    }
+  });
+  favPaint();
+}
+
+var f='all';
+var rows=[].slice.call(document.querySelectorAll('.row'));
+var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+// 手风琴：任何时候只留一条展开，点开新的、旧的那条自动合上。
+// 不这么做的话八条能全开着 = 整份简报被摊平，"先扫再展开"的分诊就白做了。
+rows.forEach(function(r){
+  r.addEventListener('toggle',function(){
+    if(!r.open) return;
+    rows.forEach(function(o){ if(o!==r&&o.open) o.open=false; });
+    // 刚合上的那条如果在本条上方，页面会整体上移、把本条顶出视口 —— 拉回来
+    if(r.getBoundingClientRect().top<8){
+      r.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'});
+    }
+  });
+});
+
+function apply(){
+  var shown=0;
+  rows.forEach(function(r){
+    var ok = f==='all' || (f==='fast'&&r.dataset.fast==='1') || (f==='tool'&&r.dataset.tool==='1')
+      || (f==='fav'&&r.classList.contains('fav'));
+    r.style.display = ok ? '' : 'none';
+    if(ok) shown++;
+    // 被筛掉时顺手合上：留着它"开着"没意义，切回来还会自己弹开
+    else if(r.open) r.open=false;
+  });
+  document.getElementById('cnt').textContent='显示 '+shown+' / '+rows.length+' 条';
+  document.getElementById('empty').style.display = shown ? 'none' : '';
+  document.querySelectorAll('.seg').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.f===f)); });
+}
+document.querySelectorAll('.seg').forEach(function(b){ b.addEventListener('click',function(){ f=b.dataset.f; apply(); }); });
+/* 收藏变了要重算筛选：正在看「★ 收藏」时取消收藏，那一条得当场消失 */
+function afterFav(){ apply(); }
+themeWire();
+favWire();
+apply();
+</script>
+</body></html>
