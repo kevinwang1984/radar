@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>万物皆插件：一篇把 dsh 的机制与小字条款一起讲透的拆解 · 雷达详情</title>
+<script>
+(function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
+var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
+document.documentElement.setAttribute('data-theme',d?'dark':'light');})();
+</script>
+<style>
+:root{
+  color-scheme:light;
+  --ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;
+  --ok:#0f7b53;--warm:#c2410c;--link:#1d4ed8;
+  --tap:#f7f8fa;--seg-bg:#fff;--seg-on-ink:#fff;--btn-bg:#fff;
+  --c-model:#1d4ed8;--c-model-bg:#f2f5ff;--c-model-line:#dbe4ff;
+  --c-skill:#7c2d12;--c-skill-bg:#fff6f1;--c-skill-line:#ffe4d3;
+  --c-tool:#0f7b53;--c-tool-bg:#f1fbf6;--c-tool-line:#d6f0e4;
+  --c-cn:#7e22ce;--c-cn-bg:#faf5ff;--c-cn-line:#efe0ff;
+  --c-people:#0369a1;--c-people-bg:#f2f9ff;--c-people-line:#d6ecfb;
+  --c-method:#4a4f5a;--c-method-bg:#f7f8fa;--c-method-line:#e6e8ec;
+  --card-bg:#f5f6f9;--card-line:#d9dde7;--card-spine:#2f5bd7;--card-det:#edeff4;
+  --card-sep:#e2e5ed;--card-k:#69738c;--card-det-ink:#3f4553;
+  --more-bg:#f2f5ff;--more-line:#dbe4ff;--more-bg-on:#fff;--more-line-on:#ccd6ec;
+  --star:#c9ced8;--star-on:#e8a90c;--star-hover:#d9a406;
+  --fav-bg:#fffdf6;--fav-line:#ece5cf;--fav-ink:#8a6d1f;--fav-sep:#f2eddd;
+  --drift-bg:#fff7ed;--drift-line:#fed7aa;--drift-ink:#9a3412;
+}
+/* 暗色。**只覆盖变量**，不动任何规则 —— 所以明暗两套永远不会走偏。
+   JS 会把 data-theme 落到 <html> 上：auto 由脚本解析成实际的 light/dark，
+   所以 CSS 里不需要再写一遍 @media (prefers-color-scheme)。 */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ink:#e4e7ee;--ink2:#a6adbb;--ink3:#79808e;--line:#2a2f38;--bg:#14161a;--bg2:#0e1013;
+  --ok:#54c894;--warm:#f2935e;--link:#7fa6ff;
+  --tap:#1b1f27;--seg-bg:#1c212a;--seg-on-ink:#14161a;--btn-bg:#1c212a;
+  --c-model:#8fb4ff;--c-model-bg:#182338;--c-model-line:#28395a;
+  --c-skill:#f0a97f;--c-skill-bg:#2a1e17;--c-skill-line:#44301f;
+  --c-tool:#6ed3a4;--c-tool-bg:#14291f;--c-tool-line:#204434;
+  --c-cn:#c6a4f2;--c-cn-bg:#221a30;--c-cn-line:#372a4b;
+  --c-people:#74c2e8;--c-people-bg:#132530;--c-people-line:#1f3d4d;
+  --c-method:#a6adbb;--c-method-bg:#1c212a;--c-method-line:#2a2f38;
+  --card-bg:#1c212a;--card-line:#333a46;--card-spine:#5b82f0;--card-det:#171b22;
+  --card-sep:#2b313b;--card-k:#8b93a3;--card-det-ink:#c3c9d4;
+  --more-bg:#1b2740;--more-line:#2c3d5f;--more-bg-on:#20242d;--more-line-on:#343c4a;
+  --star:#4c525e;--star-on:#f0b429;--star-hover:#ffc94d;
+  --fav-bg:#1f1b12;--fav-line:#3a3221;--fav-ink:#dcb862;--fav-sep:#2b2618;
+  --drift-bg:#2a1c12;--drift-line:#4a3320;--drift-ink:#f0a97f;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg2);color:var(--ink);
+font:15px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+body{padding:0 0 40px}
+.phone{max-width:460px;margin:0 auto;background:var(--bg);min-height:100vh}
+/* 宽屏（电脑）：容器放宽一倍（460 -> 920），字号与内边距同步放大，读起来不空 */
+@media (min-width:960px){
+  .phone{max-width:920px;box-shadow:0 0 0 1px var(--line)}
+  body{font-size:16px}
+  .head{padding:26px 32px 14px}
+  .count{padding:10px 32px 4px}
+  .hit{padding:14px 32px}
+  .det{padding:12px 32px 20px 68px}
+  .fold,.foot{padding-left:32px;padding-right:32px;margin-left:0;margin-right:0}
+  .drift{margin-left:32px;margin-right:32px}
+}
+@media (max-width:520px){.phone{box-shadow:none}}
+.kicker{font-size:11px;letter-spacing:.14em;color:var(--ink3);font-weight:600;
+font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.drift{margin:12px 18px 0;padding:10px 12px;border-radius:10px;background:var(--drift-bg);
+border:1px solid var(--drift-line);color:var(--drift-ink);font-size:13px}
+.head{padding:18px 18px 12px}
+h1{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
+.strap{font-size:12px;color:var(--ink2)}
+.segs{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.seg{font-size:12px;padding:5px 11px;border-radius:99px;border:1px solid var(--line);
+background:var(--seg-bg);color:var(--ink2);cursor:pointer;font-weight:600;font-family:inherit}
+.seg[aria-pressed="true"]{background:var(--ink);color:var(--seg-on-ink);border-color:var(--ink)}
+/* 主题开关：在 kicker 那一行的最右边。三态循环 自动 → 亮 → 暗 → 自动，
+   按钮上显示的是**当前**状态（而不是"点了会变成什么"）—— 后者每次都得在脑子里转一道 */
+.kickerrow{display:flex;gap:10px;align-items:center;justify-content:space-between}
+.themebtn{flex:none;border:1px solid var(--line);background:var(--btn-bg);color:var(--ink3);
+ border-radius:99px;font:inherit;font-size:11px;font-weight:600;padding:3px 10px;cursor:pointer;
+ font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
+.themebtn:active{transform:scale(.96)}
+.count{font-size:11px;color:var(--ink3);padding:8px 18px 4px;font-family:ui-monospace,Menlo,monospace}
+/* 四条边都预留：折叠态只留最上面那条细线，左右和下边是**透明**占位 ——
+   展开时把整圈轮廓点亮，宽度不变（否则一展开内容会横向抖一下）。左边留 3px 给脊线。 */
+.row{border:1px solid transparent;border-top-color:var(--line);border-left-width:3px}
+.row:last-of-type{border-bottom-color:var(--line)}
+.hit{display:flex;gap:10px;align-items:center;width:100%;text-align:left;padding:12px 18px;
+background:none;border:0;font:inherit;color:inherit;cursor:pointer;list-style:none}
+.hit::-webkit-details-marker{display:none}
+.hit:active{background:var(--tap)}
+.n{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--ink3);width:16px;flex:none}
+.tt{flex:1;min-width:0}
+.t1{font-weight:600;font-size:14.5px;line-height:1.35;display:block}
+.t1b{margin-top:2px;font-size:12.5px;color:var(--ink2);line-height:1.45;
+ display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.t2{margin-top:3px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.car{color:var(--ink3);font-size:16px;flex:none;transition:transform .15s,color .15s}
+
+/* ── 展开态：整条（摘要头 + 正文区）合起来是**一张卡** ──────────────────
+   折叠态 = 白底、只有细线分隔，安静地排成一列（这是拿来扫读的）。
+   展开态 = 整圈**中性灰**轮廓收边，左边加粗成一条蓝色脊线；摘要头和正文区同属一个
+            灰阶、只差深浅，看着是"这一条展开了"而不是"下面贴了另一块东西"。
+   底色**刻意用灰不用蓝**：第一版把摘要头和正文区都染成浅蓝，一整块大面积蓝底压着字，
+   读起来发闷、也显得比实际更"重"。蓝色只留给脊线和星标这种小面积强调。 */
+.row[open]{background:var(--card-bg);border-color:var(--card-line);border-left-color:var(--card-spine)}
+.row[open] + .row{border-top-color:transparent} /* 别和上面那张卡的下轮廓叠成两像素 */
+.row[open] .hit{background:transparent}
+.row[open] .n{color:var(--card-spine);font-weight:700}
+.row[open] .t1b{-webkit-line-clamp:3}
+.row[open] .car{color:var(--card-spine);transform:rotate(90deg)}
+.row[open] .det{background:var(--card-det);border-top:1px solid var(--card-sep);color:var(--card-det-ink);
+ animation:detin .18s ease-out}
+.row[open] .det .k{color:var(--card-k)} /* 底变深了，小标签得跟着压深一点才够清楚 */
+.row[open] .det .more{background:var(--more-bg-on);border-color:var(--more-line-on)}
+@keyframes detin{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.row[open] .det{animation:none}}
+.chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);
+color:var(--ink2);background:var(--bg2);font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
+.chip.model{color:var(--c-model);border-color:var(--c-model-line);background:var(--c-model-bg)}
+.chip.skill{color:var(--c-skill);border-color:var(--c-skill-line);background:var(--c-skill-bg)}
+.chip.tool{color:var(--c-tool);border-color:var(--c-tool-line);background:var(--c-tool-bg)}
+.chip.cn{color:var(--c-cn);border-color:var(--c-cn-line);background:var(--c-cn-bg)}
+.chip.people{color:var(--c-people);border-color:var(--c-people-line);background:var(--c-people-bg)}
+.chip.method{color:var(--c-method);border-color:var(--c-method-line);background:var(--c-method-bg)}
+.cost{font-weight:700}.cost.fast{color:var(--ok)}.cost.slow{color:var(--warm)}
+.src{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
+.det{padding:12px 18px 16px 44px;font-size:13.5px;color:var(--ink2)}
+.det .k{color:var(--ink3);font-size:11px;display:block;margin:8px 0 1px;font-family:ui-monospace,Menlo,monospace}
+.det a{color:var(--link);word-break:break-all}
+.det .more{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--link);
+ text-decoration:none;border:1px solid var(--more-line);background:var(--more-bg);padding:6px 12px;border-radius:99px}
+
+/* ── 收藏 ───────────────────────────────────────────────────────────────
+   星标是行内一个独立可点的小按钮：点它**只收藏、不展开**（在 click 里 preventDefault
+   拦掉 summary 的默认展开行为）。它故意做得比箭头显眼：箭头是"看更多"，星是"留下"。
+   颜色只用星星该有的琥珀色，不跟正文抢注意力（页面主色是灰 + 一个克制的蓝）。 */
+.star{flex:none;border:0;background:none;padding:2px 0 2px 6px;cursor:pointer;font:inherit;
+ font-size:19px;line-height:1;color:var(--star);transition:color .15s,transform .12s}
+.star:hover{color:var(--star-hover)}
+.star:active{transform:scale(.85)}
+.star[aria-pressed="true"]{color:var(--star-on)}
+/* 收藏盒：只在有收藏时才出现（否则每天早上都挂一个空盒子，是噪音） */
+.favbox{margin:0 18px 12px;border:1px solid var(--fav-line);background:var(--fav-bg);border-radius:10px}
+.favbox>summary{cursor:pointer;list-style:none;padding:9px 12px;font-size:12.5px;font-weight:700;
+ color:var(--fav-ink);font-family:ui-monospace,Menlo,monospace}
+.favbox>summary::-webkit-details-marker{display:none}
+.favbox>summary::before{content:"▸ "}
+.favbox[open]>summary::before{content:"▾ "}
+.favlist{padding:0 12px}
+.favrow{padding:7px 0;border-top:1px solid var(--fav-sep)}
+.favt{display:block;font-size:13.5px;font-weight:600;color:var(--link);text-decoration:none;line-height:1.4}
+.favo{margin-top:2px;font-size:12px;color:var(--ink2);line-height:1.45}
+.favm{display:flex;gap:10px;align-items:center;margin-top:3px}
+.favd{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
+.favrm,.favcopy{border:1px solid var(--line);background:var(--btn-bg);color:var(--ink2);border-radius:99px;
+ font:inherit;font-size:11px;padding:2px 9px;cursor:pointer}
+.favcopy{display:block;margin:6px 12px 11px}
+.empty{padding:22px 18px;color:var(--ink3);font-size:13px}
+.fold{margin:16px 18px 0;font-size:12px;color:var(--ink3);line-height:1.7}
+.foot{margin-top:22px;padding:16px 18px 26px;border-top:1px solid var(--line);font-size:12px;color:var(--ink3);line-height:1.9}
+.foot b{color:var(--ink2)}
+details.rej{margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}
+details.rej summary{cursor:pointer;font-weight:600;color:var(--ink3);list-style:none}
+details.rej summary::-webkit-details-marker{display:none}
+details.rej summary::before{content:"▸ "}
+details.rej[open] summary::before{content:"▾ "}
+.rejrow{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--bg2);font-size:12px}
+.rejrow .t{flex:1;color:var(--ink2)}.rejrow .r{color:var(--ink3);flex:1.2}
+
+.art{max-width:460px;margin:0 auto;background:var(--bg);min-height:100vh;padding:0 0 70px}
+@media (min-width:960px){ .art{max-width:820px;box-shadow:0 0 0 1px var(--line)} }
+.back{display:inline-block;margin:16px 18px 0;font-size:13px;color:var(--ink3);text-decoration:none}
+/* 详情页顶部一行：返回 + 主题开关（同一套开关，两页行为一致） */
+.art .toprow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:16px 18px 0}
+.art .toprow .back{margin:0}
+.wrap{padding:0 18px}
+@media (min-width:960px){ .wrap{padding:0 40px} .art .toprow{margin-left:40px;margin-right:40px} }
+.art h1{font-size:24px;line-height:1.35;margin:12px 0 8px;letter-spacing:-.02em}
+.art .lead{font-size:15px;color:var(--ink2);margin:0 0 14px;line-height:1.6}
+.art .metaline{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.art img{max-width:100%;height:auto;border-radius:12px;border:1px solid var(--line);margin:10px 0;display:block}
+.art h2{font-size:12px;color:var(--ink3);font-weight:600;margin:26px 0 10px;letter-spacing:.1em;
+ font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.art p{margin:0 0 12px;font-size:15.5px;line-height:1.78}
+.art ul{margin:0;padding-left:20px}
+.art li{margin:0 0 8px;font-size:15px;line-height:1.72}
+.art .src-link{word-break:break-all;color:var(--link)}
+.art .who{font-size:12px;color:var(--ink3);margin-top:34px;border-top:1px solid var(--line);padding-top:14px}
+/* 详情页的星标和列表页共用一套逻辑，只是排在大标题右边、做得更大一点（这页只有它一个动作） */
+.art .titlerow{display:flex;gap:10px;align-items:flex-start}
+.art .titlerow h1{flex:1;min-width:0}
+.art .titlerow .star{font-size:27px;padding:14px 0 0}
+</style>
+</head><body>
+<div class="art">
+  <div class="toprow">
+    <a class="back" href="../2026-10-07.html">← 返回简报</a>
+    <button class="themebtn" id="themebtn" type="button">◐ 自动</button>
+  </div>
+  <div class="wrap">
+    <div class="titlerow">
+      <h1>万物皆插件：一篇把 dsh 的机制与小字条款一起讲透的拆解</h1>
+      <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+        data-id="2026-10-07-02" data-date="2026-10-07" data-t="万物皆插件：一篇把 dsh 的机制与小字条款一起讲透的拆解"
+        data-o="讲清 dsh 插件机制与 token 代价的深度拆解。" data-hd="1">☆</button>
+    </div>
+    <div class="lead">讲清 dsh 插件机制与 token 代价的深度拆解。</div>
+    <div class="metaline">
+      <span class="chip cn">中文</span>
+      <span class="cost fast">15 分钟（只读「日志即真相」与「小字条款」两节；照它的 4 小时路径走一遍约半天）</span>
+      <span class="src">cn:juejin</span>
+    </div>
+    <img src="https://p9-xtjj-sign.byteimg.com/tos-cn-i-73owjymdk6/e95bc3f3d5524b26a7bca7bfc3e354b7~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgTW9ib3RTb25l:q75.awebp?rk3s=f64ab15b&amp;x-expires=1791902737&amp;x-signature=8%2FNR9tcXF9WGi2J6Z60tbfmVRBA%3D" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+    <h2>摘要 · 译自原文</h2><p>这是一篇对 DeepSeek Harness（`dsh`）的体系化拆解（作者 MobotStone，10-06），写作动机很明确：围绕 dsh 的报道多在讨论理念与战略，**真正讲内部机制的并不多**，而它的「说明书小字」是最容易被热度掩盖的部分。文章把 dsh 与过去二十多年那类「固定的坚硬核心 + 外围扩展点」的 Agent 框架做了逐项对比：在 dsh 里**不存在特权核心**，Agent Loop 本身（`packages/core/agent-loop`）就是一组普通插件，改调度逻辑只需改 YAML；模型适配器、沙箱（Linux Landlock / macOS Seatbelt / Windows 受限 Token / 远程）、会话存储、文件系统抽象、任务调度器、Web UI 全部是插件；连 **Sub-Agent 也是 provider**，可以直接把 Claude Code 或 Codex CLI 当 worker 调度（用你自己的账号认证）。作者引用的一个比喻很贴切：Codex 是精装房附一面洞洞板，而 dsh 是把整栋房子连同图纸交给你，允许你在不拉闸、不断水的前提下拆改任意一面承重墙。</p><p>机制部分最扎实的是三节。**Cordis 组合层**（DeepSeek 与北大联合开发，主打「时空可组合性」）在工程上保证两件事：空间维上插件用 `inject = [&quot;tools&quot;]` 声明依赖、把服务与事件监听器注入共享 context，运行时自动解析顺序；时间维上每个副作用都注册 disposer（`ctx.effect()` 返回 undo），**因此可以在会话执行到一半时卸载当前沙箱、动态挂载新的，完全不用重启**。一个最小插件只有 8 行。**会话日志即真相**：dsh 强制执行「模型可见，即被记录」——任何进入上下文的内容（system prompt、思维链、工具调用与返回、子 agent 调度指令、每一次上下文注入）都写进 append-only 日志，而 Resume / Fork / Replay / 历史搜索 / Trajectory 视图全都从这条事件流派生；**日志不是运行的副产品，日志就是运行的实体**。值得注意的是它**完全保留思维链**，与部分西方实验室为防蒸馏而加密思考过程的路线相反。**工具执行管道**是「预执行校验 → 权限处理 → 执行 → 后处理（敏感信息掩码与结果验证）→ 结果持久化落盘」，每阶段可插 hook；并在 schema 层把 **Approval（这个操作需要人类点击确认吗）与 Sandbox（这个操作物理上最高能触及哪些资源）**明确分开——文档原话是「弹窗确认并不等于文件系统的安全边界」。此外还有四种默认工作模式（Standard / Code Mode / Minimal / Creator），其中 Code Mode 把工具封装成 TypeScript SDK，模型不再一次次单调用而是写一段脚本批量执行；Creator 模式下 agent 能用默认关闭的 `cordis_*` 工具**自己写插件扩展自己**。</p><p>「小字条款」部分是全文最值钱的地方：社区早期测试显示 dsh 的 **token 用量约为极简 harness Pi 的 10 倍、其他主流框架的约 3 倍**；已确认的 bug 之一是把内容相同的 `CLAUDE.md` 与 `AGENTS.md` **重复注入两遍**，导致这段 system prompt 直接翻倍；ISS Tracker 案例里两轮长交互约 35 分钟、累计消耗接近 **2000 万 token**（靠 95%–100% 的缓存命中率才没失控）；第三方插件状态是「**41 个确认可用、219 个尚待验证**」，而两周内出现了约 **2000 个社区插件**。作者的结论并不激进：现阶段没理由为了架构优雅把核心业务切过去，Claude Code 与 Codex 的完成度和 token 效率仍然更好；但即使不用 dsh，也有四个设计值得抄走。</p>
+    <h2>要点</h2><ul><li>核心命题：dsh 把「固定的坚硬核心 + 外围扩展点」翻转为**没有特权核心**——Agent Loop、模型、沙箱、上下文组装、Session、Web UI 全是可替换插件</li><li>Cordis 引擎：`inject` 声明依赖（空间维）+ `ctx.effect()` 注册 disposer（时间维）→ **可在会话中途热插拔、无需重启**；最小插件 8 行</li><li>**日志即真相**：模型可见即被记录，append-only；Resume / Fork / Replay / Trajectory 全部由事件流派生；**不经压缩地保留完整思维链**</li><li>权限模型：**Approval（人要不要确认）与 Sandbox（程序实际能碰什么）在 schema 层分离**——「弹窗确认并不等于文件系统的安全边界」</li><li>可换部件清单：Agent Loop（含 `plan-act-verify` 等）、模型 provider（DeepSeek / OpenAI / Anthropic / Bedrock / Vertex / Azure / 本地）、沙箱（Landlock / Seatbelt / Windows 受限 Token / 远程）、**Sub-Agent provider（可调度 Claude Code、Codex）**</li><li>代价（官方不会写在首屏）：**token 用量约为 Pi 的 10 倍、主流框架的约 3 倍**；`CLAUDE.md` 与 `AGENTS.md` **内容相同时被重复注入两遍**、system prompt 翻倍</li><li>实测极端案例：ISS Tracker 项目两轮长交互约 35 分钟、接近 **2000 万 token**，缓存命中率 95%–100%</li><li>生态数字：两周约 **2000 个社区插件**，兼容状态 **41 个确认可用 / 219 个尚待验证**</li><li>可抄走的四个设计：**日志就是运行本身** / **审批与沙箱分离** / **Code Mode 批量执行工具** / **按 session 动态选模型与推理强度**</li><li>4 小时上手路径：看 Trajectory → 换 Minimal 模式与模型 → 从历史节点 Fork 改决策重跑 → 写一个 8 行插件 + 读 `.agents/` 里 3 条架构决策记录</li><li>核验口径：**【原站核验】** `juejin.cn` 可达、全文已读（部分小节因抓取长度被截断）</li></ul>
+    <h2>为什么值得你花时间</h2><p>你每天跑的就是 dsh，而这篇文章给的是官方 README 不会写的东西：**账单的形状，和几个具体的设计判断**。「`AGENTS.md` / `CLAUDE.md` 双注入」这条对你尤其直接——你的 `~/.dsh/AGENTS.md` 里有一整套执行边界规则，如果两个文件内容相同，这段 prompt 会被算两遍、白烧一份 token；**值得今天就检查你是不是同时在维护内容重复的两份**。四个可以直接搬走的设计：① **日志就是运行本身**（你已经在读会话记录，但「模型可见即被记录」是更强的约束——它是审计、重放与 Fork 的前提）；② **审批与沙箱必须分开**（弹窗确认不等于文件系统边界，这条你已经做对，但它把理由讲透了）；③ **Code Mode**：与其让模型连续发起十几次零散工具调用，不如生成一段受控脚本批量执行；④ **按 session 动态选模型与推理强度**，而不是全局一个默认值。它还给了今天就能照着做的 4 小时路径：先跑 Standard 模式只看 Trajectory（Harness 到底给模型看了什么）→ 同任务换 Minimal 模式与另一个模型 → 从历史节点 Fork 改一个决策重跑 → 写一个 8 行插件。**结论部分它也说了实话**：现阶段没理由为了架构优雅把核心业务切过去，Token 开销与预览版接口变动是实打实的「预览版税」。</p>
+    <h2>原文</h2><p><a class="src-link" href="https://juejin.cn/post/7693225151681396746" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7693225151681396746</a></p>
+    <div class="who">雷达简报 2026-10-07 · 条目 2026-10-07-02</div>
+  </div>
+</div>
+<script>
+var THEME_ORDER=['auto','light','dark'];
+var THEME_LABEL={auto:'◐ 自动',light:'☀ 亮',dark:'☾ 暗'};
+function themeMode(){try{var m=localStorage.getItem('radar.theme');return THEME_ORDER.indexOf(m)>=0?m:'auto'}catch(e){return 'auto'}}
+function themeApply(){
+  var m=themeMode();
+  var dark=(m==='dark')||(m==='auto'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
+  document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+  var b=document.getElementById('themebtn');
+  if(b){
+    b.textContent=THEME_LABEL[m];   /* 显示的是**当前**状态，不是"点了会变成什么" */
+    b.title='主题：'+(m==='auto'?'跟随系统':(m==='dark'?'暗色':'亮色'))+'（点击切换）';
+  }
+}
+function themeWire(){
+  var b=document.getElementById('themebtn');
+  if(b)b.addEventListener('click',function(){
+    var i=THEME_ORDER.indexOf(themeMode());
+    var next=THEME_ORDER[(i+1)%THEME_ORDER.length];
+    try{localStorage.setItem('radar.theme',next)}catch(e){}
+    themeApply();
+  });
+  /* 停在"自动"时，系统换了主题要跟着换（不用刷新页面） */
+  if(window.matchMedia){
+    var mq=window.matchMedia('(prefers-color-scheme: dark)');
+    var h=function(){if(themeMode()==='auto')themeApply()};
+    if(mq.addEventListener)mq.addEventListener('change',h);else if(mq.addListener)mq.addListener(h);
+  }
+  themeApply();
+}
+
+function favOK(){try{localStorage.setItem('radar.probe','1');localStorage.removeItem('radar.probe');return true}catch(e){return false}}
+var FAV_ON=favOK();
+function favEsc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function favAll(){if(!FAV_ON)return[];try{var a=JSON.parse(localStorage.getItem('radar.fav.v1')||'[]');return a instanceof Array?a:[]}catch(e){return[]}}
+function favSave(a){if(!FAV_ON)return;try{localStorage.setItem('radar.fav.v1',JSON.stringify(a))}catch(e){}}
+function favToggle(o){
+  var a=favAll(),i=-1,k;
+  for(k=0;k<a.length;k++){if(a[k].id===o.id){i=k;break}}
+  if(i>=0){a.splice(i,1)}else{a.unshift({id:o.id,date:o.date,t:o.t,o:o.o,hd:o.hd,ts:Date.now()})}
+  favSave(a);return i<0;
+}
+/* 相对路径，所以本机 file:// 打开和线上 Pages 打开都能点 */
+function favURL(x){return location.pathname.replace(/[^/]*$/,'')+(x.hd?'detail/'+x.id+'.html':x.date+'.html')}
+function favPaint(){
+  var a=favAll(),ids={},k;
+  for(k=0;k<a.length;k++){ids[a[k].id]=1}
+  document.querySelectorAll('.star').forEach(function(b){
+    var on=!!ids[b.dataset.id];
+    b.setAttribute('aria-pressed',on?'true':'false');
+    b.textContent=on?'★':'☆';
+    b.title=on?'取消收藏':'收藏这一条';
+    var row=b.closest('.row');
+    if(row)row.classList.toggle('fav',on);
+  });
+  var n=document.getElementById('favn');if(n)n.textContent=String(a.length);
+  var c=document.getElementById('favcnt');if(c)c.textContent=String(a.length);
+  var box=document.getElementById('favbox');
+  if(box)box.style.display=a.length?'':'none';   /* 一条收藏都没有时，别在页面上挂个空盒子 */
+  var list=document.getElementById('favlist');
+  if(list){
+    var h='';
+    for(k=0;k<a.length;k++){
+      var x=a[k];
+      h+='<div class="favrow"><a class="favt" href="'+favURL(x)+'">'+favEsc(x.t)+'</a>'
+       +'<div class="favo">'+favEsc(x.o)+'</div>'
+       +'<div class="favm"><span class="favd">'+favEsc(x.date)+'</span>'
+       +'<button class="favrm" type="button" data-id="'+favEsc(x.id)+'">移除</button></div></div>';
+    }
+    list.innerHTML=h;
+  }
+}
+function favWire(){
+  if(!FAV_ON){
+    /* 浏览器不给存（Safari 打开 file:// 就是这样）→ 干脆不显示星标，免得点了没反应 */
+    document.querySelectorAll('.star').forEach(function(b){b.style.display='none'});
+    return;
+  }
+  document.querySelectorAll('.star').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();   /* 关键：点星只收藏，不展开这一条 */
+      favToggle({id:b.dataset.id,date:b.dataset.date,t:b.dataset.t,o:b.dataset.o,hd:b.dataset.hd==='1'});
+      favPaint();
+      if(typeof afterFav==='function')afterFav();
+    });
+  });
+  var box=document.getElementById('favbox');
+  if(box)box.addEventListener('click',function(e){
+    var rm=e.target.closest('.favrm');
+    if(!rm)return;
+    e.preventDefault();
+    favSave(favAll().filter(function(x){return x.id!==rm.dataset.id}));
+    favPaint();
+    if(typeof afterFav==='function')afterFav();
+  });
+  var cp=document.getElementById('favcopy');
+  if(cp)cp.addEventListener('click',function(){
+    var a=favAll(),lines=[],k;
+    for(k=0;k<a.length;k++)lines.push('- '+a[k].date+' · '+a[k].t+' — '+location.origin+favURL(a[k]));
+    var txt=lines.join(String.fromCharCode(10));
+    var done=function(ok){cp.textContent=ok?'已复制':'复制失败，请长按选择';setTimeout(function(){cp.textContent='复制清单'},1800)};
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)});
+    }else{
+      var ta=document.createElement('textarea');ta.value=txt;
+      ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
+      var ok=false;try{ok=document.execCommand('copy')}catch(e){}
+      document.body.removeChild(ta);done(ok);
+    }
+  });
+  favPaint();
+}
+
+themeWire();
+favWire();
+</script>
+</body></html>
