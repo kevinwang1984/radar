@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qwen-Image-2.1-Turbo：8 步加速版，采样表被写进了权重 · 雷达详情</title>
+<script>
+(function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
+var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
+document.documentElement.setAttribute('data-theme',d?'dark':'light');})();
+</script>
+<style>
+:root{
+  color-scheme:light;
+  --ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;
+  --ok:#0f7b53;--warm:#c2410c;--link:#1d4ed8;
+  --tap:#f7f8fa;--seg-bg:#fff;--seg-on-ink:#fff;--btn-bg:#fff;
+  --c-model:#1d4ed8;--c-model-bg:#f2f5ff;--c-model-line:#dbe4ff;
+  --c-skill:#7c2d12;--c-skill-bg:#fff6f1;--c-skill-line:#ffe4d3;
+  --c-tool:#0f7b53;--c-tool-bg:#f1fbf6;--c-tool-line:#d6f0e4;
+  --c-cn:#7e22ce;--c-cn-bg:#faf5ff;--c-cn-line:#efe0ff;
+  --c-people:#0369a1;--c-people-bg:#f2f9ff;--c-people-line:#d6ecfb;
+  --c-method:#4a4f5a;--c-method-bg:#f7f8fa;--c-method-line:#e6e8ec;
+  --card-bg:#f5f6f9;--card-line:#d9dde7;--card-spine:#2f5bd7;--card-det:#edeff4;
+  --card-sep:#e2e5ed;--card-k:#69738c;--card-det-ink:#3f4553;
+  --more-bg:#f2f5ff;--more-line:#dbe4ff;--more-bg-on:#fff;--more-line-on:#ccd6ec;
+  --star:#c9ced8;--star-on:#e8a90c;--star-hover:#d9a406;
+  --fav-bg:#fffdf6;--fav-line:#ece5cf;--fav-ink:#8a6d1f;--fav-sep:#f2eddd;
+  --drift-bg:#fff7ed;--drift-line:#fed7aa;--drift-ink:#9a3412;
+}
+/* 暗色。**只覆盖变量**，不动任何规则 —— 所以明暗两套永远不会走偏。
+   JS 会把 data-theme 落到 <html> 上：auto 由脚本解析成实际的 light/dark，
+   所以 CSS 里不需要再写一遍 @media (prefers-color-scheme)。 */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ink:#e4e7ee;--ink2:#a6adbb;--ink3:#79808e;--line:#2a2f38;--bg:#14161a;--bg2:#0e1013;
+  --ok:#54c894;--warm:#f2935e;--link:#7fa6ff;
+  --tap:#1b1f27;--seg-bg:#1c212a;--seg-on-ink:#14161a;--btn-bg:#1c212a;
+  --c-model:#8fb4ff;--c-model-bg:#182338;--c-model-line:#28395a;
+  --c-skill:#f0a97f;--c-skill-bg:#2a1e17;--c-skill-line:#44301f;
+  --c-tool:#6ed3a4;--c-tool-bg:#14291f;--c-tool-line:#204434;
+  --c-cn:#c6a4f2;--c-cn-bg:#221a30;--c-cn-line:#372a4b;
+  --c-people:#74c2e8;--c-people-bg:#132530;--c-people-line:#1f3d4d;
+  --c-method:#a6adbb;--c-method-bg:#1c212a;--c-method-line:#2a2f38;
+  --card-bg:#1c212a;--card-line:#333a46;--card-spine:#5b82f0;--card-det:#171b22;
+  --card-sep:#2b313b;--card-k:#8b93a3;--card-det-ink:#c3c9d4;
+  --more-bg:#1b2740;--more-line:#2c3d5f;--more-bg-on:#20242d;--more-line-on:#343c4a;
+  --star:#4c525e;--star-on:#f0b429;--star-hover:#ffc94d;
+  --fav-bg:#1f1b12;--fav-line:#3a3221;--fav-ink:#dcb862;--fav-sep:#2b2618;
+  --drift-bg:#2a1c12;--drift-line:#4a3320;--drift-ink:#f0a97f;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg2);color:var(--ink);
+font:15px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+body{padding:0 0 40px}
+.phone{max-width:460px;margin:0 auto;background:var(--bg);min-height:100vh}
+/* 宽屏（电脑）：容器放宽一倍（460 -> 920），字号与内边距同步放大，读起来不空 */
+@media (min-width:960px){
+  .phone{max-width:920px;box-shadow:0 0 0 1px var(--line)}
+  body{font-size:16px}
+  .head{padding:26px 32px 14px}
+  .count{padding:10px 32px 4px}
+  .hit{padding:14px 32px}
+  .det{padding:12px 32px 20px 68px}
+  .fold,.foot{padding-left:32px;padding-right:32px;margin-left:0;margin-right:0}
+  .drift{margin-left:32px;margin-right:32px}
+}
+@media (max-width:520px){.phone{box-shadow:none}}
+.kicker{font-size:11px;letter-spacing:.14em;color:var(--ink3);font-weight:600;
+font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.drift{margin:12px 18px 0;padding:10px 12px;border-radius:10px;background:var(--drift-bg);
+border:1px solid var(--drift-line);color:var(--drift-ink);font-size:13px}
+.head{padding:18px 18px 12px}
+h1{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
+.strap{font-size:12px;color:var(--ink2)}
+.segs{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.seg{font-size:12px;padding:5px 11px;border-radius:99px;border:1px solid var(--line);
+background:var(--seg-bg);color:var(--ink2);cursor:pointer;font-weight:600;font-family:inherit}
+.seg[aria-pressed="true"]{background:var(--ink);color:var(--seg-on-ink);border-color:var(--ink)}
+/* 主题开关：在 kicker 那一行的最右边。三态循环 自动 → 亮 → 暗 → 自动，
+   按钮上显示的是**当前**状态（而不是"点了会变成什么"）—— 后者每次都得在脑子里转一道 */
+.kickerrow{display:flex;gap:10px;align-items:center;justify-content:space-between}
+.themebtn{flex:none;border:1px solid var(--line);background:var(--btn-bg);color:var(--ink3);
+ border-radius:99px;font:inherit;font-size:11px;font-weight:600;padding:3px 10px;cursor:pointer;
+ font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
+.themebtn:active{transform:scale(.96)}
+.count{font-size:11px;color:var(--ink3);padding:8px 18px 4px;font-family:ui-monospace,Menlo,monospace}
+/* 四条边都预留：折叠态只留最上面那条细线，左右和下边是**透明**占位 ——
+   展开时把整圈轮廓点亮，宽度不变（否则一展开内容会横向抖一下）。左边留 3px 给脊线。 */
+.row{border:1px solid transparent;border-top-color:var(--line);border-left-width:3px}
+.row:last-of-type{border-bottom-color:var(--line)}
+.hit{display:flex;gap:10px;align-items:center;width:100%;text-align:left;padding:12px 18px;
+background:none;border:0;font:inherit;color:inherit;cursor:pointer;list-style:none}
+.hit::-webkit-details-marker{display:none}
+.hit:active{background:var(--tap)}
+.n{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--ink3);width:16px;flex:none}
+.tt{flex:1;min-width:0}
+.t1{font-weight:600;font-size:14.5px;line-height:1.35;display:block}
+.t1b{margin-top:2px;font-size:12.5px;color:var(--ink2);line-height:1.45;
+ display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.t2{margin-top:3px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.car{color:var(--ink3);font-size:16px;flex:none;transition:transform .15s,color .15s}
+
+/* ── 展开态：整条（摘要头 + 正文区）合起来是**一张卡** ──────────────────
+   折叠态 = 白底、只有细线分隔，安静地排成一列（这是拿来扫读的）。
+   展开态 = 整圈**中性灰**轮廓收边，左边加粗成一条蓝色脊线；摘要头和正文区同属一个
+            灰阶、只差深浅，看着是"这一条展开了"而不是"下面贴了另一块东西"。
+   底色**刻意用灰不用蓝**：第一版把摘要头和正文区都染成浅蓝，一整块大面积蓝底压着字，
+   读起来发闷、也显得比实际更"重"。蓝色只留给脊线和星标这种小面积强调。 */
+.row[open]{background:var(--card-bg);border-color:var(--card-line);border-left-color:var(--card-spine)}
+.row[open] + .row{border-top-color:transparent} /* 别和上面那张卡的下轮廓叠成两像素 */
+.row[open] .hit{background:transparent}
+.row[open] .n{color:var(--card-spine);font-weight:700}
+.row[open] .t1b{-webkit-line-clamp:3}
+.row[open] .car{color:var(--card-spine);transform:rotate(90deg)}
+.row[open] .det{background:var(--card-det);border-top:1px solid var(--card-sep);color:var(--card-det-ink);
+ animation:detin .18s ease-out}
+.row[open] .det .k{color:var(--card-k)} /* 底变深了，小标签得跟着压深一点才够清楚 */
+.row[open] .det .more{background:var(--more-bg-on);border-color:var(--more-line-on)}
+@keyframes detin{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.row[open] .det{animation:none}}
+.chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);
+color:var(--ink2);background:var(--bg2);font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
+.chip.model{color:var(--c-model);border-color:var(--c-model-line);background:var(--c-model-bg)}
+.chip.skill{color:var(--c-skill);border-color:var(--c-skill-line);background:var(--c-skill-bg)}
+.chip.tool{color:var(--c-tool);border-color:var(--c-tool-line);background:var(--c-tool-bg)}
+.chip.cn{color:var(--c-cn);border-color:var(--c-cn-line);background:var(--c-cn-bg)}
+.chip.people{color:var(--c-people);border-color:var(--c-people-line);background:var(--c-people-bg)}
+.chip.method{color:var(--c-method);border-color:var(--c-method-line);background:var(--c-method-bg)}
+.cost{font-weight:700}.cost.fast{color:var(--ok)}.cost.slow{color:var(--warm)}
+.src{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
+.det{padding:12px 18px 16px 44px;font-size:13.5px;color:var(--ink2)}
+.det .k{color:var(--ink3);font-size:11px;display:block;margin:8px 0 1px;font-family:ui-monospace,Menlo,monospace}
+.det a{color:var(--link);word-break:break-all}
+.det .more{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--link);
+ text-decoration:none;border:1px solid var(--more-line);background:var(--more-bg);padding:6px 12px;border-radius:99px}
+
+/* ── 收藏 ───────────────────────────────────────────────────────────────
+   星标是行内一个独立可点的小按钮：点它**只收藏、不展开**（在 click 里 preventDefault
+   拦掉 summary 的默认展开行为）。它故意做得比箭头显眼：箭头是"看更多"，星是"留下"。
+   颜色只用星星该有的琥珀色，不跟正文抢注意力（页面主色是灰 + 一个克制的蓝）。 */
+.star{flex:none;border:0;background:none;padding:2px 0 2px 6px;cursor:pointer;font:inherit;
+ font-size:19px;line-height:1;color:var(--star);transition:color .15s,transform .12s}
+.star:hover{color:var(--star-hover)}
+.star:active{transform:scale(.85)}
+.star[aria-pressed="true"]{color:var(--star-on)}
+/* 收藏盒：只在有收藏时才出现（否则每天早上都挂一个空盒子，是噪音） */
+.favbox{margin:0 18px 12px;border:1px solid var(--fav-line);background:var(--fav-bg);border-radius:10px}
+.favbox>summary{cursor:pointer;list-style:none;padding:9px 12px;font-size:12.5px;font-weight:700;
+ color:var(--fav-ink);font-family:ui-monospace,Menlo,monospace}
+.favbox>summary::-webkit-details-marker{display:none}
+.favbox>summary::before{content:"▸ "}
+.favbox[open]>summary::before{content:"▾ "}
+.favlist{padding:0 12px}
+.favrow{padding:7px 0;border-top:1px solid var(--fav-sep)}
+.favt{display:block;font-size:13.5px;font-weight:600;color:var(--link);text-decoration:none;line-height:1.4}
+.favo{margin-top:2px;font-size:12px;color:var(--ink2);line-height:1.45}
+.favm{display:flex;gap:10px;align-items:center;margin-top:3px}
+.favd{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
+.favrm,.favcopy{border:1px solid var(--line);background:var(--btn-bg);color:var(--ink2);border-radius:99px;
+ font:inherit;font-size:11px;padding:2px 9px;cursor:pointer}
+.favcopy{display:block;margin:6px 12px 11px}
+.empty{padding:22px 18px;color:var(--ink3);font-size:13px}
+.fold{margin:16px 18px 0;font-size:12px;color:var(--ink3);line-height:1.7}
+.foot{margin-top:22px;padding:16px 18px 26px;border-top:1px solid var(--line);font-size:12px;color:var(--ink3);line-height:1.9}
+.foot b{color:var(--ink2)}
+details.rej{margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}
+details.rej summary{cursor:pointer;font-weight:600;color:var(--ink3);list-style:none}
+details.rej summary::-webkit-details-marker{display:none}
+details.rej summary::before{content:"▸ "}
+details.rej[open] summary::before{content:"▾ "}
+.rejrow{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--bg2);font-size:12px}
+.rejrow .t{flex:1;color:var(--ink2)}.rejrow .r{color:var(--ink3);flex:1.2}
+
+.art{max-width:460px;margin:0 auto;background:var(--bg);min-height:100vh;padding:0 0 70px}
+@media (min-width:960px){ .art{max-width:820px;box-shadow:0 0 0 1px var(--line)} }
+.back{display:inline-block;margin:16px 18px 0;font-size:13px;color:var(--ink3);text-decoration:none}
+/* 详情页顶部一行：返回 + 主题开关（同一套开关，两页行为一致） */
+.art .toprow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:16px 18px 0}
+.art .toprow .back{margin:0}
+.wrap{padding:0 18px}
+@media (min-width:960px){ .wrap{padding:0 40px} .art .toprow{margin-left:40px;margin-right:40px} }
+.art h1{font-size:24px;line-height:1.35;margin:12px 0 8px;letter-spacing:-.02em}
+.art .lead{font-size:15px;color:var(--ink2);margin:0 0 14px;line-height:1.6}
+.art .metaline{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.art img{max-width:100%;height:auto;border-radius:12px;border:1px solid var(--line);margin:10px 0;display:block}
+.art h2{font-size:12px;color:var(--ink3);font-weight:600;margin:26px 0 10px;letter-spacing:.1em;
+ font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.art p{margin:0 0 12px;font-size:15.5px;line-height:1.78}
+.art ul{margin:0;padding-left:20px}
+.art li{margin:0 0 8px;font-size:15px;line-height:1.72}
+.art .src-link{word-break:break-all;color:var(--link)}
+.art .who{font-size:12px;color:var(--ink3);margin-top:34px;border-top:1px solid var(--line);padding-top:14px}
+/* 详情页的星标和列表页共用一套逻辑，只是排在大标题右边、做得更大一点（这页只有它一个动作） */
+.art .titlerow{display:flex;gap:10px;align-items:flex-start}
+.art .titlerow h1{flex:1;min-width:0}
+.art .titlerow .star{font-size:27px;padding:14px 0 0}
+</style>
+</head><body>
+<div class="art">
+  <div class="toprow">
+    <a class="back" href="../2026-10-10.html">← 返回简报</a>
+    <button class="themebtn" id="themebtn" type="button">◐ 自动</button>
+  </div>
+  <div class="wrap">
+    <div class="titlerow">
+      <h1>Qwen-Image-2.1-Turbo：8 步加速版，采样表被写进了权重</h1>
+      <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+        data-id="2026-10-10-03" data-date="2026-10-10" data-t="Qwen-Image-2.1-Turbo：8 步加速版，采样表被写进了权重"
+        data-o="Qwen 官方 8 步加速图像模型，出图与改图同一份权重。" data-hd="1">☆</button>
+    </div>
+    <div class="lead">Qwen 官方 8 步加速图像模型，出图与改图同一份权重。</div>
+    <div class="metaline">
+      <span class="chip model">模型</span>
+      <span class="cost fast">15 分钟（读模型卡与价格；真跑走百炼 API，自托管需源码版 Diffusers）</span>
+      <span class="src">hf-org:Qwen</span>
+    </div>
+    <img src="https://cms.orcarouter.ai/api/media/file/2-1770.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+    <h2>摘要 · 译自原文</h2><p>Qwen 团队在 2026-10-09 放出了 **Qwen-Image-2.1-Turbo**，是 Qwen-Image-2.1 的加速 checkpoint，不是新架构、也不是新模型族：仓库元数据把它标成 `base_model: Qwen/Qwen-Image-2.1` 加 `base_model:finetune`，也就是厂商自己把它描述成基线的微调版本。它用同一个 7B 视觉生成组件（单流 DiT、32 层、block-causal attention——文本 token 走 token 级因果掩码、图像走 chunk 级双向掩码），配 **Qwen3-VL 8B** 文本编码器编码指令与条件图，VAE 是 64 通道 RGBA 自编码器、16 倍空间压缩，因此原生支持透明通道；调度是 Flow Matching + Euler 离散。变化是把去噪步数从基线示例用的 **40 步压到 8 步**，默认 **CFG=1**（不做无分类器引导，这也是轨迹能被大幅缩短而不崩的原因之一），并用 prefix KV cache 在去噪步之间复用文本与参考图上下文——8 步的循环里，缓存覆盖了大部分条件计算成本。分辨率沿用基线全部 7 档（2048×2048、2400×1792、1792×2400、2528×1696、1696×2528、2752×1536、1536×2752），能力覆盖文生图与指令编辑，展示按 8 类组织（人像、人体姿态、透明 RGBA、字体与海报、UI 与信息布局、单图变换、多参考合成、四图室内合成）。</p><p>真正的技术变化不在步数，而在**采样表被搬进了权重**。模型卡写明：推荐的 8 步采样调度随 checkpoint 保存并自动加载，**只设置 `num_inference_steps` 不能覆盖它**——你可以传任何整数，pipeline 仍然用保存好的那份调度；唯一的覆盖方式是调用时显式传 `sigmas`，而模型卡补充说其他调度「尚未评估」。这打破了很多人的 Diffusers 直觉（步数是调用时参数），所以会出现一个复现陷阱：把 Qwen-Image-2.1 模型卡里的示例代码改成指向 Turbo 仓库，**跑得通、不报错、但产出不是展示图那批效果**。配套的安装条件也偏新：需要一个能理解 pipeline 级配置 sigmas 的 Diffusers 构建（PR #14950，写作时还在源码树而不是 tagged release），加 `transformers&gt;=5.17.0`、accelerate、pillow，以及 CUDA 版 PyTorch。</p><p>价格与许可是两个硬约束。阿里云百炼已经上线 `qwen-image-2.1-turbo`（**0.1 元/张、120 RPM**，北京 / 美国 / 德国 / 日本 / 香港同价，新加坡 0.113362 元/张）与 `qwen-image-2.1-pro`（0.25 元/张、20 RPM），Turbo 单价便宜 **2.5 倍**、速率高 **6 倍**。但权重仍按 **Qwen Research License Agreement** 分发（仓库 `license: other` + `license_name: qwen-research`），加速不改变许可，商用自托管要单独授权；想按 8 步落地产品，路径是买百炼的托管 API。最后，官方**没有给出任何 Turbo 的质量分**（全文唯一的分是基线模型自己的 Qwen-Image-Bench 60.28，厂商口径），也没有吞吐 / 延迟 / 显存数字（基线卡有内存优化章节，Turbo 卡没有）；发布形态也很低调——只有仓库、模型卡和一行 news list 公告，没有独立博客、没有 day-zero 的 ComfyUI / vLLM-Omni / SGLang / LightX2V 支持（那些都只对基线模型）。**（未能抓取原站，以下据可达的第三方报道与镜像代理；模型卡原文与权重今天打不开。）**</p>
+    <h2>要点</h2><ul><li>同一 7B 单流 DiT（32 层）+ Qwen3-VL 8B 文本编码器 + 64 通道 RGBA VAE（16x 压缩、原生透明），采样 **8 步 vs 基线 40 步**，默认 CFG=1</li><li>**采样表随 checkpoint 保存并自动加载，`num_inference_steps` 无法覆盖**，只能显式传 `sigmas`；需 Diffusers PR #14950（源码树，未进 tagged release）+ `transformers&gt;=5.17.0`</li><li>沿用基线 7 档分辨率（2048×2048 至 2752×1536），文生图与指令编辑共用一份权重，prefix KV cache 在 8 步之间复用文本 / 参考图上下文</li><li>百炼定价：turbo **0.1 元/张、120 RPM**；pro 0.25 元/张、20 RPM → 便宜 2.5 倍、速率 6 倍</li><li>许可：**Qwen Research License（非商用）**，加速不改变许可；Turbo 无质量分、无吞吐 / 显存数据，也没有基线的 day-zero 框架支持</li></ul>
+    <h2>为什么值得你花时间</h2><p>图像生成是你平台调用最频繁的一环，这条同时给了更便宜的价格和一个会静默毁掉复现的坑。① **便宜但没分数**：0.1 元/张、速率 6 倍，草稿档可以整体往下压一档成本，但官方没给 Turbo 任何跑分，前几次必须在你自己那批分镜提示词上 A/B，不能按「加速版 = 同质量」假设。② **参数被模型接管要进验收清单**：步数从请求参数变成 checkpoint 元数据，以后每换一个蒸馏 / 加速权重，先确认哪些参数已经不由你控制。③ **许可先于性能**：Research License 意味着它不能直接进商用产品，要落地就走百炼托管 API 而不是自托管权重。④ 分清官方与社区：你 10-04 读过 Viggle 的 6 步蒸馏版，那是社区 Space；这版的意义在官方 API 定价、许可与生态位（模型卡里连 ComfyUI / vLLM / SGLang 的 day-zero 支持都没有，那些只对基线模型）。**今天可做**：同一批提示词在 turbo 与 pro 上各跑一遍，比的是「单价差」和「需要重抽几次」。</p>
+    <h2>原文</h2><p><a class="src-link" href="https://huggingface.co/Qwen/Qwen-Image-2.1-Turbo （今天不可达；可达的报道：https://www.marktechpost.com/2026/10/09/alibaba-qwen-releases-qwen-image-2-1-turbo-an-8-step-7b-image-model/ 与 https://www.orcarouter.ai/blog/qwen-image-2-1-turbo-release ；价格原站：https://help.aliyun.com/en/model-studio/qwen-image-2-1-turbo ）" target="_blank" rel="noopener noreferrer">https://huggingface.co/Qwen/Qwen-Image-2.1-Turbo （今天不可达；可达的报道：https://www.marktechpost.com/2026/10/09/alibaba-qwen-releases-qwen-image-2-1-turbo-an-8-step-7b-image-model/ 与 https://www.orcarouter.ai/blog/qwen-image-2-1-turbo-release ；价格原站：https://help.aliyun.com/en/model-studio/qwen-image-2-1-turbo ）</a></p>
+    <div class="who">雷达简报 2026-10-10 · 条目 2026-10-10-03</div>
+  </div>
+</div>
+<script>
+var THEME_ORDER=['auto','light','dark'];
+var THEME_LABEL={auto:'◐ 自动',light:'☀ 亮',dark:'☾ 暗'};
+function themeMode(){try{var m=localStorage.getItem('radar.theme');return THEME_ORDER.indexOf(m)>=0?m:'auto'}catch(e){return 'auto'}}
+function themeApply(){
+  var m=themeMode();
+  var dark=(m==='dark')||(m==='auto'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
+  document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+  var b=document.getElementById('themebtn');
+  if(b){
+    b.textContent=THEME_LABEL[m];   /* 显示的是**当前**状态，不是"点了会变成什么" */
+    b.title='主题：'+(m==='auto'?'跟随系统':(m==='dark'?'暗色':'亮色'))+'（点击切换）';
+  }
+}
+function themeWire(){
+  var b=document.getElementById('themebtn');
+  if(b)b.addEventListener('click',function(){
+    var i=THEME_ORDER.indexOf(themeMode());
+    var next=THEME_ORDER[(i+1)%THEME_ORDER.length];
+    try{localStorage.setItem('radar.theme',next)}catch(e){}
+    themeApply();
+  });
+  /* 停在"自动"时，系统换了主题要跟着换（不用刷新页面） */
+  if(window.matchMedia){
+    var mq=window.matchMedia('(prefers-color-scheme: dark)');
+    var h=function(){if(themeMode()==='auto')themeApply()};
+    if(mq.addEventListener)mq.addEventListener('change',h);else if(mq.addListener)mq.addListener(h);
+  }
+  themeApply();
+}
+
+function favOK(){try{localStorage.setItem('radar.probe','1');localStorage.removeItem('radar.probe');return true}catch(e){return false}}
+var FAV_ON=favOK();
+function favEsc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function favAll(){if(!FAV_ON)return[];try{var a=JSON.parse(localStorage.getItem('radar.fav.v1')||'[]');return a instanceof Array?a:[]}catch(e){return[]}}
+function favSave(a){if(!FAV_ON)return;try{localStorage.setItem('radar.fav.v1',JSON.stringify(a))}catch(e){}}
+function favToggle(o){
+  var a=favAll(),i=-1,k;
+  for(k=0;k<a.length;k++){if(a[k].id===o.id){i=k;break}}
+  if(i>=0){a.splice(i,1)}else{a.unshift({id:o.id,date:o.date,t:o.t,o:o.o,hd:o.hd,ts:Date.now()})}
+  favSave(a);return i<0;
+}
+/* 相对路径，所以本机 file:// 打开和线上 Pages 打开都能点 */
+function favURL(x){return location.pathname.replace(/[^/]*$/,'')+(x.hd?'detail/'+x.id+'.html':x.date+'.html')}
+function favPaint(){
+  var a=favAll(),ids={},k;
+  for(k=0;k<a.length;k++){ids[a[k].id]=1}
+  document.querySelectorAll('.star').forEach(function(b){
+    var on=!!ids[b.dataset.id];
+    b.setAttribute('aria-pressed',on?'true':'false');
+    b.textContent=on?'★':'☆';
+    b.title=on?'取消收藏':'收藏这一条';
+    var row=b.closest('.row');
+    if(row)row.classList.toggle('fav',on);
+  });
+  var n=document.getElementById('favn');if(n)n.textContent=String(a.length);
+  var c=document.getElementById('favcnt');if(c)c.textContent=String(a.length);
+  var box=document.getElementById('favbox');
+  if(box)box.style.display=a.length?'':'none';   /* 一条收藏都没有时，别在页面上挂个空盒子 */
+  var list=document.getElementById('favlist');
+  if(list){
+    var h='';
+    for(k=0;k<a.length;k++){
+      var x=a[k];
+      h+='<div class="favrow"><a class="favt" href="'+favURL(x)+'">'+favEsc(x.t)+'</a>'
+       +'<div class="favo">'+favEsc(x.o)+'</div>'
+       +'<div class="favm"><span class="favd">'+favEsc(x.date)+'</span>'
+       +'<button class="favrm" type="button" data-id="'+favEsc(x.id)+'">移除</button></div></div>';
+    }
+    list.innerHTML=h;
+  }
+}
+function favWire(){
+  if(!FAV_ON){
+    /* 浏览器不给存（Safari 打开 file:// 就是这样）→ 干脆不显示星标，免得点了没反应 */
+    document.querySelectorAll('.star').forEach(function(b){b.style.display='none'});
+    return;
+  }
+  document.querySelectorAll('.star').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();   /* 关键：点星只收藏，不展开这一条 */
+      favToggle({id:b.dataset.id,date:b.dataset.date,t:b.dataset.t,o:b.dataset.o,hd:b.dataset.hd==='1'});
+      favPaint();
+      if(typeof afterFav==='function')afterFav();
+    });
+  });
+  var box=document.getElementById('favbox');
+  if(box)box.addEventListener('click',function(e){
+    var rm=e.target.closest('.favrm');
+    if(!rm)return;
+    e.preventDefault();
+    favSave(favAll().filter(function(x){return x.id!==rm.dataset.id}));
+    favPaint();
+    if(typeof afterFav==='function')afterFav();
+  });
+  var cp=document.getElementById('favcopy');
+  if(cp)cp.addEventListener('click',function(){
+    var a=favAll(),lines=[],k;
+    for(k=0;k<a.length;k++)lines.push('- '+a[k].date+' · '+a[k].t+' — '+location.origin+favURL(a[k]));
+    var txt=lines.join(String.fromCharCode(10));
+    var done=function(ok){cp.textContent=ok?'已复制':'复制失败，请长按选择';setTimeout(function(){cp.textContent='复制清单'},1800)};
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)});
+    }else{
+      var ta=document.createElement('textarea');ta.value=txt;
+      ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
+      var ok=false;try{ok=document.execCommand('copy')}catch(e){}
+      document.body.removeChild(ta);done(ok);
+    }
+  });
+  favPaint();
+}
+
+themeWire();
+favWire();
+</script>
+</body></html>
