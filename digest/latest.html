@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>雷达简报 2026-10-31</title>
+<title>雷达简报 2026-11-01</title>
 <script>
 (function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
 var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
@@ -176,48 +176,48 @@ details.rej[open] summary::before{content:"▾ "}
   <div class="drift">⚠️ 本地技能补丁漂移：implement、code-review（详情：radar\skill-drift.md）</div>
   <div class="head">
     <div class="kickerrow">
-      <span class="kicker">雷达简报 · 2026-10-31</span>
+      <span class="kicker">雷达简报 · 2026-11-01</span>
       <button class="themebtn" id="themebtn" type="button">◐ 自动</button>
     </div>
-    <h1>6 条 · 先扫，再展开</h1>
-    <div class="strap">候选 223 条 / 33 源（33 成功 · 0 源失败 · 0 个 0 条源）· 新增 185 条 · seen 38 条 · 正文 6 条 · 折叠 1 条 · 砍掉 216 条（38 条 seen + 178 条未入选）。</div>
+    <h1>5 条 · 先扫，再展开</h1>
+    <div class="strap">候选 220 条 / 33 源（33 成功 · 0 源失败 · 1 个 0 条源）· 新增 181 条 · seen 39 条 · 正文 5 条 · 折叠 1 条 · 砍掉 214 条（39 条 seen + 175 条未入选）。</div>
     <div class="segs">
-      <button class="seg" data-f="all" aria-pressed="true">全部 6</button>
-      <button class="seg" data-f="fast" aria-pressed="false">15 分钟 2</button>
+      <button class="seg" data-f="all" aria-pressed="true">全部 5</button>
+      <button class="seg" data-f="fast" aria-pressed="false">15 分钟 4</button>
       <button class="seg" data-f="tool" aria-pressed="false">技能工具 0</button>
       <button class="seg" data-f="fav" aria-pressed="false">★ 收藏 <span id="favn">0</span></button>
     </div>
   </div>
-  <div class="count" id="cnt">显示 6 / 6 条</div>
+  <div class="count" id="cnt">显示 5 / 5 条</div>
   <details class="favbox" id="favbox" style="display:none">
     <summary>我的收藏 <span id="favcnt">0</span></summary>
     <div class="favlist" id="favlist"></div>
     <button class="favcopy" id="favcopy" type="button">复制清单</button>
   </details>
   
-    <details class="row" data-fast="0" data-tool="0">
+    <details class="row" data-fast="1" data-tool="0">
       <summary class="hit">
         <span class="n">01</span>
         <span class="tt">
-          <span class="t1">Open-H3-Regenerate-2K：把 768P 草稿重生成 2K/4K 视频</span>
-          <span class="t1b">把 768P 视频草稿重生成 2K/4K 成片。</span>
+          <span class="t1">claude-mem：给编码 Agent 装一个跨会话记忆</span>
+          <span class="t1b">给编码 Agent 加跨会话记忆。</span>
           <span class="t2">
             <span class="chip cn">中文</span>
-            <span class="cost slow">半天</span>
-            <span class="src">cn:qbitai</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:juejin</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-10-31-01" data-date="2026-10-31" data-t="Open-H3-Regenerate-2K：把 768P 草稿重生成 2K/4K 视频"
-          data-o="把 768P 视频草稿重生成 2K/4K 成片。" data-hd="1">☆</button>
+          data-id="2026-11-01-01" data-date="2026-11-01" data-t="claude-mem：给编码 Agent 装一个跨会话记忆"
+          data-o="给编码 Agent 加跨会话记忆。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>英伟达与 MIT 的 Efficient-Large-Model 团队把 MiniMax H3 的高分辨率重生成环节做成了开放实现：冻结 H3 Transformer 与 VAE，只训一个 rank 576 的细化 LoRA，再合并 LightX2V FL2VA Turbo 与 LMS Sharp，三步去噪把 1344×768、121 帧的草稿放大到 2560×1440；权重在 Hugging Face，推理代码在 NVlabs/Sana 的 sol-engine 分支。
-        <span class="k">为什么值得你花时间</span>你做视频生成 / 一句话成片，这是管线末端最贵的一步：官方 H3-Regenerate-2K 只有 API，现在可以自部署。单张 B200 上 5 秒片段从 87.26 秒降到 22.45 秒（3.89×），其中快速 VAE 解码从 15 秒降到 1.6 秒；RefinerBench-150 的 UniPercept 60.0 高于官方 API 的 53.4，VBench 美学 / 成像 / 主体一致性也更高。**今天就能做**：拿一条 5 秒 768P 草稿跑 2K，重点看文字 / 人脸 / 细纹理是否被“重生成”坏，再对比官方 API 的运动平滑度。边界：4K 是稿件说法，模型卡只承诺 2K；B200 / 大显存是门槛；所有分数团队自测；许可证是 MiniMax H3 社区许可，商用 / 分发条款要逐条看。
-        <span class="k">上手成本</span>半天（B200 / 大显存；先用 5 秒草稿试 2K）
-        <span class="k">入口</span><a href="https://huggingface.co/Efficient-Large-Model/Open-H3-Regenerate-2K" target="_blank" rel="noopener noreferrer">https://huggingface.co/Efficient-Large-Model/Open-H3-Regenerate-2K</a>
-        <a class="more" href="detail/2026-10-31-01.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>claude-mem 是一个给编码 Agent 用的持久记忆压缩系统：生命周期钩子自动记下工具调用和文件改动，模型把原始流水账压成语义摘要，再分别存进 SQLite（结构化事实）和 Chroma（向量检索）；本地 worker 暴露 4 个 MCP 工具做分层检索，Agent 先粗搜、再按需拉细节（渐进式披露）。作者 Alex Newman（thedotmack），Apache-2.0，当前 15.2.0，要求 Node ≥ 20，安装已覆盖 Claude Code、OpenCode、T3 Code、Antigravity CLI、Pi 和 DeepSeek Harness。
+        <span class="k">为什么值得你花时间</span>你每天用编码 Agent，最固定的浪费就是新会话开头把项目背景再讲一遍；claude-mem 把这段重复压成一层可检索的记忆，而且明确支持 DeepSeek Harness。掘金文章引用 10-30 的 GitHub 快照：105,550 星、单日 +1,145，同赛道的 Hindsight 56,437 星。**今天就能做**：在一个只读仓库项目里用 `/plugin marketplace add thedotmack/claude-mem` + `/plugin install claude-mem` 安装（或 `npx claude-mem install`），重启宿主，新会话里问一个上一轮才聊过的细节，看它能不能给出带编号的引用。边界：`npm install -g` 只装 SDK，不注册钩子；托管观察器 30 天试用后回落到 Anthropic 套餐，不想登录就用 `--provider` 或 `CLAUDE_MEM_ONLINE_OPTIN=false`；压缩会丢原文措辞，后台记录要先划好 private 边界；星数是关注度，不是留存或效果。
+        <span class="k">上手成本</span>15 分钟（插件安装 + 重启 + 一次引用验证）
+        <span class="k">入口</span><a href="https://github.com/thedotmack/claude-mem" target="_blank" rel="noopener noreferrer">https://github.com/thedotmack/claude-mem</a>
+        <a class="more" href="detail/2026-11-01-01.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
@@ -225,25 +225,25 @@ details.rej[open] summary::before{content:"▾ "}
       <summary class="hit">
         <span class="n">02</span>
         <span class="tt">
-          <span class="t1">DeepSeek 兼容 Anthropic Messages API，还自带搜索抓取</span>
-          <span class="t1b">Claude Code 接 DeepSeek 联网。</span>
+          <span class="t1">SimReady Central：用一句话搜 NVIDIA 的 3D 资产库</span>
+          <span class="t1b">按自然语言搜 NVIDIA 的 3D 资产库。</span>
           <span class="t2">
-            <span class="chip other">其他</span>
+            <span class="chip tool">小而美</span>
             <span class="cost fast">15 分钟</span>
-            <span class="src">docs:deepseek-api</span>
+            <span class="src">hf:spaces-trending</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-10-31-02" data-date="2026-10-31" data-t="DeepSeek 兼容 Anthropic Messages API，还自带搜索抓取"
-          data-o="Claude Code 接 DeepSeek 联网。" data-hd="1">☆</button>
+          data-id="2026-11-01-02" data-date="2026-11-01" data-t="SimReady Central：用一句话搜 NVIDIA 的 3D 资产库"
+          data-o="按自然语言搜 NVIDIA 的 3D 资产库。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>DeepSeek 文档新增两套 Agent 入口：`/anthropic/v1/messages` 兼容 Anthropic Messages API，Anthropic SDK 的 `base_url` 填 `https://api.deepseek.com/anthropic`，`claude-opus*` 别名映射到 `deepseek-v4-pro`、其他 `claude*` 映射到 `deepseek-flash`；另有 `/v1/tools/search` 与 `/v1/tools/fetch`，用自建搜索引擎返回带 rerank 分数、权威度、发布时间的结构化结果，`need_content` 可直接取正文。
-        <span class="k">为什么值得你花时间</span>你跑 wayfinder 和 RAG，最烦的是“模型一套 SDK、搜索一套供应商”；现在 Claude Code / OpenCode 把 Anthropic 的 base_url 指过来就能切 DeepSeek，搜索 / 抓取也走同一个 key。定价按成功请求 $0.75 / 1000 次，Search 100 QPS、Fetch 25 QPS；11 月 1 日前在 DeepSeek Harness / Claude Code / Codex 里的服务端调用还免费。**今天就能做**：把一个只读仓库任务用 Claude Code 指到 DeepSeek 跑一遍，再用 `site:` / `after:` 查一条你关心的新版本文档，比较结果质量和延迟。边界：兼容层会忽略 `container`、`mcp_servers`、`top_k` 等字段；web search 是 server tool，行为与 Anthropic 不完全一致；计费从 11 月 1 日开始，QPS 是账号级。
-        <span class="k">上手成本</span>15 分钟（换 base_url + 一个搜索请求）
-        <span class="k">入口</span><a href="https://api-docs.deepseek.com/api/create-message" target="_blank" rel="noopener noreferrer">https://api-docs.deepseek.com/api/create-message</a>
-        <a class="more" href="detail/2026-10-31-02.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>NVIDIA 把 SimReady 的 3D 资产检索做成了一个单容器 Demo：用自然语言搜 USD 资产，结果带 RTX 仿真预览。页面说明里写明它由 OpenSearch、Neo4j、Redis、deepsearch-api 和 asset-graph-service 组成，SigLIP2 的图像 / 文本嵌入在本地 Triton 进程里跑；索引不在镜像里，容器启动时从 S3 拉取。Space 跑在 RTX PRO 6000 上，2026-09-28 创建，目前 310 个赞。
+        <span class="k">为什么值得你花时间</span>你在做画布 / 引擎接入，3D 资产「找得到」和「生成得出」同样重要；这个 Demo 把「文本搜资产 + RTX 预览」串成一条可试的路径，也把可复用的检索栈（OpenSearch + 图库 + SigLIP2）摊开给你看。**今天就能做**：打开 Space 搜一个具体对象（比如「warehouse robot」或「conveyor」），看预览和元数据是否够你用；如果要接自己的资产库，就照它的分层搭一个小索引，先只索引你手头 100 个常用 USD。边界：这是 NVIDIA 自家资产库的 Demo，不是给你上传私有资产的 SaaS；没有看到公开 API 文档；索引外置、依赖 GPU 档，启动可能要等；许可证与资产商用条款要逐项看。
+        <span class="k">上手成本</span>15 分钟（打开 Space 搜一个资产；自建索引另算）
+        <span class="k">入口</span><a href="https://huggingface.co/spaces/nvidia/simready-central" target="_blank" rel="noopener noreferrer">https://huggingface.co/spaces/nvidia/simready-central</a>
+        <a class="more" href="detail/2026-11-01-02.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
@@ -251,51 +251,51 @@ details.rej[open] summary::before{content:"▾ "}
       <summary class="hit">
         <span class="n">03</span>
         <span class="tt">
-          <span class="t1">Genspark Media Studio：70 多个模型拼成一个 AI 剧组</span>
-          <span class="t1b">一张画布调度 70 多个模型拍短剧。</span>
+          <span class="t1">Idol：一张图生成 3D Gaussian Splat</span>
+          <span class="t1b">一张图生成可旋转查看的 3D 高斯模型。</span>
           <span class="t2">
-            <span class="chip cn">中文</span>
+            <span class="chip tool">小而美</span>
             <span class="cost fast">15 分钟</span>
-            <span class="src">cn:qbitai</span>
+            <span class="src">hf:spaces-trending</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-10-31-03" data-date="2026-10-31" data-t="Genspark Media Studio：70 多个模型拼成一个 AI 剧组"
-          data-o="一张画布调度 70 多个模型拍短剧。" data-hd="1">☆</button>
+          data-id="2026-11-01-03" data-date="2026-11-01" data-t="Idol：一张图生成 3D Gaussian Splat"
+          data-o="一张图生成可旋转查看的 3D 高斯模型。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>Genspark 把视频生成做成了 Agent 工作台：LLM 当导演写剧本 / 拆分镜，背后接 20 多家厂商的 70 多个模型版本（Seedance 2.5、Kling、Veo、GPT Image、Nano Banana、ElevenLabs 等），用“故事圣经”保存人物 / 服装 / 场景设定，先出 480p 草稿，确认后用 3D 白模预演机位，再局部重拍（一次最多 5 段、每段至少 4 秒）或帧编辑，最后导出 PSD / Premiere / CapCut 草稿。
-        <span class="k">为什么值得你花时间</span>你做一句话成片 / 画布节点，这套流程把“剧本—分镜—角色一致性—草稿—局部返修—导出”串在同一张画布上，是很好的产品参照。实测 5 场戏拆成 84 个镜头、12 个视频单元，3 个 case 花掉约 4.5 万 / 5 万积分；10 月 27 日到 11 月 4 日 Plus / Pro 积分五折。**今天就能做**：用“故事圣经”起一个 30 秒商战短片，只盯三件事——人物前后一致性、局部重拍是否保留原动作、音画是否漂移。边界：首版固定 480p，定稿才升 1080p；审批项多达 35 个且修改会回退已批准状态；实测有跳帧、音画不同步；积分消耗不适合当生产预算。
-        <span class="k">上手成本</span>15 分钟（登录试用一条 30 秒短片；积分另算）
-        <span class="k">入口</span><a href="https://www.genspark.ai/media-studio" target="_blank" rel="noopener noreferrer">https://www.genspark.ai/media-studio</a>
-        <a class="more" href="detail/2026-10-31-03.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>Speridlabs 的 Idol 把一个物体的单张图片转成 3D Gaussian Splat：Gradio Space 跑在 ZeroGPU 上，输出 `.ply`，页面里可直接旋转查看；可调输入类型、10–100 步、guidance 0–10、time shift 1–6、Gaussian 数量和 seed。示例覆盖角色、食物、家具、Logo 和玩具，默认背包的 `.ply` 随 Space 提供；代码在 `speridlabs/idol-sdk`，权重在 `speridlabs/idol`，Space 是 Apache-2.0。
+        <span class="k">为什么值得你花时间</span>你做画布 / 引擎接入，单图生成 3D 资产是最短的一条验证路径：先用一张产品图或角色图看几何和材质边界，再决定要不要把「图 → 3D」接进节点。**今天就能做**：打开 Space 选一个示例或上传自己的图，生成后看三件事——轮廓是否闭合、背面是否崩、放大后高斯是否糊成一片；满意再下载 `.ply` 去 Three.js / 引擎里加载。边界：输出是 Gaussian Splat，不是 mesh / USD，也没有 PBR；ZeroGPU 单次 120 秒，排队和输入质量决定结果；Space 的 Apache-2.0 不自动等于权重和 FLUX.2 / DINOv3 的商用条款，落地前逐项确认。
+        <span class="k">上手成本</span>15 分钟（选示例生成一个 `.ply`；排队另算）
+        <span class="k">入口</span><a href="https://huggingface.co/spaces/speridlabs/idol" target="_blank" rel="noopener noreferrer">https://huggingface.co/spaces/speridlabs/idol</a>
+        <a class="more" href="detail/2026-11-01-03.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
-    <details class="row" data-fast="0" data-tool="0">
+    <details class="row" data-fast="1" data-tool="0">
       <summary class="hit">
         <span class="n">04</span>
         <span class="tt">
-          <span class="t1">EnvHarness：按 Agent 的短板动态改训练环境</span>
-          <span class="t1b">按 Agent 的弱点自动改写训练环境。</span>
+          <span class="t1">Agent 架构怎么选：workflow 优先，多 Agent 只在两种场景值</span>
+          <span class="t1b">四问决定 workflow 还是多 Agent。</span>
           <span class="t2">
             <span class="chip cn">中文</span>
-            <span class="cost slow">1 小时</span>
-            <span class="src">cn:infoq</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:juejin</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-10-31-04" data-date="2026-10-31" data-t="EnvHarness：按 Agent 的短板动态改训练环境"
-          data-o="按 Agent 的弱点自动改写训练环境。" data-hd="1">☆</button>
+          data-id="2026-11-01-04" data-date="2026-11-01" data-t="Agent 架构怎么选：workflow 优先，多 Agent 只在两种场景值"
+          data-o="四问决定 workflow 还是多 Agent。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>Google Research 开源 EnvHarness：用标准 `reset()` / `step()` 包住现有环境，只改 Agent 看到的接口，不动底层环境与评估器；三个可组合组件——setup 改初始状态、rule 约束状态转移、link 改观察结果；配套 EnvRigger 会分析 Agent 轨迹、找反复出现的薄弱点、生成针对性改动并验证。
-        <span class="k">为什么值得你花时间</span>你在 wayfinder 这类 Agent 上做评测 / 训练，固定 benchmark 一旦刷满就不再提供新信号；EnvHarness 把“改环境”变成一层可编程包装，论文在 WebArena、SWE-bench Verified、ALFWorld 上把 Gemini 3.1 Flash-Lite、Qwen3.6 27B、Gemini 3.5 Flash、Claude Sonnet 4.6 都抬了 2.9–3.7 个百分点，且保留原任务和人工校验器。**今天就能做**：挑一个你已经在跑的 SWE-bench 子集，按 setup/rule/link 写一层包装，只改一个失败模式（比如工具调用格式），跑一轮 EnvRigger 看是否复现提升。边界：这是研究框架，不是开箱产品；2.9–3.7 个点是平均提升，不代表你的任务；需要自己实现环境适配与验证器。
-        <span class="k">上手成本</span>1 小时（包一个现有环境，跑一轮 EnvRigger）
-        <span class="k">入口</span><a href="https://github.com/google-research/envharness" target="_blank" rel="noopener noreferrer">https://github.com/google-research/envharness</a>
-        <a class="more" href="detail/2026-10-31-04.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>掘金作者郑恩赐把 Anthropic《Building Effective Agents》的选型原则拆成一套可执行判据：先分清固定形状的 workflow 和运行时形状的 agent；单 Agent 在「步骤 3–5 步、工具 3–5 个、无需并行」时是默认解；多 Agent 只有真并行和生成-校验双角色两类值得上。文里给了成本账：orchestrator-worker 比单 Agent 好约 90%，但烧约 15 倍 token；同等算力预算下多 Agent 只换来约 4% 提升、付出 4 倍成本；顺序链路按乘法衰减（单步 95% 可靠，5 步 77.4%，10 步 59.9%）。
+        <span class="k">为什么值得你花时间</span>你在 wayfinder 这类 Agent 上做编排，最容易犯的错是「先上多 Agent 再说」；这篇文章给的是可复用的决策函数，而不是某个框架的广告。**今天就能做**：把文中的 `recommend_agent_architecture()` 抄进你的仓库，用五个参数跑一遍你手头的三个任务，先把「流程能固定却用了 agent」的那一个改回 workflow，量一下 token 和失败率。边界：90% / 15 倍 / 4% 这些数字来自 Anthropic 的公开研究，不是独立复现；框架对比是 2026 年的快照，AutoGen 已进维护模式；多 Agent 的收益高度依赖任务是否真并行。
+        <span class="k">上手成本</span>15 分钟（读 + 抄 Python 判据 + 跑三个任务）
+        <span class="k">入口</span><a href="https://juejin.cn/post/7702483654677364774" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7702483654677364774</a>
+        <a class="more" href="detail/2026-11-01-04.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
@@ -303,59 +303,33 @@ details.rej[open] summary::before{content:"▾ "}
       <summary class="hit">
         <span class="n">05</span>
         <span class="tt">
-          <span class="t1">Nemotron 3.5 Bolt E4B：4GB 的本地语音 Agent 大脑</span>
-          <span class="t1b">4GB 的本地小模型，专给语音助手用。</span>
+          <span class="t1">Arca：把 10 天级 Agent 任务的记忆和人工闸门拆开</span>
+          <span class="t1b">把 10 天级 Agent 的记忆和人工闸门拆开。</span>
           <span class="t2">
             <span class="chip people">跟人</span>
             <span class="cost slow">1 小时</span>
-            <span class="src">people:hf-blog</span>
+            <span class="src">people:latent-space</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-10-31-05" data-date="2026-10-31" data-t="Nemotron 3.5 Bolt E4B：4GB 的本地语音 Agent 大脑"
-          data-o="4GB 的本地小模型，专给语音助手用。" data-hd="1">☆</button>
+          data-id="2026-11-01-05" data-date="2026-11-01" data-t="Arca：把 10 天级 Agent 任务的记忆和人工闸门拆开"
+          data-o="把 10 天级 Agent 的记忆和人工闸门拆开。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>NVIDIA 从 Gemma-4-E4B-it 后训练的 8B 总参数 / 4B 有效参数小模型（10-23 发布），Q4_K_M 量化后 4GB，64K 上下文，用 llama.cpp 起 OpenAI 兼容服务；主打多轮工具调用、指令跟随和输入 grounding，内置 conversational mode 与 thinking budget。模型卡 Q4 版 MultiChallenge 55.60（Gemma4 E4B 39.36）、RoleBench 71.21（60.51），BFCL-v3 67.31 低于 Qwen3.5 4B 的 70.56。
-        <span class="k">为什么值得你花时间</span>你做互动角色 / 口播 / 语音 Agent，最贵的是“对话大脑”占掉的显存和首 token 延迟；Bolt 用 4GB 把这一层压到边缘设备，NVIDIA 的 MonsterHouse demo 用 ASR + Bolt Q4 + Magpie TTS 做到语音结束到出声中位 1.70 秒、缓存回复 0.72 秒，给 ASR / TTS / 动画留出余量。**今天就能做**：用 llama.cpp 拉起 GGUF，接一个 3 轮带工具调用的对话，测首 token 延迟和工具格式错误率；要完整语音环，再套 Nemotron Voice Agent。边界：benchmark 全是 NVIDIA 自测；BFCL / Tau2 不如同尺寸 Qwen；以英语为主，另含西 / 法 / 德 / 意 / 日等；许可证是 OpenMDW-1.1 + Gemma 4 条款。
-        <span class="k">上手成本</span>1 小时（下 GGUF + llama.cpp + 一轮语音 / 工具调用）
-        <span class="k">入口</span><a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB" target="_blank" rel="noopener noreferrer">https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB</a>
-        <a class="more" href="detail/2026-10-31-05.html">读详情（翻译 + 要点）→</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="0" data-tool="0">
-      <summary class="hit">
-        <span class="n">06</span>
-        <span class="tt">
-          <span class="t1">nesformer：把 NES 模拟器塞进 Qwen3.5-4B 的权重</span>
-          <span class="t1b">在 4B 语言模型权重里跑 NES 游戏。</span>
-          <span class="t2">
-            <span class="chip people">跟人</span>
-            <span class="cost slow">1 小时</span>
-            <span class="src">people:simonwillison</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-10-31-06" data-date="2026-10-31" data-t="nesformer：把 NES 模拟器塞进 Qwen3.5-4B 的权重"
-          data-o="在 4B 语言模型权重里跑 NES 游戏。" data-hd="1">☆</button>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>Drew Breunig 受 qwenputer 启发，把 NES 的 6502 CPU 模拟器“烤”进 Qwen3.5-4B 的权重：给模型一个 ROM，它按 CPU 状态逐步算出画面，能跑《超级马里奥兄弟》，但很慢；仓库给权重和 CLI，构建过程用了 Opus 5.5 和 15 年前的 nestest 一致性测试（据 Simon Willison 与作者说明）。
-        <span class="k">为什么值得你花时间</span>这条不直接服务你的视频管线，但它演示了“权重即程序”的极限：不是调用工具，而是把一套确定性状态机学进参数里。对你评估“哪些逻辑该写代码、哪些该交给模型”是个很好的反例样本；周末想换个脑子，1 小时能跑起来看马里奥动。边界：速度是“非常慢”，不能当模拟器用；4B 权重 + CLI 需要一定显存；ROM 版权自负；没有生产入口。
-        <span class="k">上手成本</span>1 小时（下 4B 权重 + 编译 CLI + 一个 ROM）
-        <span class="k">入口</span><a href="https://github.com/dbreunig/nesformer" target="_blank" rel="noopener noreferrer">https://github.com/dbreunig/nesformer</a>
-        <a class="more" href="detail/2026-10-31-06.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>Latent Space 访谈 Arca 的 AI 负责人 Aman Singh：这家 AI 原生财富管理公司的 Agent 任务可以横跨 10 天，特点是 stop-start、多角色、多决策点、多交接；他们给每个客户建持久记忆，记录「发生了什么、下一步盯什么、谁负责哪个动作」，并自建 harness 按内部 benchmark 给任务挑模型。安全侧的做法很硬：交易和资金动作永远留在人手里，所有安全限制都是确定性的；Agent 在沙箱里写代码查数据，代码会被翻译成一套严格格式、原代码丢弃，再在格式上加闸后才到后端。
+        <span class="k">为什么值得你花时间</span>你在 wayfinder 上跑长任务，最难的不是单步能力，而是「跨天不忘事、关键动作有人兜底」；Arca 把这两件事拆成了可抄的工程结构——按客户 / 项目持久记忆、自建 harness 保留换模型的自由、确定性闸门而不是用提示词求它别乱来。**今天就能做**：对照你现在的任务状态，先补两个字段——「这件事上次停在哪」和「下一步谁负责」；再把一个高风险动作从 Agent 工具列表里拿掉，改成人工确认。边界：这是一个公司的访谈，不是开放实现或 benchmark；10 天是任务跨度，不是单次运行时长；他们的 harness 和记忆系统没有开源，照抄的是结构不是代码。
+        <span class="k">上手成本</span>1 小时（读访谈 + 对照任务状态改两个字段）
+        <span class="k">入口</span><a href="https://latent.space/p/arca/" target="_blank" rel="noopener noreferrer">https://latent.space/p/arca/</a>
+        <a class="more" href="detail/2026-11-01-05.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
   <div class="empty" id="empty" style="display:none">这个筛选下没有条目。</div>
-  <div class="fold">还有 1 条：①【**知情**】**Claude Code VS Code 扩展被植入 SSH 后门**——官方 `anthropic.claude-code` 2.1.313 在 Cursor Marketplace 的包被注入 IIFE，加载即执行：往 `~/.ssh/authorized_keys` 追加 `svc-telemetry` 公钥、用 `svc-telemetry-tun` 私钥建反向 SSH 隧道到 `134.209.82.225`，并用 LaunchAgent（伪装 `com.apple.sysmond`）/ cron / 启动目录做持久化，再回传主机名、Git 邮箱和最多 40 个密钥类环境变量名。Cursor 已下架，npm / VS Code 的 2.1.313 也已撤；macOS 的 `systemsetup` 权限 bug 可能让 SSH 没真正打开，但公钥和持久化仍会落地，卸载扩展不等于清除。今天没有可执行入口，只作知情；如果你或同事在 Cursor 里装过这个版本，先查 `~/.ssh/authorized_keys`、`~/.config/.smt*`、`~/Library/LaunchAgents/com.apple.sysmond.plist`，再轮换凭据（https://phorion.io/blog/offical-claude-code-vsx-compromise/）。</div>
+  <div class="fold">还有 1 条：①【**知情**】**Utopai Studios 估值 10 亿美元**——4 年期的 AI 原生影视公司 10 月完成 6000 万美元融资、估值站上 10 亿美元；核心是定制视频模型 **Utopai X**（基于 MiniMax H3，Artificial Analysis 文生视频 / 图生视频双榜第二）和制片系统 **PAI**（剧本拆场景 / 镜头，角色 / 场景 / 道具绑定项目，AI agents 当制片助理），已与 CJ ENM、Globoplay、DeNA、华策合作，是首家同时加入 WGA 与 SAG 的 AI 影视公司；2027 年有三部院线片。今天没有公开 API / 仓库，只作业务信号（https://www.qbitai.com/2026/10/506747.html）。</div>
   <div class="foot">
-    <b>每源今日条数</b><br>✅ hf-org:deepseek-ai 3 · ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15 · ✅ vendor:deepmind 10 · ✅ vendor:mistral 10 · ✅ skills:trending 12 · ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ repo:deepseek-ai/deepseek-harness 3 · ✅ commit:deepseek-ai/deepseek-harness 6 · ✅ docs:deepseek-api 3（正文 02） · ✅ hn:show 12 · ✅ hf:spaces-trending 20 · ✅ people:simonwillison 12（正文 06） · ✅ hn:stories 9（折叠 1） · ✅ cn:juejin 10 · ✅ cn:sspai 10 · ✅ cn:qbitai 10（正文 01、03） · ✅ cn:infoq 10（正文 04） · ✅ people:latent-space 6 · ✅ people:interconnects 6 · ✅ people:hf-blog 8（正文 05） · ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5（33 源 · 33 成功 · 0 源失败 · 0 个 0 条源）
-    <details class="rej"><summary>被过滤器砍掉的 33 条（信任雷达的依据）</summary>
-        <div class="rejrow"><span class="t">3 条（`DeepSeek-V4.1-Flash-1017`、`V4.1-Flash`（seen）、`V4-Flash-Vision-Exp`）</span><span class="r">1017 已于 10-18 正文 01 / 10-24 正文 05 评过；其余为旧版 / 视觉实验</span></div><div class="rejrow"><span class="t">3 条（`Qwen-Image-2.1-Turbo`、`PE-I2I`、`PE-T2I`）</span><span class="r">全部 seen</span></div><div class="rejrow"><span class="t">3 条（`GLM-5.3-Flash-BF16`、`GLM-5.3-BF16`、`GLM-5.3-Flash`（seen））</span><span class="r">BF16 是格式版本，属版本号流水；Flash 为 seen</span></div><div class="rejrow"><span class="t">3 条（`MiniMax-M3.1-Flash`、`Music3`（seen）、`H3`（seen））</span><span class="r">M3.1 Flash 已于 10-21 正文 04 评过；两条 seen</span></div><div class="rejrow"><span class="t">3 条（`Kimi-K3`、`K2.7-Code`、`K2.6`）</span><span class="r">4–6 月旧版本；K3.1 Pro 已在 10-24 正文 04</span></div><div class="rejrow"><span class="t">15 条（training preferences、community safety、fair use、Model Spec、misalignment、Ropes &amp; Gray、Credit Saison、ServiceNow、future of firm、Legora、Retell、Oracle、Check Point、Greptile、学术社区）</span><span class="r">客户案例 / 合作 / 政策与治理稿；今天没有新模型或 API</span></div><div class="rejrow"><span class="t">10 条（Carbon（seen）、Genie 4（seen）、森林类型、抗微生物肽、新加坡反诈、Argon 安全 / 机器人 / 发布（seen）、EmbeddingGemma 2、Argon 新纪元（seen））</span><span class="r">Carbon 已于 10-29 折叠；Genie 4 / Argon 系列已评或 seen；EmbeddingGemma 2 文本提升有限、昨天已砍，今天仍不占正文；其余研究 / 地球观测 / 反诈，无本业入口</span></div><div class="rejrow"><span class="t">10 条（Le Chonk（seen）、NVIDIA 工业、`Voxtral 3`（seen）、`Timestral`、`Mistral Large 4` 预览（seen）、`Hallo, Deutschland`、Mozilla（seen）、Cloudera、legacy code、€3B 融资）</span><span class="r">工业 / 时序 / 合作 / 融资；Le Chonk 已于 10-30 正文 03 评过，预览版已评</span></div><div class="rejrow"><span class="t">12 条（`ai-image-generation` ×2 + 10 条 seen）</span><span class="r">排名第 1 的 `skills-shell/superpowers` 是 `inference.sh` / `belt` 薄壳，与 10-17 正文 03 同能力；另一条 `gencraft-labs` 同类；其余 seen</span></div><div class="rejrow"><span class="t">3 条（v2.1.314 / 312 / 311）</span><span class="r">版本号流水；v2.1.314 的 `permissions.blockWritesOutsideWorkingDirectories` 是安全增强，但入口在版本号里，按规则不进正文</span></div><div class="rejrow"><span class="t">3 条（0.167.0-alpha.1 / 0.166.0 / 0.166.0-alpha.6）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（nightly ×2 / preview.0）</span><span class="r">nightly / preview 版本号流水</span></div><div class="rejrow"><span class="t">3 条（Spec Kit 1.2.5 / 1.2.4 / 1.2.3）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v2.2.5 / v2.2.4 / v2.2.3）</span><span class="r">版本号流水；v2.2.3 的 Claude Code 接入、v2.2.4 的持久终端、v2.2.5 的快捷键都装在版本号里</span></div><div class="rejrow"><span class="t">3 条（v2.2.0 / v2.1.0（seen）/ v2.0.0（seen））</span><span class="r">v2.2.0 是 Node 运行时与 CA 证书安全更新，不改变本业入口；后两条 seen</span></div><div class="rejrow"><span class="t">3 条（v1.3.2 / 1.3.1 / 1.3.0）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v0.2.1-rc.5 / v0.2.2-alpha.2 / v0.2.1-rc.4）</span><span class="r">alpha / rc 版本号流水</span></div><div class="rejrow"><span class="t">6 条（commits）</span><span class="r">内部修复 / 文档 / CI，无独立入口</span></div><div class="rejrow"><span class="t">2 条（`/api/search`、`/guides/search`（seen））</span><span class="r">与正文 02 同一套 Search / Fetch 能力，不重复占位；`/guides/search` 为 seen</span></div><div class="rejrow"><span class="t">12 条（Steal My Bitcoin、TitleArt、keybytes、S&amp;P 500 bubbles、Hob、nesformer、Encarta 95、dontallow、DOOM transformer、SlideBySide、IRS tax model、catcopter）</span><span class="r">消费 / 趣味 / 键盘 / 嵌入式 / 演示工具，与视频 / 图像 / 画布无直接关系；nesformer 与正文 06 同一事件</span></div><div class="rejrow"><span class="t">20 条（FastH3-Omni（seen）、Qwen realtime（seen）、Fibo（seen）、Viggle（seen）、Phonon（seen）等）</span><span class="r">社区 NSFW / 换脸 / 旧 demo / 机器人 / 生物模型；生图 / 视频空间与现有流程重复，且多数已评或 seen</span></div><div class="rejrow"><span class="t">11 条（API credits、Fable 游戏、Ben Hylak、Ted Sanders、Octoverse、vibe 游戏、Terk、Game Boy、GPT-6.1 Terra、Jason Koebler、webframe）</span><span class="r">观点 / 引用 / 数据稿 / 旧题；webframe 的评测有参考价值，但今天不给工具席</span></div><div class="rejrow"><span class="t">8 条（另外 2 条 Claude Code 后门同事件、盗版书诉讼（seen）、后台 Agent 转录、药物研发、Hob、Duet、训练数据、隐私）</span><span class="r">3 条 Claude Code 后门只留 1 条折叠（见上）；其余转录 / 隐私 / 生物 / 消费，无独立可执行入口</span></div><div class="rejrow"><span class="t">10 条（CaoIM、AA 分账、AGENTS.md、Trae 3D、AI 眼镜、AI 写代码拼人、EMBRACE、双 Token、LangGraph HITL、智能体逃出沙箱）</span><span class="r">AGENTS.md 模板可复制，但今天方法席给 EnvHarness；EMBRACE 与 Claude Code 后门同属供应链安全，只留 1 条知情；其余教程 / 观点 / 与业务无关</span></div><div class="rejrow"><span class="t">10 条（本周看什么、吃药提醒、久坐健康、柳比歇夫、派早报 ×2、新玩意、抗压、健康数据、激活锁）</span><span class="r">消费电子 / 生活 / 旧闻</span></div><div class="rejrow"><span class="t">8 条（OXR、Claude 新模型曝光、清华具身智能、MEET2027、智己 LS8、STEPX Neo、商汤 MaaS、AI 安全）</span><span class="r">OXR 已于 10-29 正文 01 评过；Claude 新模型只是曝光，无入口；其余车企 / 机器人 / 活动 / 厂商稿</span></div><div class="rejrow"><span class="t">9 条（思科重写、垂类 Agent、模力工场、EmbeddingGemma 2、超节点、.NET 11 RC2、2027 趋势、NestJS 12、4 条提示词）</span><span class="r">EmbeddingGemma 2 文本提升有限且昨天已砍；4 条提示词方法不错，但今天方法席给 EnvHarness；其余访谈 / 基础设施 / 版本号 / 报告</span></div><div class="rejrow"><span class="t">6 条（AIE CODE、Elorian、AINews Carbon、Supabase、Anthropic 面试、Opus 5.5）</span><span class="r">研究 / 播客 / 通讯；Elorian 只有论文与内部评测，没有可执行入口</span></div><div class="rejrow"><span class="t">6 条（AA v5、Kimi 播客、open artifacts #25、Meta（seen）、rapid progress、cyber risk）</span><span class="r">观点 / 播客；AA v5 的选型账昨天正文 06 已算过；Meta 为 seen</span></div><div class="rejrow"><span class="t">7 条（Granite Switch 4.1.1、ProtoStar、Le Chonk 博文、AnySpeechRecognizer、LFM3、novelty bench、Trainium）</span><span class="r">Granite Switch 是补丁版本；Le Chonk / AnySpeechRecognizer / LFM3 已评；其余研究 / 合作 / 推理优化</span></div><div class="rejrow"><span class="t">5 条（Import AI 478–474）</span><span class="r">newsletter / 观点</span></div><div class="rejrow"><span class="t">5 条（NotebookLM（seen）、桃花源记（seen）、电商 Agent（seen）、AI 原生思维、Warp（seen））</span><span class="r">4 条 seen；AI 原生思维旧文无入口</span></div><div class="rejrow"><span class="t">5 条（30 Months、Dot and Swarm、Overhang、Agency and Agents、guide）</span><span class="r">观点 / 旧文，无入口</span></div>
+    <b>每源今日条数</b><br>✅ hf-org:deepseek-ai 3 · ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15 · ✅ vendor:deepmind 10 · ✅ vendor:mistral 10 · ✅ skills:trending 12 · ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ repo:deepseek-ai/deepseek-harness 3 · ✅ commit:deepseek-ai/deepseek-harness 6 · ✅ docs:deepseek-api 0（今天没变化，非死源） · ✅ hn:show 12 · ✅ hf:spaces-trending 20（正文 02、03） · ✅ people:simonwillison 12 · ✅ hn:stories 9 · ✅ cn:juejin 10（正文 01、04） · ✅ cn:sspai 10 · ✅ cn:qbitai 10（折叠 1） · ✅ cn:infoq 10 · ✅ people:latent-space 6（正文 05） · ✅ people:interconnects 6 · ✅ people:hf-blog 8 · ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5（33 源 · 33 成功 · 0 源失败 · 1 个 0 条源）
+    <details class="rej"><summary>被过滤器砍掉的 32 条（信任雷达的依据）</summary>
+        <div class="rejrow"><span class="t">3 条（`DeepSeek-V4.1-Flash-1017`、`V4.1-Flash`（seen）、`V4-Flash-Vision-Exp`）</span><span class="r">1017 已于 10-18 正文 01 / 10-24 正文 05 评过；其余为旧版 / 视觉实验</span></div><div class="rejrow"><span class="t">3 条（`Qwen-Image-2.1-Turbo`、`PE-I2I`、`PE-T2I`）</span><span class="r">全部 seen</span></div><div class="rejrow"><span class="t">3 条（`GLM-5.3-Flash-BF16`、`GLM-5.3-BF16`、`GLM-5.3-Flash`（seen））</span><span class="r">BF16 是格式版本，属版本号流水；Flash 为 seen</span></div><div class="rejrow"><span class="t">3 条（`MiniMax-M3.1-Flash`、`Music3`（seen）、`H3`（seen））</span><span class="r">M3.1 Flash 已于 10-21 正文 04 评过；两条 seen</span></div><div class="rejrow"><span class="t">3 条（`Kimi-K3`、`K2.7-Code`、`K2.6`）</span><span class="r">4–6 月旧版本；K3.1 Pro 已在 10-24 正文 04</span></div><div class="rejrow"><span class="t">15 条（training preferences、community safety、fair use、Model Spec、misalignment、Ropes &amp; Gray、Credit Saison、ServiceNow、future of firm、Legora、Retell、Oracle、Check Point、Greptile、学术社区）</span><span class="r">政策 / 客户案例 / 合作稿；今天没有新模型或 API</span></div><div class="rejrow"><span class="t">10 条（Carbon（seen）、Genie 4（seen）、森林类型、抗微生物肽、新加坡反诈、Argon 安全 / 机器人 / 发布（seen）、EmbeddingGemma 2、Argon 新纪元（seen））</span><span class="r">Carbon 已于 10-29 折叠；Genie 4 / Argon 系列已评或 seen；EmbeddingGemma 2 旧；其余研究 / 地球观测 / 反诈，无本业入口</span></div><div class="rejrow"><span class="t">10 条（Le Chonk（seen）、NVIDIA 工业、`Voxtral 3`（seen）、`Timestral`、`Mistral Large 4` 预览（seen）、`Hallo, Deutschland`、Mozilla（seen）、Cloudera、legacy code、€3B 融资）</span><span class="r">工业 / 时序 / 合作 / 融资；Le Chonk 已于 10-30 正文 03，预览版已评</span></div><div class="rejrow"><span class="t">12 条（`ai-image-generation`、`reddit-automation` + 10 条 seen）</span><span class="r">排名第 1 的 `skills-shell/superpowers` 是 `inference.sh` / `belt` 薄壳，与 10-17 正文 03 同能力；`reddit-automation` 与业务无关；其余 seen</span></div><div class="rejrow"><span class="t">3 条（v2.1.316 / 314 / 312）</span><span class="r">版本号流水；v2.1.314 的 `permissions.blockWritesOutsideWorkingDirectories` 是安全增强，但入口在版本号里</span></div><div class="rejrow"><span class="t">3 条（0.167.0-alpha.1 / 0.166.0 / 0.166.0-alpha.6）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（nightly ×3）</span><span class="r">nightly 版本号流水</span></div><div class="rejrow"><span class="t">3 条（Spec Kit 1.2.5 / 1.2.4 / 1.2.3）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v2.2.5 / v2.2.4 / v2.2.3）</span><span class="r">版本号流水；Claude Code 接入 / 持久终端 / 快捷键都装在版本号里</span></div><div class="rejrow"><span class="t">3 条（v2.2.0 / v2.1.0（seen）/ v2.0.0（seen））</span><span class="r">v2.2.0 是 Node 运行时与 CA 证书安全更新，不改变本业入口；后两条 seen</span></div><div class="rejrow"><span class="t">3 条（v1.3.2 / 1.3.1 / 1.3.0）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v0.2.1-rc.5 / v0.2.2-alpha.2 / v0.2.1-rc.4）</span><span class="r">alpha / rc 版本号流水</span></div><div class="rejrow"><span class="t">6 条（commits）</span><span class="r">内部修复 / 文档 / CI，无独立入口</span></div><div class="rejrow"><span class="t">12 条（TitleArt、keybytes、TNG 猜剧、Marelleo、S&amp;P 500 bubbles、Hob、dontallow、DOOM transformer、catcopter、SlideBySide、IRS tax model、nesformer（seen））</span><span class="r">消费 / 趣味 / 硬件 / 嵌入式 / 演示工具，与视频 / 图像 / 画布无直接关系；Hob 是本地 ChatGPT 替代品，已连续 4 天同理由砍掉；nesformer 与 10-31 正文 06 同一事件</span></div><div class="rejrow"><span class="t">18 条（FastH3-Omni / Qwen realtime / Fibo / Viggle（均 seen）、Phonon（10-28 正文 03）、LFM3-WebGPU（模型 10-28 正文 04）、wan777、bfs-best-face-swap、uncensored ×2、minimax-h3 ×2、wan2-2-i2v、Qwen-2511-Flux、Krea、Omni-videos、microduck、JEV 等）</span><span class="r">社区 NSFW / 换脸 / 旧 demo / 机器人 / 与现有流程重复；Phonon 与 LFM3 已分别于 10-28 正文 03 / 04 评过；SimReady 与 Idol 已进正文 02 / 03</span></div><div class="rejrow"><span class="t">12 条（ChatGPT 账号接管、nesformer、API credits、Fable 游戏、Ben Hylak、Ted Sanders、Octoverse、vibe 游戏、Terk、Game Boy、GPT-6.1 Terra、Jason Koebler）</span><span class="r">安全事件 / 观点 / 引用 / 数据稿 / 旧题；nesformer 与 10-31 正文 06 同一事件，GPT-6.1 Terra 已于 10-27 正文 01 评过；今天知情席给 Utopai，不再放第二条</span></div><div class="rejrow"><span class="t">9 条（Claude Code 后门 ×3、Anthropic 盗版书（seen）、后台 Agent 转录、药物研发、Hob、Duet、隐私）</span><span class="r">后门 3 条同事件，其中 1 条 seen，10-31 已用知情席；盗版书 seen；其余转录 / 隐私 / 生物 / 消费，无独立可执行入口</span></div><div class="rejrow"><span class="t">8 条（450 亿美元算力合约、OpenViking、本地 vs 云 API、Marked vs Markdown、EnumMap CLI、小春学习日刊、FDE 教程、啵啵音乐）</span><span class="r">算力合约是商业稿，无入口；OpenViking 与正文 01 同为 Agent 记忆，今天只留 1 条；本地 vs 云 API 与正文 04 同作者（owner 去重）；其余工具 / 教程 / 旧刊</span></div><div class="rejrow"><span class="t">10 条（本月玩什么、中国版 Apple 智能、本周看什么、吃药提醒、装了啥、柳比歇夫、派早报、新玩意、抗压、健康数据）</span><span class="r">消费电子 / 生活 / 健康 / 旧闻，无本业入口</span></div><div class="rejrow"><span class="t">9 条（8G iPad、世界模型设计芯片、Claude 取消 5 小时限制、智元双模型、AI 写算子、联想天禧、百度 APP、Open-H3（10-31 正文 01）、OXR（10-29 正文 01））</span><span class="r">消费 / 芯片 / 机器人 / 厂商稿；Claude 限制变化是定价策略，无新能力；Open-H3 与 OXR 已评；Utopai 进折叠</span></div><div class="rejrow"><span class="t">10 条（AI 编程导师、Agent Sandbox、Helidon 双轨、腾讯云 Agentic、Pinterest Flink/Iceberg、ARC 0.15、Lambda Express、思科重写、垂类 Agent、模力工场）</span><span class="r">基础设施 / 厂商访谈 / 版本号 / 报告；Agent Sandbox 是形态分析，没有可执行入口</span></div><div class="rejrow"><span class="t">5 条（AINews Google、AIE CODE、Elorian、AINews Carbon、Supabase）</span><span class="r">通讯 / 播客 / 研究；Elorian 只有论文与内部评测，没有代码；Arca 已进正文 05</span></div><div class="rejrow"><span class="t">6 条（cyber risk、AA v5、Kimi 播客、open artifacts #25、Meta（seen）、rapid progress）</span><span class="r">观点 / 播客；AA v5 的选型账 10-30 已算过；Meta 为 seen</span></div><div class="rejrow"><span class="t">8 条（nemotron-halloween、Granite Switch 4.1.1、ProtoStar、Le Chonk 博文、AnySpeechRecognizer、LFM3 博文、novelty bench、Trainium）</span><span class="r">nemotron 的 MonsterHouse 代码未发布；Granite Switch 是更新机制；Le Chonk / AnySpeech / LFM3 已评；其余研究 / 合作 / 推理优化</span></div><div class="rejrow"><span class="t">5 条（Import AI 478–474）</span><span class="r">newsletter / 观点</span></div><div class="rejrow"><span class="t">5 条（NotebookLM（seen）、桃花源记（seen）、电商 Agent（seen）、AI 原生思维、Warp（seen））</span><span class="r">4 条 seen；AI 原生思维旧文无入口</span></div><div class="rejrow"><span class="t">5 条（30 Months、Dot and Swarm、Overhang、Agency and Agents、guide）</span><span class="r">观点 / 旧文，无入口</span></div>
       </details>
   </div>
 </div>
