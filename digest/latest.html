@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>雷达简报 2026-11-02</title>
+<title>雷达简报 2026-11-03</title>
 <script>
 (function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
 var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
@@ -176,48 +176,48 @@ details.rej[open] summary::before{content:"▾ "}
   <div class="drift">⚠️ 本地技能补丁漂移：implement、code-review（详情：radar\skill-drift.md）</div>
   <div class="head">
     <div class="kickerrow">
-      <span class="kicker">雷达简报 · 2026-11-02</span>
+      <span class="kicker">雷达简报 · 2026-11-03</span>
       <button class="themebtn" id="themebtn" type="button">◐ 自动</button>
     </div>
-    <h1>6 条 · 先扫，再展开</h1>
-    <div class="strap">候选 289 条 / 37 源（37 成功 · 0 源失败 · 2 个 0 条源）· 新增 244 条 · seen 45 条 · 正文 6 条 · 折叠 1 条 · 砍掉 282 条（45 条 seen + 237 条未入选）。</div>
+    <h1>7 条 · 先扫，再展开</h1>
+    <div class="strap">候选 221 条 / 33 源（33 成功 · 0 源失败 · 1 个 0 条源）· 新增 179 条 · seen 42 条 · 正文 7 条 · 折叠 1 条 · 砍掉 213 条（42 条 seen + 171 条未入选）。</div>
     <div class="segs">
-      <button class="seg" data-f="all" aria-pressed="true">全部 6</button>
+      <button class="seg" data-f="all" aria-pressed="true">全部 7</button>
       <button class="seg" data-f="fast" aria-pressed="false">15 分钟 4</button>
       <button class="seg" data-f="tool" aria-pressed="false">技能工具 0</button>
       <button class="seg" data-f="fav" aria-pressed="false">★ 收藏 <span id="favn">0</span></button>
     </div>
   </div>
-  <div class="count" id="cnt">显示 6 / 6 条</div>
+  <div class="count" id="cnt">显示 7 / 7 条</div>
   <details class="favbox" id="favbox" style="display:none">
     <summary>我的收藏 <span id="favcnt">0</span></summary>
     <div class="favlist" id="favlist"></div>
     <button class="favcopy" id="favcopy" type="button">复制清单</button>
   </details>
   
-    <details class="row" data-fast="0" data-tool="0">
+    <details class="row" data-fast="1" data-tool="0">
       <summary class="hit">
         <span class="n">01</span>
         <span class="tt">
-          <span class="t1">DeepSeek Super-agent：让常驻 Agent 自己盯 GitHub 接活</span>
-          <span class="t1b">常驻编码 Agent：自己找活、接活并提 PR。</span>
+          <span class="t1">Pika H3 Flex：六步出带声视频，参考代码也给了</span>
+          <span class="t1b">六步出带声视频的 Pika 参考实现。</span>
           <span class="t2">
-            <span class="chip cn">中文</span>
-            <span class="cost slow">1 小时</span>
-            <span class="src">cn:qbitai</span>
+            <span class="chip tool">小而美</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">hf:spaces-trending</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-02-01" data-date="2026-11-02" data-t="DeepSeek Super-agent：让常驻 Agent 自己盯 GitHub 接活"
-          data-o="常驻编码 Agent：自己找活、接活并提 PR。" data-hd="1">☆</button>
+          data-id="2026-11-03-01" data-date="2026-11-03" data-t="Pika H3 Flex：六步出带声视频，参考代码也给了"
+          data-o="六步出带声视频的 Pika 参考实现。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>DeepSeek Harness 团队 10-31 放出的研究原型，一个给单个 GitHub 仓库用的主动编码 Agent，以 bundle 形式装进 DSH。它监听 GitHub（可选飞书），有人 @ 或规则允许时开一个工作项，在独立会话和目录里做完，再回原对话回 PR；网页面板列出需要人处理的事。架构是 Router + Worker：Worker 可直接订阅 PR 评论，事件先过程序规则、再过大模型两级过滤；异步 ReAct 已在 DSH 实现但未默认开启，计算 / 状态 / 执行环境分离，另有独立 Watchdog 检测卡死和跑偏。MIT、TypeScript、7.1k 星，明确标注 research prototype。
-        <span class="k">为什么值得你花时间</span>你在 wayfinder 和 DSH 上做 Agent 编排，最缺的不是再多一个框架，而是一份把「常驻、多会话、主动接活」拆成 Router / Worker 的工程样本；它的 12.4 分钟中位、15.7 分钟 p95 是约 300 条消息、20 个请求、5 次重复的模拟结果，不是生产指标，但至少给了可复现的比较口径。**今天就能做**：读 README + `docs/000-philosophy.md`，把「什么情况下允许它自己行动」写成你自己的规则；再决定要不要照 SETUP.md 在测试仓库跑一遍。边界：research prototype，不是官方产品；需要 GitHub token 和 DSH 环境；文章里部分设计尚未在原型实现。
-        <span class="k">上手成本</span>1 小时（读 README + 哲学 / 架构文档；按 SETUP.md 装到测试仓库另算）
-        <span class="k">入口</span><a href="https://github.com/deepseek-ai/dsh-superagent-prototype" target="_blank" rel="noopener noreferrer">https://github.com/deepseek-ai/dsh-superagent-prototype</a>
-        <a class="more" href="detail/2026-11-02-01.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>Pika 在 MiniMax H3 上做的后训练版本：两个 rank-128 LoRA（`fl2va` / `ref2va`），用 1000/750/500/250/100/40/0 的重加噪阶梯采样，把带音频的视频压到 6 步；Hugging Face Space 把参考代码、权重入口和官方后端一起放了出来。
+        <span class="k">为什么值得你花时间</span>你做视频生成 / 引擎接入，最值得抄的是它把采样压到 6 步的配方和可运行的参考代码——可以直接拿自己的分镜 / 口播素材对照时延、显存和音画同步。**今天就能做**：在 Space 跑一条 5 秒带声短片，再读 README 的 LoRA 与阶梯配置。边界：ZeroGPU 排队；H3 社区许可，商用年收入超过 2000 万美元要 MiniMax 书面授权；Space 是 demo，不是生产 API。
+        <span class="k">上手成本</span>15 分钟（HF Space 直接试；ZeroGPU 可能排队）
+        <span class="k">入口</span><a href="https://huggingface.co/spaces/Pika-Labs/pika-h3-flex" target="_blank" rel="noopener noreferrer">https://huggingface.co/spaces/Pika-Labs/pika-h3-flex</a>
+        <a class="more" href="detail/2026-11-03-01.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
@@ -225,25 +225,25 @@ details.rej[open] summary::before{content:"▾ "}
       <summary class="hit">
         <span class="n">02</span>
         <span class="tt">
-          <span class="t1">higgsfield-faceless-video：把主题做成一条带旁白的成片</span>
-          <span class="t1b">把主题或文档做成带旁白和字幕的完整视频。</span>
+          <span class="t1">SenseNova 6.8 Flash：免费多模态 Agent，直接做动态网页和海报</span>
+          <span class="t1b">免费多模态 Agent，能做动态网页和海报。</span>
           <span class="t2">
-            <span class="chip other">其他</span>
-            <span class="cost fast">需要申请 key</span>
-            <span class="src">weekly:skills-sitemap-diff</span>
+            <span class="chip cn">中文</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:qbitai</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-02-02" data-date="2026-11-02" data-t="higgsfield-faceless-video：把主题做成一条带旁白的成片"
-          data-o="把主题或文档做成带旁白和字幕的完整视频。" data-hd="1">☆</button>
+          data-id="2026-11-03-02" data-date="2026-11-03" data-t="SenseNova 6.8 Flash：免费多模态 Agent，直接做动态网页和海报"
+          data-o="免费多模态 Agent，能做动态网页和海报。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>Higgsfield 官方 9 个技能里的端到端出片技能：输入主题或文档，选模式（图解讲解、快剪频道、图片故事、儿童歌曲、说话角色、主持人叠加），先补齐时长 / 画幅 / 语言 / 风格 / 音色 / 音乐 / 字幕，再用 `higgsfield preset` / `voices` / `model get` 查实时参数、用 `generate cost` 估价，最后本地用 ffmpeg + `assemble_blocks.sh` 把分块音视频拼成一条成片。仓库 MIT、版本 0.14.0、1.8k 星；这个技能 6.1K 安装。
-        <span class="k">为什么值得你花时间</span>你做视频生成 / 一句话成片，这条技能真正值得抄的是「花钱前的检查表」：缺参数先问、绝不编造 preset / voice ID、先估价再生成、依赖缺失就停、成片在本地拼而不是把整条流程交给黑盒；它还明确反对把讲解片做成快剪。**今天就能做**：`npx skills add https://github.com/higgsfield-ai/skills --skill higgsfield-faceless-video`，拿一篇手头文档跑一次 60 秒图解讲解，重点看它的 scene plan 和成本预估，而不是看画质。边界：生成走 Higgsfield 付费积分，技能开源不等于模型免费；9 个技能里只评了 faceless-video；中文旁白 / 字幕质量未验证。
-        <span class="k">上手成本</span>需要申请 key（Higgsfield 账号 + credits；CLI 安装约 15 分钟，出片按积分）
-        <span class="k">入口</span><a href="https://www.skills.sh/higgsfield-ai/skills/higgsfield-faceless-video" target="_blank" rel="noopener noreferrer">https://www.skills.sh/higgsfield-ai/skills/higgsfield-faceless-video</a>
-        <a class="more" href="detail/2026-11-02-02.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>商汤 11-02 发布的 SenseNova 6.8 Flash，主打「委派智能」：用户只给目标，模型自己走完流程。它在小浣熊客户端里能直接产出 3D 动态网页、循环动态海报、SVG 动画和动态 PPT，并靠长期记忆主动提醒旧材料里的数据过期。
+        <span class="k">为什么值得你花时间</span>你做 AIGC 内容平台，动态海报 / 一句话成片 / 画布节点都能从它的「目标 → 可编辑交付物」流程里借东西；尤其是长期记忆 + 主动纠错，适合拿来做素材版本管理。**今天就能做**：装小浣熊客户端，装本地运行、浏览器、文档预览、视频生成四个插件和两个海报 / PPT 技能，跑一张 12 秒循环海报。边界：厂商稿 + 精选 demo；限时免费；没有开放 API / 权重；中文评测未独立复现。
+        <span class="k">上手成本</span>15 分钟（小浣熊客户端 + 4 个插件 + 2 个技能；限时免费，据量子位）
+        <span class="k">入口</span><a href="https://www.xiaohuanxiong.com/" target="_blank" rel="noopener noreferrer">https://www.xiaohuanxiong.com/</a>
+        <a class="more" href="detail/2026-11-03-02.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
@@ -251,86 +251,34 @@ details.rej[open] summary::before{content:"▾ "}
       <summary class="hit">
         <span class="n">03</span>
         <span class="tt">
-          <span class="t1">reverse-any-video：把参考视频逆向成可编辑工程</span>
-          <span class="t1b">把视频逆成可编辑的 HyperFrames 工程。</span>
+          <span class="t1">LongCat-2.5：1.6T 参数只激活 3%，1M 上下文卖 $0.3</span>
+          <span class="t1b">1.6T 参数、1M 上下文的低价 Agent 模型。</span>
           <span class="t2">
-            <span class="chip other">其他</span>
-            <span class="cost fast">半天</span>
-            <span class="src">weekly:skills-sitemap-diff</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-02-03" data-date="2026-11-02" data-t="reverse-any-video：把参考视频逆向成可编辑工程"
-          data-o="把视频逆成可编辑的 HyperFrames 工程。" data-hd="1">☆</button>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>HyperFrames 的新技能：把一个视频文件逆向成可编辑工程，而不是只给摘要。流程先用 `hyperframes measure probe` 取精确画幅 / fps / 时长，再用 `measure cuts` 找每次剪切（含 jump cut 和同镜头推近），逐层重建 HTML 组件、切出子素材、让人物用 HeyGen 重拍，最后 `check` + 云端 / 本地渲染 + `diff` 逐帧对照原片；产出 `REVERSE.md` 记录哪些是重建、哪些是近似。
-        <span class="k">为什么值得你花时间</span>你做自动分镜 / 一句话成片，最难的往往不是生成，而是「看懂一条参考片子的镜头、层级和节奏」；这条技能把逆向拆成可检查的工序，还给了逐帧 diff 的验收口径，可以直接借到你的分镜 / 镜头模型里。**今天就能做**：拿一条 15 秒参考片，先只跑 `probe` + `cuts`，看它标出的切点是否和你的肉眼一致；再决定要不要为完整重建付 Pro。边界：HyperFrames Pro 付费功能，Free 不能跑；需要 ffmpeg / python；人物重拍会把素材送 HeyGen；只对有权使用的视频用。
-        <span class="k">上手成本</span>半天（HyperFrames Pro 付费账号 + ffmpeg / python；先跑 probe / cuts 可 15 分钟）
-        <span class="k">入口</span><a href="https://www.skills.sh/heygen-com/hyperframes/reverse-any-video" target="_blank" rel="noopener noreferrer">https://www.skills.sh/heygen-com/hyperframes/reverse-any-video</a>
-        <a class="more" href="detail/2026-11-02-03.html">读详情（翻译 + 要点）→</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="1" data-tool="0">
-      <summary class="hit">
-        <span class="n">04</span>
-        <span class="tt">
-          <span class="t1">remove-animations：给界面动画做一次减法评审</span>
-          <span class="t1b">逐个审判界面动画，删掉站不住脚的那些。</span>
-          <span class="t2">
-            <span class="chip other">其他</span>
+            <span class="chip cn">中文</span>
             <span class="cost fast">15 分钟</span>
-            <span class="src">weekly:skills-sitemap-diff</span>
+            <span class="src">cn:juejin</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-02-04" data-date="2026-11-02" data-t="remove-animations：给界面动画做一次减法评审"
-          data-o="逐个审判界面动画，删掉站不住脚的那些。" data-hd="1">☆</button>
+          data-id="2026-11-03-03" data-date="2026-11-03" data-t="LongCat-2.5：1.6T 参数只激活 3%，1M 上下文卖 $0.3"
+          data-o="1.6T 参数、1M 上下文的低价 Agent 模型。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>Emil Kowalski 的减法技能，只做一件事——把界面里现有动画逐个过审，删掉或减弱站不住脚的那些，再清掉孤立的 keyframes / AnimatePresence / import。它给了一棵判定树：键盘触发、每天见 100+ 次、功能性数据上的动画直接删；能说清目的且低频的保留；高频的减到近乎无感；超过 300ms 的压缩。仓库 52.7k 星，这个技能 9.3K 安装。
-        <span class="k">为什么值得你花时间</span>你的画布 / 工作流界面是高频操作面，Agent 又天然爱加 fade-in、hover-scale、路由过渡；这类动画单个看都合理，叠起来就是「慢」。这条技能的价值是反过来举证：动画要自己证明为什么留下，而且明确要求列出「保留的 2–5 个及理由」，避免一刀切删光。**今天就能做**：对画布页面跑一次 recon + sweep，先只处理键盘命令面板、标签切换和列表 hover 三类，15 分钟能看到手感差异。边界：它不改缓动 / origin / 可中断性，也不判断真机手感；删之前要查 hidden start state、`onAnimationEnd`、AnimatePresence 卸载延迟这些坑。
-        <span class="k">上手成本</span>15 分钟（装技能 + 对一个页面跑一轮 sweep / gate）
-        <span class="k">入口</span><a href="https://www.skills.sh/emilkowalski/skills/remove-animations" target="_blank" rel="noopener noreferrer">https://www.skills.sh/emilkowalski/skills/remove-animations</a>
-        <a class="more" href="detail/2026-11-02-04.html">读详情（翻译 + 要点）→</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="1" data-tool="0">
-      <summary class="hit">
-        <span class="n">05</span>
-        <span class="tt">
-          <span class="t1">OmniDiff：按内容而不是按行看 diff</span>
-          <span class="t1b">按内容而不是按行显示代码、图片和 PDF 的差异。</span>
-          <span class="t2">
-            <span class="chip tool">小而美</span>
-            <span class="cost fast">15 分钟</span>
-            <span class="src">hn:show</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-02-05" data-date="2026-11-02" data-t="OmniDiff：按内容而不是按行看 diff"
-          data-o="按内容而不是按行显示代码、图片和 PDF 的差异。" data-hd="1">☆</button>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>Rust 写的内容感知 diff 工具：25 种语言用 tree-sitter 做结构化 diff，图片 / 字体 / PDF / 压缩包按内容逐像素 / 逐字形 / 逐页比较；既能当 `git difftool`，也能接 jj，支持 TUI、headless、JSON 输出，Windows 有预编译。官方在 2,302 个 fixture 上测得 p50 4.2ms / p90 35.1ms / p99 177ms；442,530 对代码文件里 99.95% 成功。
-        <span class="k">为什么值得你花时间</span>你每天要读 AI 生成的 patch 和资产变更；普通 diff 把整行标红，真正改的 `sum(numbers)` 和 `len(numbers)` 要自己找，字体 / PDF / 图片干脆只给一句 `Binary files differ`。OmniDiff 把变更收敛到「人眼会注意到的部分」，还能直接看字体字形和 PDF 页面的前后对比，审 UI / 素材改动时省的是注意力。**今天就能做**：下载 Windows 预编译，`omnidiff git configure` 配成 difftool，拿一个最近的 PR 对比 `git diff` 和 `omnidiff` 的可读性。边界：AGPL-3.0，商用闭源要买商业许可；准确率还没达到作者自定的 90% / 99% 目标；VS Code 内建 diff 还不能被替换。
-        <span class="k">上手成本</span>15 分钟（Windows 预编译 + `omnidiff git configure`）
-        <span class="k">入口</span><a href="https://github.com/ivankovic/omnidiff" target="_blank" rel="noopener noreferrer">https://github.com/ivankovic/omnidiff</a>
-        <a class="more" href="detail/2026-11-02-05.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>美团 11-01/02 放出的 LongCat-2.5：1.6T 总参数 MoE、每 token 激活约 48B（3%），原生视觉理解，1M 输入 / 131K 输出，OpenAI 兼容 API，输入 $0.3、输出 $1.2、缓存命中 $0.006 每百万 token。
+        <span class="k">为什么值得你花时间</span>你在给 Agent 选底座，这条的账很直接：1M 上下文 + 50 倍缓存价差，长周期任务的输入大头可以按缓存结算；官方还点名适配 Claude Code / OpenCode 等工具链，换 base_url 就能试。**今天就能做**：抽 20 条你日常的 Agent 请求，在 LongCat 和现用模型上各跑一遍，比质量和账单。边界：只有 API、没有开放权重；跑分和吞吐是美团官方口径；1M 上下文的实际召回要自己的任务集验。
+        <span class="k">上手成本</span>15 分钟（注册 + 换 base_url；API 需申请 key）
+        <span class="k">入口</span><a href="https://longcat.ai/" target="_blank" rel="noopener noreferrer">https://longcat.ai/</a>
+        <a class="more" href="detail/2026-11-03-03.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
     <details class="row" data-fast="0" data-tool="0">
       <summary class="hit">
-        <span class="n">06</span>
+        <span class="n">04</span>
         <span class="tt">
-          <span class="t1">Agent 测评全景：绿灯不等于任务完成</span>
-          <span class="t1b">用四层证据判断 Agent 是真完成还是假绿灯。</span>
+          <span class="t1">Multica：把多 Agent 团队和看板装进一个可自托管工作区</span>
+          <span class="t1b">可自托管的多 Agent 团队工作区与看板。</span>
           <span class="t2">
             <span class="chip cn">中文</span>
             <span class="cost slow">1 小时</span>
@@ -339,23 +287,101 @@ details.rej[open] summary::before{content:"▾ "}
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-02-06" data-date="2026-11-02" data-t="Agent 测评全景：绿灯不等于任务完成"
-          data-o="用四层证据判断 Agent 是真完成还是假绿灯。" data-hd="1">☆</button>
+          data-id="2026-11-03-04" data-date="2026-11-03" data-t="Multica：把多 Agent 团队和看板装进一个可自托管工作区"
+          data-o="可自托管的多 Agent 团队工作区与看板。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>掘金作者 hpoenixf 的 ETF Agent 评测复盘，核心是一句话：绿灯只证明某个检查在给定条件下通过，不证明用户任务完成。文章把评测拆成运行 / 证据 / 回答 / 交付四个坐标，给了三套分母的真实数字（计划 120 次、结束 59 次、42 completed / 17 failed；48 次有保存正文，其中 6 次来自 failed；40 inconclusive / 19 failed），还记录了 41 次运行里观测器报告遗漏 851,339 个事件、17 条模型轮次输出缺失。
-        <span class="k">为什么值得你花时间</span>你在 wayfinder 上做 Agent，最容易自欺的就是「测试全绿 / 状态 completed」；这篇文章给的是可抄的证据链：保留全部计划任务的分母，区分 failed 与 inconclusive，先确认裁判评的是模型候选、服务端实际发送还是客户端展示，再用人工标签校准裁判。**今天就能做**：挑一个你最近修过的 Agent bug，按文中的五字段（任务身份、可重建输入、验收对象、检查规则、执行 / 观测状态）写一条最小 case，先把「哪一层算完成」写死。边界：这是 ETF Agent 的私有评测，不是通用 benchmark；Ragas 只接了环境 / SDK，四项指标仍未评估；多 Agent 的 70/75 只是「进入 Main 输入」，不是采用率或质量提升。
-        <span class="k">上手成本</span>1 小时（读 36 分钟长文 + 写一条最小 case）
-        <span class="k">入口</span><a href="https://juejin.cn/post/7703289640062173235" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7703289640062173235</a>
-        <a class="more" href="detail/2026-11-02-06.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>Multica 是一个人类 + AI Agent 共用团队工作区：可以自定义 Agent、指定人或 Agent 做中枢派活、共享上下文、把成熟做法沉淀成 Skill；任务用 6 状态看板管理，支持定时任务和自托管。
+        <span class="k">为什么值得你花时间</span>你在 Gitea 上跑 wayfinder，Multica 值得看的是「Agent 团队 + 看板 + 共享上下文」的产品化拆法：它把派活、审核、阻塞、完成做成看板状态，还允许自托管。**今天就能做**：Docker Compose 起一套，建 2 个 Agent 跑一个只读任务，观察它怎么分工、怎么把上下文留在工作区。边界：文章里的 3D 小游戏实测用了 1 小时 16 分，QA 环节没执行；54.6k star 是文章标题口径，仓库本轮没读到；自托管要 Git / Make / curl / OpenSSL 和 PostgreSQL。
+        <span class="k">上手成本</span>1 小时（Docker Compose 自托管 + 桌面端；在线版更快）
+        <span class="k">入口</span><a href="https://github.com/multica-ai/multica" target="_blank" rel="noopener noreferrer">https://github.com/multica-ai/multica</a>
+        <a class="more" href="detail/2026-11-03-04.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="0" data-tool="0">
+      <summary class="hit">
+        <span class="n">05</span>
+        <span class="tt">
+          <span class="t1">Momentic：让 AI 自己点开应用找 Bug</span>
+          <span class="t1b">让 AI 自己点开应用找 Bug 的测试平台。</span>
+          <span class="t2">
+            <span class="chip method">方法</span>
+            <span class="cost slow">1 小时</span>
+            <span class="src">hn:stories</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-03-05" data-date="2026-11-03" data-t="Momentic：让 AI 自己点开应用找 Bug"
+          data-o="让 AI 自己点开应用找 Bug 的测试平台。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Momentic 的 Mo 是一个 AI QA Agent：给一段 prompt，它自己点开 Web / iOS / Android 应用走关键流程，产出录屏、复现步骤和缺陷；测试用仓库里的 YAML 描述，CLI 跑 CI，MCP 让编码 Agent 自己写 / 跑 / 调测试。
+        <span class="k">为什么值得你花时间</span>你的画布 / 工作流 UI 状态多，最怕「主路径能点、边界一改就断」；Momentic 把 E2E 测试变成可版本化的 YAML，并让编码 Agent 通过 MCP 在同一个 PR 里补测试。**今天就能做**：注册免费试用，用 CLI 对一条画布主流程写 5 个步骤，跑一次看它能不能定位到失败步骤。边界：SaaS，免费额度有限；117,010 个 bug、70.6M 次运行是官网自报；QA Bench 是自家发布的 1,396 条标注 bug 评测，未独立复现。
+        <span class="k">上手成本</span>1 小时（注册 + CLI + 写一条 YAML 流程；免费试用）
+        <span class="k">入口</span><a href="https://momentic.ai/" target="_blank" rel="noopener noreferrer">https://momentic.ai/</a>
+        <a class="more" href="detail/2026-11-03-05.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="0" data-tool="0">
+      <summary class="hit">
+        <span class="n">06</span>
+        <span class="tt">
+          <span class="t1">Tool Surface：模型到底看到了哪些工具，要独立验</span>
+          <span class="t1b">给 Agent 的工具可见性加一道独立校验。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost slow">1 小时</span>
+            <span class="src">cn:juejin</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-03-06" data-date="2026-11-03" data-t="Tool Surface：模型到底看到了哪些工具，要独立验"
+          data-o="给 Agent 的工具可见性加一道独立校验。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>掘金作者 hpoenixf 的 open-etf-agent 工程笔记：即使 MCP 工具注册、Schema、权限都正确，Hook、上下文裁剪和异步准备之后，模型最终收到的工具列表仍可能错。文章把「模型本轮该看到什么」拆成一个独立的 Tool Surface 责任，要求最终请求与原始准入事实逐项对齐。
+        <span class="k">为什么值得你花时间</span>你在 wayfinder / DSH 上接 MCP，最容易踩的就是「Skill 说有工具，模型看不到」和「模型看得到，Host 不放行」；这篇文章给了一个可抄的边界：原始准入事实、最终模型请求、请求封存 / 执行记录三者不能互相冒充，拒绝请求后还要沿原 Owner 结算。**今天就能做**：读第 4、5 节，把「期望工具列表」从待校验请求里拆出来，跑一次文中的工具表面测试。边界：单一团队的工程复盘，不是通用 benchmark；13 个反例是测试路径，不是 13 次线上事故；代码在 open-etf-agent 仓库。
+        <span class="k">上手成本</span>1 小时（读文 + 跑一条工具表面测试）
+        <span class="k">入口</span><a href="https://github.com/hpoenixf/open-etf-agent" target="_blank" rel="noopener noreferrer">https://github.com/hpoenixf/open-etf-agent</a>
+        <a class="more" href="detail/2026-11-03-06.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">07</span>
+        <span class="tt">
+          <span class="t1">SynthID Detector：上传素材，查它是不是 AI 生成</span>
+          <span class="t1b">上传图片音视频，查是否为 AI 生成。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:infoq</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-03-07" data-date="2026-11-03" data-t="SynthID Detector：上传素材，查它是不是 AI 生成"
+          data-o="上传图片音视频，查是否为 AI 生成。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Google DeepMind 把 SynthID Detector 面向全球开放：在 synthid.com 上传图片、音频或视频，就能查它是否带有 SynthID 水印；检测范围已扩到 OpenAI、NVIDIA、Kakao 等合作伙伴，苹果也即将加入。
+        <span class="k">为什么值得你花时间</span>你做 AIGC 内容平台，用户上传的素材来源和「是否 AI 生成」会越来越常被问；SynthID 是一个 15 分钟就能用的快速核验入口，适合放在人工审核台旁边，而不是当自动门禁。**今天就能做**：拿 3 张自家生成 / 竞品生成的图各传一次，记录「有 / 无 / 无明确信号」三种结果。边界：不是通用 AI 检测器，Meta / 微软的内容查不了；大幅修改会削弱水印；阴性不等于不是 AI；C2PA 元数据是另一条互补路径。
+        <span class="k">上手成本</span>15 分钟（网页上传即可）
+        <span class="k">入口</span><a href="https://synthid.com/" target="_blank" rel="noopener noreferrer">https://synthid.com/</a>
+        <a class="more" href="detail/2026-11-03-07.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
   <div class="empty" id="empty" style="display:none">这个筛选下没有条目。</div>
-  <div class="fold">还有 1 条：①【**知情**】**Anthropic 在 Opus 5.5 系统提示里禁止复刻现有游戏**——官方确认加了两句话：可以创建原创游戏、特定类型、用用户自己的设计和素材，但不要复刻已经存在的特定游戏，改名字也不行；实测只约束 Claude 自己，换模型或把任务拆成看不出上下文的纯技术需求就能绕过，同时误伤了一批原创游戏开发者（GitHub issue 被刷爆）。对做游戏 / 视频二创与内容平台的人是 IP 风险信号，今天没有可执行入口，只作知情（https://www.qbitai.com/2026/11/507038.html）。</div>
+  <div class="fold">还有 1 条：①【**知情**】**HuggingFace 上出现声称是 Claude Mythos 5.5 的权重仓库，5000+ 次下载**——大概率是假权重；下载来源不明的模型前先核来源、哈希和许可，别把「同名」当官方发布（https://www.qbitai.com/2026/11/507082.html）。</div>
   <div class="foot">
-    <b>每源今日条数</b><br>✅ hf-org:deepseek-ai 3 · ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15 · ✅ vendor:deepmind 10 · ✅ vendor:mistral 10 · ✅ skills:trending 12 · ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ repo:deepseek-ai/deepseek-harness 3 · ✅ commit:deepseek-ai/deepseek-harness 6 · ✅ docs:deepseek-api 0（今天没变化，非死源） · ✅ hn:show 12（正文 05） · ✅ hf:spaces-trending 20 · ✅ people:simonwillison 12 · ✅ hn:stories 10 · ✅ cn:juejin 10（正文 06） · ✅ cn:sspai 10 · ✅ cn:qbitai 10（正文 01；折叠 1） · ✅ cn:infoq 10 · ✅ people:latent-space 6 · ✅ people:interconnects 6 · ✅ people:hf-blog 8 · ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5 · ✅ weekly:arxiv-cs-se 0（本周无新论文，非死源） · ✅ weekly:anthropic-sitemap 12 · ✅ weekly:github-seed 15 · ✅ weekly:skills-sitemap-diff 41（正文 02、03、04）（37 源 · 37 成功 · 0 源失败 · 2 个 0 条源）
-    <details class="rej"><summary>被过滤器砍掉的 35 条（信任雷达的依据）</summary>
-        <div class="rejrow"><span class="t">3 条（`DeepSeek-V4.1-Flash-1017`、`V4.1-Flash`（seen）、`V4-Flash-Vision-Exp`）</span><span class="r">`1017` 已于 10-24 正文 05；其余为旧版 / 视觉实验</span></div><div class="rejrow"><span class="t">3 条（`Qwen-Image-2.1-Turbo`、`PE-I2I`、`PE-T2I`）</span><span class="r">全部 seen</span></div><div class="rejrow"><span class="t">3 条（`GLM-5.3-Flash-BF16`、`GLM-5.3-BF16`、`GLM-5.3-Flash`（seen））</span><span class="r">BF16 是格式版本，属版本号流水；Flash 为 seen</span></div><div class="rejrow"><span class="t">3 条（`MiniMax-M3.1-Flash`、`Music3`（seen）、`H3`（seen））</span><span class="r">M3.1 Flash 已于 10-21 正文 04；两条 seen</span></div><div class="rejrow"><span class="t">3 条（`Kimi-K3`、`K2.7-Code`、`K2.6`）</span><span class="r">4–6 月旧版本；K3.1 Pro 已在 10-24 正文 04</span></div><div class="rejrow"><span class="t">15 条（training preferences、community safety、fair use、Model Spec、misalignment、Ropes &amp; Gray、Credit Saison、ServiceNow、future of firm、Legora、Retell、Oracle、Check Point、Greptile、学术社区）</span><span class="r">政策 / 客户案例 / 合作稿；今天没有新模型或 API</span></div><div class="rejrow"><span class="t">10 条（Carbon（seen）、Genie 4（seen）、森林类型、抗微生物肽、新加坡反诈、Argon 安全 / 机器人 / 发布（seen）、`EmbeddingGemma 2`、Argon 新纪元（seen））</span><span class="r">Carbon / Genie 4 / Argon 系列已评或 seen；EmbeddingGemma 2 旧；其余研究 / 地球观测 / 反诈，无本业入口</span></div><div class="rejrow"><span class="t">10 条（Le Chonk（seen）、NVIDIA 工业、`Voxtral 3`（seen）、`Timestral`、`Mistral Large 4`（seen）、`Hallo, Deutschland`、Mozilla（seen）、Cloudera、legacy code、€3B 融资）</span><span class="r">工业 / 时序 / 合作 / 融资；Le Chonk 已于 10-30 正文 03；预览版已评</span></div><div class="rejrow"><span class="t">12 条（`ai-image-generation` rank 1、`reddit-automation` rank 12、`gencraft-labs/ai-image-generation` rank 13 + 9 条 seen）</span><span class="r">rank 1 仍是 `inference.sh` / `belt` 薄壳，与 10-17 正文 03 同能力；`reddit-automation` 与业务无关；两条同名技能同质；其余 seen</span></div><div class="rejrow"><span class="t">3 条（v2.1.316 / 314 / 312）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（0.167.0-alpha.3 / .2 / .1）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（nightly ×3）</span><span class="r">nightly 版本号流水</span></div><div class="rejrow"><span class="t">3 条（1.2.5 / 1.2.4 / 1.2.3）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v2.2.5 / 2.2.4 / 2.2.3）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v2.2.0 / v2.1.0（seen）/ v2.0.0（seen））</span><span class="r">v2.2.0 是 Node 运行时与 CA 证书安全更新，不改变本业入口；后两条 seen</span></div><div class="rejrow"><span class="t">3 条（v1.3.2 / 1.3.1 / 1.3.0）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v0.2.1-rc.5 / v0.2.2-alpha.2 / v0.2.1-rc.4）</span><span class="r">rc / alpha 版本号流水</span></div><div class="rejrow"><span class="t">6 条（release / mobile sidebar / fixtures / automation docs ×2 / apply_patch）</span><span class="r">内部修复 / 文档 / CI，无独立入口</span></div><div class="rejrow"><span class="t">11 条（HackerBooks、TitleArt、TNG 猜剧、Marelleo、Hob、dontallow、outcrop、doomformer、bootgpt、NES Contra，另 `nesformer`（seen））</span><span class="r">消费 / 趣味 / 硬件 / 嵌入式 / 演示工具，与视频 / 图像 / 画布无直接关系；Hob 是本地 ChatGPT 替代品，已连续多天同理由砍掉；OmniDiff 进正文 05</span></div><div class="rejrow"><span class="t">20 条（SimReady / Fibo / realtime / FastH3 / Idol / Viggle 均 seen；`wan777`、`bfs-best-face-swap`、`uncensored ×2`、`minimax-h3`、`wan2-2-i2v`、`Qwen-2511-Flux`、`LFM3-Omni-2B-WebGPU`、`Phonon`、`JEV`、`microduck`、`QWEN_EDIT_IMAGE`、`Omni-videos` 等）</span><span class="r">社区 NSFW / 换脸 / 旧 demo / 机器人 / 与现有流程重复；Phonon 10-28 正文 03、LFM3 10-28 正文 04、FastH3 10-30 正文 01、Idol 11-01 正文 03；LFM3-Omni 只是 WebGPU 演示，模型族已评</span></div><div class="rejrow"><span class="t">12 条（ChatGPT 账号接管、datasette-llm 0.1a9、nesformer、API credits、Fable 游戏、Ben Hylak、Ted Sanders、Octoverse、vibe 游戏、Terk、Game Boy、Kyle Kingsbury）</span><span class="r">安全事件 / 观点 / 引用 / 数据稿 / 旧题；nesformer 与 10-31 正文 06 同一事件；datasette-llm 只是插件默认模型的小更新</span></div><div class="rejrow"><span class="t">10 条（Claude Code 后门 ×3、Anthropic 盗版书（seen）、后台 Agent 转录、药物研发、Hob、Duet、HackerBooks、游戏克隆禁令）</span><span class="r">后门 3 条同事件，10-31 已用知情席；盗版书 seen；转录是隐私 / 成本观察，Windows 未测；药物研发 / Hob / Duet / HackerBooks 无本业入口；游戏克隆禁令的 HN 版本与折叠同事件，不重复占位</span></div><div class="rejrow"><span class="t">9 条（Node 版本管理、MySQL InnoDB、Memory 系统、面试底层原理、Subagent 全景、Agent 引用系统、九个架构判断、金融 Agent、ETF 六层调用）</span><span class="r">Agent 测评进正文 06；Subagent 全景同作者，今天只留 1 席；其余为面试 / 后端 / 教程</span></div><div class="rejrow"><span class="t">10 条（夏普 Telios、本月玩什么、中国版 Apple 智能、本周看什么、吃药提醒、装了啥、柳比歇夫、派早报、新玩意、抗压）</span><span class="r">消费电子 / 生活 / 健康 / 旧闻，无本业入口</span></div><div class="rejrow"><span class="t">8 条（西湖大学、代数世界模型、便利店机器人、Jev、8G iPad、世界模型设计芯片、Claude 取消 5 小时限制、智元双模型）</span><span class="r">研究 / 机器人 / 消费 / 芯片 / 厂商稿；Claude 限制变化是定价策略，无新能力；DeepSeek Super-agent 进正文 01；游戏克隆禁令进折叠</span></div><div class="rejrow"><span class="t">10 条（动态表增量刷新、SQL 30 秒优化、Snowflake CoCo、AI 读二进制、ISO 18013-5、AI 幻觉预算、AI 编程导师、Agent Sandbox、Helidon 双轨、腾讯云 Intel）</span><span class="r">基础设施 / SQL / 厂商访谈 / 报告；Snowflake CoCo 是产品治理稿，无开放入口；Agent Sandbox 是形态分析</span></div><div class="rejrow"><span class="t">6 条（AINews Google、AIE CODE、Elorian、AINews Carbon、Supabase、Arca（seen））</span><span class="r">通讯 / 播客 / 研究；Elorian 只有论文与内部评测，没有代码；Arca 已进 11-01 正文 05</span></div><div class="rejrow"><span class="t">6 条（cyber risk、AA v5、Kimi 播客、open artifacts #25、Meta（seen）、rapid progress）</span><span class="r">观点 / 播客；AA v5 的选型账 10-30 已算过；Meta 为 seen</span></div><div class="rejrow"><span class="t">8 条（nemotron-halloween、Granite Switch 4.1.1、ProtoStar、Le Chonk 博文、AnySpeechRecognizer、LFM3 博文、novelty bench、Trainium）</span><span class="r">nemotron 的 MonsterHouse 代码未发布；Granite Switch 是更新机制；Le Chonk / AnySpeech / LFM3 已评；其余研究 / 合作 / 推理优化</span></div><div class="rejrow"><span class="t">5 条（Import AI 478–474）</span><span class="r">newsletter / 观点</span></div><div class="rejrow"><span class="t">5 条（NotebookLM（seen）、桃花源记（seen）、电商 Agent（seen）、AI 原生思维、Warp（seen））</span><span class="r">4 条 seen；AI 原生思维旧文无入口</span></div><div class="rejrow"><span class="t">5 条（30 Months、Dot and Swarm、Overhang、Agency and Agents、guide）</span><span class="r">观点 / 旧文，无入口</span></div><div class="rejrow"><span class="t">12 条（GSA、AI for Science、s1-sec、guest investigators、捐赠 skills（seen）、frontier safeguards、trust、public benefit fund、evaluators、distillation、espionage、CAISI / UK AISI）</span><span class="r">政策 / 科学 / 安全 / 合作页；没有新模型或 API；捐赠 skills 为 seen</span></div><div class="rejrow"><span class="t">15 条（hermes-agent（seen）、Agent-Reach（seen）、learn-claude-code、career-ops、Front-End-Checklist、daily_stock_analysis、ppt-master（seen）、ai-agent-book、nanobot、CowAgent、siyuan、Codewhale、CopilotKit、oh-my-pi、Vibe-Trading）</span><span class="r">老仓库 / 通用 Agent / 求职 / 股票 / 笔记；learn-claude-code 与 CopilotKit 已评过；无可直接用于视频 / 画布的当日新能力</span></div><div class="rejrow"><span class="t">38 条（基线 1 条 + 其余 37 个新技能：stageshow、ketchup-video、brandkit、mobbin/search、12-principles、agent-desktop、instagram ×5、AWS / GKE / dotnet、sentimony ×4 等）</span><span class="r">3 条进正文（02 / 03 / 04）；基线是噪声源；stageshow 无 SKILL.md、agent-desktop 是桌面自动化、brandkit / mobbin 需付费账号、instagram / AWS / GKE 与视频 / 画布无关</span></div>
+    <b>每源今日条数</b><br>✅ hf-org:deepseek-ai 3 · ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15 · ✅ vendor:deepmind 10 · ✅ vendor:mistral 10 · ✅ skills:trending 12 · ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ repo:deepseek-ai/deepseek-harness 3 · ✅ commit:deepseek-ai/deepseek-harness 6 · ✅ docs:deepseek-api 0（今天没变化，非死源） · ✅ hn:show 12 · ✅ hf:spaces-trending 20（正文 01） · ✅ people:simonwillison 12 · ✅ hn:stories 10（正文 05） · ✅ cn:juejin 10（正文 03、04、06） · ✅ cn:sspai 10 · ✅ cn:qbitai 10（正文 02；折叠 1） · ✅ cn:infoq 10（正文 07） · ✅ people:latent-space 6 · ✅ people:interconnects 6 · ✅ people:hf-blog 8 · ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5（33 源 · 33 成功 · 0 源失败 · 1 个 0 条源）
+    <details class="rej"><summary>被过滤器砍掉的 33 条（信任雷达的依据）</summary>
+        <div class="rejrow"><span class="t">3 条（`V4.1-Flash-1017`、`V4.1-Flash`（seen）、`V4-Flash-Vision-Exp`）</span><span class="r">`1017` 已在 10-18 正文 01 / 10-24 正文 05 评过；其余旧版 / 视觉实验</span></div><div class="rejrow"><span class="t">3 条（`Qwen-Image-2.1-Turbo`、`PE-I2I`、`PE-T2I`）</span><span class="r">全部 seen</span></div><div class="rejrow"><span class="t">3 条（`GLM-5.3-Flash-BF16`、`GLM-5.3-BF16`、`GLM-5.3-Flash`（seen））</span><span class="r">BF16 是格式版本；Flash 为 seen</span></div><div class="rejrow"><span class="t">3 条（`MiniMax-M3.1-Flash`、`Music3`（seen）、`H3`（seen））</span><span class="r">M3.1 Flash 已于 10-21 正文 04；两条 seen</span></div><div class="rejrow"><span class="t">3 条（`Kimi-K3`、`K2.7-Code`、`K2.6`）</span><span class="r">4–6 月旧版本；K3.1 Pro 已在 10-24 正文 04</span></div><div class="rejrow"><span class="t">15 条（Grid Protectors、LifeVal、Qodo、training preferences、community safety、fair use、Model Spec、misalignment、Ropes &amp; Gray、Credit Saison、ServiceNow、future of firm、Legora、Retell、Oracle）</span><span class="r">政策 / 客户案例 / 合作稿；没有新模型或 API 入口</span></div><div class="rejrow"><span class="t">10 条（Carbon（seen）、Genie 4（seen）、森林类型、抗微生物肽、新加坡反诈、Argon 安全 / 机器人 / 发布（seen）、`EmbeddingGemma 2`、规划决策）</span><span class="r">已评或 seen；其余研究 / 地球观测 / 机器人，无本业入口</span></div><div class="rejrow"><span class="t">10 条（Le Chonk（seen）、NVIDIA 工业、`Voxtral 3`（seen）、`Timestral`、Mistral Large 4（seen）、Hallo Deutschland、Mozilla（seen）、Cloudera、legacy code、€3B 融资）</span><span class="r">工业 / 时序 / 合作 / 融资；已评或 seen</span></div><div class="rejrow"><span class="t">12 条（`ai-image-generation` rank 1、`reddit-automation` rank 13 + 10 条 seen）</span><span class="r">rank 1 与 10-17 正文 03 同能力、只是转载壳；`reddit-automation` 与业务无关；其余 seen</span></div><div class="rejrow"><span class="t">3 条（v2.1.316 / 314 / 312）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（0.167.0-alpha.3 / .2 / .1）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（nightly ×3）</span><span class="r">nightly 版本号流水</span></div><div class="rejrow"><span class="t">3 条（1.2.6 / 1.2.5 / 1.2.4）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v2.2.5 / 2.2.4 / 2.2.3）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v2.2.0 / v2.1.0（seen）/ v2.0.0（seen））</span><span class="r">v2.2.0 是 Node 运行时 / CA 证书安全更新；后两条 seen</span></div><div class="rejrow"><span class="t">3 条（v1.3.2 / 1.3.1 / 1.3.0）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v0.2.1-rc.5 / v0.2.2-alpha.2 / v0.2.1-rc.4）</span><span class="r">rc / alpha 版本号流水</span></div><div class="rejrow"><span class="t">6 条（release / mobile sidebar / fixtures / automation docs ×2 / apply_patch）</span><span class="r">内部修复 / 文档 / CI，无独立入口</span></div><div class="rejrow"><span class="t">0 条</span><span class="r">今天没变化，非死源</span></div><div class="rejrow"><span class="t">12 条（HackerBooks、Subvocal、Wikihack、outcrop、TNG 猜剧、syscall.sh、Marelleo、Warsaw voxels、HackerHack、dontallow，另 OmniDiff / nesformer 为 seen）</span><span class="r">消费 / 趣味 / 硬件 / 嵌入式；与视频 / 图像 / 画布无直接关系</span></div><div class="rejrow"><span class="t">19 条（`wan777`、`uncensored` ×2、`bfs-best-face-swap`、`wan2-2-i2v`、`minimax-h3`、`Qwen-2511-Flux`、`LFM3-Omni-2B-WebGPU`、`Phonon`、`JEV`、`QWEN_EDIT_IMAGE` 等）</span><span class="r">社区 NSFW / 换脸 / 旧 demo / 机器人；Phonon 10-28 已评、LFM3 10-28 已评；Pika H3 Flex 进正文 01</span></div><div class="rejrow"><span class="t">12 条（Census、uv.lock、Kyle Kingsbury、ChatGPT 账号接管、datasette-llm、nesformer、API credits、Fable 游戏、Ben Hylak、Ted Sanders、Octoverse、vibe 游戏）</span><span class="r">安全事件 / 观点 / 引用 / 数据稿 / 旧题；uv.lock 是 Python 排障小技巧，与 AIGC 平台无直接关系</span></div><div class="rejrow"><span class="t">9 条（Claude Code 后门 ×3、盗版书（seen）、后台 Agent 转录、药物研发、Claude Duet、HackerBooks、游戏克隆禁令）</span><span class="r">后门 / 盗版书 / 隐私 / 研究 / 观点；Momentic 进正文 05；Duet 是 beta 产品、无公开入口</span></div><div class="rejrow"><span class="t">7 条（Redis Set、模型训练流程、OctaFuse 2.18、Agent 行动提醒、Agent 问完用户之后、研究报告资产、同作者的 null 工具调用）</span><span class="r">LongCat（03）、Multica（04）、Tool Surface（06）进正文；其余为后端 / 教程 / 版本流水；hpoenixf 今天只留 1 席</span></div><div class="rejrow"><span class="t">10 条（派评、AirPods 5、Xnip、派早报、夏普 Telios、本月玩什么、中国版 Apple 智能、本周看什么、吃药提醒、装了啥）</span><span class="r">消费电子 / 生活 / 健康 / 旧闻，无本业入口</span></div><div class="rejrow"><span class="t">8 条（仪电 Token 工厂、OpenAI 法则、AI 创业十骏、小米小玩意、西湖大学、代数世界模型、便利店机器人、Claude 紧急叫停（seen））</span><span class="r">SenseNova 进正文 02；GPT-6.2 / Mythos 假权重进折叠；其余厂商 / 硬件 / 研究 / 机器人</span></div><div class="rejrow"><span class="t">9 条（英伟达 / Pika 生态、dotnetup、Cilium 1.20、AI+艺术、AI+科研、AI+办公、InfoQ 侦察团、AI+FDE、Agent 自主性）</span><span class="r">SynthID 进正文 07；Pika 生态的落点已用 hf 源进正文 01；其余基础设施 / 访谈 / 观点</span></div><div class="rejrow"><span class="t">6 条（Legora ×2、AINews Google、AIE CODE、Elorian、Arca（seen））</span><span class="r">法律 AI / 通讯 / 播客 / 研究；Elorian 只有论文与内部评测，没有代码</span></div><div class="rejrow"><span class="t">6 条（cyber risk、AA v5、Kimi 播客、open artifacts #25、Meta（seen）、rapid progress）</span><span class="r">观点 / 播客；AA v5 的选型账 10-30 已算过；Meta 为 seen</span></div><div class="rejrow"><span class="t">8 条（nemotron-halloween、Granite Switch 4.1.1、ProtoStar、Le Chonk 博文、AnySpeechRecognizer、LFM3 博文、novelty bench、Trainium）</span><span class="r">nemotron 代码未发布；Granite Switch 是更新机制；Le Chonk / AnySpeech / LFM3 已评；其余研究 / 合作 / 推理优化</span></div><div class="rejrow"><span class="t">5 条（Import AI 479–475）</span><span class="r">newsletter / 观点</span></div><div class="rejrow"><span class="t">5 条（NotebookLM（seen）、桃花源记（seen）、电商 Agent（seen）、AI 原生思维、Warp（seen））</span><span class="r">4 条 seen；AI 原生思维旧文无入口</span></div><div class="rejrow"><span class="t">5 条（30 Months、Dot and Swarm、Overhang、Agency and Agents、guide）</span><span class="r">观点 / 旧文，无入口</span></div>
       </details>
   </div>
 </div>
