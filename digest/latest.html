@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>雷达简报 2026-11-04</title>
+<title>雷达简报 2026-11-05</title>
 <script>
 (function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
 var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
@@ -176,14 +176,14 @@ details.rej[open] summary::before{content:"▾ "}
   <div class="drift">⚠️ 本地技能补丁漂移：implement、code-review（详情：radar\skill-drift.md）</div>
   <div class="head">
     <div class="kickerrow">
-      <span class="kicker">雷达简报 · 2026-11-04</span>
+      <span class="kicker">雷达简报 · 2026-11-05</span>
       <button class="themebtn" id="themebtn" type="button">◐ 自动</button>
     </div>
     <h1>6 条 · 先扫，再展开</h1>
-    <div class="strap">候选 221 条 / 33 源（33 成功 · 0 源失败 · 1 个 0 条源）· 新增 181 条 · seen 40 条 · 正文 6 条 · 折叠 1 条 · 砍掉 214 条（40 条 seen + 174 条未入选）。</div>
+    <div class="strap">候选 221 条 / 33 源（33 成功 · 0 源失败 · 1 个 0 条源）· 新增 180 条 · seen 41 条 · 正文 6 条 · 折叠 1 条 · 砍掉 214 条（41 条 seen + 173 条未入选）。</div>
     <div class="segs">
       <button class="seg" data-f="all" aria-pressed="true">全部 6</button>
-      <button class="seg" data-f="fast" aria-pressed="false">15 分钟 4</button>
+      <button class="seg" data-f="fast" aria-pressed="false">15 分钟 5</button>
       <button class="seg" data-f="tool" aria-pressed="false">技能工具 0</button>
       <button class="seg" data-f="fav" aria-pressed="false">★ 收藏 <span id="favn">0</span></button>
     </div>
@@ -195,29 +195,29 @@ details.rej[open] summary::before{content:"▾ "}
     <button class="favcopy" id="favcopy" type="button">复制清单</button>
   </details>
   
-    <details class="row" data-fast="1" data-tool="0">
+    <details class="row" data-fast="0" data-tool="0">
       <summary class="hit">
         <span class="n">01</span>
         <span class="tt">
-          <span class="t1">Ava：浏览器里全本地跑的实时语音数字人</span>
-          <span class="t1b">打开网页就能聊、对话不上传的本地数字人。</span>
+          <span class="t1">openJiuwen Agent-Memory：长视频记忆从按秒切改成按事件切</span>
+          <span class="t1b">给 Agent 装一个按事件切分的长视频记忆层。</span>
           <span class="t2">
-            <span class="chip tool">小而美</span>
-            <span class="cost fast">15 分钟</span>
-            <span class="src">hf:spaces-trending</span>
+            <span class="chip cn">中文</span>
+            <span class="cost slow">1 小时</span>
+            <span class="src">cn:qbitai</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-04-01" data-date="2026-11-04" data-t="Ava：浏览器里全本地跑的实时语音数字人"
-          data-o="打开网页就能聊、对话不上传的本地数字人。" data-hd="1">☆</button>
+          data-id="2026-11-05-01" data-date="2026-11-05" data-t="openJiuwen Agent-Memory：长视频记忆从按秒切改成按事件切"
+          data-o="给 Agent 装一个按事件切分的长视频记忆层。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>Hugging Face 产品负责人 Victor M 的 Ava 把三块开源件拼成一个浏览器端实时语音形象：LFM3-Omni 负责语音理解与回复，Hugging Face 的 WebGPU kernels 在设备上跑推理，TalkingHead + HeadAudio 驱动头像动画与口型同步；所有推理都在本机，对话内容不发云端。
-        <span class="k">为什么值得你花时间</span>你做视频 / 数字人 / 口播，Ava 给的是一个「不接云端推理也能实时对话」的最小参照：三块都能单独替换，先跑通浏览器里的延迟和口型，再判断哪些环节值得自建。**今天就能做**：打开 Space 用一段语音聊两分钟，重点看首字延迟、打断后的恢复、口型是否跟得上；再把 LFM3-Omni 换成你现有 ASR / TTS 试一次。边界：这是 33 likes 的 demo，不是生产 SDK；弱显卡上的 WebGPU 延迟、口型同步和长对话稳定性都要自己测；也没有公开的部署 / 计费文档。
-        <span class="k">上手成本</span>15 分钟（打开 Space 直接聊）
-        <span class="k">入口</span><a href="https://huggingface.co/spaces/townbox/ava" target="_blank" rel="noopener noreferrer">https://huggingface.co/spaces/townbox/ava</a>
-        <a class="more" href="detail/2026-11-04-01.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>openJiuwen AgentMemory 0.2.0 新增的 OmniMem-Lens 把长视频记忆从「按固定时间窗切」改成「按事件切」：视觉流看画面切换，ASR 流听话题转向，两路交叉定事件边界；每段事件再分 L0 原始帧 / L1 大纲 / L2 索引三层，L1/L2 文本化加向量化，能接现有向量库；记忆离线建好，在线只查索引，必要时才回取 L0 帧。
+        <span class="k">为什么值得你花时间</span>你做视频理解 / 分镜 / 素材检索，最痛的是固定切片把因果和关键动作切断；这套「事件边界 + 三层记忆 + 离线建在线查」的拆法可以直接对照你的视频 RAG。**今天就能做**：clone GitCode 仓库，拿一段 1 小时视频跑一遍，和固定 60 秒切片的检索结果对比，重点看跨窗口事件和「画面不动但话题变了」的召回。边界：官方只报了 3 个数据集（Video-MME-L +8%、LVbench +6.4%、EgoLife-QA +45.7%）、Qwen3-VL-8B 单模型，无第三方复现；GitCode 仓库的安装 / 依赖和许可证要自己核。
+        <span class="k">上手成本</span>1 小时（装 0.2.0 跑一段长视频；需 GPU）
+        <span class="k">入口</span><a href="https://gitcode.com/openJiuwen/agent-memory/" target="_blank" rel="noopener noreferrer">https://gitcode.com/openJiuwen/agent-memory/</a>
+        <a class="more" href="detail/2026-11-05-01.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
@@ -225,86 +225,34 @@ details.rej[open] summary::before{content:"▾ "}
       <summary class="hit">
         <span class="n">02</span>
         <span class="tt">
-          <span class="t1">Weight-Space Programming：只读权重，模型能认出网络在玩哪个游戏</span>
-          <span class="t1b">不跑代码，只看权重数字就能推断网络功能。</span>
+          <span class="t1">鲸锐AI：50+ 视频模型 + 千节点画布的 AI 影视平台</span>
+          <span class="t1b">50+ 视频模型、千节点画布的影视平台。</span>
           <span class="t2">
-            <span class="chip people">跟人</span>
+            <span class="chip cn">中文</span>
             <span class="cost fast">15 分钟</span>
-            <span class="src">people:simonwillison</span>
+            <span class="src">cn:qbitai</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-04-02" data-date="2026-11-04" data-t="Weight-Space Programming：只读权重，模型能认出网络在玩哪个游戏"
-          data-o="不跑代码，只看权重数字就能推断网络功能。" data-hd="1">☆</button>
+          data-id="2026-11-05-02" data-date="2026-11-05" data-t="鲸锐AI：50+ 视频模型 + 千节点画布的 AI 影视平台"
+          data-o="50+ 视频模型、千节点画布的影视平台。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>Rikiya Takehi 等人的「Sparks of Weight-Space Programming」发现前沿模型能直接读一份由浮点数组成的权重文本：GPT-6 Astra 能判断一个小网络是玩 Breakout / Pong / Pac-Man / Freeway 中的哪个，还能从零写出打败 PPO 一亿步训练网络的策略网络；更激进的是它给 Qwen3.5-0.8B 改了 0.016% 的权重，把 MATH-500 从 7.9% 拉到 48.1%。Simon Willison 用 17GB 的 Qwen 3.8 27B 在本机复现：Pac-Man 46 分 12 秒、43,506 个推理 token 猜对，Pong 1 小时 4 分、Breakout 52 分，Freeway 猜错；换 Kimi K3.1 Pro 走 OpenRouter 只要 9 分 41 秒。
-        <span class="k">为什么值得你花时间</span>你在评估「模型能不能改自己的权重」这条线：如果权重级修正真的能绕开梯度、只改万分之几的参数就修好推理循环，那它会影响你怎么做模型定制、怎么排查微调后的退化。**今天就能做**：用 `llm -f &lt;prompt.txt&gt;` 跑仓库里四个自包含 prompt 中的一个，先在自己熟悉的模型上看它能不能说出「这是哪个游戏」；成本只要一次长推理。边界：论文本身是 blog-post 形态，Matthew Honnibal 批评它把「无工具读权重」和「有代码改权重」混在一起，Sean Goedecke 也拆过 Qwen 那个例子；样本只有四个 10×10 小游戏，27B 本机要跑近一小时，别当成生产级「权重编辑」能力。
-        <span class="k">上手成本</span>15 分钟（llm + OpenRouter 跑一个 prompt；本机 27B 约 1 小时）
-        <span class="k">入口</span><a href="https://github.com/RikiyaT/lm_understand-logs" target="_blank" rel="noopener noreferrer">https://github.com/RikiyaT/lm_understand-logs</a>
-        <a class="more" href="detail/2026-11-04-02.html">读详情（翻译 + 要点）→</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="0" data-tool="0">
-      <summary class="hit">
-        <span class="n">03</span>
-        <span class="tt">
-          <span class="t1">Palette：大纲先改，再逐页渲染成企业模板 PPT</span>
-          <span class="t1b">用可编辑大纲控制版式，逐页渲染成 PPT。</span>
-          <span class="t2">
-            <span class="chip people">跟人</span>
-            <span class="cost slow">1 小时</span>
-            <span class="src">people:hf-blog</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-04-03" data-date="2026-11-04" data-t="Palette：大纲先改，再逐页渲染成企业模板 PPT"
-          data-o="用可编辑大纲控制版式，逐页渲染成 PPT。" data-hd="1">☆</button>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>IBM Research 的 Palette 是一个围绕 `gpt-oss-20b-palette-lora` 的对话式 PPT 生成器：先把请求和参考文档变成一份可手改的 Markdown 大纲，再由设计师角色输出每页的配色 / 字体 / 布局 JSON，程序员角色并行写 `pptxgenjs` 代码，Node + LibreOffice 渲染成 `.pptx` 和 PDF 预览；最后一道确定性几何检查器量文字重叠 / 出界，只保留确认变好的重写。
-        <span class="k">为什么值得你花时间</span>你做画布 / 一句话成片 / 模板化内容，最值得抄的是这条「可编辑中间态 + 确定性检查器」的拆法：把审美和坐标计算分开，用户改大纲而不是重画整页；代码里还有 `[[make this a timeline]]` 这种单页指令、5 倍过采样设计师样本、以及「改参考样例比写十条禁令更管用」的数据配方。**今天就能做**：读 `pipeline.py` / `refine.py` 和 `skills/palette/SKILL.md`，把「先出可审大纲、再渲染」搬到你现有的模板链路上。边界：PresentBench 59.7 分只测了 5 个领域中的 3 个，且不考核品牌规范；20B LoRA 权重和 1 万页合成数据未公开，`config.py` 默认还指向 Qwen2.5-Coder-32B，本地跑通要 IBM RITS / watsonx 的 key。
-        <span class="k">上手成本</span>1 小时（读代码 + 跑远程 skill；本地跑需 IBM RITS / watsonx key）
-        <span class="k">入口</span><a href="https://github.com/IBM/project-palette" target="_blank" rel="noopener noreferrer">https://github.com/IBM/project-palette</a>
-        <a class="more" href="detail/2026-11-04-03.html">读详情（翻译 + 要点）→</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="0" data-tool="0">
-      <summary class="hit">
-        <span class="n">04</span>
-        <span class="tt">
-          <span class="t1">StateBench：长文档里跟不住状态，长上下文也救不了</span>
-          <span class="t1b">测长文档里模型还能不能跟住变量状态。</span>
-          <span class="t2">
-            <span class="chip people">跟人</span>
-            <span class="cost slow">1 小时</span>
-            <span class="src">people:hf-blog</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-04-04" data-date="2026-11-04" data-t="StateBench：长文档里跟不住状态，长上下文也救不了"
-          data-o="测长文档里模型还能不能跟住变量状态。" data-hd="1">☆</button>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>Ai2 的 StateBench 把「状态跟踪」拆成四级：只读一次的 r-trivial、按值重赋的 aperiodic、自引用的 soluble、按引用赋值 / 交换的 general finite（periodic）。它用同一串赋值生成四个难度版本，只改变赋值类型；在四个前沿模型（Gemini 3.8 Flash、Claude Opus 5.5、GPT-6 Sol / Luna）上，r-trivial 和 aperiodic 都还行，但 soluble / general finite 随输入变长急剧下降，最长的 general finite 上准确率只剩 13% 或更低。开源预训练模型里 transformer 在 general finite 上接近随机；Gated DeltaNet / hybrid 直接训练后能外推到数万个赋值，而 transformer 即使直接训练也学不会最难的一级。
-        <span class="k">为什么值得你花时间</span>你在给长周期 Agent 选底座，最容易把「1M 上下文」当成「能记住状态」。StateBench 给了一个可复现的反例：上下文再长，模型也可能在「谁把刀给了谁」这类链式更新上崩掉。**今天就能做**：拿你现有任务里最长的那条状态链（画布节点、分镜角色、订单 / 素材版本），按四级各造 10 条，用你的候选模型跑一遍，记录「最新值 / 链式 / 交换」三类错误；再决定要不要把状态外置成结构化存储。边界：合成赋值序列、变量数固定、不覆盖「中途出现新实体」；论文里的理论假设和 13% 都是特定设置，不等于你的业务分布。
-        <span class="k">上手成本</span>1 小时（读 + 造一组自己的状态链）
-        <span class="k">入口</span><a href="https://github.com/allenai/state-bench" target="_blank" rel="noopener noreferrer">https://github.com/allenai/state-bench</a>
-        <a class="more" href="detail/2026-11-04-04.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>虎鲸文娱 11-04 正式上线的 AI 影视制作与管理平台：接 50+ 主流视频模型和 10+ 自研模型，无限画布支持千级节点、百人实时协同；把场景、人物表演、摄像机、虚拟片场、光影做成五类精控套件（35 类工具、300+ 项能力），支持按集 / 场 / 团队 / 项目核算成本，宣称 4K 60fps 10bit HDR 直出、单分钟成本比传统 AI 生成省 30%+、同人同场同时长制作时间缩短 40–60%。
+        <span class="k">为什么值得你花时间</span>你做视频生成 / 画布工作流，这是一个直接可对照的竞品：它把「抽卡」拆成五类可控参数、把成本核算做到集 / 场 / 团队，还用量级（千节点、百人）压协同；这两块比模型本身更值得看。**今天就能做**：注册后用一个镜头试五类精控，重点看同一角色 / 同一场景的复现能力、以及它的成本面板粒度；再对照你现在的节点画布，记下缺的 2–3 个控制项。边界：这是厂商通稿，所有百分比都无第三方验证；平台闭源、无公开 API，注册条款和数据归属要自己看。
+        <span class="k">上手成本</span>15 分钟（注册后试一个镜头）
+        <span class="k">入口</span><a href="https://www.jingruiai.cn" target="_blank" rel="noopener noreferrer">https://www.jingruiai.cn</a>
+        <a class="more" href="detail/2026-11-05-02.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
     <details class="row" data-fast="1" data-tool="0">
       <summary class="hit">
-        <span class="n">05</span>
+        <span class="n">03</span>
         <span class="tt">
-          <span class="t1">Claude Cowork 负责人：别让 Claude 扮专家，也别让它给自己打分</span>
-          <span class="t1b">少设角色、多用工具与对抗审查的 Agent 用法。</span>
+          <span class="t1">Harness：同一个模型，换一套脚手架就从 30 分到 95 分</span>
+          <span class="t1b">同一模型换脚手架，ARC-AGI 30→95。</span>
           <span class="t2">
             <span class="chip cn">中文</span>
             <span class="cost fast">15 分钟</span>
@@ -313,15 +261,67 @@ details.rej[open] summary::before{content:"▾ "}
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-04-05" data-date="2026-11-04" data-t="Claude Cowork 负责人：别让 Claude 扮专家，也别让它给自己打分"
-          data-o="少设角色、多用工具与对抗审查的 Agent 用法。" data-hd="1">☆</button>
+          data-id="2026-11-05-03" data-date="2026-11-05" data-t="Harness：同一个模型，换一套脚手架就从 30 分到 95 分"
+          data-o="同一模型换脚手架，ARC-AGI 30→95。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>InfoQ 译出的 Felix Rieseberg（Anthropic 工程经理、Claude Cowork 负责人）访谈。他的几个反直觉做法：不要再写「你是一位资深工程师」这类角色提示，模型已经是通才，角色反而限制它；先问「这个领域最优秀的人用什么工具」，然后把工具和数据给它。审查用「对抗式」：一个 Claude 做，另外五个到十个专门找错，再由另一个 Claude 判断哪些意见成立；不要让同一个对话给自己打分，尽量找外部信号。Skill 也会过时：模型更新很快，为上一代模型写的 Skill 有时删掉更好。
-        <span class="k">为什么值得你花时间</span>你的工作流里 Skill 和子 Agent 很多，这套方法直接对应两个常见坑：角色提示让模型演戏而不是干活；自己评自己导致「绿灯但没做完」。**今天就能做**：挑一个你最近不满意的 Skill，删掉角色段、改成「先列工具再执行」；再对一个输出开 3 个找错线程 + 1 个裁判，比较它和单轮自评的差别。边界：这是访谈 / 个人实践，不是 benchmark；「十个审查者」的 token 成本不低；具体效果依赖任务和模型。
-        <span class="k">上手成本</span>15 分钟（读 + 改一个 Skill 的提示词）
-        <span class="k">入口</span><a href="https://www.infoq.cn/article/xaWSKT3MlZjbuJw16Vem" target="_blank" rel="noopener noreferrer">https://www.infoq.cn/article/xaWSKT3MlZjbuJw16Vem</a>
-        <a class="more" href="detail/2026-11-04-05.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>InfoQ 整理的 YC Paper Club「Harness Night」三场演讲：Prime Agent 的 Seth Karten 把 harness 拆成 L1 权重 / L2 活跃上下文加 REPL / L3 文件系统，主张保留压缩、Python REPL、编程式子 Agent、状态访问、反馈五种表达力；OpenJarvis 的 Jon Saad-Falcon 用界面 / Agent 逻辑 / 模型 / 推理引擎加硬件 / 工具记忆学习五个原语把个人 AI 拉回本地，称端侧方案做到 800 倍成本降低；YC 的 QM 把 Agent 大脑放 Postgres、沙盒降级为按需资源，核心只留远程执行 / 对象存储 / 发布应用三个工具。
+        <span class="k">为什么值得你花时间</span>你在 wayfinder / dsh 上做 Agent，最该拿走的不是某个框架，而是这张「表达力缺口表」：压缩、REPL、子 Agent、状态、反馈，少一个就少一类它没法用别的方式完成的能力；以及「沙盒是资源不是家」「子 Agent 是持久子会话」这两个结构决策。**今天就能做**：对照你的 harness 逐项打勾，只补最缺的一项；再用同一模型跑同一个任务，看加了这一项后平台期是否后移。边界：这是会议演讲整理，不是论文 / 基准；ARC-AGI 30%→95% 是特定 harness 加模型组合，不能直接外推；QM / Prime Agent 的代码与部署细节未在文中给出。
+        <span class="k">上手成本</span>15 分钟（读 + 给自己的 harness 列缺口表）
+        <span class="k">入口</span><a href="https://www.infoq.cn/article/C1C1DThg8z1Dy0rZAmLB" target="_blank" rel="noopener noreferrer">https://www.infoq.cn/article/C1C1DThg8z1Dy0rZAmLB</a>
+        <a class="more" href="detail/2026-11-05-03.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">04</span>
+        <span class="tt">
+          <span class="t1">Dharma Field Extractor：2B 小模型把文档抽成指定 JSON</span>
+          <span class="t1b">2B 小模型把任意文档抽成指定 JSON 字段。</span>
+          <span class="t2">
+            <span class="chip people">跟人</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">people:hf-blog</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-05-04" data-date="2026-11-05" data-t="Dharma Field Extractor：2B 小模型把文档抽成指定 JSON"
+          data-o="2B 小模型把任意文档抽成指定 JSON 字段。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Dharma-AI 在 DharmaOCR-LITE v1.1（2B）上训的 LoRA 字段抽取模型：输入文档图片加空 schema 或指定 schema，输出类型化 JSON；支持开放抽取（自动找字段）和 schema-directed（按你的 key / 类型填，缺失返回 null，表格逐行逐列）；在 546 份文档 / 1,638 个 case 的字段级 F1 上得 0.834，高于 Claude Opus 5 的 0.816 和 GPT-5.6 Luna 的 0.741，自托管单卡 L40S 成本比前沿 API 低 6–147 倍。
+        <span class="k">为什么值得你花时间</span>你做内容平台，合同、脚本、分镜表、发票这类「把文档变成结构化字段」的活迟早会遇到；这条给的是一个可复用的选型信号：在边界清晰的任务上，2B 专用模型加 LoRA 可以打过前沿通用模型，而且成本差一个量级。**今天就能做**：拿一份你手头的合同 / 分镜表，用它的在线 portal 跑一次 schema-directed 抽取，重点看嵌套表格和缺失字段是否返回 null；再把同一份丢给通用模型对比字段级准确率。边界：0.834 是厂商自建 benchmark，只有 546 份文档；Field Extractor 的权重未明确开源（开源的是 OCR base），在线 portal 要登录；商用前要核数据合规和许可证。
+        <span class="k">上手成本</span>15 分钟（在线上传一份文档试抽取）
+        <span class="k">入口</span><a href="https://ocr-portal.prd-us-east-2.dharma-ai.com/login" target="_blank" rel="noopener noreferrer">https://ocr-portal.prd-us-east-2.dharma-ai.com/login</a>
+        <a class="more" href="detail/2026-11-05-04.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">05</span>
+        <span class="tt">
+          <span class="t1">datasette-agent 0.5a0：让 Agent 在应用旁边边聊边改</span>
+          <span class="t1b">让 Agent 在应用旁边边聊边改的面板。</span>
+          <span class="t2">
+            <span class="chip people">跟人</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">people:simonwillison</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-05-05" data-date="2026-11-05" data-t="datasette-agent 0.5a0：让 Agent 在应用旁边边聊边改"
+          data-o="让 Agent 在应用旁边边聊边改的面板。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Simon Willison 的 datasette-agent 0.5a0 新增 panel：Agent 聊天窗口可以停在 Datasette 的任意表 / 查询页旁边，用自然语言让它在旁边生成一个数据库驱动的小应用，再继续用聊天改样式 / 改功能；配合 datasette-apps，应用可以直接在面板里创建、渲染、查看、替换字符串。演示站用 GitHub 登录即可试。
+        <span class="k">为什么值得你花时间</span>你做画布 / 一句话成片，最值得抄的是这个交互结构：不是「聊天归聊天、画布归画布」，而是让 Agent 的对话和它正在改的产物并排、可回看每一步工具调用；这比再做一个全屏 Chat 更接近「边看边改」的创作流。**今天就能做**：用 GitHub 登录 agent.datasette.io，让它「build an app to explore this data」，再在 panel 里改一次配色 / 布局，观察它如何把修改落到同一个应用上。边界：这是 Datasette / SQLite 场景的 demo，不是通用画布框架；0.5a0 还是 alpha；panel 目前主要面向数据应用，复杂多页面 / 多人协作未覆盖。
+        <span class="k">上手成本</span>15 分钟（GitHub 登录 demo，跑一次生成加一次修改）
+        <span class="k">入口</span><a href="https://agent.datasette.io/" target="_blank" rel="noopener noreferrer">https://agent.datasette.io/</a>
+        <a class="more" href="detail/2026-11-05-05.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
@@ -329,33 +329,33 @@ details.rej[open] summary::before{content:"▾ "}
       <summary class="hit">
         <span class="n">06</span>
         <span class="tt">
-          <span class="t1">报告已经生成，为什么还不能直接分享？</span>
-          <span class="t1b">把生成文件当版本化产物管：身份、字节、分享。</span>
+          <span class="t1">MOSS-Image Character Catalog：3.4 万张角色 / 画风图鉴</span>
+          <span class="t1b">3.4 万张角色 / 画风图鉴，可搜可复制提示词。</span>
           <span class="t2">
-            <span class="chip cn">中文</span>
+            <span class="chip tool">小而美</span>
             <span class="cost fast">15 分钟</span>
-            <span class="src">cn:juejin</span>
+            <span class="src">hf:spaces-trending</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-04-06" data-date="2026-11-04" data-t="报告已经生成，为什么还不能直接分享？"
-          data-o="把生成文件当版本化产物管：身份、字节、分享。" data-hd="1">☆</button>
+          data-id="2026-11-05-06" data-date="2026-11-05" data-t="MOSS-Image Character Catalog：3.4 万张角色 / 画风图鉴"
+          data-o="3.4 万张角色 / 画风图鉴，可搜可复制提示词。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>掘金作者 hpoenixf 以 ETF Agent 的报告交付为例，拆开三件常被混为一谈的事：保存的是哪一份内容（Artifact 身份 + 内容摘要 + 归属 / 任务 / 保留期）、谁可以取得它（所有者 vs 当前访问者，定向分享绑定指定人 + 指定版本）、这次操作到了哪一步（未提交 / 已提交 / 结果未知）。同名 `comparison.html` 再生成一次就是新版本，旧分享仍指向旧字节；超时后不能立刻重跑，要先按原操作身份核对；撤销分享只阻止后续访问，不追回已下载的副本。
-        <span class="k">为什么值得你花时间</span>你做的是「生成 → 交付」的内容平台，这条正好补上生成之后那段：报告 / 图片 / 视频的版本、回执、分享权限一旦混用，就会出现「同事打开旧链接看到新内容」或「超时重跑出两份账单」。**今天就能做**：拿你现在的导出 / 分享接口，对照文中三组字段（产物身份、访问身份、操作事实）各补一项，先把「同名文件」和「同一次保存」分开。边界：这是教学化场景，不是真实用户研究；完整的多账户定向分享不在公开版里，公开代码只到「固定产物 + 只读回读」；本地文件存储的提交也不是跨数据库 / 对象存储的全局事务。
-        <span class="k">上手成本</span>15 分钟（读 + 对照现有交付链路）
-        <span class="k">入口</span><a href="https://github.com/hpoenixf/open-etf-agent/tree/34124cefc6df289e08518173789210b45a716451" target="_blank" rel="noopener noreferrer">https://github.com/hpoenixf/open-etf-agent/tree/34124cefc6df289e08518173789210b45a716451</a>
-        <a class="more" href="detail/2026-11-04-06.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>社区做的 MOSS-Image 角色 / 画风图鉴：34,249 张（33,935 角色加 314 画风），只读浏览，支持搜索、8 类画风筛选、排序、放大、复制 prompt / tag；静态 Space，无 GPU；代码 MIT，数据集和本地版在 GitHub，本地版可增删改和对比判定；2026-10-31 做过一轮提示词措辞修订（把耳朵 / 尾巴 / 脚的通用构图改成中性全身构图）。
+        <span class="k">为什么值得你花时间</span>你做图像 / 视频角色一致性，最缺的是「同一个角色换姿势 / 换画风」的参考集和可复制的 prompt；这个图鉴把 3.4 万张角色图和 314 种画风放在一个可搜索的界面里，适合快速找参照、抽 tag、做自己的角色库。**今天就能做**：搜一个你要的角色类型，复制一张卡的 full-scene prompt，用你现有的图像模型跑同 seed 对比，看哪些 tag 真的能迁移。边界：这是社区图鉴，不是 MOSS-Image 官方模型页；未做质量筛选，包含角色 / 画风不匹配的图；在线版不生成图、不能上传；生成图和第三方权利有单独声明，商用前要核。
+        <span class="k">上手成本</span>15 分钟（浏览 + 复制一条 prompt 试跑）
+        <span class="k">入口</span><a href="https://huggingface.co/spaces/hide1/MOSS-Image-Character-Catalog" target="_blank" rel="noopener noreferrer">https://huggingface.co/spaces/hide1/MOSS-Image-Character-Catalog</a>
+        <a class="more" href="detail/2026-11-05-06.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
   <div class="empty" id="empty" style="display:none">这个筛选下没有条目。</div>
-  <div class="fold">还有 1 条：①【**知情**】**OpenAI 似乎在悄悄重新开启 Codex 对话的训练**——HN 11-03 的 418 分讨论称部分 Codex 会话的设置被改回可用于训练；如果你把公司代码 / 客户素材喂给 Codex，先去账号里确认训练开关，再决定哪些仓库能进（https://news.ycombinator.com/item?id=50352757）。</div>
+  <div class="fold">还有 1 条：①【**知情**】**Postman 打开一次就静默给 Codex / Claude Code 装插件**——10-25 的 SEVERE issue 14370 记录：Postman 12.33.4 在 macOS 上自动往 `~/.codex/config.toml` 写插件市场与 `trusted_hash`、往 Claude Code 的 `settings.json` 写启用记录、装 `~/.local/bin` 下的 CLI，并注册 SessionStart 钩子注入 `postman:api-engineer` 技能；厂商日志里 `auto-existing-upgrade` 一行同时出现 `claude-code:installed` 和 `codex:installed`。issue 作者明确不主张已证实数据外泄，远程 MCP 认证当时失败。自查：`grep -n postman ~/.codex/config.toml ~/.claude/settings.json`、`ls ~/.local/bin | grep -i postman`；先取证再清理（https://github.com/postmanlabs/postman-app-support/issues/14370）。</div>
   <div class="foot">
-    <b>每源今日条数</b><br>✅ hf-org:deepseek-ai 3 · ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15 · ✅ vendor:deepmind 10 · ✅ vendor:mistral 10 · ✅ skills:trending 12 · ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ repo:deepseek-ai/deepseek-harness 3 · ✅ commit:deepseek-ai/deepseek-harness 6 · ✅ docs:deepseek-api 0（今天没变化，非死源） · ✅ hn:show 12 · ✅ hf:spaces-trending 20（正文 01） · ✅ people:simonwillison 12（正文 02） · ✅ hn:stories 10（折叠 1） · ✅ cn:juejin 10（正文 06） · ✅ cn:sspai 10 · ✅ cn:qbitai 10 · ✅ cn:infoq 10（正文 05） · ✅ people:latent-space 6 · ✅ people:interconnects 6 · ✅ people:hf-blog 8（正文 03、04） · ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5（33 源 · 33 成功 · 0 源失败 · 1 个 0 条源）
+    <b>每源今日条数</b><br>✅ hf-org:deepseek-ai 3 · ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15 · ✅ vendor:deepmind 10 · ✅ vendor:mistral 10 · ✅ skills:trending 12 · ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ repo:deepseek-ai/deepseek-harness 3 · ✅ commit:deepseek-ai/deepseek-harness 6 · ✅ docs:deepseek-api 0（今天没变化，非死源） · ✅ hn:show 12 · ✅ hf:spaces-trending 20（正文 06） · ✅ people:simonwillison 12（正文 05） · ✅ hn:stories 10 · ✅ cn:juejin 10（折叠 1） · ✅ cn:sspai 10 · ✅ cn:qbitai 10（正文 01、02） · ✅ cn:infoq 10（正文 03） · ✅ people:latent-space 6 · ✅ people:interconnects 6 · ✅ people:hf-blog 8（正文 04） · ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5（33 源 · 33 成功 · 0 源失败 · 1 个 0 条源）
     <details class="rej"><summary>被过滤器砍掉的 33 条（信任雷达的依据）</summary>
-        <div class="rejrow"><span class="t">3 条（`V4.1-Flash-1017`、`V4.1-Flash`（seen）、`V4-Flash-Vision-Exp`）</span><span class="r">`1017` 已在 10-18 / 10-24 评过；`V4.1-Flash` 为 seen；Vision-Exp 是 8 月实验版</span></div><div class="rejrow"><span class="t">3 条（`Qwen-Image-2.1-Turbo`、`PE-I2I`、`PE-T2I`）</span><span class="r">全部 seen</span></div><div class="rejrow"><span class="t">3 条（`GLM-5.3-Flash-BF16`、`GLM-5.3-BF16`、`GLM-5.3-Flash`（seen））</span><span class="r">BF16 是同一模型的精度格式；Flash 为 seen</span></div><div class="rejrow"><span class="t">3 条（`MiniMax-M3.1-Flash`、`Music3`（seen）、`H3`（seen））</span><span class="r">M3.1 Flash 已于 10-21 正文 04；两条 seen</span></div><div class="rejrow"><span class="t">3 条（`Kimi-K3`、`K2.7-Code`、`K2.6`）</span><span class="r">4–6 月旧版本；K3.1 Pro 已在 10-24 正文 04</span></div><div class="rejrow"><span class="t">15 条（Cisco、Heimstaden、Jill Hazelbaker、Dan Driscoll、Grid Protectors、security sprint、bug bounties、LifeVal、Pando、Qodo、training preferences、community safety、fair use、Model Spec、physical world）</span><span class="r">客户案例 / 人事 / 政策 / 基准 / 内部 Git 后端；没有新模型或 API 入口</span></div><div class="rejrow"><span class="t">10 条（Carbon（seen）、Genie 4（seen）、Argon 发布（seen）、化学信息学、规划决策、森林类型、抗微生物肽、新加坡反诈、Argon 安全 / 机器人）</span><span class="r">已评或 seen；其余科学 / 政务 / 反诈 / 机器人，无本业入口</span></div><div class="rejrow"><span class="t">10 条（Le Chonk（seen）、Voxtral 3（seen）、Mistral Large 4（seen）、Mozilla（seen）、NVIDIA 工业、Timestral、Hallo Deutschland、Cloudera、legacy code、€3B 融资）</span><span class="r">已评或 seen；其余工业 / 时序 / 合作 / 融资 / 旧代码迁移</span></div><div class="rejrow"><span class="t">12 条（`ai-image-generation` ×2、`microsoft-foundry`、`reddit-automation`，另 8 条 seen）</span><span class="r">两条 `ai-image-generation` 仍是 inference.sh / RunComfy 薄壳；`microsoft-foundry` 绑 Azure；`reddit-automation` 与业务无关</span></div><div class="rejrow"><span class="t">3 条（v2.1.317 / 316 / 314）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（0.167.0-alpha.4 / .3、libcap 2.75）</span><span class="r">alpha 版本流水 / 构建依赖归档</span></div><div class="rejrow"><span class="t">3 条（nightly ×3）</span><span class="r">nightly 版本号流水</span></div><div class="rejrow"><span class="t">3 条（1.3.0 / 1.2.6 / 1.2.5）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v2.2.5 / 2.2.4 / 2.2.3）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v2.2.0 / v2.1.0（seen）/ v2.0.0（seen））</span><span class="r">v2.2.0 是 Node 运行时 / CA 证书安全更新；后两条 seen</span></div><div class="rejrow"><span class="t">3 条（v1.3.2 / 1.3.1 / 1.3.0）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v0.2.2-alpha.3 / v0.2.1-rc.5 / v0.2.2-alpha.2）</span><span class="r">rc / alpha 版本号流水</span></div><div class="rejrow"><span class="t">6 条（release / vendor / team refactor / test / fix）</span><span class="r">内部提交 / 发布对齐，无独立入口</span></div><div class="rejrow"><span class="t">0 条</span><span class="r">今天没变化，非死源</span></div><div class="rejrow"><span class="t">12 条（HackerBooks、Subvocal、Hacker Times、Wikihack、Warsaw voxels、outcrop、TNG 猜剧、syscall.sh、HackerHack、dontallow，另 OmniDiff / nesformer 为 seen）</span><span class="r">消费 / 趣味 / 硬件 / 嵌入式；与视频 / 图像 / 画布无直接关系</span></div><div class="rejrow"><span class="t">19 条（`wan777`、`uncensored` ×2、`pornflux`、`bfs-best-face-swap`、`wan2-2-i2v`、`minimax-h3`、`Qwen-2511-Flux`、`LFM3-Omni-2B-WebGPU`、`Phonon`、`QWEN_EDIT_IMAGE` 等）</span><span class="r">社区 NSFW / 换脸 / 旧 demo；LFM3、Phonon 已于 10-28 评过；Ava 进正文 01</span></div><div class="rejrow"><span class="t">11 条（Census、uv.lock、Kyle Kingsbury、ChatGPT 账号接管、datasette-llm、nesformer、API credits、Fable 游戏、sound leak、newsletter、llm 0.37）</span><span class="r">安全 / 观点 / 引用 / 版本流水 / 旧题；weight-space 进正文 02</span></div><div class="rejrow"><span class="t">9 条（Claude Code 后门 ×3、后台 Agent 转录、游戏逆向禁令、Claude Duet、Opus 5.5 画施工图、HackerBooks 重复，另 1 条 seen）</span><span class="r">后门 / 隐私 / 诉讼 / 产品评测；Duet 是美国 research preview；Opus 5.5 画图是 demo；Codex 训练条款进折叠</span></div><div class="rejrow"><span class="t">9 条（告警变点、Agent 何时继续查、每日研究、同 Agent 隔离、数值核、Redis ZSet、断线恢复、自定义专家、Credits 计量）</span><span class="r">同一 ETF Agent 系列；按同 owner 1 席只留正文 06（报告交付）</span></div><div class="rejrow"><span class="t">10 条（iPad mini、社区速递、Disc Image Studio、派早报 ×2、派评、AirPods 5、Xnip、夏普 Telios、本月玩什么）</span><span class="r">消费电子 / 生活 / 游戏 / 旧闻，无本业入口</span></div><div class="rejrow"><span class="t">10 条（智能仓、智己 LS8、AI 生产力系统、Orilo、TeleAI、OceanBase、小米乌镇、A 社招股书、模拟计算、B 站科学晚）</span><span class="r">厂商稿 / 硬件 / 汽车 / 活动 / 观点；Orilo 只支持英文、无公开 API</span></div><div class="rejrow"><span class="t">9 条（Apollo World、数据接口、Utopai CPO、Agentic 推理引擎、AI 复刻 Adobe、MaaS、Netflix IAM、微软离职、Anthropic Rust 迁移）</span><span class="r">Felix 进正文 05；其余自动驾驶 / 人事 / 推理 / 基础设施 / 迁移案例（无独立仓库）</span></div><div class="rejrow"><span class="t">6 条（Legora ×2、AINews weight-space、Google AI Mode、AIE CODE、Arca（seen））</span><span class="r">weight-space 已并入正文 02；Legora 是法律 AI；其余通讯 / 播客 / 观点</span></div><div class="rejrow"><span class="t">6 条（cyber risk、AA v5、Kimi 播客、open artifacts #25、Meta（seen）、rapid progress）</span><span class="r">观点 / 播客；AA v5 的选型账 10-30 已算过；Meta 为 seen</span></div><div class="rejrow"><span class="t">6 条（CWE-bench v2、Transformers MIC、nemotron-halloween、Granite Switch 4.1.1、ProtoStar、Le Chonk）</span><span class="r">Palette（03）、StateBench（04）进正文；CWE 是安全基准、MIC 是集成规范、Granite Switch 是更新机制、ProtoStar 是科研数据、Le Chonk 已评</span></div><div class="rejrow"><span class="t">5 条（Import AI 479–475）</span><span class="r">newsletter / 观点</span></div><div class="rejrow"><span class="t">5 条（NotebookLM（seen）、桃花源记（seen）、电商 Agent（seen）、AI 原生思维、Warp（seen））</span><span class="r">4 条 seen；AI 原生思维是 8 月旧文，无入口</span></div><div class="rejrow"><span class="t">5 条（30 Months、Dot and Swarm、Overhang、Agency and Agents、guide）</span><span class="r">观点 / 旧文，无入口</span></div>
+        <div class="rejrow"><span class="t">3 条（`V4.1-Flash-1017`、`V4.1-Flash`（seen）、`V4-Flash-Vision-Exp`）</span><span class="r">`1017` 已在 10-18 / 10-24 评过；`V4.1-Flash` 为 seen；Vision-Exp 是 8 月实验版</span></div><div class="rejrow"><span class="t">3 条（`Qwen-Image-2.1-Turbo`、`PE-I2I`、`PE-T2I`）</span><span class="r">全部 seen</span></div><div class="rejrow"><span class="t">3 条（`GLM-5.3-Flash-BF16`、`GLM-5.3-BF16`、`GLM-5.3-Flash`（seen））</span><span class="r">BF16 是同一模型的精度格式；Flash 为 seen</span></div><div class="rejrow"><span class="t">3 条（`MiniMax-M3.1-Flash`、`Music3`（seen）、`H3`（seen））</span><span class="r">M3.1 Flash 已于 10-21 正文 04；两条 seen</span></div><div class="rejrow"><span class="t">3 条（`Kimi-K3.1-Pro`、`Kimi-K3`、`K2.7-Code`）</span><span class="r">K3.1 Pro 已在 10-24 正文 04；K3 / K2.7-Code 是 6 月旧版本</span></div><div class="rejrow"><span class="t">15 条（收购 Pierre、AWS GovCloud、DevRev、Cisco、Heimstaden、人事 ×2、Scaling Git、Grid Protectors、security sprint、bug bounties、LifeVal、Qodo、物理世界工程、安全路径）</span><span class="r">客户案例 / 人事 / 政策 / 安全 / 工程博客；没有新模型或 API 入口</span></div><div class="rejrow"><span class="t">10 条（化学信息学、规划决策、Carbon（seen）、Genie 4（seen）、森林类型、抗微生物肽、新加坡反诈、Argon 发布（seen）、Argon 安全 / 机器人）</span><span class="r">已评或 seen；其余科学 / 政务 / 反诈 / 机器人，无本业入口</span></div><div class="rejrow"><span class="t">10 条（Le Chonk（seen）、NVIDIA 工业、Voxtral 3（seen）、Timestral、Mistral Large 4（seen）、Hallo Deutschland、Mozilla（seen）、Cloudera、legacy code、€3B 融资）</span><span class="r">已评或 seen；其余工业 / 时序 / 合作 / 融资 / 旧代码迁移</span></div><div class="rejrow"><span class="t">12 条（`ai-image-generation` ×2、`azure-prepare`、`reddit-automation`，另 8 条 seen）</span><span class="r">两条 `ai-image-generation` 分别是 inference.sh / RunComfy 的薄壳；`azure-prepare` 绑 Azure；`reddit-automation` 与业务无关</span></div><div class="rejrow"><span class="t">3 条（v2.1.318 / 317 / 316）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（0.168.0-alpha.2 / .1、0.167.0-alpha.5）</span><span class="r">alpha 版本流水</span></div><div class="rejrow"><span class="t">3 条（v0.68.0-preview.0、v0.67.0、v0.67.0-nightly）</span><span class="r">preview / nightly 版本号流水</span></div><div class="rejrow"><span class="t">3 条（1.3.0 / 1.2.6 / 1.2.5）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v2.2.5 / 2.2.4 / 2.2.3）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v2.3.0 / v2.2.0 / v2.1.0（seen））</span><span class="r">v2.3.0 是 filesystem / memory / fetch / git 的常规包更新；v2.2.0 是运行时 / CA 安全更新；后一条 seen</span></div><div class="rejrow"><span class="t">3 条（v1.3.2 / 1.3.1 / 1.3.0）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v0.2.2-rc.1 / alpha.3 / v0.2.1-rc.5）</span><span class="r">rc / alpha 版本号流水</span></div><div class="rejrow"><span class="t">6 条（release / vendor / docs ×3 / test）</span><span class="r">内部提交 / 发布对齐，无独立入口</span></div><div class="rejrow"><span class="t">0 条</span><span class="r">今天没变化，非死源</span></div><div class="rejrow"><span class="t">12 条（HackerBooks、Subvocal、Hacker Times、HackerTV、Wikihack、Warsaw voxels、outcrop、TNG 猜剧、syscall.sh、HackerHack，另 OmniDiff / nesformer 为 seen）</span><span class="r">消费 / 趣味 / 硬件 / 嵌入式；与视频 / 图像 / 画布无直接关系</span></div><div class="rejrow"><span class="t">19 条（`wan777`、`uncensored` ×2、`pornflux`、`bfs-best-face-swap`、`wan2-2-i2v`、`minimax-h3`、`Qwen-2511-Flux`、`LFM3-Omni-2B-WebGPU`、`Phonon`、`free-ai-humanizer` 等）</span><span class="r">社区 NSFW / 换脸 / 旧 demo；LFM3、Phonon 已于 10-28 评过；MOSS 图鉴进正文 06</span></div><div class="rejrow"><span class="t">11 条（datasette-llm、datasette-apps、llm 0.37.1 / 0.37、Qwen 权重、sound leak、newsletter、Census、uv.lock、Kyle Kingsbury、ChatGPT 账号接管）</span><span class="r">版本流水 / 旧题 / 观点 / 安全；datasette-agent 进正文 05</span></div><div class="rejrow"><span class="t">10 条（Claude Code 后门 ×3、后台 Agent 转录、游戏逆向禁令、Claude Duet、Opus 5.5 画施工图、HackerBooks / HackerTV 重复，另 1 条 seen）</span><span class="r">后门 / 隐私 / 诉讼 / 产品评测；Duet 是美国 research preview；Opus 5.5 画图是 demo</span></div><div class="rejrow"><span class="t">9 条（Redis Bitmap、多专家 Agent、Postman 被曝（同事件）、小程序 Token、Postgres .backup、大模型分类、Flutter @JsonKey、性能监控、金融垂类 Agent）</span><span class="r">Postman 两条：一条进折叠，另一条同事件重复砍掉；多专家 Agent 方法不错但今天方法席给 Harness；其余为工程 / 语言 / 旧题</span></div><div class="rejrow"><span class="t">10 条（客户端开发、微诗、国行 Apple 智能、派早报 ×2、iPad mini、社区速递、Disc Image Studio、派评、AirPods 5）</span><span class="r">消费电子 / 生活 / 游戏 / 旧闻，无本业入口</span></div><div class="rejrow"><span class="t">8 条（百度无人车、Lion-ER、超维动力、机器人仓、智己 LS8、AI 生产力系统、纯语音 Agent、苹果 TeleAI）</span><span class="r">自动驾驶 / 机器人 / 汽车 / 厂商活动 / 观点；无公开 API 或与业务无直接关系；openJiuwen、鲸锐AI 进正文</span></div><div class="rejrow"><span class="t">9 条（腾讯云 Agent DB、Token 暴涨、Data Agent Kit、Anthropic 安全扫描、Vercel fx、Harbor、AI 代码瓶颈、李飞飞具身、Cursor 账单）</span><span class="r">Harness 进正文 03；Data Agent Kit / Harbor 有入口，但今天正文已 6 条，方法席给 Harness、工具席优先给更贴业务的视频 / 画布；Vercel fx 镜像 503 未核；其余为厂商 / 成本 / 安全 / 具身</span></div><div class="rejrow"><span class="t">6 条（Behind Latent Space、weight-space AINews、Legora ×2、Arca（seen）、Google AI Mode）</span><span class="r">weight-space 已并入 11-04 正文 02；Legora 是法律 AI；其余通讯 / 播客 / 观点</span></div><div class="rejrow"><span class="t">6 条（open model economy、cyber risk、AA v5、Kimi 播客、open artifacts #25、Meta（seen））</span><span class="r">观点 / 播客；AA v5 的选型账 10-30 已算过；Meta 为 seen</span></div><div class="rejrow"><span class="t">7 条（StateBench、Palette、CWE-bench v2、Transformers MIC、nemotron-halloween、Granite Switch 4.1.1、ProtoStar）</span><span class="r">StateBench / Palette 已于 11-04 正文 03、04；CWE 是安全基准、MIC 是集成规范、Granite Switch 是更新机制、ProtoStar 是科研数据；Dharma 进正文 04</span></div><div class="rejrow"><span class="t">5 条（Import AI 479–475）</span><span class="r">newsletter / 观点</span></div><div class="rejrow"><span class="t">5 条（NotebookLM（seen）、桃花源记（seen）、电商 Agent（seen）、AI 原生思维、Warp（seen））</span><span class="r">4 条 seen；AI 原生思维是 8 月旧文，无入口</span></div><div class="rejrow"><span class="t">5 条（30 Months、Dot and the Swarm、Overhang、Agency and Agents、guide）</span><span class="r">观点 / 旧文，无入口</span></div>
       </details>
   </div>
 </div>
