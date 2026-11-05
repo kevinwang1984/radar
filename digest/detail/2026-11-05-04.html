@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dharma Field Extractor：2B 小模型把文档抽成指定 JSON · 雷达详情</title>
+<title>openJiuwen Agent-Memory：长视频记忆从按秒切改成按事件切 · 雷达详情</title>
 <script>
 (function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
 var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
@@ -203,22 +203,22 @@ details.rej[open] summary::before{content:"▾ "}
   </div>
   <div class="wrap">
     <div class="titlerow">
-      <h1>Dharma Field Extractor：2B 小模型把文档抽成指定 JSON</h1>
+      <h1>openJiuwen Agent-Memory：长视频记忆从按秒切改成按事件切</h1>
       <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-        data-id="2026-11-05-04" data-date="2026-11-05" data-t="Dharma Field Extractor：2B 小模型把文档抽成指定 JSON"
-        data-o="2B 小模型把任意文档抽成指定 JSON 字段。" data-hd="1">☆</button>
+        data-id="2026-11-05-04" data-date="2026-11-05" data-t="openJiuwen Agent-Memory：长视频记忆从按秒切改成按事件切"
+        data-o="给 Agent 装按事件切分的长视频记忆层。" data-hd="1">☆</button>
     </div>
-    <div class="lead">2B 小模型把任意文档抽成指定 JSON 字段。</div>
+    <div class="lead">给 Agent 装按事件切分的长视频记忆层。</div>
     <div class="metaline">
-      <span class="chip people">跟人</span>
-      <span class="cost fast">15 分钟（在线上传一份文档试抽取）</span>
-      <span class="src">people:hf-blog</span>
+      <span class="chip cn">中文</span>
+      <span class="cost slow">1 小时（装 0.2.0 跑一段长视频；需 GPU）</span>
+      <span class="src">cn:qbitai</span>
     </div>
-    <img src="https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/JIRHcND5LFS_JhgAe-ObV.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
-    <h2>摘要 · 译自原文</h2><p>Dharma-AI 在 DharmaOCR-LITE v1.1（2B）上训了一个 LoRA 字段抽取模型：输入文档图片和请求，输出结构化 JSON。它有两种用法——开放抽取：不给 schema，模型自己判断页面上哪些是结构化字段（标签加值、带表头的表格），返回所有 key-value；schema-directed：你给出精确的字段名和类型（string / number / boolean），模型按你的 key 返回，表格逐行逐列填，文档里没有的字段返回 null 而不是编造。</p><p>训练数据是 43,384 个样本，分三路：英文多领域公开文档、巴西葡语真实文档、少量其他欧亚语言；覆盖收据、商业发票、表单、银行流水、身份证件和合成文档，标注到字段级。底座 DharmaOCR-LITE v1.1 已经过 OCR 的 SFT + DPO，Field Extractor 只加 LoRA，不做每种文档的单独微调。</p><p>benchmark 是 546 份文档、三种请求场景、共 1,638 个 case：开放、部分 schema、以及故意包含不存在字段的 schema；指标是字段级 F1（按路径匹配，含表格位置）乘以值相似度和合法 JSON 比例。Field Extractor 得 0.834，高于 Claude Opus 5 的 0.816、GPT-5.6 Luna 的 0.741 等四个前沿配置；成本按单卡 L40S（$2.24/小时）自托管算，比前沿 API 低约 6 到 147 倍。SROIE 收据 18 个字段全对、两个空字段返回 null；FUNSD 表单 12 个布尔字段只勾选正确的那一个。</p><p>边界：0.834 是厂商自建 benchmark，只有 546 份文档，英文 / 葡语占大头；Field Extractor 的权重没有明确说开源（博客里「open-source models」链接的是 OCR base）；在线 portal 要登录，商用前要核数据合规、许可证和自托管成本。</p>
-    <h2>要点</h2><ul><li>2B 底座 + LoRA；开放抽取和 schema-directed 两种模式，缺失字段返回 null，表格逐行逐列</li><li>训练 43,384 个样本，三路数据：英文多领域、巴西葡语、少量欧亚语言</li><li>benchmark：546 份文档 / 1,638 case，字段级 F1 0.834，高于 Opus 5 的 0.816、GPT-5.6 Luna 的 0.741</li><li>单卡 L40S 自托管，成本比前沿 API 低约 6–147 倍；SROIE 18 字段全对、FUNSD 布尔字段全对</li><li>边界：厂商自建 benchmark；Field Extractor 权重未明确开源；portal 需登录</li></ul>
-    <h2>为什么值得你花时间</h2><p>你做内容平台，合同、脚本、分镜表、发票这类「把文档变成结构化字段」的活迟早会遇到；这条给的是一个可复用的选型信号：在边界清晰的任务上，2B 专用模型加 LoRA 可以打过前沿通用模型，而且成本差一个量级。**今天就能做**：拿一份你手头的合同 / 分镜表，用它的在线 portal 跑一次 schema-directed 抽取，重点看嵌套表格和缺失字段是否返回 null；再把同一份丢给通用模型对比字段级准确率。边界：0.834 是厂商自建 benchmark，只有 546 份文档；Field Extractor 的权重未明确开源（开源的是 OCR base），在线 portal 要登录；商用前要核数据合规和许可证。</p>
-    <h2>原文</h2><p><a class="src-link" href="https://huggingface.co/blog/Dharma-AI/dharma-field-extractor" target="_blank" rel="noopener noreferrer">https://huggingface.co/blog/Dharma-AI/dharma-field-extractor</a></p>
+    <img src="https://i.qbitai.com/wp-content/uploads/2026/11/0a3fda622fdb9a6003a906c94f3bf818.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><img src="https://i.qbitai.com/wp-content/uploads/2026/11/8ddb310ce4620826c4e736a2355fca9c.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+    <h2>摘要 · 译自原文</h2><p>openJiuwen AgentMemory 0.2.0 上线 OmniMem-Lens，目标是把 Agent 的长视频记忆从「按固定时间窗切」改成「按真实事件切」。固定 60 秒切片有两个失效：事件被窗口边界切断，证据碎片化；几秒钟的关键动作被前后背景稀释，检索时被噪音淹没。OmniMem-Lens 同时看视觉和 ASR 两条流：画面切换用视觉判断，画面不动但话题变了用语音判断，两路交叉在事件边界落刀。</p><p>每段事件分三层：L0 原始帧、L1 事件大纲、L2 细索引；L1/L2 文本化并向量化，可以接主流向量库，已有 RAG / Agent 栈几乎不用改。记忆离线建好，在线只做「Query → L1/L2 语义匹配 → 必要时回取 L0 帧」，避免每次提问都重看几小时视频。官方在 Video-MME-L 上 +8%、LVbench +6.4%、EgoLife-QA +45.7%；LVbench 在线时延从 Qwen3-VL-8B 直答的 34.5 秒降到 1.72 秒，约 20 倍，最高降 97%。</p><p>对做视频理解 / 分镜 / 素材检索的人，这套「事件边界 + 三层记忆 + 离线建在线查」可以直接对照现有视频 RAG；最值得试的是跨窗口事件和「画面不动但话题变了」的召回。边界：官方只覆盖 3 个数据集和 Qwen3-VL-8B 一个模型，没有第三方复现；项目在 GitCode（mem2.0 分支），安装依赖、许可证和 GPU 成本要自己核；WorkSwarm 的对接写的是「即将支持」。</p>
+    <h2>要点</h2><ul><li>AgentMemory 0.2.0 新增 OmniMem-Lens；视觉 + ASR 双流找事件边界</li><li>三层记忆：L0 原始帧 / L1 大纲 / L2 索引；L1/L2 文本化 + 向量化</li><li>离线建记忆、在线查索引；LVbench 34.5s → 1.72s（约 20×，最高 -97%）</li><li>召回：Video-MME-L +8%、LVbench +6.4%、EgoLife-QA +45.7%</li><li>GitCode 仓库（mem2.0 分支）；官方评测，无第三方复现</li></ul>
+    <h2>为什么值得你花时间</h2><p>你做视频理解 / 分镜 / 素材检索，固定 60 秒切片最容易把因果和关键动作切断；这套「事件边界 + 三层记忆 + 离线建在线查」可以直接对照你的视频 RAG。**今天就能做**：clone GitCode 仓库，拿一段 1 小时视频跑一遍，和固定 60 秒切片的检索结果对比，重点看跨窗口事件和「画面不动但话题变了」的召回。边界：官方只报 3 个数据集（Video-MME-L +8%、LVbench +6.4%、EgoLife-QA +45.7%）、Qwen3-VL-8B 单模型，无第三方复现；仓库依赖 / 许可证 / GPU 成本要自己核。</p>
+    <h2>原文</h2><p><a class="src-link" href="https://www.qbitai.com/2026/11/507533.html" target="_blank" rel="noopener noreferrer">https://www.qbitai.com/2026/11/507533.html</a></p>
     <div class="who">雷达简报 2026-11-05 · 条目 2026-11-05-04</div>
   </div>
 </div>
