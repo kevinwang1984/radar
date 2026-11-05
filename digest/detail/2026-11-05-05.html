@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>datasette-agent 0.5a0：让 Agent 在应用旁边边聊边改 · 雷达详情</title>
+<title>MOSS-Image Character Catalog：3.4 万张角色 / 画风图鉴 · 雷达详情</title>
 <script>
 (function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
 var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
@@ -203,22 +203,22 @@ details.rej[open] summary::before{content:"▾ "}
   </div>
   <div class="wrap">
     <div class="titlerow">
-      <h1>datasette-agent 0.5a0：让 Agent 在应用旁边边聊边改</h1>
+      <h1>MOSS-Image Character Catalog：3.4 万张角色 / 画风图鉴</h1>
       <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-        data-id="2026-11-05-05" data-date="2026-11-05" data-t="datasette-agent 0.5a0：让 Agent 在应用旁边边聊边改"
-        data-o="让 Agent 在应用旁边边聊边改的面板。" data-hd="1">☆</button>
+        data-id="2026-11-05-05" data-date="2026-11-05" data-t="MOSS-Image Character Catalog：3.4 万张角色 / 画风图鉴"
+        data-o="3.4 万张角色与画风图鉴，可搜可复制。" data-hd="1">☆</button>
     </div>
-    <div class="lead">让 Agent 在应用旁边边聊边改的面板。</div>
+    <div class="lead">3.4 万张角色与画风图鉴，可搜可复制。</div>
     <div class="metaline">
-      <span class="chip people">跟人</span>
-      <span class="cost fast">15 分钟（GitHub 登录 demo，跑一次生成加一次修改）</span>
-      <span class="src">people:simonwillison</span>
+      <span class="chip tool">小而美</span>
+      <span class="cost fast">15 分钟（浏览 + 复制一条 prompt 试跑）</span>
+      <span class="src">hf:spaces-trending</span>
     </div>
-    <img src="https://static.simonwillison.net/static/2026/datasette-agent-panel.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
-    <h2>摘要 · 译自原文</h2><p>Simon Willison 发布 datasette-agent 0.5a0，最重要的新功能是 panel：Agent 的聊天窗口可以打开，并停在 Datasette 的页面旁边——比如一张表或一个查询页。它和 datasette-apps 结合后，你可以用自然语言让 Agent 在 panel 里生成一个数据库驱动的小应用，然后继续用同一个聊天窗口改它：改样式、改布局、改功能，产物一直在旁边可见。</p><p>演示截图里，用户先说「Build an app to help explore this data」，Agent 连续调用 app_create、app_render、app_view；用户再说「give it a more hacker aesthetic design」，它调用 app_str_replace，把应用从 v1 改成 v2，右侧 panel 实时显示新界面。示例应用是「LLM Price Explorer」：185 个模型、12 家供应商，按百万 token 的输入 / 输出 / 缓存价格算不同 workload 的成本，从 $0.042 到 $300。整个流程用 GitHub 账号登录 agent.datasette.io 就能试。</p><p>这个交互值得注意的地方是「对话和产物并排」：不是聊完再去另一个窗口看结果，而是 Agent 的每一次工具调用、每一个版本都在旁边；用户可以边看边改，也能回看 v1 / v2。对做画布、做生成式应用的人来说，这比「全屏 Chat + 下载产物」更接近真实的创作循环。</p><p>边界：这是 Datasette / SQLite 场景的 demo，不是通用画布框架；0.5a0 还是 alpha；panel 目前主要面向数据应用，复杂多页面、多人协作、权限控制未覆盖；演示站需要 GitHub 登录，数据和应用跑在它的托管环境里。</p>
-    <h2>要点</h2><ul><li>datasette-agent 0.5a0 新增 panel：聊天窗口停在 Datasette 表 / 查询页旁边</li><li>配合 datasette-apps，可用自然语言生成数据库驱动的小应用，并在同一个 panel 里继续改</li><li>截图里的工具调用：app_create → app_render → app_view → app_str_replace；v1 / v2 可回看</li><li>示例 LLM Price Explorer：185 个模型、12 家供应商，成本 $0.042–$300 / 百万 token</li><li>入口：https://agent.datasette.io/（GitHub 登录）；0.5a0 alpha，Datasette 场景专用</li></ul>
-    <h2>为什么值得你花时间</h2><p>你做画布 / 一句话成片，最值得抄的是这个交互结构：不是「聊天归聊天、画布归画布」，而是让 Agent 的对话和它正在改的产物并排、可回看每一步工具调用；这比再做一个全屏 Chat 更接近「边看边改」的创作流。**今天就能做**：用 GitHub 登录 agent.datasette.io，让它「build an app to explore this data」，再在 panel 里改一次配色 / 布局，观察它如何把修改落到同一个应用上。边界：这是 Datasette / SQLite 场景的 demo，不是通用画布框架；0.5a0 还是 alpha；panel 目前主要面向数据应用，复杂多页面 / 多人协作未覆盖。</p>
-    <h2>原文</h2><p><a class="src-link" href="https://simonwillison.net/2026/Nov/3/datasette-agent/" target="_blank" rel="noopener noreferrer">https://simonwillison.net/2026/Nov/3/datasette-agent/</a></p>
+    <img src="https://cdn-thumbnails.huggingface.co/social-thumbnails/spaces/hide1/MOSS-Image-Character-Catalog.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+    <h2>摘要 · 译自原文</h2><p>社区做的 MOSS-Image 角色 / 画风图鉴，收录 34,249 张图：33,935 张角色 + 314 张画风。在线版是只读浏览，支持搜索、8 类画风筛选、排序、放大、复制 prompt/tag；静态 Space，不需要 Python 或 GPU，图片按需加载。代码 MIT，数据集和本地版在 GitHub，本地版可以增删改和做对比判定。</p><p>2026-10-31 做过一轮提示词措辞修订：所有 34,249 条都用显式文本规则检查过，部分结辫发型标签改成头发描述；外观明确写 android/robot 的，去掉矛盾的人类物种标签但保留性别；重新生成用的 full-scene prompt 把「耳朵 / 尾巴 / 脚」的通用构图文改成中性全身构图。图片本身没有重新生成或筛选，原始标签和工作流仍按历史记录保留；官方也说明没有做同条件生成验证，不能证明「尾巴误生成」会减少。</p><p>对做图像 / 视频角色一致性的人，这是一个现成的参考集：可以按角色类型搜图、抽 tag、复制 full-scene prompt，再用自己的模型跑同 seed 对比；也可以下载本地版做自己的角色库。边界：社区图鉴，不是 MOSS-Image 官方模型页；未做质量筛选，包含角色 / 画风不匹配的图；在线版不生成图、不能上传；当前 v0.1.2 ZIP 还不含 10-31 的 prompt 修订；商用前核第三方权利。</p>
+    <h2>要点</h2><ul><li>34,249 张：33,935 角色 + 314 画风；只读浏览，搜索 / 8 类筛选 / 排序 / 复制 prompt</li><li>静态 Space，无 GPU；代码 MIT；数据集和本地版在 GitHub</li><li>本地版支持增删改和对比判定；在线版不生成、不能上传</li><li>10-31 修订 full-scene prompt（中性全身构图）；图片未重新生成 / 筛选</li><li>无质量筛选，含不匹配图；商用前核第三方权利</li></ul>
+    <h2>为什么值得你花时间</h2><p>你做图像 / 视频角色一致性，最缺的是「同一角色换姿势 / 换画风」的参考集和可复制的 prompt；这个图鉴把 3.4 万张角色图和 314 种画风放在一个可搜索的界面里，适合快速找参照、抽 tag、做自己的角色库。**今天就能做**：搜一个你要的角色类型，复制一张卡的 full-scene prompt，用你现有的图像模型跑同 seed 对比，看哪些 tag 真的能迁移。边界：社区图鉴，非官方模型页；未做质量筛选，含角色 / 画风不匹配的图；在线版不生成图、不能上传；商用前核第三方权利。</p>
+    <h2>原文</h2><p><a class="src-link" href="https://huggingface.co/spaces/hide1/MOSS-Image-Character-Catalog" target="_blank" rel="noopener noreferrer">https://huggingface.co/spaces/hide1/MOSS-Image-Character-Catalog</a></p>
     <div class="who">雷达简报 2026-11-05 · 条目 2026-11-05-05</div>
   </div>
 </div>
