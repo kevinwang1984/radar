@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>openJiuwen Agent-Memory：长视频记忆从按秒切改成按事件切 · 雷达详情</title>
+<title>GPT-Image-2.6：原生 GIF、SVG 和局部重绘都进了 API · 雷达详情</title>
 <script>
 (function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
 var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
@@ -203,22 +203,22 @@ details.rej[open] summary::before{content:"▾ "}
   </div>
   <div class="wrap">
     <div class="titlerow">
-      <h1>openJiuwen Agent-Memory：长视频记忆从按秒切改成按事件切</h1>
+      <h1>GPT-Image-2.6：原生 GIF、SVG 和局部重绘都进了 API</h1>
       <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-        data-id="2026-11-05-01" data-date="2026-11-05" data-t="openJiuwen Agent-Memory：长视频记忆从按秒切改成按事件切"
-        data-o="给 Agent 装一个按事件切分的长视频记忆层。" data-hd="1">☆</button>
+        data-id="2026-11-05-01" data-date="2026-11-05" data-t="GPT-Image-2.6：原生 GIF、SVG 和局部重绘都进了 API"
+        data-o="生图模型原生出 GIF/SVG，还能局部改图。" data-hd="1">☆</button>
     </div>
-    <div class="lead">给 Agent 装一个按事件切分的长视频记忆层。</div>
+    <div class="lead">生图模型原生出 GIF/SVG，还能局部改图。</div>
     <div class="metaline">
-      <span class="chip cn">中文</span>
-      <span class="cost slow">1 小时（装 0.2.0 跑一段长视频；需 GPU）</span>
-      <span class="src">cn:qbitai</span>
+      <span class="chip model">模型</span>
+      <span class="cost fast">15 分钟（ChatGPT 直接试；API 需 key）</span>
+      <span class="src">vendor:openai</span>
     </div>
-    <img src="https://i.qbitai.com/wp-content/uploads/2026/11/0a3fda622fdb9a6003a906c94f3bf818.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><img src="https://i.qbitai.com/wp-content/uploads/2026/11/8ddb310ce4620826c4e736a2355fca9c.webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
-    <h2>摘要 · 译自原文</h2><p>openJiuwen AgentMemory 0.2.0 上线了多模态记忆能力 OmniMem-Lens。它要解决的是长视频 Agent 的一个老问题：现在大多数方案按固定时间窗（比如每 60 秒）切片，再分别让模型记忆。这会带来两种失效——事件被窗口边界切断，证据碎片化，模型只能拿到半段因果；或者几秒钟的关键动作被前后几分钟的背景画面稀释，检索时关键信息被噪音淹没。文章的判断是：Agent 在「按秒」记视频，而人是「按事件」理解视频。</p><p>OmniMem-Lens 的做法是同时看视觉和听觉两条流：画面切换时用视觉判断变化，画面不动但说话人换话题时用 ASR 判断，两路交叉在真实事件边界落刀。每段事件再组织成三层记忆：L0 是原始视频帧，L1 是事件大纲，L2 是更细的索引；L1 / L2 完全文本化并向量化，可以接主流向量数据库，已有 RAG / Agent 技术栈几乎零改造。记忆整理放在离线做，在线只做「Query → L1/L2 语义匹配 → 必要时回取 L0 帧」，避免每次提问都重看几小时视频。</p><p>官方给的数字：在 Video-MME-L 上召回精度 +8%，LVbench +6.4%，EgoLife-QA +45.7%；在线问答时延在 LVbench 上从 Qwen3-VL-8B 直答的 34.5 秒降到 1.72 秒，约 20 倍，最高降 97%。文章还给了两个例子：2 小时动画片里「女生离开 → 男生目送 → 幻想蝴蝶」横跨三个固定窗口，被切成三段后模型把幻想当真实；2 小时评审会画面 40 分钟不动、但讲者换了三个议题，只有 ASR 能切对。</p><p>边界：这是厂商自己的测评，只覆盖 3 个数据集和 Qwen3-VL-8B 一个模型，没有第三方复现；项目在 GitCode（Apache-2.0，mem2.0 分支），安装依赖、GPU 成本和长视频吞吐要自己测；WorkSwarm 的对接写的是「即将支持」。</p>
-    <h2>要点</h2><ul><li>AgentMemory 0.2.0 新增 OmniMem-Lens；按视觉 + ASR 双流找事件边界，替代固定时间窗切片</li><li>三层记忆：L0 原始帧 / L1 事件大纲 / L2 细索引；L1/L2 文本化 + 向量化，可接现有向量库</li><li>离线建记忆、在线查索引；LVbench 时延 34.5s → 1.72s，官方称最高降 97%</li><li>召回：Video-MME-L +8%、LVbench +6.4%、EgoLife-QA +45.7%（Qwen3-VL-8B）</li><li>入口：https://gitcode.com/openJiuwen/agent-memory/（Apache-2.0，mem2.0 分支，7,241 star）</li></ul>
-    <h2>为什么值得你花时间</h2><p>你做视频理解 / 分镜 / 素材检索，最痛的是固定切片把因果和关键动作切断；这套「事件边界 + 三层记忆 + 离线建在线查」的拆法可以直接对照你的视频 RAG。**今天就能做**：clone GitCode 仓库，拿一段 1 小时视频跑一遍，和固定 60 秒切片的检索结果对比，重点看跨窗口事件和「画面不动但话题变了」的召回。边界：官方只报了 3 个数据集（Video-MME-L +8%、LVbench +6.4%、EgoLife-QA +45.7%）、Qwen3-VL-8B 单模型，无第三方复现；GitCode 仓库的安装 / 依赖和许可证要自己核。</p>
-    <h2>原文</h2><p><a class="src-link" href="https://www.qbitai.com/2026/11/507533.html" target="_blank" rel="noopener noreferrer">https://www.qbitai.com/2026/11/507533.html</a></p>
+    <img src="https://images.ctfassets.net/kftzwdyauwt9/7xC8whl4xN2cOTxQSLMfQ8/60b25185d53ca63f000341f0acbfba7a/owl-sketch-square.png?w=3840&amp;q=90&amp;fm=webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><img src="https://images.ctfassets.net/kftzwdyauwt9/5g2ztPz3EqktNQwQWa7Al8/d42c517c10fcbcb3c0da00bd5fe6b26e/picsart-glass-whale.png?w=3840&amp;q=90&amp;fm=webp" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+    <h2>摘要 · 译自原文</h2><p>OpenAI 11-04 发布 Images 2.6，在 ChatGPT、Codex 和 API 全量上线。官方称生成速度比上一代快 50%，API 侧首次拆成两个型号：Flare 主打速度和海报 / 商品图排版，低画质档最快 6 秒；Sunburst 主打高细节和多轮编辑一致性。OpenAI 说全球用户每周在 ChatGPT、Codex 和 API 里生成 40 亿张图，平均每天 5 亿张以上。</p><p>这次最直观的新能力是原生 GIF：不是调视频模型，而是让模型在一张图里画 3×2 六格序列帧，切片后循环播放；官方示例包括品牌吉祥物、产品图循环和表情包。API 还新增了 complexity（场景规划算力）和 quality（像素细节）两个独立参数、坐标 / 遮罩级的 image markup，以及 SVG 导出——局部改图可以只重绘指定区域，图标 / 插画可以直接进前端。</p><p>对做图像 / 视频产品的人，价值在「迭代成本」：低 complexity + 高 quality 的日常微调不用重跑完整构图；GIF 可以先验证角色动作和分镜节奏，再决定要不要上视频模型；SVG 和 markup 把「生成—转换—局部修」的链路缩短。边界：6 秒是 Flare 最低画质；GIF 是序列帧，不是真正的视频生成；SVG 对复杂插画的还原度要实测；API 定价按 OpenAI 图片定价页，官方没有在发布文里给统一单价；案例和速度数字缺第三方复现。</p>
+    <h2>要点</h2><ul><li>ChatGPT / Codex / API 全量；生成速度 +50%</li><li>API 两档：Flare（速度 / 排版，低画质 6 秒）、Sunburst（细节 / 多轮一致性）</li><li>原生 GIF：3×2 六格 sprite sheet，切片循环；不是视频模型</li><li>complexity 与 quality 解耦；image markup（坐标 / 遮罩）进 API</li><li>原生 SVG 导出；每周 40 亿张、日均 5 亿+</li></ul>
+    <h2>为什么值得你花时间</h2><p>你做图像 / 视频生成，这条直接改三件事：品牌吉祥物和分镜可以先出 GIF 动图试节奏，图标 / 插画能直出 SVG 进前端，局部改图用 markup 把「重跑整张」降成「只改一块」；complexity 与 quality 解耦也意味着日常微调不必再付完整构图成本。**今天就能做**：在 ChatGPT 或 API 里拿一张现有海报，用低 complexity + 高 quality 改一次背景，再试一张 3×2 六格图做循环 GIF，重点看角色 / 商品一致性。边界：6 秒是 Flare 最低画质；GIF 是序列帧不是真视频；SVG 对复杂插画的还原度要自己试；官方数字缺第三方复现。</p>
+    <h2>原文</h2><p><a class="src-link" href="https://openai.com/index/introducing-images-2-6" target="_blank" rel="noopener noreferrer">https://openai.com/index/introducing-images-2-6</a></p>
     <div class="who">雷达简报 2026-11-05 · 条目 2026-11-05-01</div>
   </div>
 </div>
