@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Harness：同一个模型，换一套脚手架就从 30 分到 95 分 · 雷达详情</title>
+<title>混元 Hy4：770B、能看屏点鼠标，API 价格没涨 · 雷达详情</title>
 <script>
 (function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
 var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
@@ -203,22 +203,22 @@ details.rej[open] summary::before{content:"▾ "}
   </div>
   <div class="wrap">
     <div class="titlerow">
-      <h1>Harness：同一个模型，换一套脚手架就从 30 分到 95 分</h1>
+      <h1>混元 Hy4：770B、能看屏点鼠标，API 价格没涨</h1>
       <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-        data-id="2026-11-05-03" data-date="2026-11-05" data-t="Harness：同一个模型，换一套脚手架就从 30 分到 95 分"
-        data-o="同一模型换脚手架，ARC-AGI 30→95。" data-hd="1">☆</button>
+        data-id="2026-11-05-03" data-date="2026-11-05" data-t="混元 Hy4：770B、能看屏点鼠标，API 价格没涨"
+        data-o="腾讯 770B 模型，能看屏也能点鼠标。" data-hd="1">☆</button>
     </div>
-    <div class="lead">同一模型换脚手架，ARC-AGI 30→95。</div>
+    <div class="lead">腾讯 770B 模型，能看屏也能点鼠标。</div>
     <div class="metaline">
       <span class="chip cn">中文</span>
-      <span class="cost fast">15 分钟（读 + 给自己的 harness 列缺口表）</span>
+      <span class="cost fast">15 分钟（OpenRouter / WorkBuddy 注册即用；自托管要等权重）</span>
       <span class="src">cn:infoq</span>
     </div>
-    <img src="https://static001.geekbang.org/infoq/33/33e0a9ddea514dfeb5f8a0d746b8f9a5.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><img src="https://static001.geekbang.org/infoq/7b/7b857a37ad05e714e8f16fe1dc13b9fc.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
-    <h2>摘要 · 译自原文</h2><p>这是 InfoQ 对 YC Paper Club「Harness Night」三场演讲的整理。开场给的核心事实是：同一个权重文件，换一套 Harness，ARC-AGI 可以从 30% 到 95% 甚至 100%——Claude Opus 在私有保留集上最好 30%，靠 Harness 到 95%，Nvidia 的 AVO 到 100%。三场演讲分别从「Harness 该有什么表达力」「个人 AI 怎么不困在云端」「真实组织里 Harness 怎么落地」三个角度拆。</p><p>Prime Agent 的 Seth Karten 把上下文分三层：L1 是模型权重，L2 是活跃上下文加 REPL，L3 是文件系统这类调度状态；Harness 的活是在层与层之间做压缩、CRUD 和 refinement，相当于缓存加垃圾回收。他主张 Harness 要保留五种表达力：压缩、Python REPL、编程式子 Agent、状态访问、反馈机制；ReAct 那种固定循环模型已经原生会了，不必再显式强加。子 Agent 应该是持久子会话：跑完进入空闲但还在内存里，父会话可以随时唤醒，保留之前积累的上下文；任意两个 Agent 之间能直接发消息。Prime Agent 用这套在 ARC-AGI 上让 Opus 拿到 95.5%，还跑过 7 天、633 个 Agent、2,300 万输出 token 的工厂实验。</p><p>OpenJarvis 的 Jon Saad-Falcon 关注个人 AI 的云端成本：API 年费可达数千到数万美元、私人数据要上云、本质是在「租智能」。他用界面、Agent 逻辑、模型、推理引擎加硬件、工具记忆学习五个原语定义整个本地栈，尽量不动 LLM，让云端 LLM 只做诊断和门控；官方称端侧方案做到 800 倍成本降低，同时降低延迟。YC 的 QM 则把 Agent 大脑从沙盒抽到 Postgres，沙盒从「家」变成按需资源，Harness 核心只留远程沙盒执行、对象存储读写、发布内部应用三个工具；他们强调 Human in the Loop 仍然重要，因为用 LLM 当评判会有「主角综合症」。</p><p>边界：这是会议演讲整理，不是论文或独立基准；ARC-AGI 的数字是特定 Harness 加模型组合，不能直接外推到你的任务；QM / Prime Agent 的代码、部署细节和成本口径未在文中完整给出；「800 倍」是 OpenJarvis 的官方口径，未见第三方复现。</p>
-    <h2>要点</h2><ul><li>同一权重换 Harness：ARC-AGI 30% → 95%（Opus），Nvidia AVO 到 100%</li><li>上下文三层：L1 权重 / L2 活跃上下文 + REPL / L3 文件系统；Harness 负责压缩、CRUD、refinement</li><li>五种表达力：压缩、Python REPL、编程式子 Agent、状态访问、反馈；子 Agent 做成持久子会话</li><li>QM：大脑放 Postgres、沙盒是按需资源、核心三个工具；Human in the Loop 仍重要</li><li>OpenJarvis：五个原语做本地栈，官方称 800× 成本降低；边界是演讲整理，非独立基准</li></ul>
-    <h2>为什么值得你花时间</h2><p>你在 wayfinder / dsh 上做 Agent，最该拿走的不是某个框架，而是这张「表达力缺口表」：压缩、REPL、子 Agent、状态、反馈，少一个就少一类它没法用别的方式完成的能力；以及「沙盒是资源不是家」「子 Agent 是持久子会话」这两个结构决策。**今天就能做**：对照你的 harness 逐项打勾，只补最缺的一项；再用同一模型跑同一个任务，看加了这一项后平台期是否后移。边界：这是会议演讲整理，不是论文 / 基准；ARC-AGI 30%→95% 是特定 harness 加模型组合，不能直接外推；QM / Prime Agent 的代码与部署细节未在文中给出。</p>
-    <h2>原文</h2><p><a class="src-link" href="https://www.infoq.cn/article/C1C1DThg8z1Dy0rZAmLB" target="_blank" rel="noopener noreferrer">https://www.infoq.cn/article/C1C1DThg8z1Dy0rZAmLB</a></p>
+    <img src="https://static001.geekbang.org/infoq/e3/e352f85e32983064af9e25b4765d0299.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'"><img src="https://static001.geekbang.org/infoq/c3/c3ebf7055ab121478ee94c26718d1e4b.png" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+    <h2>摘要 · 译自原文</h2><p>腾讯 11-04 发布混元 Hy4 正式版。相比 Hy4 Preview，Hy4 扩大了预训练和后训练规模，参数从 Hy3 系列的不足 300B 拉到 770B，首次引入视觉理解，并重点提升指令遵循、长文本和长程 Agent；首次支持 Computer Use，可以结合命令行和图形界面执行任务，还针对 Blender、CAD 等专业软件和跨应用长程任务做了专项训练。官方称权重将于近期开放，并发布 System Card。</p><p>可用性方面，Hy4 已在腾讯云 TokenHub、WorkBuddy、CodeBuddy、元宝、企业微信智能助理、ima 等产品上线，API 同步接入 OpenRouter、Hermes、OpenCode；定价维持 Preview 的输入 6 元 / 百万 token、输出 18 元 / 百万 token、缓存命中 0.3 元 / 百万 token；即日起到 2026-12-31 在腾讯云 TokenHub 按刊例价五折，11/4–11/15 在 WorkBuddy / CodeBuddy 有一定免费额度。官方评测：WorkBuddy 平均 83.18 分、任务通过率 96.15%，12 个场景 9 个国内第一；金融 3.04 分，高于 Kimi K3.1 Pro / GLM-5.3 的 2.68 和 DeepSeek-V4.1-Flash-1017 的 2.97；幻觉率从 12.95% 降到 7.2%，猜测导致的错误率从 23.1% 降到 5.6%。</p><p>InfoQ 的实测用 WorkBuddy 跑了三轮网页塔防游戏开发：55 分钟完成从工程搭建、核心代码、架构重构、自动化测试到在线部署，三轮分别 14 分 10 秒、18 分钟、23 分 18 秒；还测了双机器人协同调度、单据核对、商业计划 PPT 和海报。结论是任务拆解、工具调用和自检明显比 Hy3 完整，但自动化模拟证明不了「好不好玩」，商业计划里的数据和假设仍需人工核。边界：770B 自托管很重，权重发布后才能真正验证；评测多为官方口径；55 分钟造游戏是单案例，不能直接外推到你的生产任务。</p>
+    <h2>要点</h2><ul><li>770B（Hy3 &lt;300B）；首次视觉理解 + Computer Use；权重近期开放</li><li>API：输入 6 元 / 输出 18 元 / 百万 token，缓存 0.3 元；TokenHub 五折到 12-31</li><li>WorkBuddy 83.18 分 / 96.15% 通过；金融 3.04；幻觉率 7.2%</li><li>InfoQ 实测 55 分钟三轮塔防游戏；视觉 / 文档 / PPT / 海报各有案例</li><li>边界：官方评测为主，770B 自托管成本高，单案例不外推</li></ul>
+    <h2>为什么值得你花时间</h2><p>你在选 Agent 底座和引擎接入，Hy4 给了一个「贵不贵、能不能操作电脑、长程任务稳不稳」的新选项：API 价格压到输入 6 元 / 输出 18 元每百万 token，还带 Computer Use 和视觉；11/4–11/15 在 WorkBuddy / CodeBuddy 有免费额度，可以零成本跑一遍你的真实任务再决定要不要接。**今天就能做**：用 WorkBuddy 或 OpenRouter 跑一个你手头的跨应用任务（比如从表格取数再改文档），重点看它会不会中途停、能不能自己发现错误；再对照你现在的模型选型表记下价格 / 能力两列。边界：770B 自托管很重，权重发布时才能验证；评测多为官方口径；InfoQ 的 55 分钟造游戏是单案例，不能外推。</p>
+    <h2>原文</h2><p><a class="src-link" href="https://www.infoq.cn/article/C61Q16LQIDq45l0iCCzV" target="_blank" rel="noopener noreferrer">https://www.infoq.cn/article/C61Q16LQIDq45l0iCCzV</a></p>
     <div class="who">雷达简报 2026-11-05 · 条目 2026-11-05-03</div>
   </div>
 </div>
