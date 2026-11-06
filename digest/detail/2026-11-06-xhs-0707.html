@@ -72,11 +72,12 @@ border:1px solid var(--drift-line);color:var(--drift-ink);font-size:13px}
 .head{padding:18px 18px 12px}
 h1{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
 .strap{font-size:12px;color:var(--ink2)}
-/* 财富拾贝今日：跟正文条目分开的小块 —— 它不参与上面三个筛选（不是 AI 工具），
-   所以永远可见，也不带「读详情」。 */
+/* 固定块（中概股 · 美股收盘）：跟正文条目分开 —— 它不参与上面三个筛选，
+   所以永远可见；当天的详情页入口由 detailIds 决定有没有。 */
 .wealth{margin:14px 18px 4px;padding:12px 14px;border-radius:12px;
  background:var(--bg2);border:1px solid var(--line)}
 .wealth h4{margin:0 0 8px;font-size:12px;font-weight:700;color:var(--ink2);letter-spacing:.03em}
+.wealth h4 a{margin-left:6px;font-weight:600;color:var(--link);text-decoration:none}
 .wealth ul{margin:0;padding:0;list-style:none}
 .wealth li{padding:7px 0;border-top:1px solid var(--line);font-size:13.5px;line-height:1.5}
 .wealth li:first-child{border-top:0;padding-top:0}
@@ -221,9 +222,9 @@ details.rej[open] summary::before{content:"▾ "}
       <h1>11.6美股复盘（美东11.5）</h1>
       <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
         data-id="xhs-0707" data-date="2026-11-06" data-t="11.6美股复盘（美东11.5）"
-        data-o="美股三大指数下跌，AI 硬件股重挫，恐慌指数飙升。" data-hd="1">☆</button>
+        data-o="AI 硬件重挫，资金从高估值硬件撤出" data-hd="1">☆</button>
     </div>
-    <div class="lead">美股三大指数下跌，AI 硬件股重挫，恐慌指数飙升。</div>
+    <div class="lead">AI 硬件重挫，资金从高估值硬件撤出</div>
     <div class="metaline">
       <span class="chip people">跟人</span>
       
@@ -231,7 +232,7 @@ details.rej[open] summary::before{content:"▾ "}
     </div>
     <img src="http://sns-webpic-qc.xhscdn.com/202611061136/f67679c5f546543b6848ca7614dee63a/1040g00832775umm170705q9mrggtojiq3p4f228!nd_dft_wlteh_webp_3" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
     <h2>正文</h2><p>美股三大指数集体下跌，AI硬件股重挫，恐慌指数飙升。英伟达、特斯拉等AI龙头跌幅超10%，存储芯片、GPU等AI硬件链集体踩踏。市场情绪恐慌，资金从高估值AI硬件出逃，防御板块表现抗跌。</p>
-    
+    <h2>要点</h2><ul><li>AI 硬件重挫，资金从高估值硬件撤出</li></ul>
     
     <h2>原文</h2><p><a class="src-link" href="https://www.xiaohongshu.com/explore/6aed0c29000000000300a206?xsec_token=ABjWg4TZcDjWw8Nz63sC22iA-rxHmSM2_B46piL7yQ_ic%3D&amp;xsec_source=pc_user" target="_blank" rel="noopener noreferrer">https://www.xiaohongshu.com/explore/6aed0c29000000000300a206?xsec_token=ABjWg4TZcDjWw8Nz63sC22iA-rxHmSM2_B46piL7yQ_ic%3D&amp;xsec_source=pc_user</a></p>
     <div class="who">雷达简报 2026-11-06 · 条目 xhs-0707</div>
