@@ -72,11 +72,12 @@ border:1px solid var(--drift-line);color:var(--drift-ink);font-size:13px}
 .head{padding:18px 18px 12px}
 h1{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
 .strap{font-size:12px;color:var(--ink2)}
-/* 财富拾贝今日：跟正文条目分开的小块 —— 它不参与上面三个筛选（不是 AI 工具），
-   所以永远可见，也不带「读详情」。 */
+/* 固定块（中概股 · 美股收盘）：跟正文条目分开 —— 它不参与上面三个筛选，
+   所以永远可见；当天的详情页入口由 detailIds 决定有没有。 */
 .wealth{margin:14px 18px 4px;padding:12px 14px;border-radius:12px;
  background:var(--bg2);border:1px solid var(--line)}
 .wealth h4{margin:0 0 8px;font-size:12px;font-weight:700;color:var(--ink2);letter-spacing:.03em}
+.wealth h4 a{margin-left:6px;font-weight:600;color:var(--link);text-decoration:none}
 .wealth ul{margin:0;padding:0;list-style:none}
 .wealth li{padding:7px 0;border-top:1px solid var(--line);font-size:13.5px;line-height:1.5}
 .wealth li:first-child{border-top:0;padding-top:0}
@@ -221,9 +222,9 @@ details.rej[open] summary::before{content:"▾ "}
       <h1>11.5 A股复盘</h1>
       <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
         data-id="xhs-1827" data-date="2026-11-06" data-t="11.5 A股复盘"
-        data-o="沪指微涨，科创50涨1.68%，光伏、传媒、算力租赁领涨。" data-hd="1">☆</button>
+        data-o="科创50 涨超 9%，半导体、CPO 领涨" data-hd="1">☆</button>
     </div>
-    <div class="lead">沪指微涨，科创50涨1.68%，光伏、传媒、算力租赁领涨。</div>
+    <div class="lead">科创50 涨超 9%，半导体、CPO 领涨</div>
     <div class="metaline">
       <span class="chip people">跟人</span>
       
@@ -231,7 +232,7 @@ details.rej[open] summary::before{content:"▾ "}
     </div>
     <img src="http://sns-webpic-qc.xhscdn.com/202611061136/0818560c6aeed341ae613a8b1efe35c8/1040g0083276g7gna70005q9mrggtojiqgk69jn8!nd_dft_wlteh_webp_3" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
     <h2>正文</h2><p>沪指涨0.10%，深成指涨1.19%，创业板指涨0.87%，科创50涨1.68%。光伏、传媒、算力租赁领涨，石油石化、煤炭领跌。资金从传统能源流出，回流科技股。量能和板块走势是后市关键。</p>
-    
+    <h2>要点</h2><ul><li>科创50 涨超 9%，半导体、CPO 领涨</li></ul>
     
     <h2>原文</h2><p><a class="src-link" href="https://www.xiaohongshu.com/explore/6aec5a2f0000000003004d4d?xsec_token=ABW16V7sRWGqXZJ8MylS9ZhI0K6qPLFTVfuMz333hViM0%3D&amp;xsec_source=pc_user" target="_blank" rel="noopener noreferrer">https://www.xiaohongshu.com/explore/6aec5a2f0000000003004d4d?xsec_token=ABW16V7sRWGqXZJ8MylS9ZhI0K6qPLFTVfuMz333hViM0%3D&amp;xsec_source=pc_user</a></p>
     <div class="who">雷达简报 2026-11-06 · 条目 xhs-1827</div>
