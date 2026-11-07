@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>雷达简报 2026-11-06</title>
+<title>雷达简报 2026-11-07</title>
 <script>
 (function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
 var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
@@ -189,17 +189,17 @@ details.rej[open] summary::before{content:"▾ "}
 </style>
 </head><body>
 <div class="phone">
-  <div class="drift">**排序**：先给今天就能改视频产品的 Omni 1.2，再给能改团队研发方式的 LoopForge，然后是影响模型选型的文心、影响引擎接入的 Cosmos 3 / ML Drift，最后是一条「窄任务小模型」的样本。</div>
+  <div class="drift">⚠️ 本地技能补丁漂移：implement、code-review（详情：radar\skill-drift.md）</div>
   <div class="head">
     <div class="kickerrow">
-      <span class="kicker">雷达简报 · 2026-11-06</span>
+      <span class="kicker">雷达简报 · 2026-11-07</span>
       <button class="themebtn" id="themebtn" type="button">◐ 自动</button>
     </div>
     <h1>6 条 · 先扫，再展开</h1>
-    <div class="strap">候选 223 条 / 34 源（34 成功 · 0 源失败 · 1 个 0 条源）· 新增 180 条 · seen 43 条 · 正文 6 条 · 折叠 1 条 · 财富拾贝 3 条 · 砍掉 213 条。</div>
+    <div class="strap">候选 224 条 / 36 源（36 成功 · 0 源失败 · 1 个 0 条源）· 新增 181 条 · seen 43 条 · 正文 6 条 · 折叠 1 条 · 中概股 1 · 预判回看 1 · 财富拾贝 1 · 砍掉 214 条。</div>
     <div class="segs">
       <button class="seg" data-f="all" aria-pressed="true">全部 6</button>
-      <button class="seg" data-f="fast" aria-pressed="false">15 分钟 3</button>
+      <button class="seg" data-f="fast" aria-pressed="false">15 分钟 5</button>
       <button class="seg" data-f="tool" aria-pressed="false">技能工具 0</button>
       <button class="seg" data-f="fav" aria-pressed="false">★ 收藏 <span id="favn">0</span></button>
     </div>
@@ -215,129 +215,129 @@ details.rej[open] summary::before{content:"▾ "}
       <summary class="hit">
         <span class="n">01</span>
         <span class="tt">
-          <span class="t1">Gemini Omni 1.2 Flash：15 秒、$0.07/秒、多轮改片</span>
-          <span class="t1b">谷歌的视频生成模型，能按参考图保持角色与商品一致。</span>
+          <span class="t1">即梦短剧工作室：剧本、资产、分镜、预演串成一个项目</span>
+          <span class="t1b">从一句话生成剧本、分镜并预演成片。</span>
           <span class="t2">
-            <span class="chip model">模型</span>
+            <span class="chip cn">中文</span>
             <span class="cost fast">15 分钟</span>
-            <span class="src">vendor:deepmind</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-06-01" data-date="2026-11-06" data-t="Gemini Omni 1.2 Flash：15 秒、$0.07/秒、多轮改片"
-          data-o="谷歌的视频生成模型，能按参考图保持角色与商品一致。" data-hd="1">☆</button>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>Google DeepMind 11-05 把 Gemini Omni 1.2 Flash 推上 GA：原生 15 秒（1.1 是 10 秒），支持 3–15 秒按 1 秒步进；可同时喂角色 / 商品 / 风格图、3 秒内动作片段和音频参考，官方称人脸、服装、包装文字和品牌色在镜头切换中保持一致；能对着同一段片子多轮对话改背景 / 商品 / 光照 / 比例，不用重跑整条；720p 价格从 1.1 降 30% 到 $0.07/秒，可先 360p / 720p 出草稿再升 1080p / 4K。
-        <span class="k">为什么值得你花时间</span>你做视频生成 / 一句话成片，这条同时改成本、时长和编辑方式：15 秒刚好覆盖一条社交广告或商品讲解，$0.07/秒 720p 让「多抽几条再挑」变便宜；参考图一致性 + 多轮改片，把「换背景 / 换商品 / 换画幅」从重跑整条降成一次对话，正好对应你画布上的「改这一版」；输出带 SynthID 水印，商用素材要提前想好这条。**今天就能做**：在 AI Studio 用一张商品图 + 一段 3 秒动作参考生成 15 秒，再用同一段对话换 3 个背景，重点看人脸、包装文字和服装背面是否漂移；把同一 prompt 在 1.1 和 1.2 各跑一次对比。边界：官方 demo 为主，缺第三方复现；复杂物理 / 快速运动官方承认仍在改进；$0.07/秒只对应 720p，1080p / 4K 另计。
-        <span class="k">上手成本</span>15 分钟（AI Studio 直接试；API 需 key）
-        <span class="k">入口</span><a href="https://deepmind.google/blog/gemini-omni-12-flash-fast-and-cost-effective-with-longer-clips/" target="_blank" rel="noopener noreferrer">https://deepmind.google/blog/gemini-omni-12-flash-fast-and-cost-effective-with-longer-clips/</a>
-        <a class="more" href="detail/2026-11-06-01.html">读详情（翻译 + 要点）→</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="1" data-tool="0">
-      <summary class="hit">
-        <span class="n">02</span>
-        <span class="tt">
-          <span class="t1">LoopForge：腾讯开源的云端 Agent 研发平台，自动修 Issue</span>
-          <span class="t1b">把编码 Agent 搬上云端，自动按 SOP 修单。</span>
-          <span class="t2">
-            <span class="chip cn">中文</span>
-            <span class="cost fast">半天</span>
-            <span class="src">cn:infoq</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-06-02" data-date="2026-11-06" data-t="LoopForge：腾讯开源的云端 Agent 研发平台，自动修 Issue"
-          data-o="把编码 Agent 搬上云端，自动按 SOP 修单。" data-hd="1">☆</button>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>腾讯轻量云团队开源（github.com/Tencent/LoopForge）的云端自进化研发平台：每个任务一个云端沙箱工作区，7×24 跑 Coding Agent，闲置时自动快照、回来无损恢复；一个共享会话只绑一个 Main Bot，产品 / 设计 / 研发共用同一个工作区和上下文；把五层岗位标准编成带编译 / 单测硬门禁的 SOP，节点不过门禁不放行；定时巡检 Issue 自动修复、自动解合并冲突、提 MR，需要人拍板的单子进「待我确认」后立即释放执行资源；跑完由复盘引擎给 0–100 健康度评分并生成 SOP 改进处方。
-        <span class="k">为什么值得你花时间</span>你在 Gitea 上跑 wayfinder，最痛的三件事——合盖断流、多人上下文割裂、Agent 说「改好了」但没跑测试——LoopForge 把它们做成了机制：云端快照、共享会话 + 三挡放行、SOP 硬门禁 + 跨运行复盘。它的「五层标准 + 内环自愈 + 外环复盘」可以直接对照 wayfinder 的流程设计，Issue 自动流水线也能给你一个「后台无人值守」的参照。**今天就能做**：先看 loopforge.cn/demo 的交付记录，再决定要不要 `bash scripts/install.sh` 自部署；重点看它的门禁定义和复盘处方怎么落到文件。边界：官方博客口径，内部 20+ 业务 / 单月 200+ 单据没有第三方审计；自部署要云主机 / 容器 / 模型 key；平台与腾讯云生态耦合，接 Gitea 要自己改适配。
-        <span class="k">上手成本</span>半天（自部署 + 接一个仓库；先看 demo 15 分钟）
-        <span class="k">入口</span><a href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener noreferrer">https://github.com/Tencent/LoopForge</a>
-        <a class="more" href="detail/2026-11-06-02.html">读详情（翻译 + 要点）→</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="0" data-tool="0">
-      <summary class="hit">
-        <span class="n">03</span>
-        <span class="tt">
-          <span class="t1">文心 5.5 Flash Base：280B MoE、激活 14B、1M 上下文</span>
-          <span class="t1b">百度开源的长上下文基座，可微调成领域模型。</span>
-          <span class="t2">
-            <span class="chip cn">中文</span>
-            <span class="cost slow">1 小时</span>
             <span class="src">cn:qbitai</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-06-03" data-date="2026-11-06" data-t="文心 5.5 Flash Base：280B MoE、激活 14B、1M 上下文"
-          data-o="百度开源的长上下文基座，可微调成领域模型。" data-hd="1">☆</button>
+          data-id="2026-11-07-01" data-date="2026-11-07" data-t="即梦短剧工作室：剧本、资产、分镜、预演串成一个项目"
+          data-o="从一句话生成剧本、分镜并预演成片。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>百度 11-05 开源 ERNIE 5.5 Flash Base：MoE 总参 2800 亿、每 token 激活 140 亿，33.5T token 预训练，预训练上下文 128K，微调 / 推理支持最长 100 万 token；注意力用 Latent-Gated Sparse Attention（HCA + MLA 分工压缩与细粒度访问，低秩门控让门控投影参数减少 75%，虚拟头推理时融进注意力算子），专家路由用 Multi-Router Latent MoE，训练目标用 ECHO 复用主干最后一层做多 token 预测，同一层还能当投机解码的草稿模型。官方称知识 / 推理 / 数学 / 代码 / 多语言 / 长上下文同尺寸 SOTA，超过 DeepSeek-V4-Flash-Base、Hy3-preview-Base、MiMo-V2.5-Base。
-        <span class="k">为什么值得你花时间</span>你在算国内模型的长上下文成本账：280B 总参 / 14B 激活意味着一张卡也能起推理，100 万 token 窗口适合长文档 / 整仓 / 多轮 agent；Base 模型可以直接 LoRA 成你自己的领域模型，比拿闭源 API 改便宜，也比 3T 级模型现实。**今天就能做**：从 HF 拉权重，用 vLLM 起一个 128K 服务，拿你手头的长文档任务和 DeepSeek-V4-Flash 对比首 token 延迟、显存和长上下文召回。边界：是 Base 不是 Instruct，直接对话要自己后训练；SOTA 是厂商口径、榜单细节未公开；100 万 token 是微调 / 推理上限，实际显存随长度涨；商用前读 HF 页面许可。
-        <span class="k">上手成本</span>1 小时（下载 + vLLM 起服务；需 GPU）
-        <span class="k">入口</span><a href="https://huggingface.co/baidu/ERNIE-5.5-Flash-Base" target="_blank" rel="noopener noreferrer">https://huggingface.co/baidu/ERNIE-5.5-Flash-Base</a>
-        <a class="more" href="detail/2026-11-06-03.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>即梦整合小云雀短剧 Agent 能力后上线的短剧工作室：从一个灵感或现成小说 / 剧本出发，DreamScript 先出故事设定、10 集大纲和前三集正文，再按剧本自动列角色卡与场景卡（实测 7 个角色 + 3 处场景，10 分钟出定妆图），接着自动生成分镜和单段约 4 分钟的片段。它把「智能预演 + 480p 样片 + 3D 导演台 + 局部重拍」做成开拍前的低成本验证流程，Seedance 2.5 带参考视频生成 720p 时个人单秒 0.16 元、团队 0.15 元。
+        <span class="k">为什么值得你花时间</span>你做视频生成 / 一句话成片 / 画布工作流，这条给的是「画布之外的另一种产品形态」：不是无限节点，而是按剧集项目组织剧本、角色、场景、分镜和预演，重点解决连续剧集的一致性、资产复用和试错成本。**今天就能做**：用一句「想做美高轻喜剧短剧」跑一遍剧本 → 资产 → 分镜，重点看它的角色卡提示词怎么生成、3D 导演台怎么验证站位和机位、局部重拍能不能只改一个镜头；把它的「预演 → 480p → 正式」成本梯子和你的画布流程对照，记下你缺的 2–3 个控制项。边界：这是厂商实测文，不是第三方评测；剧本和画面都有明显 AI 味，文中也承认第二集标题与正文对不上；团队版 / API / 伙伴计划要申请，个人会员和积分是持续成本。
+        <span class="k">上手成本</span>15 分钟（网页注册即用；API / 团队版需申请）
+        <span class="k">入口</span><a href="https://jimeng.jianying.com/ai-tool/novel?need_login=true" target="_blank" rel="noopener noreferrer">https://jimeng.jianying.com/ai-tool/novel?need_login=true</a>
+        <a class="more" href="detail/2026-11-07-01.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
     <details class="row" data-fast="0" data-tool="0">
       <summary class="hit">
-        <span class="n">04</span>
+        <span class="n">02</span>
         <span class="tt">
-          <span class="t1">NVIDIA Cosmos 3：四个开放权重世界模型，按动作生成视频</span>
-          <span class="t1b">用动作和模拟器控制，生成一致的视频观测。</span>
+          <span class="t1">Linum P-JiT 21K：2B 像素空间生图模型，2.1 万美元训成</span>
+          <span class="t1b">可本地微调的 2B 开源文生图底座。</span>
           <span class="t2">
-            <span class="chip people">跟人</span>
-            <span class="cost slow">半天</span>
-            <span class="src">people:hf-blog</span>
+            <span class="chip tool">小而美</span>
+            <span class="cost slow">1 小时</span>
+            <span class="src">hn:show</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-06-04" data-date="2026-11-06" data-t="NVIDIA Cosmos 3：四个开放权重世界模型，按动作生成视频"
-          data-o="用动作和模拟器控制，生成一致的视频观测。" data-hd="1">☆</button>
+          data-id="2026-11-07-02" data-date="2026-11-07" data-t="Linum P-JiT 21K：2B 像素空间生图模型，2.1 万美元训成"
+          data-o="可本地微调的 2B 开源文生图底座。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>NVIDIA 11-05 在 Cosmos 3 家族下开放四个 checkpoint（每个 16B 可训练参数）：Transfer-Auto 把驾驶场景转成最多 11 路相机 + LiDAR 的同步数据；Sim-Auto 是它的因果蒸馏流式版，用滚动历史 + 驾驶控制逐块生成相机 / LiDAR 观测；Sim-Transfer 把物理模拟器的深度 / 分割 / 边缘 / 模糊控制渲染成写实 RGB；Sim-Bimanual 用 59 个控制值（补齐到 64）驱动双臂机器人，预测下一帧视频。四个都是 Cosmos 3 Nano 的后训练样本，OpenMDW 1.1 许可允许商用，附技术报告、open skill 和 notebook。
-        <span class="k">为什么值得你花时间</span>你做视频生成 / 引擎接入，这条的价值不是「又一个视频模型」，而是「动作 → 观测」的流式世界模型接口：Sim-Transfer 把模拟器控制直接变成视频，Sim-Bimanual 用动作序列驱动画面，四段式训练配方（双向适配 → teacher forcing → 一致性蒸馏 → self-forcing）全公开。如果你的画布 / 分镜想接「可控相机运动 + 物理一致」，这是目前少有的开放权重参考实现。**今天就能做**：先跑 Sim-Transfer 的 notebook，用一张深度图 + 一句 prompt 生成一段，重点看几何一致性和长 rollout 的漂移。边界：主战场是自动驾驶 / 机器人，不是通用文生视频；要求 Linux + NVIDIA GPU + Docker + Container Toolkit，官方只在单台 GB200 上测过，不是最低显存；商用按 OpenMDW 1.1 条款。
-        <span class="k">上手成本</span>半天（Notebook 跑一条；完整环境要 GPU）
-        <span class="k">入口</span><a href="https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation" target="_blank" rel="noopener noreferrer">https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation</a>
-        <a class="more" href="detail/2026-11-06-04.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>Linum 用 610M 个 512px 样本 + 50M 个 1024px 样本、8,139 个 H100 小时预训练（20,348 美元）加 276 个 H100 小时后训练（690 美元），总共 21,038 美元训出的 2B 文生图模型；它去掉 VAE，直接在像素空间用 32×32 patch 做 4× 更激进的 token 压缩，配 22 层 DiT、冻结的 Qwen3.5-4B 文本编码器和 PixelREPA / 多分辨率 readout。
+        <span class="k">为什么值得你花时间</span>你做图像 / 视频生成，这条的价值不是「又一个 2B 模型」，而是把「从零训一个可用的生图底座」的成本打到了 2 万美元级：8,415 个 H100 小时、2 人团队、Apache 2.0 代码和权重全给。它适合当你自研风格模型 / 角色 LoRA 的起点，也适合验证「无 VAE 像素空间 + 多分辨率 readout」这条架构路线；对视频团队，作者明确说这是通往视频模型的压力测试。**今天就能做**：用一张 CUDA 显卡跑 `generate.py` 出 5 张图（权重 8.7GB fp32 + 文本编码器 8GB bf16，另加激活），重点看 1024² 细节、16:9 构图和同 seed 复现；再拿你现有模型对比「全身 / 多人物 / 多物体」这三类它明确不擅长的场景。边界：研究 checkpoint，不是生产模型；不能写文字 / 海报；全身、多人互动、六个物体、世界知识都弱；短 prompt 效果差，默认要用 Claude 先把 prompt 扩成 50–80 词 caption（需 OpenRouter key）。
+        <span class="k">上手成本</span>1 小时（CUDA GPU + 下载约 17GB 权重）
+        <span class="k">入口</span><a href="https://github.com/Linum-AI/pjit-21k" target="_blank" rel="noopener noreferrer">https://github.com/Linum-AI/pjit-21k</a>
+        <a class="more" href="detail/2026-11-07-02.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
-    <details class="row" data-fast="0" data-tool="0">
+    <details class="row" data-fast="1" data-tool="0">
       <summary class="hit">
-        <span class="n">05</span>
+        <span class="n">03</span>
         <span class="tt">
-          <span class="t1">ML Drift：谷歌开源的跨平台 GPU 推理引擎</span>
-          <span class="t1b">一套 C++ API，让模型在端侧 GPU 上跑。</span>
+          <span class="t1">tsrs：AI Agent 移植的 Rust 版 TypeScript 编译器</span>
+          <span class="t1b">TS 类型检查的 Rust 加速器。</span>
           <span class="t2">
             <span class="chip cn">中文</span>
-            <span class="cost slow">半天</span>
+            <span class="cost fast">15 分钟</span>
             <span class="src">cn:infoq</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-06-05" data-date="2026-11-06" data-t="ML Drift：谷歌开源的跨平台 GPU 推理引擎"
-          data-o="一套 C++ API，让模型在端侧 GPU 上跑。" data-hd="1">☆</button>
+          data-id="2026-11-07-03" data-date="2026-11-07" data-t="tsrs：AI Agent 移植的 Rust 版 TypeScript 编译器"
+          data-o="TS 类型检查的 Rust 加速器。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>谷歌开源的端侧 ML / 生成式 AI 推理引擎（Apache 2.0），把 OpenGL ES、OpenCL、Metal、WebGPU 的差异抽掉，是 LiteRT 的 GPU 加速核心。相比旧 TFLite GPU delegate：用张量虚拟化做统一着色器、支持可扩展自定义算子、原生 5D 张量，并针对 Arm / Intel / 高通 GPU 做专属优化；桌面端通过 Dawn（Chromium 的 WebGPU 实现）扩到 Windows / Linux，macOS 保留原生 Metal。官方用 Gemma 在工作站上测，内存比 llama.cpp / MLX LM 低 12%。
-        <span class="k">为什么值得你花时间</span>你做引擎接入 / 端侧预览，ML Drift 给了一个「一套 C++ API 覆盖手机 / 桌面 / 浏览器」的选项，不用为每个平台各写一套 Metal / Vulkan。官方数字：YouTube Shorts 分割特效帧延迟最高降 40%，Photos 计算摄影链路最多快 2 秒，Lightroom / Photoshop 的选择主体 / 天空 / 人像最高快 30%，Snapchat 人脸 / 风格特效延迟降 30%。如果你的画布想在本地跑轻量模型或做端侧推理，这是比自研更省事的底座。**今天就能做**：拿一个 LiteRT 模型跑一遍 ML Drift 加速器，和现有 CPU / GPU 路径比首帧延迟与内存。边界：主要服务 LiteRT 模型，PyTorch 要先转；官方基准是 Gemma + 工作站硬件，社区已质疑缺 Core ML 对比；旧 TFLite GPU delegate 停止更新，迁移有成本。
-        <span class="k">上手成本</span>半天（C++ 接入 / 跑通 LiteRT 加速器）
-        <span class="k">入口</span><a href="https://www.infoq.cn/article/hHzARIJTeqoqYpjNKEuq" target="_blank" rel="noopener noreferrer">https://www.infoq.cn/article/hHzARIJTeqoqYpjNKEuq</a>
-        <a class="more" href="detail/2026-11-06-05.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>Cloudflare 联合 VoidZero 在 Oxc 里孵化的 TypeScript 编译器 Rust 移植版，由 Owner.com 的 Max Schwenk 指挥 Claude Opus 5.5 Agent 完成、以 TypeScript 官方 15,197 个一致性测试为规格；官方称同等工作线程下类型检查最高快 8 倍、内存少约 70%，37,000 文件的单体仓库从 19GiB / 80 秒降到 7 秒。
+        <span class="k">为什么值得你花时间</span>你做前端 / 画布 / 多 Agent 并行开发，类型检查是每个 coding agent 都要抢的资源：tsrs 把一次全量检查从 80 秒压到 7 秒，意味着同一台机器能多跑几个 agent、CI 反馈更快；更值得抄的是方法——不写代码，用 15,197 个 conformance test 当规格，让 Agent 做忠实移植，再用测试闭环验收。**今天就能做**：在 TypeScript 7 项目里 `npm install -D tsrs &amp;&amp; npx tsrs -p . --noEmit`，和 `tsc` 对比耗时、内存、诊断是否一致；先别进 CI，重点验证它在你仓库上的 exit code 和诊断顺序。边界：实验阶段，不支持 watch / LSP，`--init`、`--showConfig` 不可用；类型错误时 exit code 是 2 而 tsc 是 1，会悄悄打断 CI；8 倍是对 TS 7.0，换 7.1 beta 只约 2.7 倍；官方数字未全部第三方复现。
+        <span class="k">上手成本</span>15 分钟（npm 装完对现有仓库跑一次）
+        <span class="k">入口</span><a href="https://github.com/oxc-project/tsrs" target="_blank" rel="noopener noreferrer">https://github.com/oxc-project/tsrs</a>
+        <a class="more" href="detail/2026-11-07-03.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">04</span>
+        <span class="tt">
+          <span class="t1">Firenook：Firebase 本地模拟器的 Rust 替代，快 40 倍</span>
+          <span class="t1b">本地 Firebase 模拟器，换一个词就跑。</span>
+          <span class="t2">
+            <span class="chip tool">小而美</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">hn:show</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-07-04" data-date="2026-11-07" data-t="Firenook：Firebase 本地模拟器的 Rust 替代，快 40 倍"
+          data-o="本地 Firebase 模拟器，换一个词就跑。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Apache 2.0 的 Firebase Local Emulator Suite 替代品：保留 `firebase.json`、SDK、端口和导入导出格式，只把启动命令从 `firebase emulators:start` 换成 `firenook emulators:start`；官方在 21 万文档 / 6.7GB Storage 的真实应用上测到写入中位数 5.1ms vs 208.2ms、峰值内存 2.11GiB vs 22.57GiB、带数据重启 0.59s vs 30.8s。
+        <span class="k">为什么值得你花时间</span>你跑 wayfinder / Web 端，如果本地用 Firebase，模拟器的 Java + 冷启动 + 每次 export/import 会拖慢每一轮测试；Firenook 是「改一个词」的替换，官方 demo 里 `emulators:exec` 1.39 秒跑完一条测试，还带一个 54 个工具的 MCP，让 coding agent 直接查函数调用、规则拒绝原因和数据——这比让 agent 读日志快得多。**今天就能做**：在现有项目 `npm install -D firenook`，先 `npx firenook init --adopt --dry-run` 看它怎么读配置，再跑一条 `emulators:exec` 测试，对比官方模拟器的启动时间和内存。边界：0.2.x 首个公开版本；Realtime Database / Hosting / App Hosting / Data Connect 不支持；只适合本地和 CI，部署仍要 firebase-tools；不是 Google 官方项目。
+        <span class="k">上手成本</span>15 分钟（换启动命令，跑一条测试）
+        <span class="k">入口</span><a href="https://firenook.dev/" target="_blank" rel="noopener noreferrer">https://firenook.dev/</a>
+        <a class="more" href="detail/2026-11-07-04.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">05</span>
+        <span class="tt">
+          <span class="t1">Inkling 2 Small：594B 总参 / 17B 激活，68 小时预训练</span>
+          <span class="t1b">能看图、能跑长任务的多模态 MoE。</span>
+          <span class="t2">
+            <span class="chip people">跟人</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">people:latent-space</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-07-05" data-date="2026-11-07" data-t="Inkling 2 Small：594B 总参 / 17B 激活，68 小时预训练"
+          data-o="能看图、能跑长任务的多模态 MoE。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Thinking Machines 的第二代 MoE：594B 总参、17B 激活，支持图像输入和可变 effort；8.4T token 预训练在 GB300 NVL72 上只用 68 小时、全程 NVFP4，再用 3.8T token 中训、320B token 推理 / Agent 轨迹和 34B token 高质量轨迹，最后做一次 1,075 步、1,700 万 rollout、9 天的联合 RL。
+        <span class="k">为什么值得你花时间</span>你在选多模态底座 / 给画布加视觉 Agent，Inkling 2 Small 的关键不是「又一个开源模型」，而是三件事同时到位：原生视觉（292M 视觉编码器，OCR / grounding / 图表 / 屏幕定位都强）、1M 上下文、以及可微调性（官方说同样数据下比前代学得更快）；DesignArena 网站 / 游戏 / 3D 三项官方称权重放出后是开源第一，Code2Video 1020，适合做「看画面 → 改 UI / 分镜 → 再验证」的循环。**今天就能做**：在 Tinker Playground 用一张你的分镜图或画布截图，让它做 grounding + 指出布局问题，再和 Gemini 3.8 Flash / Kimi K3 对比；重点看它能不能稳定返回坐标和可执行的修改建议。边界：现在只有 Tinker 闭权重，Apache 2.0 权重说下周才放；不支持音频；官方承认话多、工具选择一般；它只输出文本，不生图；大量评测是厂商 / 合作方跑的。
+        <span class="k">上手成本</span>15 分钟（Tinker 注册即用；权重下周才放）
+        <span class="k">入口</span><a href="https://thinkingmachines.ai/news/inkling-2-small/" target="_blank" rel="noopener noreferrer">https://thinkingmachines.ai/news/inkling-2-small/</a>
+        <a class="more" href="detail/2026-11-07-05.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
@@ -345,35 +345,36 @@ details.rej[open] summary::before{content:"▾ "}
       <summary class="hit">
         <span class="n">06</span>
         <span class="tt">
-          <span class="t1">Dharma Field Extractor：2B 模型把任意文档抽成 JSON</span>
-          <span class="t1b">按你给的字段名，把文档图片填成 JSON。</span>
+          <span class="t1">12 种高级 UI 交互：可复制的 AI 提示词 + 可运行 demo</span>
+          <span class="t1b">给 AI 一套动效词，做出有物理感的界面。</span>
           <span class="t2">
-            <span class="chip people">跟人</span>
+            <span class="chip cn">中文</span>
             <span class="cost fast">15 分钟</span>
-            <span class="src">people:hf-blog</span>
+            <span class="src">cn:juejin</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-06-06" data-date="2026-11-06" data-t="Dharma Field Extractor：2B 模型把任意文档抽成 JSON"
-          data-o="按你给的字段名，把文档图片填成 JSON。" data-hd="1">☆</button>
+          data-id="2026-11-07-06" data-date="2026-11-07" data-t="12 种高级 UI 交互：可复制的 AI 提示词 + 可运行 demo"
+          data-o="给 AI 一套动效词，做出有物理感的界面。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>Dharma-AI 在 DharmaOCR-LITE v1.1（2B、已做 OCR 专项 SFT + DPO）上挂 LoRA，用 43,384 条字段级标注样本训练出的抽取模型：给一张文档图，可以「开放模式」让它自己找所有结构化字段，也可以给一份带类型（string / number / boolean）的 schema，按你系统的字段名逐项填，表格按行列填，文档里没有的字段返回 null。官方在 546 篇文档、1,638 个 case 上测得字段级 F1 0.834，高于 Claude Opus 5 的 0.816 和 GPT-5.6 Luna 的 0.741；自托管在单张 L40S（$2.24/小时）上，单页成本比对比的 API 低 6–147 倍。
-        <span class="k">为什么值得你花时间</span>你做内容平台，素材、授权书、合同、发票的字段入库是绕不开的脏活；通用大模型能做，但按页计费 + 长尾格式，量一大就贵。这条的价值是「窄任务小模型」的可复制样本：2B + 4.3 万条字段级样本就能压过前沿模型，而且输出严格 JSON、缺字段给 null，适合直接进管线。**今天就能做**：拿 10 张你业务里真实存在的单据（发票 / 合同 / 授权书），先用开放模式看它能不能找全字段，再写一份 schema 看键名和类型是否稳定。边界：厂商自测，546 篇 / 1,638 case 的基准没有第三方复现；主力是英文 + 巴西葡语，中文单据要自己验；不是 AIGC 模型，和视频 / 图像生成无关。
-        <span class="k">上手成本</span>15 分钟（门户试用）；自托管 1 小时
-        <span class="k">入口</span><a href="https://ocr-portal.prd-us-east-2.dharma-ai.com/login" target="_blank" rel="noopener noreferrer">https://ocr-portal.prd-us-east-2.dharma-ai.com/login</a>
-        <a class="more" href="detail/2026-11-06-06.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>一篇把「高级交互」拆成物理感的实操文：按压回弹、弹性开关、波纹跟随手指、点赞烟花、勾选画出、液态滑块、数字滚动减速、平灰调防跳动、卡片翻面、汉堡变叉、卡片堆叠、底部抽屉，每种给视觉特征、失败形态、一句可直接粘给 AI 的提示词，末尾附 12 条提示词清单、一份 4 个效果的 HTML/CSS/JS demo 和「症状 → 原因 → 解法」对照表。
+        <span class="k">为什么值得你花时间</span>你做画布 / 编辑器 / 内容平台前端，最容易被「看起来廉价」拖住的不是功能，而是按钮、开关、滑块、抽屉这些高频交互的物理感；这篇文章的价值是把「加个动效」翻译成 AI 能执行的精确规格，比如「松手先弹到 1.05 再回 1.0，用 spring」，你可以在画布节点、工具栏、导出面板上直接套。**今天就能做**：挑你产品里最常用的 3 个交互（按钮 / 滑块 / 底部抽屉），把文中对应提示词丢给 coding agent，改完在真机上对比手感；再检查「数据加载时页面不跳」这条，它比花哨动效更影响高级感。边界：这是前端教程，不是设计系统；12 条提示词是通用模板，具体曲线 / 时长要按你的品牌调；demo 只实现了 4 个效果，不是 12 个都验证过。
+        <span class="k">上手成本</span>15 分钟（复制提示词 / 跑 demo）
+        <span class="k">入口</span><a href="https://juejin.cn/post/7704947965462315035" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7704947965462315035</a>
+        <a class="more" href="detail/2026-11-07-06.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
   <div class="empty" id="empty" style="display:none">这个筛选下没有条目。</div>
   
-  <div class="wealth"><h4>中概股 · 美股收盘 <a href="detail/2026-11-06-csi.html">详情 ›</a></h4><ul><li>金龙 5747.08 +0.43%（纳指 -5.52%）｜恒指 -1.27%｜恒科 -1.83%</li><li>京东：美股 28.64 +3.28%／港股 113.30 -0.53%</li><li>互联网：阿里(US) +2.64% 阿里(HK) -3.85% 拼多多 +2.19% 网易 +4.37% 美团 +0.12% 腾讯 -2.46%</li><li>判断：AI 硬件崩盘下的相对避风港，涨的是相对不是绝对；京东 ADR 强于港股，说明买盘在美股，不是港股本地资金</li></ul></div>
-  <div class="fold">还有 1 条：①【知情】**Claude Code 把用户邮箱写进 User-Agent，v2.1.317 起用内置隐私插件拦截**——issue #107757：修复前它在网页搜索时把邮箱放进 UA 发给第三方，作者称每天收到几十封诈骗邮件、85 个 👍；维护者说 v2.1.317 起内置 `cc-plugin-privacy` 默认开启、可在 `/plugins` 关掉，并请用户报告漏网，但提交者本身在 2.1.318 仍称中招，说明拦截未必覆盖所有路径。建议升级到最新版并检查插件状态（https://github.com/anthropics/claude-code/issues/107757）。</div>
+  <div class="wealth"><h4>中概股 · 美股收盘 <a href="detail/2026-11-07-csi.html">详情 ›</a></h4><ul><li>金龙 5843.09 +1.67%（纳指 +1.09%）｜恒指 -1.27%｜恒科 -1.83%｜费半 +3.51%</li><li>京东：美股 29.11 +1.64%／港股 113.30 -0.53%</li><li>互联网：阿里(US) +1.28% 阿里(HK) -3.85% 拼多多 -1.10% 网易 +2.28% 百度 +3.01% B站 +2.88% 美团 +0.12% 腾讯 -2.46%</li><li>判断：费半 +3.51% 的反弹日里金龙仍跑赢纳指，说明买盘不是单纯躲 AI 硬件，而是愿意在硬件反弹时继续持有美股中概；港股（恒指 -1.27%、恒科 -1.83%、阿里港股 -3.85%）继续背离，这波更像 ADR 资金行为，不是中国资产整体重估。</li></ul></div>
+  <div class="wealth"><h4>预判回看 · 2026-11-07</h4><ul><li>实际：纳指 +1.09%｜金龙 +1.67%｜费半(SOXX) +3.51%｜京东 +1.64%｜阿里 +1.28%</li><li>逐条：✅ 纳指技术性反抽（收涨）（预判 60%）→ 实际 +1.09%；❌ 金龙跑输纳指（预判 65%）→ 实际 +1.67% vs +1.09%；✅ 京东强于阿里（预判 55%）→ 实际 +1.64% vs +1.28%。条件信号：费半（SOXX）收红 = 「中概是 AI 硬件对冲盘」成立、我的跑输判断可能错；收绿 = 我错在中概继续跑赢。</li><li>差距：最大的偏差是金龙方向——预判 65% 跑输纳指，实际反超 0.58 个百分点；费半 +3.51% 触发「对冲盘」条件信号，说明中概在 AI 硬件反弹时仍被买。</li></ul></div>
+  <div class="fold">还有 1 条：①【知情】**GPT‑6 Cyber 把网络安全 Agent 推到「Critical」级**——ExploitGym 48.5%（GPT‑5.6 Cyber 32.1%），在 Linux 内核复现 1,724 个漏洞、写出 948 个可用提权 exploit，还找出 81 个 Firefox 高危漏洞、Mozilla 已开始修；OpenAI 把它标为 Preparedness Framework 的 Critical，API 只先开放给通过审核的 Daybreak Red 客户。这不是你能直接用的入口，但如果你的服务跑在 Linux / 浏览器 / 容器上，这周该把内核补丁节奏、依赖升级和 WAF 规则过一遍（https://openai.com/index/introducing-gpt-6-cyber）。</div>
   <div class="foot">
-    <b>每源今日条数</b><br>✅ hf-org:deepseek-ai 3 · ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15 · ✅ vendor:deepmind 10（正文 01）· ✅ vendor:mistral 10 · ✅ skills:trending 12 · ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ repo:deepseek-ai/deepseek-harness 3 · ✅ commit:deepseek-ai/deepseek-harness 6 · ✅ docs:deepseek-api 0（今天没变化，非死源）· ✅ hn:show 12 · ✅ hf:spaces-trending 20 · ✅ people:simonwillison 12 · ✅ hn:stories 10（折叠 1）· ✅ cn:juejin 10 · ✅ cn:sspai 10 · ✅ cn:qbitai 9（正文 03）· ✅ cn:infoq 10（正文 02、05）· ✅ people:latent-space 6 · ✅ people:interconnects 6 · ✅ people:hf-blog 8（正文 04、06）· ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5 · ✅ people:xhs-财富拾贝 3（财富拾贝 3）（34 源 · 34 成功 · 0 源失败 · 1 个 0 条源）
+    <b>每源今日条数</b><br>✅ hf-org:deepseek-ai 3 · ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15（折叠 1）· ✅ vendor:deepmind 10 · ✅ vendor:mistral 10 · ✅ skills:trending 12 · ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ repo:deepseek-ai/deepseek-harness 3 · ✅ commit:deepseek-ai/deepseek-harness 6 · ✅ docs:deepseek-api 0（今天没变化，非死源）· ✅ hn:show 12（正文 02、04）· ✅ hf:spaces-trending 20 · ✅ people:simonwillison 12 · ✅ hn:stories 10 · ✅ cn:juejin 10（正文 06）· ✅ cn:sspai 10 · ✅ cn:qbitai 10（正文 01）· ✅ cn:infoq 10（正文 03）· ✅ market:hxc 1（中概股）· ✅ market:verify 1（预判回看）· ✅ people:latent-space 6（正文 05）· ✅ people:interconnects 6 · ✅ people:hf-blog 8 · ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5 · ✅ people:xhs-财富拾贝 1（财富拾贝 1）（36 源 · 36 成功 · 0 源失败 · 1 个 0 条源）
     <details class="rej"><summary>被过滤器砍掉的 34 条（信任雷达的依据）</summary>
-        <div class="rejrow"><span class="t">3 条（`V4.1-Flash-1017`、`V4.1-Flash`（seen）、`V4-Flash-Vision-Exp`）</span><span class="r">1017 已在 10-18 / 10-24 评过；`V4.1-Flash` 为 seen；Vision-Exp 是 8 月实验版</span></div><div class="rejrow"><span class="t">3 条（`Qwen-Image-2.1-Turbo`、`PE-I2I`、`PE-T2I`）</span><span class="r">全部 seen</span></div><div class="rejrow"><span class="t">3 条（`GLM-5.3-Flash-BF16`、`GLM-5.3-BF16`、`GLM-5.3-Flash`（seen））</span><span class="r">BF16 是同一模型的精度格式；Flash 为 seen</span></div><div class="rejrow"><span class="t">3 条（`MiniMax-M3.1-Flash`、`Music3`（seen）、`H3`（seen））</span><span class="r">M3.1 Flash 已于 10-21 评过；两条 seen</span></div><div class="rejrow"><span class="t">3 条（`Kimi-K3.1-Pro`、`Kimi-K3`、`Kimi-K2.7-Code`）</span><span class="r">K3.1 Pro 10-24 正文 04 已评，今天只是权重按承诺放出；K3 / K2.7-Code 是 6 月旧版</span></div><div class="rejrow"><span class="t">15 条（GPT‑6 Cyber、Merge、Flipsnack、Pierre 收购、GovCloud、DevRev、Cisco、Heimstaden、人事、Scaling Git、Grid Protectors、NCC / Compute Campus、物理世界，另 2 条 seen）</span><span class="r">GPT‑6 Cyber 是安全专用模型、需 Daybreak 申请；其余客户案例 / 人事 / 政策 / 安全 / 工程博客；Images 2.6 与 Linux 948 已评</span></div><div class="rejrow"><span class="t">9 条（Agentic cheminformatics、规划决策、森林类型、抗微生物肽、新加坡反诈、Argon 安全、Argon 机器人、Gemini 4 Carbon（seen）、Genie 4（seen））</span><span class="r">Gemini Omni 进正文 01；其余科学 / 政务 / 反诈 / 机器人，无本业入口；两条 seen</span></div><div class="rejrow"><span class="t">10 条（Le Chonk Studio、NVIDIA 合作、Timestral、Hallo Deutschland、Cloudera、legacy code，另 4 条 seen）</span><span class="r">企业 Agent 平台 / 工业合作 / 时序预测 / 旧代码迁移；4 条 seen</span></div><div class="rejrow"><span class="t">12 条（`ai-image-generation`、`reddit-automation`、`azure-ai`，另 9 条 seen）</span><span class="r">`ai-image-generation` 是 inference.sh 的薄壳且 Socket 有告警；`reddit-automation` 与业务无关；`azure-ai` 绑 Azure；9 条 seen</span></div><div class="rejrow"><span class="t">3 条（v2.1.318 / 317 / 316）</span><span class="r">版本号流水；317 的隐私插件修复并入折叠行</span></div><div class="rejrow"><span class="t">3 条（0.168.0-alpha.7 / .6 / .5）</span><span class="r">alpha 版本流水</span></div><div class="rejrow"><span class="t">3 条（v0.68.0-preview.0、v0.67.0、v0.67.0-nightly）</span><span class="r">preview / nightly 版本号流水</span></div><div class="rejrow"><span class="t">3 条（1.3.1 / 1.3.0 / 1.2.6）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（process-daemon 0.5.0、v2.2.5 / 2.2.4）</span><span class="r">版本号流水 / 内部包发布</span></div><div class="rejrow"><span class="t">3 条（v2.3.0 / v2.2.0 / v2.1.0（seen））</span><span class="r">常规包更新与运行时 / CA 安全更新；一条 seen</span></div><div class="rejrow"><span class="t">3 条（v1.3.2 / 1.3.1 / 1.3.0）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v0.2.2-rc.1 / alpha.3 / v0.2.1-rc.5）</span><span class="r">rc / alpha 版本号流水</span></div><div class="rejrow"><span class="t">6 条（release / vendor / docs ×3 / test）</span><span class="r">内部提交 / 发布对齐，无独立入口</span></div><div class="rejrow"><span class="t">0 条</span><span class="r">今天没变化，非死源</span></div><div class="rejrow"><span class="t">12 条（HackerBooks、Subvocal、HackerTV、Hacker Times、Wikihack、Warsaw voxels、Wing Commander、TNG 猜剧、syscall.sh，另 3 条 seen）</span><span class="r">消费 / 趣味 / 硬件 / 嵌入式；与视频 / 图像 / 画布无直接关系</span></div><div class="rejrow"><span class="t">20 条（`wan777`、`uncensored` ×2、`pornflux`、`bfs-best-face-swap`、`wan2-2-i2v`、`minimax-h3`、`Qwen-2511-Flux`、`LFM3-Omni-2B-WebGPU`、`free-ai-humanizer`、`MatterSeek` 等）</span><span class="r">社区 NSFW / 换脸 / 旧 demo；LFM3、MOSS、Pika 等已评或 seen</span></div><div class="rejrow"><span class="t">12 条（datasette-llm、datasette-apps、datasette-agent、llm 0.37.1 / 0.37、Qwen 权重、sound leak、newsletter、Census、uv.lock、Kyle Kingsbury、Paul Ford）</span><span class="r">版本流水 / 旧题 / 观点 / 安全</span></div><div class="rejrow"><span class="t">9 条（Claude Code 后门 ×3、逆向游戏、Opus 5.5 施工图、HackerBooks / HackerTV 重复、Ask HN 配置、Codex 训练）</span><span class="r">后门 / 隐私 / 诉讼 / 产品评测；隐私 UA 一条进折叠；其余无本业入口</span></div><div class="rejrow"><span class="t">10 条（GitHub 日榜、设计模式、jeeflow、多因子、Redis Bitfield、Gemini 4 Carbon 复盘、超级个体、JWT、LocalSend、凌晨三点的绿灯）</span><span class="r">工程 / 生活 / 旧题；Carbon 复盘与 10-28 同题，无新入口</span></div><div class="rejrow"><span class="t">10 条（MacBook Pro、新玩意、蒸菜、Apple 排版、Hy4 早报、客户端选型、微诗、国行 Apple 智能、派早报、iPad mini）</span><span class="r">消费电子 / 生活 / 旧闻；Hy4 已于 11-05 正文 03</span></div><div class="rejrow"><span class="t">8 条（MIT 权重争议、XROGO 机器人、本体 + Harness 活动、GPT-Image-2.6 复盘、Linux 948、太初元碁、3D 生成招聘、百度无人车）</span><span class="r">文心 5.5 进正文 03；GPT-Image / Linux 与 11-05 同事件；其余活动 / 招聘 / 自动驾驶 / 机器人</span></div><div class="rejrow"><span class="t">8 条（Claude Code 负责人跳槽、MCP C# SDK 2.0、视频生成只是开始、Gemini 4 Argon 优化 ADK、AI Coding 门禁、PHP RCE、模型之外、Hy4 实测）</span><span class="r">LoopForge、ML Drift 进正文；C# SDK / PHP 是开发工具与安全；视频生成是演讲、无代码入口；Hy4 已于 11-05 正文 03</span></div><div class="rejrow"><span class="t">6 条（Swapping Season、Behind Latent Space、weight-space AINews、Legora ×2、Arca（seen））</span><span class="r">weight-space 已并入 11-04 正文 02；其余通讯 / 观点 / 播客；Arca 为 seen</span></div><div class="rejrow"><span class="t">6 条（open model economy、cyber risk、AA v5、Kimi 播客、open artifacts #25、Meta（seen））</span><span class="r">观点 / 播客；AA v5 的选型账 10-30 已算过；Meta 为 seen</span></div><div class="rejrow"><span class="t">6 条（Phonon、StateBench、Palette、CWE-bench v2、Transformers MIC、Granite Switch）</span><span class="r">Cosmos 3、Dharma 进正文；Phonon 10-28 正文 03 已评，今天的 closer look 是同一模型；StateBench / Palette / MIC 已评；其余安全基准 / 更新机制</span></div><div class="rejrow"><span class="t">5 条（Import AI 479–475）</span><span class="r">newsletter / 观点</span></div><div class="rejrow"><span class="t">5 条（NotebookLM（seen）、桃花源记（seen）、电商 Agent（seen）、AI 原生思维、Warp（seen））</span><span class="r">4 条 seen；AI 原生思维是 8 月旧文，无入口</span></div><div class="rejrow"><span class="t">5 条（30 Months、Dot and the Swarm、Overhang、Agency and Agents、guide）</span><span class="r">观点 / 旧文，无入口</span></div><div class="rejrow"><span class="t">0 条（正文不出现，见「中概股」详情页）</span><span class="r">行业情报，不占正文席位</span></div>
+        <div class="rejrow"><span class="t">3 条（`V4.1-Flash-1017`、`V4.1-Flash`（seen）、`V4-Flash-Vision-Exp`）</span><span class="r">1017 已在 10-18 / 10-24 评过；`V4.1-Flash` 为 seen；Vision-Exp 是 8 月实验版</span></div><div class="rejrow"><span class="t">3 条（`Qwen-Image-2.1-Turbo`、`PE-I2I`、`PE-T2I`）</span><span class="r">全部 seen</span></div><div class="rejrow"><span class="t">3 条（`GLM-5.3-Flash-BF16`、`GLM-5.3-BF16`、`GLM-5.3-Flash`（seen））</span><span class="r">BF16 是同一模型的精度格式；Flash 为 seen</span></div><div class="rejrow"><span class="t">3 条（`MiniMax-M3.1-Flash`、`Music3`（seen）、`H3`（seen））</span><span class="r">M3.1 Flash 已于 10-21 评过；两条 seen</span></div><div class="rejrow"><span class="t">3 条（`Kimi-K3.1-Pro`、`Kimi-K3`、`Kimi-K2.7-Code`）</span><span class="r">K3.1 Pro 10-24 正文 04 已评，今天只是权重按承诺放出；K3 / K2.7-Code 是 6 月旧版</span></div><div class="rejrow"><span class="t">14 条（Hacktron、wet-lab、澳洲大学、Cult.fit、Merge、责任 AI 基础设施、Flipsnack、Franklin Templeton、Pierre 收购、GovCloud、DevRev、物理世界工程，另 2 条 seen）</span><span class="r">客户案例 / 人事 / 政策 / 安全 / 工程博客；只有 GPT‑6 Cyber 进折叠知情</span></div><div class="rejrow"><span class="t">10 条（Agentic cheminformatics、规划决策、森林类型、抗微生物肽、新加坡反诈、Gemini 4 Argon 安全 / 机器人、Carbon（seen）、Genie 4（seen），另 1 条 seen）</span><span class="r">科学 / 政务 / 反诈 / 机器人；已评或 seen；无本业入口</span></div><div class="rejrow"><span class="t">10 条（Le Chonk Studio、NVIDIA 合作、Timestral、Hallo Deutschland、Cloudera、legacy code，另 4 条 seen）</span><span class="r">企业 Agent 平台 / 工业合作 / 时序预测 / 旧代码迁移；4 条 seen</span></div><div class="rejrow"><span class="t">12 条（`ai-image-generation` ×2、`reddit-automation`、`microsoft-foundry`，另 8 条 seen）</span><span class="r">`ai-image-generation` 是 inference.sh / RunComfy 的薄壳且 Socket 有告警；`reddit-automation` 与业务无关；`microsoft-foundry` 绑 Azure；8 条 seen</span></div><div class="rejrow"><span class="t">3 条（v2.1.319 / 318 / 317）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（0.169.0-alpha.2 / .1、0.168.0-alpha.7）</span><span class="r">alpha 版本流水</span></div><div class="rejrow"><span class="t">3 条（v0.68.0-preview.0、v0.67.0、v0.67.0-nightly）</span><span class="r">preview / nightly 版本号流水</span></div><div class="rejrow"><span class="t">3 条（1.3.2 / 1.3.1 / 1.3.0）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v2.2.6、process-daemon 0.5.0、v2.2.5）</span><span class="r">版本号流水 / 内部包发布</span></div><div class="rejrow"><span class="t">3 条（v2.3.0 / v2.2.0 / v2.1.0（seen））</span><span class="r">常规包更新；一条 seen</span></div><div class="rejrow"><span class="t">3 条（v1.3.2 / 1.3.1 / 1.3.0）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v0.2.2-rc.1、0.2.2-alpha.3、v0.2.1-rc.5）</span><span class="r">rc / alpha 版本号流水</span></div><div class="rejrow"><span class="t">6 条（release / vendor / docs ×3 / test）</span><span class="r">内部提交 / 发布对齐，无独立入口</span></div><div class="rejrow"><span class="t">0 条</span><span class="r">今天没变化，非死源</span></div><div class="rejrow"><span class="t">10 条（HackerBooks、Subvocal、HackerTV、Hacker Times、Wikihack、Warsaw voxels、Wing Commander、syscall、OmniDiff（seen）、HackerHack（seen））</span><span class="r">消费 / 趣味 / 硬件 / 嵌入式；两条 seen；与视频 / 图像 / 画布无直接关系</span></div><div class="rejrow"><span class="t">20 条（`moe-blogpost`、`qwen-image-21-uncensored`、`wan777`、`bfs-best-face-swap`、`wan2-2-i2v`、`MatterSeek`、`free-ai-humanizer`、`minimax-h3`、`Qwen-2511-Flux`、`LFM3-Omni-2B-WebGPU` 等）</span><span class="r">社区 NSFW / 换脸 / 旧 demo；LFM3、MatterSeek 缺可读文档；其余已评或 seen</span></div><div class="rejrow"><span class="t">12 条（Quoting Nilay / Paul Ford、datasette ×3、llm ×2、Qwen 权重、sound leak、newsletter、Census、uv.lock）</span><span class="r">版本流水 / 观点 / 旧题 / 安全；weight-space 已并入 11-04 正文 02</span></div><div class="rejrow"><span class="t">10 条（Claude 逆向游戏、Opus 5.5 施工图、HackerBooks / HackerTV 重复、Ask HN 配置、Uncracked City、Kino AI，另 3 条 seen）</span><span class="r">隐私 / 诉讼 / 产品评测 / 重复；无本业入口</span></div><div class="rejrow"><span class="t">9 条（GitHub 日榜、量化多因子、API 安全、Rolldown、Kingbase、枚举、Vue source map、QQ 去重、副业 IP）</span><span class="r">UI 交互进正文 06；其余工程 / 生活 / 旧题 / 与业务无关</span></div><div class="rejrow"><span class="t">10 条（9 部作品、iPhone、M6 MacBook、派早报、PROLED、新玩意、蒸菜、Apple 排版、Hy4 早报、客户端选型）</span><span class="r">消费电子 / 生活 / 旧闻；Hy4 已于 11-05 正文 03；客户端选型无新入口</span></div><div class="rejrow"><span class="t">9 条（DeepSeek 稀疏计算、AI 短剧双11、奇点大会、99.4%、香港金融科技周、Hy4 扩容、AI 生涯、三条技术路线、拼多多草莓）</span><span class="r">即梦进正文 01；其余融资 / 活动 / 行业观察 / 旧题；Hy4 已评</span></div><div class="rejrow"><span class="t">9 条（DigitalOcean、混元 MaaS、NgRx、Harness、京东物流 ×2、PyTorch、AI Native、谷歌买断）</span><span class="r">tsrs 进正文 03；其余企业服务 / 框架 / 会议 / 行业；Harness 是方法论、无代码入口</span></div><div class="rejrow"><span class="t">5 条（Controlling Biology、Swapping Season、Behind Latent Space、Weight Space、Legora）</span><span class="r">Inkling 进正文 05；其余播客 / 通讯 / 旧题；weight-space 已评</span></div><div class="rejrow"><span class="t">6 条（open model economy、cyber risk、AA v5、Kimi 播客、open artifacts #25、Meta（seen））</span><span class="r">观点 / 播客；AA v5 的选型账 10-30 已算过；Meta 为 seen</span></div><div class="rejrow"><span class="t">8 条（ToyBlocks、Open ASR、Cosmos（seen）、Phonon、Dharma、Palette、CWE-bench v2、Transformers MIC）</span><span class="r">机器人 / 语音 / 已评 / 安全基准 / 集成契约；无本业新入口</span></div><div class="rejrow"><span class="t">5 条（Import AI 479–475）</span><span class="r">newsletter / 观点</span></div><div class="rejrow"><span class="t">5 条（NotebookLM（seen）、桃花源记（seen）、电商 Agent（seen）、AI 原生思维、Warp（seen））</span><span class="r">4 条 seen；AI 原生思维是 8 月旧文，无入口</span></div><div class="rejrow"><span class="t">5 条（30 Months、Dot and the Swarm、Overhang、Agency and Agents、guide）</span><span class="r">观点 / 旧文，无入口</span></div><div class="rejrow"><span class="t">0 条（正文不出现，见「中概股」详情页）</span><span class="r">行业情报，不占正文席位</span></div>
       </details>
   </div>
 </div>
