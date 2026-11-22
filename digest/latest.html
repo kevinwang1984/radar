@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>雷达简报 2026-11-21</title>
+<title>雷达简报 2026-11-22</title>
 <script>
 (function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
 var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
@@ -192,31 +192,57 @@ details.rej[open] summary::before{content:"▾ "}
   <div class="drift">⚠️ 本地技能补丁漂移：implement、code-review（详情：radar\skill-drift.md）</div>
   <div class="head">
     <div class="kickerrow">
-      <span class="kicker">雷达简报 · 2026-11-21</span>
+      <span class="kicker">雷达简报 · 2026-11-22</span>
       <button class="themebtn" id="themebtn" type="button">◐ 自动</button>
     </div>
-    <h1>6 条 · 先扫，再展开</h1>
-    <div class="strap">候选 222 条 / 36 源（35 成功 · 1 源失败 · 3 个 0 条源）· 新增 191 条 · seen 31 条 · 正文 6 条 · 折叠 1 条 · 中概股 0（抓取失败）· 预判回看 0 · 财富拾贝 2（无中概股小节，未进正文）· 砍掉 215 条。</div>
+    <h1>7 条 · 先扫，再展开</h1>
+    <div class="strap">候选 206 条 / 36 源（34 成功 · 2 源失败 · 4 个 0 条源）· 新增 174 条 · seen 32 条 · 正文 7 条 · 折叠 1 条 · 中概股 0（抓取失败）· 预判回看 0 · 财富拾贝 2（无中概股小节，未进正文）· 砍掉 198 条。</div>
     <div class="segs">
-      <button class="seg" data-f="all" aria-pressed="true">全部 6</button>
-      <button class="seg" data-f="fast" aria-pressed="false">15 分钟 3</button>
-      <button class="seg" data-f="tool" aria-pressed="false">技能工具 1</button>
+      <button class="seg" data-f="all" aria-pressed="true">全部 7</button>
+      <button class="seg" data-f="fast" aria-pressed="false">15 分钟 5</button>
+      <button class="seg" data-f="tool" aria-pressed="false">技能工具 0</button>
       <button class="seg" data-f="fav" aria-pressed="false">★ 收藏 <span id="favn">0</span></button>
     </div>
   </div>
-  <div class="count" id="cnt">显示 6 / 6 条</div>
+  <div class="count" id="cnt">显示 7 / 7 条</div>
   <details class="favbox" id="favbox" style="display:none">
     <summary>我的收藏 <span id="favcnt">0</span></summary>
     <div class="favlist" id="favlist"></div>
     <button class="favcopy" id="favcopy" type="button">复制清单</button>
   </details>
   
-    <details class="row" data-fast="1" data-tool="0">
+    <details class="row" data-fast="0" data-tool="0">
       <summary class="hit">
         <span class="n">01</span>
         <span class="tt">
-          <span class="t1">AutoClip：1 小时 48 分直播自动切 19 段</span>
-          <span class="t1b">长直播自动转写、挑高光、切竖屏短片。</span>
+          <span class="t1">Linger：12GB 显卡本地跑 125B 的开源个人助手</span>
+          <span class="t1b">把本机浏览器、邮件、日历接成一个本地助手。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost slow">1 小时</span>
+            <span class="src">cn:qbitai</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-22-01" data-date="2026-11-22" data-t="Linger：12GB 显卡本地跑 125B 的开源个人助手"
+          data-o="把本机浏览器、邮件、日历接成一个本地助手。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>DeepSeek V1 作者 Tony Zhang 创办的 Simplex AI 开源的个人助手，优先跑在电脑上：直接操作你已登录的 Chrome、邮件和日历，遇到卡住的地方可以人工接管，也能接第三方模型。核心叫「Another Me」，每晚把收件箱、日历、聊天和会议整理成本地知识库（Wiki），官方称在 LoCoMo 长对话记忆基准上准确率 95%，高于 Mem0、MemOS；它还会从你两次相似的反馈里自动生成提醒规则。自带 PolyStrata 推理引擎，按使用热度把混合专家（MoE，按词元只激活一部分参数）的专家放在显存、内存和 SSD 之间，12GB RTX 3060 + 64GB 内存能跑 125B（1250 亿参数）的 Qwen3.8-Flash-Next，45.5 词元（token，模型读写文本的基本单位）/秒；RTX 5090 上 179 词元/秒。
+        <span class="k">为什么值得你花时间</span>你在 Gitea 上跑 wayfinder，日常最烦的是每换一个环境就要重配凭据、重接工具、重讲上下文；Linger 给的是「本地优先 + 复用已有登录态 + 记忆沉淀」的另一条路，而且 12GB 消费卡就能跑千亿级模型，值得为「以后要不要自建本地助手」做一次选型。今天先在自己的 Windows 或 Mac 上装一遍，接一个最常用的网页或邮箱，观察两件事：它整理出的每日知识库准不准、提醒规则会不会误报。边界：45.5 词元/秒是官方数据，没有第三方复测；系统开源，模型权重另算；要 64GB 内存；它会读你的私人邮件和聊天，数据边界要自己定；目前优先 PC，移动端还没提。
+        <span class="k">上手成本</span>1 小时（装客户端 + 拉一个本地模型）
+        <span class="k">入口</span><a href="https://github.com/simplexai-labs/linger" target="_blank" rel="noopener noreferrer">https://github.com/simplexai-labs/linger</a>
+        <a class="more" href="detail/2026-11-22-01.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">02</span>
+        <span class="tt">
+          <span class="t1">Tree New Bee：在编程助手侧边栏里调接口</span>
+          <span class="t1b">在 DSH 侧边栏里发 HTTP 请求、存集合。</span>
           <span class="t2">
             <span class="chip cn">中文</span>
             <span class="cost fast">15 分钟</span>
@@ -225,41 +251,15 @@ details.rej[open] summary::before{content:"▾ "}
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-21-01" data-date="2026-11-21" data-t="AutoClip：1 小时 48 分直播自动切 19 段"
-          data-o="长直播自动转写、挑高光、切竖屏短片。" data-hd="1">☆</button>
+          data-id="2026-11-22-02" data-date="2026-11-22" data-t="Tree New Bee：在编程助手侧边栏里调接口"
+          data-o="在 DSH 侧边栏里发 HTTP 请求、存集合。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>开源智能剪辑工具（GitHub 约 1 万星，MIT 许可）：把长视频丢进去，自动转写、按语义挑高光、导出竖屏短片。作者实测 1 小时 48 分直播，5 分钟出头出 19 段，整月阿里云百炼账单 0.08 元；转写可走云端百炼（qwen-plus + qwen-audio-3.1-asr-flash），也可接 Ollama / LM Studio 本地模型。注意两个坑：横屏录屏会被原样缩进竖屏，上下留白、网页字在手机上看不清；每段的起止时间和打分不在界面里，要读项目目录的 `metadata/step3_all_scored.json`。
-        <span class="k">为什么值得你花时间</span>你的平台做视频，切片是最耗人力的前置环节；这条给的是能跑通、能改的开源参考，不是又一个订阅制在线服务。今天拿一段 1 小时直播试三件事：选片会不会整段漏（作者手切 6 条只命中 4 条，24–43 分整段 0 段）、竖屏裁切能不能直接用、云端转写成本。边界：只测了一条直播；云端转写会把音频传到阿里云；MIT 只覆盖软件，模型与素材授权要自查；只当初筛，别当终稿。
-        <span class="k">上手成本</span>15 分钟（已有百炼密钥；装客户端 + 云端转写）
-        <span class="k">入口</span><a href="https://github.com/zhouxiaoka/autoclip" target="_blank" rel="noopener noreferrer">https://github.com/zhouxiaoka/autoclip</a>
-        <a class="more" href="detail/2026-11-21-01.html">读详情（翻译 + 要点）→</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="1" data-tool="1">
-      <summary class="hit">
-        <span class="n">02</span>
-        <span class="tt">
-          <span class="t1">remotion-best-practices：把 Remotion 的 30+ 条视频规则装进智能体</span>
-          <span class="t1b">让编程助手按规则生成视频代码。</span>
-          <span class="t2">
-            <span class="chip skill">技能</span>
-            <span class="cost fast">15 分钟</span>
-            <span class="src">skills:trending</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-21-02" data-date="2026-11-21" data-t="remotion-best-practices：把 Remotion 的 30+ 条视频规则装进智能体"
-          data-o="让编程助手按规则生成视频代码。" data-hd="1">☆</button>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>Remotion 官方技能包，把 30+ 条做视频的规则（动画、字幕、音频、素材、3D、图表、转场、合成管理、Lottie、Mapbox、Tailwind、AI 配音等）整理成智能体（Agent，能自己读文件、写代码的程序）可读的知识库；装完后用 React（一套写网页界面的库）做视频会先加载对应规则，而不是每次重新猜。技能页显示 87.5 万安装、仓库 7.6K 星；安装命令是 `npx skills add https://github.com/remotion-dev/skills --skill remotion-best-practices`。
-        <span class="k">为什么值得你花时间</span>你做视频和画布，AI 生成视频代码最常翻车在时间轴、帧率、字幕换行和素材路径；这套规则把 Remotion 的踩坑点前置到生成之前。今天可以拿一个 15 秒竖屏模板，让助手按技能生成一版，重点看字幕换行、音频对齐、参数化渲染是否一次过。边界：它只是知识库，不装渲染器；Remotion 对 4 人及以上公司要商业授权（3 人以下免费；自动化渲染另计 0.01 美元/次、100 美元/月起）；技能页的 Snyk（依赖安全扫描服务）审计为 Fail，安装前先看脚本；团队已有 HyperFrames（另一套用 HTML 写视频的框架）的话，先比较再决定，别两套并存。
-        <span class="k">上手成本</span>15 分钟（npx 安装 + 让助手读一条规则）
-        <span class="k">入口</span><a href="https://www.skills.sh/remotion-dev/skills/remotion-best-practices" target="_blank" rel="noopener noreferrer">https://www.skills.sh/remotion-dev/skills/remotion-best-practices</a>
-        <a class="more" href="detail/2026-11-21-02.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>DSH（DeepSeek Harness，你每天用的编程助手宿主）的插件，包名 `dsh-tree-new-bee-api-client`，分 Host（跑在程序后端）和 Client（跑在界面）两半。左侧栏给一个入口，能发 GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS 七种请求，填 Params、Headers、Body，看状态码、耗时、大小、响应头和格式化后的 JSON；集合支持文件夹嵌套、双击重命名、模糊搜索，环境变量用 `{{baseUrl}}` 这种写法在 URL、Params、Headers、Body 里自动替换。数据全存浏览器本地存储，零第三方依赖，Host 侧用 Node 内置 fetch 加超时控制，超过 4MB 的响应会截断。
+        <span class="k">为什么值得你花时间</span>你每天在 DSH 里改代码、验接口，切到 Postman 会丢上下文；这个插件把「构造请求 → 看响应 → 存成集合」留在同一个窗口，15 分钟就能替掉一部分切换成本。今天装上后拿一个你常调的本地接口试：环境变量替换、集合重命名、历史回填这三处是否顺手。边界：1.0.0 版本、单人项目；数据只在浏览器本地，换机器要自己搬（目前没有导出按钮）；大响应截断到 4MB；只适合手动调试，不替代自动化测试。
+        <span class="k">上手成本</span>15 分钟（插件管理器装 + 发一个请求）
+        <span class="k">入口</span><a href="https://github.com/gougou1993/dsh-tree-new-bee-api-client" target="_blank" rel="noopener noreferrer">https://github.com/gougou1993/dsh-tree-new-bee-api-client</a>
+        <a class="more" href="detail/2026-11-22-02.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
@@ -267,8 +267,86 @@ details.rej[open] summary::before{content:"▾ "}
       <summary class="hit">
         <span class="n">03</span>
         <span class="tt">
-          <span class="t1">MAI Code 2：百万上下文编程模型，半价到 2027 年 5 月</span>
-          <span class="t1b">微软的编程模型，半价打日常改码。</span>
+          <span class="t1">Suno Visuals：把一首歌变成带口型的 15 秒短片</span>
+          <span class="t1b">把歌曲生成带口型同步的短视频和封面。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:qbitai</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-22-03" data-date="2026-11-22" data-t="Suno Visuals：把一首歌变成带口型的 15 秒短片"
+          data-o="把歌曲生成带口型同步的短视频和封面。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Suno 11-17 上线的视觉创作工具，网页、iOS、Android 同时开。拖一首歌进 Visuals，就能生成最长 15 秒、跟着歌曲结构和歌词走的片段，支持演唱口型同步；片段可延长、可编辑、可再用文字改提示，也能做歌词视频和专辑封面、自定义字体颜色和画面比例。底层是 Suno 基于 MiniMax 开源的 H3 视频模型调出的 H3 Move；H3 本身支持文本、图像、视频、音频统一理解，生成带原生立体声的视频，最高 2K、15 秒。Visuals 用独立的视频积分计费，和歌曲积分分开。
+        <span class="k">为什么值得你花时间</span>你做视频生成平台，这条给了一个很具体的产品形态：不是「文生视频」，而是「歌曲 → 分镜 → 口型 → 封面」的一条龙，而且把版权过滤、水印、艺人形象拦截做进了生成之前。今天拿一首 30 秒的歌试一遍，重点看三件事：口型跟歌词的误差、15 秒片段延长后的一致性、积分消耗。边界：闭源商业产品，模型不可自部署；中文歌的咬字和口型官方没单独说明；有艺人、公众人物、版权内容过滤，很多在别的平台能过的提示词这里会被拦；生成内容分享出去前会嵌水印。
+        <span class="k">上手成本</span>15 分钟（注册 + 买视频积分 + 生成一条）
+        <span class="k">入口</span><a href="https://suno.com/visuals" target="_blank" rel="noopener noreferrer">https://suno.com/visuals</a>
+        <a class="more" href="detail/2026-11-22-03.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">04</span>
+        <span class="tt">
+          <span class="t1">Rumble-2-Flash：0.5B 语音模型，40+ 语言，1 小时音频半秒转完</span>
+          <span class="t1b">0.5B 参数、40 多种语言的开源语音识别模型。</span>
+          <span class="t2">
+            <span class="chip people">跟人</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">people:hf-blog</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-22-04" data-date="2026-11-22" data-t="Rumble-2-Flash：0.5B 语音模型，40+ 语言，1 小时音频半秒转完"
+          data-o="0.5B 参数、40 多种语言的开源语音识别模型。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>荷兰 Reson8 11-18 以 Apache-2.0 开源的语音识别模型，0.5B（5 亿）参数，支持 40 多种语言并自动识别语种。原生支持 Transformers（Hugging Face 的模型加载库）和 vLLM（高吞吐推理服务），不用 `trust_remote_code`；输出可以控制数字写成数字还是文字、保留语气词、逐字重复，也能强制指定语言。官方数据：Open ASR 多语榜（中、德、法、意、西、葡、印地、荷、英）平均错误率 6.96%，英文 6.6%；302 小时、14 种口音的呼叫中心基准 7.86%，与 30B 的 Nemotron 3.5 Transcribe（7.78%）基本持平；批处理吞吐超过 7,000 RTFx（实时倍率，1 秒能处理多少秒音频），约 1 小时音频半秒转完。
+        <span class="k">为什么值得你花时间</span>你的视频产线迟早要处理多语字幕和配音对齐，0.5B 意味着能塞进便宜显卡甚至和别的服务挤在一台机器上，不必为转写单独包一个大模型；中文在它的九语评测里，值得直接验。今天用 Transformers 拉下来，拿一段带背景音乐的中文口播和一段电话录音各跑一次，看错误率、时间戳和标点。边界：6.96%、7.86% 都是官方与自家评测脚本，没有第三方复测；0.5B 在强噪声、专业术语上会掉；官方没提说话人分离；Apache-2.0 只覆盖权重。
+        <span class="k">上手成本</span>15 分钟（已装好 Python 环境；下载 + 跑一条）
+        <span class="k">入口</span><a href="https://huggingface.co/blog/rumble-2-flash" target="_blank" rel="noopener noreferrer">https://huggingface.co/blog/rumble-2-flash</a>
+        <a class="more" href="detail/2026-11-22-04.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="0" data-tool="0">
+      <summary class="hit">
+        <span class="n">05</span>
+        <span class="tt">
+          <span class="t1">DaisyRose-27B：1200 条任务、18 天，终端任务通过率翻倍</span>
+          <span class="t1b">千条任务强化学习练出的 27B 智能体模型。</span>
+          <span class="t2">
+            <span class="chip people">跟人</span>
+            <span class="cost slow">半天</span>
+            <span class="src">people:hf-blog</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-22-05" data-date="2026-11-22" data-t="DaisyRose-27B：1200 条任务、18 天，终端任务通过率翻倍"
+          data-o="千条任务强化学习练出的 27B 智能体模型。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>RadixArk 基于 Qwen3.8-27B（270 亿参数）训练的第一个模型，只用强化学习（RL，用试错奖励训练）做后训练，18 天、144 张 H200、约 1200 条精选长程智能体任务（单次最长 100 万词元、1.5 小时、100 多次工具调用）。保留原架构、分词器、图像理解和 256K 上下文，权重以 Apache-2.0 放出 BF16、FP8、NVFP4 三种数值精度。官方基准：Terminal-Bench 4.1 一次通过率（pass@1）从 5.6% 到 12.0%，Terminal-Bench 2.1 从 73.0 到 75.5，SWE-Bench Pro v2 从 91.3 到 94.7，IFBench 从 79.5 到 82.4，GPQA Diamond 从 89.2 到 90.7。
+        <span class="k">为什么值得你花时间</span>你在 wayfinder 上跑编程智能体，这条同时回答两个问题：27B 模型靠「挑对任务 + 长程强化学习」能把终端任务拉到什么程度，以及自建后训练的成本能不能接受。今天先读模型卡和 1200 条任务的筛选标准，再拿你仓库里最常返工的 10 个 issue，对比 Qwen3.8-27B 与 DaisyRose 的通过率和步数。边界：全部是官方自评，训练样本只有 1200 条任务；Terminal-Bench 4.1 的 12% 绝对值仍低；完整复现要 144 张 H200、约 6.3 万 GPU 小时；三个精度版本的分数取的是较高者；任务池来自 Eigent AI，和你的仓库分布不同。
+        <span class="k">上手成本</span>半天（读配方 + 起 SGLang 对比一小批任务）
+        <span class="k">入口</span><a href="https://huggingface.co/blog/RadixArk/daisyrose-27b-pushing-the-frontier-of-post-trainin" target="_blank" rel="noopener noreferrer">https://huggingface.co/blog/RadixArk/daisyrose-27b-pushing-the-frontier-of-post-trainin</a>
+        <a class="more" href="detail/2026-11-22-05.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">06</span>
+        <span class="tt">
+          <span class="t1">chrome-devtools-mcp：AI 报的性能数字可信，裁决还得自己来</span>
+          <span class="t1b">让 AI 用 DevTools 采网页性能并出报告。</span>
           <span class="t2">
             <span class="chip cn">中文</span>
             <span class="cost fast">15 分钟</span>
@@ -277,104 +355,52 @@ details.rej[open] summary::before{content:"▾ "}
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-21-03" data-date="2026-11-21" data-t="MAI Code 2：百万上下文编程模型，半价到 2027 年 5 月"
-          data-o="微软的编程模型，半价打日常改码。" data-hd="1">☆</button>
+          data-id="2026-11-22-06" data-date="2026-11-22" data-t="chrome-devtools-mcp：AI 报的性能数字可信，裁决还得自己来"
+          data-o="让 AI 用 DevTools 采网页性能并出报告。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>微软 11-17 在 Ignite 发布的编程模型：稀疏混合专家（MoE，按词元只激活一部分参数）+ 原生视觉编码器，105 万词元（token，模型读写文本的基本单位）上下文（输入 92.2 万 / 输出 12.8 万），五档推理强度；官方称四个日常编程基准平均达到 GPT-6.1 Sol 的 98%、成本 40%，达到 Claude Opus 5.5 的 96%、成本 5%，前端盲评对 GPT-6 Sol 的偏好率 64%。列表价每百万词元 1 美元输入 / 5 美元输出，半价期 0.50 / 2.50 美元到 2027-05-17；另有 Flash 版。已在 GitHub Copilot 和 Microsoft Foundry 上线。
-        <span class="k">为什么值得你花时间</span>你平台上日常八成是读仓库、改业务码、补单测，正好是这条的靶心；半价期把「默认模型」的成本结构再压一档。今天拿最近返工最多的一个 issue，在 Copilot 或 Foundry 切到 MAI Code 2，和现用模型比一次通过率、跨文件改动和账单。边界：98%/40% 是微软自报，不是第三方；官方明确不做基础科学和超长程智能体；半价到期翻倍；105 万上下文要自己验有效长度；数据合规看 Foundry 区域。
-        <span class="k">上手成本</span>15 分钟（有 Copilot 或 Azure 账号，换模型名）
-        <span class="k">入口</span><a href="https://microsoft.ai/news/introducing-mai-code-2-and-mai-code-2-flash/" target="_blank" rel="noopener noreferrer">https://microsoft.ai/news/introducing-mai-code-2-and-mai-code-2-flash/</a>
-        <a class="more" href="detail/2026-11-21-03.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>一个 MCP（Model Context Protocol，让编程助手接外部工具的协议）服务器，一行 `npx -y chrome-devtools-mcp@latest` 就能把整套 Chrome DevTools 的 33 个工具交给 AI：导航、点按、跑 Lighthouse（网页质量评分工具）、录 performance trace（浏览器记录的性能时间线）、翻网络请求、读控制台、抓堆快照。作者的实测是给掘金首页做体检：AI 跑了 18 次工具调用、翻了 181 条网络请求，报出 LCP（最大内容绘制，衡量首屏主内容出现时间）8956ms、CLS（布局偏移）0.02、三张封面图 1317/780/765KB、单次首屏可省 4MB；作者用 3.7MB 的原始 trace 逐条核对，数字全部对上。
+        <span class="k">为什么值得你花时间</span>你平台上「AI 说页面慢」和「AI 说改完了」一样，最缺的是可复核的证据链；这条给了一个能直接抄的验证姿势：让 AI 把 trace 落盘，再拿 trace 对它的每个数。今天拿你自己的一个页面跑一遍，重点看两处：它会不会主动写脚本交叉验证、结论和原始 trace 冲突时它选哪边（作者那次就选错了 LCP 图的发起者）。边界：需要 Chrome 稳定版或 Chrome for Testing；容器里用 root 用户（最高权限）起不来，要加 `--no-sandbox`；视口（浏览器窗口尺寸）格式是 `1440x900` 不是逗号；单个工具输出要自己截断（作者截到 8000 字符），否则上下文会爆；数字可信不等于结论可信。
+        <span class="k">上手成本</span>15 分钟（已有 Chrome + 一个页面）
+        <span class="k">入口</span><a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank" rel="noopener noreferrer">https://github.com/ChromeDevTools/chrome-devtools-mcp</a>
+        <a class="more" href="detail/2026-11-22-06.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
 
-    <details class="row" data-fast="0" data-tool="0">
+    <details class="row" data-fast="1" data-tool="0">
       <summary class="hit">
-        <span class="n">04</span>
+        <span class="n">07</span>
         <span class="tt">
-          <span class="t1">Inkling 2 Mini：26B 总参、3B 级激活，能跑在笔记本上的多模态模型</span>
-          <span class="t1b">26B 总参、3B 级激活的本地多模态模型。</span>
-          <span class="t2">
-            <span class="chip people">跟人</span>
-            <span class="cost slow">1 小时</span>
-            <span class="src">people:hf-blog</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-21-04" data-date="2026-11-21" data-t="Inkling 2 Mini：26B 总参、3B 级激活，能跑在笔记本上的多模态模型"
-          data-o="26B 总参、3B 级激活的本地多模态模型。" data-hd="1">☆</button>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>Thinking Machines 11-20 发布的开放权重模型：循环 Transformer（12 层中间层每个词元跑 3 遍，24 层物理层当 48 层用），26B（260 亿）总参 / 5.4B（54 亿）激活（含三遍循环；唯一权重 3.1B），100 万词元上下文，支持图像+文本，Apache-2.0 许可。第三方评测机构 Artificial Analysis 给它的智能指数 20，与 Qwen3.8 27B 持平；实测每任务 0.59 美元、9.0 分钟，对 Qwen3.8 27B 的 3.53 美元、38.2 分钟，约 6 倍便宜、4 倍快；MacBook / DGX Spark 可跑。支持 Transformers、llama.cpp、MLX、SGLang，另有一个可变循环次数的研究版。
-        <span class="k">为什么值得你花时间</span>你在给画布和内容平台选「本地多模态小模型」：26B 总参、3B 级激活意味着单机可跑，100 万词元上下文能塞长脚本和多张图；第三方实测的 6 倍成本差比厂商自评更可信。今天用 MLX 或 llama.cpp 拉下来，拿 10 张分镜图做「读图 → 写镜头描述 → 标坐标」的对比，重点看中文、OCR（图片文字识别）和小字。边界：智能指数 20 不是第一梯队；循环结构让实际计算量高于 3B 激活的直觉；第三方实测输出词元比 Qwen 多约 38%；本地量化后质量会掉；Apache-2.0 只覆盖权重，训练数据合规未审。
-        <span class="k">上手成本</span>1 小时（下载 + 本地跑一条）
-        <span class="k">入口</span><a href="https://huggingface.co/thinkingmachines/Inkling-2-Mini" target="_blank" rel="noopener noreferrer">https://huggingface.co/thinkingmachines/Inkling-2-Mini</a>
-        <a class="more" href="detail/2026-11-21-04.html">读详情（翻译 + 要点）→</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="0" data-tool="0">
-      <summary class="hit">
-        <span class="n">05</span>
-        <span class="tt">
-          <span class="t1">Agnes Harness：给智能体配快慢双脑，决策快 14 倍</span>
-          <span class="t1b">给智能体加快慢双脑，降低每步决策成本。</span>
+          <span class="t1">三层解耦：换模型只改网关配置，业务代码零供应商名</span>
+          <span class="t1b">把模型供应商收进网关，换模型只改配置。</span>
           <span class="t2">
             <span class="chip cn">中文</span>
-            <span class="cost slow">半天</span>
-            <span class="src">cn:qbitai</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:juejin</span>
           </span>
         </span>
         <span class="car">›</span>
         <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-21-05" data-date="2026-11-21" data-t="Agnes Harness：给智能体配快慢双脑，决策快 14 倍"
-          data-o="给智能体加快慢双脑，降低每步决策成本。" data-hd="1">☆</button>
+          data-id="2026-11-22-07" data-date="2026-11-22" data-t="三层解耦：换模型只改网关配置，业务代码零供应商名"
+          data-o="把模型供应商收进网关，换模型只改配置。" data-hd="1">☆</button>
       </summary>
       <div class="det">
-        <span class="k">是什么</span>开源智能体运行框架（Apache-2.0，GitHub 2.1K 星）：System 2（慢脑）用大模型做复杂推理，System 1（快脑）用 9B（90 亿参数）小模型 Agnes Sys1.0 判断下一步调哪个工具、继续等还是立即做；官方实测家庭漏水任务单步判断 0.53 秒，对大模型 7.6 秒（14.3 倍），行李房任务单次决策 0.000091 美元，对 0.00247 美元（约 1/27）。再加 TTT（测试时训练，只调末端一小块校准参数，学完即清空）与 RSI（递归自我改进，把复盘写成版本化操作手册）。本地部署要 Node.js 24.10+、pnpm 10.34.5，用云端模型接口（API）不用显卡（GPU）。
-        <span class="k">为什么值得你花时间</span>你在 Gitea 上跑 wayfinder，智能体的痛点是「每步都调大模型」和「第 100 次还犯第 1 次的错」；这条给的是可抄的架构：快慢分工 + 临时适配 + 经验沉淀。今天先本地起一个，接一个审稿或查单插件，观察它什么时候把决策交给 9B、什么时候升级到大模型。边界：14 倍 / 1/27 是官方自评，9 项基准里 6 项第一；9B 决策模型要额外下载；TTT 学完即清空，长期经验靠操作手册而不是权重；MHS（模型硬件标准）还在插件化，别急着接真机。
-        <span class="k">上手成本</span>半天（本地部署 + 接一个插件）
-        <span class="k">入口</span><a href="https://github.com/AgnesAI-Labs/agnes-harness" target="_blank" rel="noopener noreferrer">https://github.com/AgnesAI-Labs/agnes-harness</a>
-        <a class="more" href="detail/2026-11-21-05.html">读详情（翻译 + 要点）→</a>
-      </div>
-    </details>
-
-    <details class="row" data-fast="0" data-tool="0">
-      <summary class="hit">
-        <span class="n">06</span>
-        <span class="tt">
-          <span class="t1">harness adapters：给固定模型配一层 LoRA，终端任务通过率 39%→55%</span>
-          <span class="t1b">给固定模型配一层适配器，专攻你的智能体。</span>
-          <span class="t2">
-            <span class="chip people">跟人</span>
-            <span class="cost slow">半天</span>
-            <span class="src">people:hf-blog</span>
-          </span>
-        </span>
-        <span class="car">›</span>
-        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
-          data-id="2026-11-21-06" data-date="2026-11-21" data-t="harness adapters：给固定模型配一层 LoRA，终端任务通过率 39%→55%"
-          data-o="给固定模型配一层适配器，专攻你的智能体。" data-hd="1">☆</button>
-      </summary>
-      <div class="det">
-        <span class="k">是什么</span>Hugging Face 11-20 的公开配方：在你自己的智能体运行框架里做强化学习（RL，用试错奖励训练），给 Qwen3.8-27B 每个框架各训一个低秩适配器（LoRA，一小块可训练参数），再合并成一个总适配器。官方数字：Qwen3.8-27B 在 pi 框架的 Terminal-Bench 2.1 从 39% 提到 55% 通过率，平均词元从 2.9K 降到 1.5K；覆盖 pi、OpenCode、Hermes Agent 三个框架，数据集、训练代码与评测配方公开。
-        <span class="k">为什么值得你花时间</span>你在 wayfinder 上跑编程智能体，换模型往往要重调提示词；这条说明「模型不变，给框架配一层小适配器」也能同时提通过率和降词元。今天先读配方和数据集格式，拿你仓库里 50 条真实 issue 做一个小实验，重点看通过率与词元是否同向。边界：要显卡（GPU）和强化学习训练，不是 15 分钟能复现；55% 是单一基准、单一模型；总适配器合并后可能牺牲单框架极值；训练数据来自公开任务，和你的仓库分布不同。
-        <span class="k">上手成本</span>半天（读配方 + 跑一次小实验；完整训练另算显卡时间）
-        <span class="k">入口</span><a href="https://huggingface.co/blog/harness-adapters-at-scale" target="_blank" rel="noopener noreferrer">https://huggingface.co/blog/harness-adapters-at-scale</a>
-        <a class="more" href="detail/2026-11-21-06.html">读详情（翻译 + 要点）→</a>
+        <span class="k">是什么</span>掘金《AI 应用生产化手册》第 18 篇，配套开源项目 `ChenYingbo/ai-prod-demo`。核心是三层：应用层只写逻辑名（`chat-strong`、`chat-cheap`），网关层用 LiteLLM（把多家模型接口统一成一套调用的网关）把逻辑名映射到具体供应商模型，供应商层才是 DeepSeek、OpenAI。作者给了三条能进持续集成（CI，每次提交自动跑检查）的验收命令：`vendor_switch.py check` 校验逻辑名在网关里都存在；`check --scan-app app/` 扫业务代码里的供应商硬编码，目标 0 处；`simulate` 演练切换只改网关配置、应用零改动。还强调换供应商必须走「改配置 → 黄金集（一批有标准答案的评测样本）跑评测 → 灰度 → A/B → 全量」。
+        <span class="k">为什么值得你花时间</span>你平台上模型换得勤，真正贵的不是接口差价，是散落在业务代码里的 `deepseek/...` 和 `openai/...`；这套「0 处硬编码」的验收标准可以直接拿来当 CI 门禁。今天先跑一遍 `check --scan-app`，看你自己的仓库里有多少处供应商名，再决定要不要把网关这层补上。边界：示例用 LiteLLM，换别的网关要自己改脚本；三条命令只证明「可移植」，不证明「换过去质量不掉」，评测那一步不能省；文章是系列第 18 篇，前面成本、缓存、路由的概念要先补。
+        <span class="k">上手成本</span>15 分钟（clone 示例 + 跑三条检查）
+        <span class="k">入口</span><a href="https://github.com/ChenYingbo/ai-prod-demo" target="_blank" rel="noopener noreferrer">https://github.com/ChenYingbo/ai-prod-demo</a>
+        <a class="more" href="detail/2026-11-22-07.html">读详情（翻译 + 要点）→</a>
       </div>
     </details>
   <div class="empty" id="empty" style="display:none">这个筛选下没有条目。</div>
   
   
   
-  <div class="fold">还有 1 条：①【知情】Anthropic 完成史上最大 IPO（首次公开募股），估值 1.5 万亿美元——11-19 定价 83 美元、开盘 111.50、收盘 97.17；没有可执行入口，只当行业风险信号看一眼（https://latent.space/p/ainews-anthropic-successfully-completes-largest-ipo-in-history-valued-at-1-5t/）。</div>
+  <div class="fold">还有 1 条：①【知情】Token fraud（词元欺诈）：ChatPRD 创始人 Claire Vo 公开说免费试用被大量滥用，有人循环注册试用、把额度转卖，甚至用来跑 Roblox / Fortnite 地图工作室；她准备彻底取消免费试用——你的平台如果开试用，这是本周该看一眼的风险样本（https://simonwillison.net/2026/Nov/20/token-fraud-is-here-and-its-bad/）。</div>
   <div class="foot">
-    <b>每源今日条数</b><br>✅ hf-org:deepseek-ai 3 · ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15 · ✅ vendor:deepmind 10 · ✅ vendor:mistral 10 · ✅ skills:trending 12（正文 02）· ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ repo:deepseek-ai/deepseek-harness 3 · ✅ commit:deepseek-ai/deepseek-harness 6 · ✅ docs:deepseek-api 0（今天没变化，非死源）· ✅ hn:show 12 · ✅ hf:spaces-trending 20 · ✅ people:simonwillison 12 · ✅ hn:stories 9 · ✅ cn:juejin 10（正文 01、03）· ✅ cn:sspai 10 · ✅ cn:qbitai 10（正文 05）· ✅ cn:infoq 10 · ❌ market:hxc 0（失败：fetch failed (UND_ERR_SOCKET)）· ✅ market:verify 0（今天没有预判账本）· ✅ people:latent-space 6（折叠 1）· ✅ people:interconnects 6 · ✅ people:hf-blog 8（正文 04、06）· ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5 · ✅ people:xhs-财富拾贝 2（无中概股小节，未进正文）
-    <details class="rej"><summary>被过滤器砍掉的 27 条（信任雷达的依据）</summary>
-        <div class="rejrow"><span class="t">31 条 seen（Qwen 3、MiniMax 2、moonshot 2、OpenAI 1、DeepMind 3、Mistral 4、skills 5、MCP 1、HN 4、Simon 1、HF 2、baoyu 3）</span><span class="r">seen：近 60 天已发，按候选标记一律不选</span></div><div class="rejrow"><span class="t">3 条（DeepSeek-V4.1-Flash-1017、V4.1-Flash、V4-Flash-Vision-Exp）</span><span class="r">10 月 / 9 月 / 8 月旧版，无新能力</span></div><div class="rejrow"><span class="t">3 条（GLM-5.3-Flash-BF16、GLM-5.3-BF16、GLM-5.3-Flash）</span><span class="r">8 月旧版；两条 BF16 是同一模型的精度格式</span></div><div class="rejrow"><span class="t">1 条（MiniMax-M3.1-Flash）</span><span class="r">10 月旧版</span></div><div class="rejrow"><span class="t">1 条（Kimi-K2.7-Code）</span><span class="r">6 月旧版</span></div><div class="rejrow"><span class="t">14 条（Combatting adversarial distillation、Hebbia、drug candidates、Performance Factory、Codex Security Plugin、PR scans、Daybreak Blue / Red、Silent Consensus、Sumitomo、jagged frontier、frontier risk、chip design、Le Figaro）</span><span class="r">政策 / 客户案例 / 营销 demo；无本业可执行入口</span></div><div class="rejrow"><span class="t">7 条（Gemini 4 Neon、Genie 4、AlphaGenome 2、AlphaProof Code、weather datasets、Robotics 2.5、cheminformatics）</span><span class="r">Neon 与 Genie 4 已评；其余科学 / 机器人 / 化学，与本业距离远</span></div><div class="rejrow"><span class="t">6 条（Le Chonk Studio、Mistral NVIDIA、Timestral、Deutschland、Cloudera、legacy code）</span><span class="r">企业平台 / 工业合作 / 时序 / 旧代码；无新可执行入口</span></div><div class="rejrow"><span class="t">6 条（ai-video-generation、website-builder、reddit-automation、find-skills、ai-avatar-video、microsoft-foundry）</span><span class="r">ai-video-generation 是同一层 belt 命令行（CLI）薄壳，换 owner 重上榜；website-builder 是商业建站；reddit 与本业无关；find-skills 09-18 已评；ai-avatar-video 是薄封装；microsoft-foundry 绑定 Azure</span></div><div class="rejrow"><span class="t">29 条（claude-code 3、codex 3、gemini-cli 3、spec-kit 3、opencode 3、MCP servers 2、mattpocock/skills 3、deepseek-harness 3 + 6 条提交）</span><span class="r">版本号流水与内部发布提交，无独立能力变化</span></div><div class="rejrow"><span class="t">10 条（DeepSeek V3 JAX、ExitPath、Voyager 1、Cornhole News、audio-to-MIDI、terminactory、Mastra Factory、Type Fighter 2、Tinnitus、Zigzag）</span><span class="r">教学 demo / 趣味站 / 游戏 / macOS 工具；Mastra 11-20 已评；ExitPath 是数据导出，与本业距离远</span></div><div class="rejrow"><span class="t">20 条（moe-blogpost、wan2-2-i2v-v3、minimax-h3-image、harness-leaderboard、bfs-best-face-swap、slack-moji、Krea2T、Qwen face-swap、LTX-2.3-10Eros、P-Image-OSS、agent-memory-leaderboard、Qwen-2511-Plus-Flux.2、ZONOS3-Mini、pi-H3、tessera、TRELLIS.2、uncensored LoRA、PyBot、clairic、Omni-Image-Editor）</span><span class="r">社区换脸 / 不适合上班浏览的内容（NSFW）/ 旧 demo / 缺可读文档；TRELLIS.2 与 Omni 已评</span></div><div class="rejrow"><span class="t">11 条（Ravi Vakil 引用、Levent Alpöge 引用、Token fraud、PostgreSQL 19、llm-gemini 0.38、datasette-arrows、Stenberg 引用、PSF 募捐、External sandboxes、Datasette in browser、Go Proverbs）</span><span class="r">External sandboxes 11-18 已发；其余版本流水 / 随笔 / 募捐</span></div><div class="rejrow"><span class="t">7 条（Claude 蛋白质、The Claude Delusion、Claude Code 并行 workers、terminactory、Mastra、Onlook、Zigzag）</span><span class="r">观点 / 旧闻 / 与 hn:show 重复；Onlook 是设计工具，与本业不直接相关</span></div><div class="rejrow"><span class="t">8 条（冒险者公会、Three.js 大屏、WorkBuddy、RAG 怎么做、字节码指令、模型网关 C04、Nginx 负载均衡、DripTable）</span><span class="r">观点 / 教程 / 基础设施 / 后台组件；C04 是系列教程，无独立仓库</span></div><div class="rejrow"><span class="t">10 条（本周看什么、GTA6、浮屏、派早报 ×2、Apple 打分、新玩意、macOS 27.3、徒步、音乐精选）</span><span class="r">消费电子 / 生活 / 游戏 / 旧闻</span></div><div class="rejrow"><span class="t">9 条（CloudRobo-WM1.2 ×2、新浪探索大会、具身机器人组队、极客大会、GTA6、SenseNova、8K 图、联想财报、Arm）</span><span class="r">具身 / 机器人 / 厂商稿 / 榜单；SenseNova 09-23 已评</span></div><div class="rejrow"><span class="t">10 条（Nvidia 董事会、AI 团队、Neon+Antigravity、智能体放手、CloudRobo、AI 漫剧、Grab、OpenBSD、Cloudflare PQ、Gemini 4 Argon）</span><span class="r">Neon 11-19 已评；其余行业 / 机器人 / 安全基础设施，无本业入口</span></div><div class="rejrow"><span class="t">5 条（形式化验证、Linear GTM、AINews Neon、AINews GPT-6.2、Cloudflare Neolab）</span><span class="r">访谈 / 通讯 / 观点；Neon 与 GPT-6.2 已评</span></div><div class="rejrow"><span class="t">6 条（Open-source AI without Jensen、open model economy、cyber risk、AA v5、Kimi 播客、open artifacts）</span><span class="r">newsletter / 观点 / 付费研究</span></div><div class="rejrow"><span class="t">4 条（DaisyRose-27B、微调时间、时序、Rumble-2-Flash）</span><span class="r">训练 / 基础设施 / 语音；非本业</span></div><div class="rejrow"><span class="t">5 条（Import AI 481–477）</span><span class="r">newsletter / 观点</span></div><div class="rejrow"><span class="t">2 条（AI 原生思维、Warp 自进化）</span><span class="r">8 月旧文</span></div><div class="rejrow"><span class="t">5 条（Fable 5.2、30 Months、Dot and the Swarm、Overhang、Agency and Agents）</span><span class="r">观点 / 旧文；Fable 11-10 已评</span></div><div class="rejrow"><span class="t">2 条（11.20 全球科技要闻、11.20 美股复盘）</span><span class="r">无中概股小节，未进正文</span></div><div class="rejrow"><span class="t">0 条</span><span class="r">抓取失败（UND_ERR_SOCKET），中概股小节不出现</span></div><div class="rejrow"><span class="t">0 条</span><span class="r">今天没有预判账本，预判回看不出现</span></div>
+    <b>每源今日条数</b><br>✅ hf-org:deepseek-ai 3 · ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15 · ✅ vendor:deepmind 10 · ✅ vendor:mistral 10 · ✅ skills:trending 12 · ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ repo:deepseek-ai/deepseek-harness 3 · ✅ commit:deepseek-ai/deepseek-harness 6 · ✅ docs:deepseek-api 0（今天没变化，非死源） · ❌ hn:show 0（失败：This operation was aborted） · ✅ hf:spaces-trending 20 · ✅ people:simonwillison 12（折叠 1） · ✅ hn:stories 5 · ✅ cn:juejin 10（正文 02、06、07） · ✅ cn:sspai 10 · ✅ cn:qbitai 10（正文 01、03） · ✅ cn:infoq 10 · ❌ market:hxc 0（失败：fetch failed (UND_ERR_SOCKET)） · ✅ market:verify 0（今天没有预判账本） · ✅ people:latent-space 6 · ✅ people:interconnects 6 · ✅ people:hf-blog 8（正文 04、05） · ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5 · ✅ people:xhs-财富拾贝 2（无中概股小节，未进正文）
+    <details class="rej"><summary>被过滤器砍掉的 35 条（信任雷达的依据）</summary>
+        <div class="rejrow"><span class="t">3 条（V4.1-Flash-1017、V4.1-Flash、V4-Flash-Vision-Exp）</span><span class="r">8–10 月旧版，无新能力</span></div><div class="rejrow"><span class="t">3 条（Qwen-Image-2.1-Turbo、PE-I2I、PE-T2I）</span><span class="r">seen：9–10 月已发，按候选标记一律不选</span></div><div class="rejrow"><span class="t">3 条（GLM-5.3-Flash-BF16、GLM-5.3-BF16、GLM-5.3-Flash）</span><span class="r">8 月旧版；两条 BF16 只是同一模型的精度格式</span></div><div class="rejrow"><span class="t">3 条（H3-Image-PE、H3-Image、M3.1-Flash）</span><span class="r">两条 seen；M3.1-Flash 是 10 月旧版</span></div><div class="rejrow"><span class="t">3 条（Kimi-K3.1-Pro、Kimi-K3、Kimi-K2.7-Code）</span><span class="r">两条 seen；K2.7-Code 是 6 月旧版</span></div><div class="rejrow"><span class="t">15 条（对抗蒸馏、Hebbia、药物候选、Performance Factory、Codex 安全插件、PR 扫描、Daybreak Blue / Red、Silent Consensus、住友生命、jagged frontier、前沿风险、芯片设计、Le Figaro 等）</span><span class="r">政策 / 客户案例 / 安全演示 / 营销；Inside the Codex sandbox 已 seen；无本业可执行入口</span></div><div class="rejrow"><span class="t">10 条（Gemini 4 Neon、Genie 4、AlphaGenome 2、AlphaProof Code、气象数据、Robotics 2.5、化学智能体等）</span><span class="r">Neon 与 Genie 4 已在 11-19 评过；其余是科学 / 机器人 / 化学；3 条 seen</span></div><div class="rejrow"><span class="t">10 条（Le Chonk Studio、Mistral NVIDIA、Timestral、Deutschland、Cloudera、legacy code 等）</span><span class="r">企业平台 / 工业合作 / 时序 / 旧代码；4 条 seen；无新可执行入口</span></div><div class="rejrow"><span class="t">12 条（ai-video-generation、design-mobile-apps、website-builder、reddit-automation、find-skills 等）</span><span class="r">7 条 seen；ai-video-generation 是同层 belt 命令行（CLI）换 owner 重上榜；其余建站 / 移动设计 / Reddit 与本业无关；find-skills 09-18 已评</span></div><div class="rejrow"><span class="t">3 条（v2.1.328–330）</span><span class="r">版本号流水，无独立能力变化</span></div><div class="rejrow"><span class="t">3 条（0.173.0-alpha.2–4）</span><span class="r">版本号流水（alpha）</span></div><div class="rejrow"><span class="t">3 条（v0.71.0 nightly / preview）</span><span class="r">nightly / preview 版本号流水</span></div><div class="rejrow"><span class="t">3 条（1.4.1–1.4.3）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v2.3.1、v2.3.2、v1.19.6）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v2.5.0、v2.4.0、v2.3.0）</span><span class="r">2.5.0 是安全修复，值得升级但不是新能力；2.4.0 seen；2.3.0 旧版</span></div><div class="rejrow"><span class="t">3 条（v1.3.0–1.3.2）</span><span class="r">版本号流水（10 月）</span></div><div class="rejrow"><span class="t">3 条（v0.2.2-rc.3–rc.5）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">6 条（release / sync / rename 提交）</span><span class="r">发布同步与重命名提交，无独立能力变化</span></div><div class="rejrow"><span class="t">0 条</span><span class="r">抓取失败（This operation was aborted），整源缺失</span></div><div class="rejrow"><span class="t">20 条（moe-blogpost、wan2-2-i2v-v3、minimax-h3-image、harness-leaderboard、bfs-best-face-swap、slack-moji、Krea2T、Qwen face-swap、LTX-2.3-10Eros、P-Image-OSS、agent-memory-leaderboard、Qwen-2511-Plus-Flux.2、ZONOS3-Mini、pi-H3、tessera、TRELLIS.2、uncensored LoRA、PyBot、clairic、Omni-Image-Editor）</span><span class="r">社区换脸 / 不适合上班浏览的内容（NSFW）/ 旧 demo / 缺可读文档；TRELLIS.2 与 Omni 已评</span></div><div class="rejrow"><span class="t">11 条（Ravi Vakil 引用、Levent Alpöge 引用、llm-gemini 0.38.1、PostgreSQL 19、llm-gemini 0.38、datasette-arrows、Stenberg 引用、PSF 募捐、External sandboxes、Datasette in browser 等）</span><span class="r">引用 / 版本流水 / 募捐 / 旧文；External sandboxes 11-18 已发；Token fraud 折叠</span></div><div class="rejrow"><span class="t">5 条（Claude 蛋白质、Mastra Factory、Onlook 等）</span><span class="r">2 条 seen；Claude 蛋白质是研究；Mastra 11-20 已评；Onlook 是设计工具</span></div><div class="rejrow"><span class="t">7 条（维度建模、RAG 通识、Agent 开发 00、Copilot 新手教程、B 站慢内容、langgraph 全栈、FDE 面试）</span><span class="r">教程 / 观点 / 面试；无本周可执行入口</span></div><div class="rejrow"><span class="t">10 条（鸿蒙高校赛、本周看什么、GTA6、浮屏、派早报 ×2、Apple 打分、新玩意、macOS 27.3、徒步）</span><span class="r">消费电子 / 生活 / 游戏 / 旧闻；与 AI 内容平台无直接关系</span></div><div class="rejrow"><span class="t">8 条（GPT-6.2 具身、混元 Reddit、米哈游 VLA、黎曼猜想、国产 Token 工厂、昇腾世界模型、新浪大会、Agnes Harness）</span><span class="r">具身 / 机器人 / 国产算力 / 会议稿；Agnes 11-21 已评；黎曼猜想无代码</span></div><div class="rejrow"><span class="t">10 条（智能体架构、TaoDesign、Entire Git Forge、Nvidia 董事会、AI 团队、Neon+Antigravity、智能体放手、CloudRobo、AI 漫剧、Grab）</span><span class="r">Neon 11-19 已评；其余行业 / 机器人 / 安全基础设施；Entire Git Forge 未见独立仓库</span></div><div class="rejrow"><span class="t">0 条</span><span class="r">抓取失败（UND_ERR_SOCKET），中概股小节不出现</span></div><div class="rejrow"><span class="t">0 条</span><span class="r">今天没有预判账本，预判回看不出现</span></div><div class="rejrow"><span class="t">6 条（Riemann、形式化验证、Linear GTM、AINews Neon、AINews GPT-6.2、Anthropic IPO）</span><span class="r">1 条 seen；其余是通讯 / 访谈 / 观点；形式化验证是解读，不是可上手工具</span></div><div class="rejrow"><span class="t">6 条（Open-source AI without Jensen、open model economy、cyber risk、AA v5、Kimi 播客、open artifacts）</span><span class="r">newsletter / 观点 / 付费研究</span></div><div class="rejrow"><span class="t">6 条（Inkling 2 Mini、harness adapters、微调时间、时序、180B MoE、OpenRouter）</span><span class="r">Inkling 11-21 已评；三条 seen；其余是训练 / 基础设施</span></div><div class="rejrow"><span class="t">5 条（Import AI 481–477）</span><span class="r">newsletter / 观点</span></div><div class="rejrow"><span class="t">5 条（NotebookLM、桃花源记、电商 Agent、AI 原生思维、Warp 自进化）</span><span class="r">2 条 seen；其余是 8–9 月旧文</span></div><div class="rejrow"><span class="t">5 条（Fable 5.2、30 Months、Dot and the Swarm、Overhang、Agency and Agents）</span><span class="r">观点 / 旧文</span></div><div class="rejrow"><span class="t">2 条（11.21 美股复盘、11.21 全球科技要闻）</span><span class="r">无中概股小节，未进正文</span></div>
       </details>
   </div>
 </div>
