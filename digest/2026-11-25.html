@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>雷达简报 2026-11-25</title>
+<script>
+(function(){var m='auto';try{m=localStorage.getItem('radar.theme')||'auto'}catch(e){}
+var d=(m==='dark')||(m!=='light'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
+document.documentElement.setAttribute('data-theme',d?'dark':'light');})();
+</script>
+<style>
+:root{
+  color-scheme:light;
+  --ink:#16181d;--ink2:#4a4f5a;--ink3:#878d99;--line:#e6e8ec;--bg:#fff;--bg2:#f7f8fa;
+  --ok:#0f7b53;--warm:#c2410c;--link:#1d4ed8;
+  --tap:#f7f8fa;--seg-bg:#fff;--seg-on-ink:#fff;--btn-bg:#fff;
+  --c-model:#1d4ed8;--c-model-bg:#f2f5ff;--c-model-line:#dbe4ff;
+  --c-skill:#7c2d12;--c-skill-bg:#fff6f1;--c-skill-line:#ffe4d3;
+  --c-tool:#0f7b53;--c-tool-bg:#f1fbf6;--c-tool-line:#d6f0e4;
+  --c-cn:#7e22ce;--c-cn-bg:#faf5ff;--c-cn-line:#efe0ff;
+  --c-people:#0369a1;--c-people-bg:#f2f9ff;--c-people-line:#d6ecfb;
+  --c-method:#4a4f5a;--c-method-bg:#f7f8fa;--c-method-line:#e6e8ec;
+  --card-bg:#f5f6f9;--card-line:#d9dde7;--card-spine:#2f5bd7;--card-det:#edeff4;
+  --card-sep:#e2e5ed;--card-k:#69738c;--card-det-ink:#3f4553;
+  --more-bg:#f2f5ff;--more-line:#dbe4ff;--more-bg-on:#fff;--more-line-on:#ccd6ec;
+  --star:#c9ced8;--star-on:#e8a90c;--star-hover:#d9a406;
+  --fav-bg:#fffdf6;--fav-line:#ece5cf;--fav-ink:#8a6d1f;--fav-sep:#f2eddd;
+  --drift-bg:#fff7ed;--drift-line:#fed7aa;--drift-ink:#9a3412;
+}
+/* 暗色。**只覆盖变量**，不动任何规则 —— 所以明暗两套永远不会走偏。
+   JS 会把 data-theme 落到 <html> 上：auto 由脚本解析成实际的 light/dark，
+   所以 CSS 里不需要再写一遍 @media (prefers-color-scheme)。 */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ink:#e4e7ee;--ink2:#a6adbb;--ink3:#79808e;--line:#2a2f38;--bg:#14161a;--bg2:#0e1013;
+  --ok:#54c894;--warm:#f2935e;--link:#7fa6ff;
+  --tap:#1b1f27;--seg-bg:#1c212a;--seg-on-ink:#14161a;--btn-bg:#1c212a;
+  --c-model:#8fb4ff;--c-model-bg:#182338;--c-model-line:#28395a;
+  --c-skill:#f0a97f;--c-skill-bg:#2a1e17;--c-skill-line:#44301f;
+  --c-tool:#6ed3a4;--c-tool-bg:#14291f;--c-tool-line:#204434;
+  --c-cn:#c6a4f2;--c-cn-bg:#221a30;--c-cn-line:#372a4b;
+  --c-people:#74c2e8;--c-people-bg:#132530;--c-people-line:#1f3d4d;
+  --c-method:#a6adbb;--c-method-bg:#1c212a;--c-method-line:#2a2f38;
+  --card-bg:#1c212a;--card-line:#333a46;--card-spine:#5b82f0;--card-det:#171b22;
+  --card-sep:#2b313b;--card-k:#8b93a3;--card-det-ink:#c3c9d4;
+  --more-bg:#1b2740;--more-line:#2c3d5f;--more-bg-on:#20242d;--more-line-on:#343c4a;
+  --star:#4c525e;--star-on:#f0b429;--star-hover:#ffc94d;
+  --fav-bg:#1f1b12;--fav-line:#3a3221;--fav-ink:#dcb862;--fav-sep:#2b2618;
+  --drift-bg:#2a1c12;--drift-line:#4a3320;--drift-ink:#f0a97f;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg2);color:var(--ink);
+font:15px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+body{padding:0 0 40px}
+.phone{max-width:460px;margin:0 auto;background:var(--bg);min-height:100vh}
+/* 宽屏（电脑）：容器放宽一倍（460 -> 920），字号与内边距同步放大，读起来不空 */
+@media (min-width:960px){
+  .phone{max-width:920px;box-shadow:0 0 0 1px var(--line)}
+  body{font-size:16px}
+  .head{padding:26px 32px 14px}
+  .count{padding:10px 32px 4px}
+  .hit{padding:14px 32px}
+  .det{padding:12px 32px 20px 68px}
+  .fold,.foot{padding-left:32px;padding-right:32px;margin-left:0;margin-right:0}
+  .drift{margin-left:32px;margin-right:32px}
+}
+@media (max-width:520px){.phone{box-shadow:none}}
+.kicker{font-size:11px;letter-spacing:.14em;color:var(--ink3);font-weight:600;
+font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.drift{margin:12px 18px 0;padding:10px 12px;border-radius:10px;background:var(--drift-bg);
+border:1px solid var(--drift-line);color:var(--drift-ink);font-size:13px}
+.head{padding:18px 18px 12px}
+h1{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
+.strap{font-size:12px;color:var(--ink2)}
+/* 固定块（中概股 · 美股收盘）：跟正文条目分开 —— 它不参与上面三个筛选，
+   所以永远可见；当天的详情页入口由 detailIds 决定有没有。 */
+.wealth{margin:14px 18px 4px;padding:12px 14px;border-radius:12px;
+ background:var(--bg2);border:1px solid var(--line)}
+.wealth h4{margin:0 0 8px;font-size:12px;font-weight:700;color:var(--ink2);letter-spacing:.03em}
+.wealth h4 a{margin-left:6px;font-weight:600;color:var(--link);text-decoration:none}
+.wealth ul{margin:0;padding:0;list-style:none}
+.wealth li{padding:7px 0;border-top:1px solid var(--line);font-size:13.5px;line-height:1.5}
+.wealth li:first-child{border-top:0;padding-top:0}
+.wealth li:last-child{padding-bottom:0}
+.wealth .t{color:var(--ink3);margin-right:6px;font-variant-numeric:tabular-nums;font-size:12px}
+.wealth .n{font-weight:600}
+.wealth .n a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+.wealth .n a:active{opacity:.6}
+.wealth .o{display:block;margin-top:2px;color:var(--ink2);font-size:12.5px}
+@media (min-width:960px){.wealth{margin-left:32px;margin-right:32px}}
+.segs{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.seg{font-size:12px;padding:5px 11px;border-radius:99px;border:1px solid var(--line);
+background:var(--seg-bg);color:var(--ink2);cursor:pointer;font-weight:600;font-family:inherit}
+.seg[aria-pressed="true"]{background:var(--ink);color:var(--seg-on-ink);border-color:var(--ink)}
+/* 主题开关：在 kicker 那一行的最右边。三态循环 自动 → 亮 → 暗 → 自动，
+   按钮上显示的是**当前**状态（而不是"点了会变成什么"）—— 后者每次都得在脑子里转一道 */
+.kickerrow{display:flex;gap:10px;align-items:center;justify-content:space-between}
+.themebtn{flex:none;border:1px solid var(--line);background:var(--btn-bg);color:var(--ink3);
+ border-radius:99px;font:inherit;font-size:11px;font-weight:600;padding:3px 10px;cursor:pointer;
+ font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
+.themebtn:active{transform:scale(.96)}
+.count{font-size:11px;color:var(--ink3);padding:8px 18px 4px;font-family:ui-monospace,Menlo,monospace}
+/* 四条边都预留：折叠态只留最上面那条细线，左右和下边是**透明**占位 ——
+   展开时把整圈轮廓点亮，宽度不变（否则一展开内容会横向抖一下）。左边留 3px 给脊线。 */
+.row{border:1px solid transparent;border-top-color:var(--line);border-left-width:3px}
+.row:last-of-type{border-bottom-color:var(--line)}
+.hit{display:flex;gap:10px;align-items:center;width:100%;text-align:left;padding:12px 18px;
+background:none;border:0;font:inherit;color:inherit;cursor:pointer;list-style:none}
+.hit::-webkit-details-marker{display:none}
+.hit:active{background:var(--tap)}
+.n{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--ink3);width:16px;flex:none}
+.tt{flex:1;min-width:0}
+.t1{font-weight:600;font-size:14.5px;line-height:1.35;display:block}
+.t1b{margin-top:2px;font-size:12.5px;color:var(--ink2);line-height:1.45;
+ display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.t2{margin-top:3px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.car{color:var(--ink3);font-size:16px;flex:none;transition:transform .15s,color .15s}
+
+/* ── 展开态：整条（摘要头 + 正文区）合起来是**一张卡** ──────────────────
+   折叠态 = 白底、只有细线分隔，安静地排成一列（这是拿来扫读的）。
+   展开态 = 整圈**中性灰**轮廓收边，左边加粗成一条蓝色脊线；摘要头和正文区同属一个
+            灰阶、只差深浅，看着是"这一条展开了"而不是"下面贴了另一块东西"。
+   底色**刻意用灰不用蓝**：第一版把摘要头和正文区都染成浅蓝，一整块大面积蓝底压着字，
+   读起来发闷、也显得比实际更"重"。蓝色只留给脊线和星标这种小面积强调。 */
+.row[open]{background:var(--card-bg);border-color:var(--card-line);border-left-color:var(--card-spine)}
+.row[open] + .row{border-top-color:transparent} /* 别和上面那张卡的下轮廓叠成两像素 */
+.row[open] .hit{background:transparent}
+.row[open] .n{color:var(--card-spine);font-weight:700}
+.row[open] .t1b{-webkit-line-clamp:3}
+.row[open] .car{color:var(--card-spine);transform:rotate(90deg)}
+.row[open] .det{background:var(--card-det);border-top:1px solid var(--card-sep);color:var(--card-det-ink);
+ animation:detin .18s ease-out}
+.row[open] .det .k{color:var(--card-k)} /* 底变深了，小标签得跟着压深一点才够清楚 */
+.row[open] .det .more{background:var(--more-bg-on);border-color:var(--more-line-on)}
+@keyframes detin{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.row[open] .det{animation:none}}
+.chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;border:1px solid var(--line);
+color:var(--ink2);background:var(--bg2);font-family:ui-monospace,Menlo,monospace;white-space:nowrap}
+.chip.model{color:var(--c-model);border-color:var(--c-model-line);background:var(--c-model-bg)}
+.chip.skill{color:var(--c-skill);border-color:var(--c-skill-line);background:var(--c-skill-bg)}
+.chip.tool{color:var(--c-tool);border-color:var(--c-tool-line);background:var(--c-tool-bg)}
+.chip.cn{color:var(--c-cn);border-color:var(--c-cn-line);background:var(--c-cn-bg)}
+.chip.people{color:var(--c-people);border-color:var(--c-people-line);background:var(--c-people-bg)}
+.chip.method{color:var(--c-method);border-color:var(--c-method-line);background:var(--c-method-bg)}
+.cost{font-weight:700}.cost.fast{color:var(--ok)}.cost.slow{color:var(--warm)}
+.src{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
+.det{padding:12px 18px 16px 44px;font-size:13.5px;color:var(--ink2)}
+.det .k{color:var(--ink3);font-size:11px;display:block;margin:8px 0 1px;font-family:ui-monospace,Menlo,monospace}
+.det a{color:var(--link);word-break:break-all}
+.det .more{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--link);
+ text-decoration:none;border:1px solid var(--more-line);background:var(--more-bg);padding:6px 12px;border-radius:99px}
+
+/* ── 收藏 ───────────────────────────────────────────────────────────────
+   星标是行内一个独立可点的小按钮：点它**只收藏、不展开**（在 click 里 preventDefault
+   拦掉 summary 的默认展开行为）。它故意做得比箭头显眼：箭头是"看更多"，星是"留下"。
+   颜色只用星星该有的琥珀色，不跟正文抢注意力（页面主色是灰 + 一个克制的蓝）。 */
+.star{flex:none;border:0;background:none;padding:2px 0 2px 6px;cursor:pointer;font:inherit;
+ font-size:19px;line-height:1;color:var(--star);transition:color .15s,transform .12s}
+.star:hover{color:var(--star-hover)}
+.star:active{transform:scale(.85)}
+.star[aria-pressed="true"]{color:var(--star-on)}
+/* 收藏盒：只在有收藏时才出现（否则每天早上都挂一个空盒子，是噪音） */
+.favbox{margin:0 18px 12px;border:1px solid var(--fav-line);background:var(--fav-bg);border-radius:10px}
+.favbox>summary{cursor:pointer;list-style:none;padding:9px 12px;font-size:12.5px;font-weight:700;
+ color:var(--fav-ink);font-family:ui-monospace,Menlo,monospace}
+.favbox>summary::-webkit-details-marker{display:none}
+.favbox>summary::before{content:"▸ "}
+.favbox[open]>summary::before{content:"▾ "}
+.favlist{padding:0 12px}
+.favrow{padding:7px 0;border-top:1px solid var(--fav-sep)}
+.favt{display:block;font-size:13.5px;font-weight:600;color:var(--link);text-decoration:none;line-height:1.4}
+.favo{margin-top:2px;font-size:12px;color:var(--ink2);line-height:1.45}
+.favm{display:flex;gap:10px;align-items:center;margin-top:3px}
+.favd{font-size:11px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}
+.favrm,.favcopy{border:1px solid var(--line);background:var(--btn-bg);color:var(--ink2);border-radius:99px;
+ font:inherit;font-size:11px;padding:2px 9px;cursor:pointer}
+.favcopy{display:block;margin:6px 12px 11px}
+.empty{padding:22px 18px;color:var(--ink3);font-size:13px}
+.fold{margin:16px 18px 0;font-size:12px;color:var(--ink3);line-height:1.7}
+.foot{margin-top:22px;padding:16px 18px 26px;border-top:1px solid var(--line);font-size:12px;color:var(--ink3);line-height:1.9}
+.foot b{color:var(--ink2)}
+details.rej{margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}
+details.rej summary{cursor:pointer;font-weight:600;color:var(--ink3);list-style:none}
+details.rej summary::-webkit-details-marker{display:none}
+details.rej summary::before{content:"▸ "}
+details.rej[open] summary::before{content:"▾ "}
+.rejrow{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--bg2);font-size:12px}
+.rejrow .t{flex:1;color:var(--ink2)}.rejrow .r{color:var(--ink3);flex:1.2}
+</style>
+</head><body>
+<div class="phone">
+  <div class="drift">⚠️ 本地技能补丁漂移：implement、code-review（详情：radar\skill-drift.md）</div>
+  <div class="head">
+    <div class="kickerrow">
+      <span class="kicker">雷达简报 · 2026-11-25</span>
+      <button class="themebtn" id="themebtn" type="button">◐ 自动</button>
+    </div>
+    <h1>6 条 · 先扫，再展开</h1>
+    <div class="strap">候选 218 条 / 36 源（35 成功 · 1 源失败 · 2 个 0 条源）· 新增 190 条 · seen 28 条 · 正文 6 条 · 折叠 1 条 · 中概股 1 · 预判回看 0 · 财富拾贝 0（源失败）· 砍掉 210 条。</div>
+    <div class="segs">
+      <button class="seg" data-f="all" aria-pressed="true">全部 6</button>
+      <button class="seg" data-f="fast" aria-pressed="false">15 分钟 4</button>
+      <button class="seg" data-f="tool" aria-pressed="false">技能工具 1</button>
+      <button class="seg" data-f="fav" aria-pressed="false">★ 收藏 <span id="favn">0</span></button>
+    </div>
+  </div>
+  <div class="count" id="cnt">显示 6 / 6 条</div>
+  <details class="favbox" id="favbox" style="display:none">
+    <summary>我的收藏 <span id="favcnt">0</span></summary>
+    <div class="favlist" id="favlist"></div>
+    <button class="favcopy" id="favcopy" type="button">复制清单</button>
+  </details>
+  
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">01</span>
+        <span class="tt">
+          <span class="t1">CreatorHub：一个本地面板，管十个平台的采集、监控与发布</span>
+          <span class="t1b">十个平台的采集、监控与发布，收在一个本地面板。</span>
+          <span class="t2">
+            <span class="chip cn">中文</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">cn:juejin</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-25-01" data-date="2026-11-25" data-t="CreatorHub：一个本地面板，管十个平台的采集、监控与发布"
+          data-o="十个平台的采集、监控与发布，收在一个本地面板。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>CreatorHub 是本地运行的内容管理面板（源码公开），覆盖抖音、小红书、海外小红书、快手、视频号、B站、TikTok、Instagram、X、Facebook 十个平台；同一个界面里管账号、按关键词采集、盯创作者更新、下载图片视频、看评论和弹幕，也能提交发布任务看队列。账号登录态、数据库和媒体文件都存在本地，Windows 用安装版，macOS/Linux 从源码跑（要 Python 3.10 以上）。
+        <span class="k">为什么值得你花时间</span>你做内容平台，选题采集、素材下载、多账号发布是每天的手工活；它把这条链收进一个面板，还给了跨平台账号矩阵、错峰群发和本地缓存。今天先只接一个平台（小红书或 B 站），用一条自己拥有或获准保存的内容跑通「关键词采集→下载→看评论」，重点看登录态能不能复用、发布失败时给不给原因。边界：仓库没有写许可证，商用或二次分发前要问作者；多账号防关联、搬运和自动发布很容易踩平台规则，别用主账号，只处理自有或授权内容；电脑休眠或服务关掉，任务就停。
+        <span class="k">上手成本</span>15 分钟（装 Windows 版 + 跑通一个平台）
+        <span class="k">入口</span><a href="https://github.com/3441293738/creatorhub" target="_blank" rel="noopener noreferrer">https://github.com/3441293738/creatorhub</a>
+        <a class="more" href="detail/2026-11-25-01.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="1">
+      <summary class="hit">
+        <span class="n">02</span>
+        <span class="tt">
+          <span class="t1">ui-taste：给编码智能体一条审界面的工作流</span>
+          <span class="t1b">让编码智能体按步骤挑布局、修界面细节。</span>
+          <span class="t2">
+            <span class="chip skill">技能</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">skills:trending</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-25-02" data-date="2026-11-25" data-t="ui-taste：给编码智能体一条审界面的工作流"
+          data-o="让编码智能体按步骤挑布局、修界面细节。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>ui-taste 是 Uizze 放在 skills.sh 上的一条免费技能（给编码智能体读的指令集），把「先选布局、再修视觉层级、最后抠间距/字体/颜色」写成智能体能执行的步骤；覆盖 Web 和 iOS，能读现有组件、设计令牌（颜色/字号/间距这些全局变量）和视觉语言，也可以选接付费的 Uizze MCP（让智能体取真实产品参考和素材的接口）。装完对智能体说「改这个页面」，它就按这套流程走。
+        <span class="k">为什么值得你花时间</span>你的画布/编辑器功能对了，但界面「看起来像 AI 做的」是常见问题；这条把审美拆成可执行步骤，15 分钟就能拿一个现有页面试。今天挑平台上最丑的一个设置页或节点面板，让它先出 3 版布局再选，重点看它是按你的设计令牌改，还是套一套通用模板。边界：它是提示词/流程，不是设计系统；免费版只有工作流，真实产品参考要付费 MCP；Web/iOS 为主，画布这种复杂交互得自己补规则；110 万次安装是热度，不代表适合你。
+        <span class="k">上手成本</span>15 分钟（装技能 + 改一个页面）
+        <span class="k">入口</span><a href="https://www.skills.sh/site/uizze.sh/ui-taste" target="_blank" rel="noopener noreferrer">https://www.skills.sh/site/uizze.sh/ui-taste</a>
+        <a class="more" href="detail/2026-11-25-02.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="0" data-tool="0">
+      <summary class="hit">
+        <span class="n">03</span>
+        <span class="tt">
+          <span class="t1">GLM-5.4：不堆参数，把 28 层再跑一遍的 750B 旗舰编码模型</span>
+          <span class="t1b">智谱用重复计算换深度的旗舰编码模型。</span>
+          <span class="t2">
+            <span class="chip people">跟人</span>
+            <span class="cost slow">需要申请 key</span>
+            <span class="src">people:simonwillison</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-25-03" data-date="2026-11-25" data-t="GLM-5.4：不堆参数，把 28 层再跑一遍的 750B 旗舰编码模型"
+          data-o="智谱用重复计算换深度的旗舰编码模型。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>智谱 11-23 发布的 GLM-5.4，是智谱第一个把「循环 Transformer」（同一组层在一次前向里跑多遍，用重复计算换深度，不增加参数）做成旗舰的模型：把 GLM-5 基座的 28 层跑两遍，总参约 750B（7500 亿），支持文本、图像、视频输入和 100 万词元（token，模型读写文本的基本单位）上下文。目前只能通过 GLM Coding Plan、ZCode 和 Z.ai Chat 用，通用接口（API）和开放权重都还没上线。
+        <span class="k">为什么值得你花时间</span>你在选编码模型，这条给了一个「不堆参数、用循环换推理深度」的新路线，且它带视觉、能写代码生成视频/游戏/CAD/3D 场景，和你的 AIGC 业务直接相关。但第三方实测很分裂：KingBench 4（第三方编码基准）总榜第 7；第三方评测把它排成开源模型第 1，可权重还没开。跑完 431 分钟、1128 步、约 104 万词元，而 Gemini 4 Neon 是 109 分钟、244 步、约 7 万词元；它的长处在代码审查和安全审计，不适合当主编码代理。今天别急着迁生产，拿 10–20 个你仓库里的真实任务，显式设成 high 档（控制思考时长的档位）、给足超时，记录通过率、耗时和费用，再决定是否把它当第二评审。边界：官方没发模型卡和完整基准，750B/28 层来自官方与媒体报道；会陷入「马拉松式思考」，最大档可能一直想不出答案；权重未开，自托管现在排不进计划。
+        <span class="k">上手成本</span>需要申请 key（GLM Coding Plan 的访问凭证）
+        <span class="k">入口</span><a href="https://z.ai/blog/glm-5.4" target="_blank" rel="noopener noreferrer">https://z.ai/blog/glm-5.4</a>
+        <a class="more" href="detail/2026-11-25-03.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">04</span>
+        <span class="tt">
+          <span class="t1">Reverb-TTS：297M 参数、七种语言的免微调声音克隆</span>
+          <span class="t1b">给几秒录音就能克隆声音的轻量语音模型。</span>
+          <span class="t2">
+            <span class="chip tool">小而美</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">hf:spaces-trending</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-25-04" data-date="2026-11-25" data-t="Reverb-TTS：297M 参数、七种语言的免微调声音克隆"
+          data-o="给几秒录音就能克隆声音的轻量语音模型。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Software Mansion 开源的语音合成模型：给 3–20 秒干净录音和逐字稿，它就能用这个声音读任意文本，保留音色、语气和情绪；297M（2.97 亿）参数，支持英/德/法/西/意/波/葡七种语言，官方称在 Open TTS Leaderboard 的 MiniMax 测试集上词错率 0.96%，H200 批量 32 时 232 倍实时，int4（4 位压缩）权重只有 191MB，能在浏览器里用 WebGPU（让网页直接调用显卡的接口）跑。
+        <span class="k">为什么值得你花时间</span>你做视频生成，配音是最容易卡住的一环；这条把「几分钟录音→任意台词」压到 15 分钟能试，而且小到能在笔记本和手机端跑。今天用一段 10 秒英文或德文录音跑一遍克隆，听音色、语气和长句稳定性，再算一下批量配音的实时倍率。边界：不支持中文，中文口播别硬上；权重是 CC BY-NC 4.0（署名、非商用），商用要单独谈授权，代码才是 Apache 2.0（可商用）；参考录音的噪声、回声和麦克风音色会被一起复制；没有独立情绪控制，想要生气就用生气的参考。
+        <span class="k">上手成本</span>15 分钟（浏览器演示试一段）
+        <span class="k">入口</span><a href="https://huggingface.co/software-mansion/Reverb-TTS" target="_blank" rel="noopener noreferrer">https://huggingface.co/software-mansion/Reverb-TTS</a>
+        <a class="more" href="detail/2026-11-25-04.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="0" data-tool="0">
+      <summary class="hit">
+        <span class="n">05</span>
+        <span class="tt">
+          <span class="t1">iFood 的远程智能体平台：一万五千个仓库，一次接口调用</span>
+          <span class="t1b">把编码智能体做成内部接口，派给一万五千个仓库。</span>
+          <span class="t2">
+            <span class="chip model">模型</span>
+            <span class="cost slow">1 小时</span>
+            <span class="src">vendor:openai</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-25-05" data-date="2026-11-25" data-t="iFood 的远程智能体平台：一万五千个仓库，一次接口调用"
+          data-o="把编码智能体做成内部接口，派给一万五千个仓库。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>iFood 把编码智能体包成一个内部「远程智能体平台」：团队用 REST 接口（一种通过 HTTP 调用的编程接口）提交任务和环境要求，平台在隔离沙箱（独立环境，跑完即弃）里用 GPT-5.6 Luna 执行，最后把结果做成合并请求返回；克隆仓库、导入技能、建分支、发布合并请求这些确定性步骤由平台做，中间才是智能体执行。跑完用结构化输出（按预定义字段返回结果）判断成功还是失败；官方称已跑 2.5 万次任务、消耗 270 亿词元，平均每次 0.04 美元。
+        <span class="k">为什么值得你花时间</span>你在 Gitea 上跑 wayfinder，仓库一多，难点不是单个任务，而是一万五千个仓库都要定期做同一件事。这条给了一个可抄的骨架：内部接口 + 隔离沙箱 + 确定性步骤包住智能体 + 结构化结果 + 按次成本。今天先算一笔账：你最常做的重复任务（依赖升级、规范检查、漏洞修复）一次要多少词元、多少钱；再把「成功/失败」定义成固定字段，别让智能体自己说「完成了」。边界：这是 iFood 内部平台，没有开源代码；用的模型是 GPT-5.6 Luna；「修复准确率和漏洞数翻倍」是 OpenAI 客户故事口径，不是独立评测。
+        <span class="k">上手成本</span>1 小时（读架构 + 对照自己的仓库流程）
+        <span class="k">入口</span><a href="https://openai.com/business/customer-stories/ifood" target="_blank" rel="noopener noreferrer">https://openai.com/business/customer-stories/ifood</a>
+        <a class="more" href="detail/2026-11-25-05.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+
+    <details class="row" data-fast="1" data-tool="0">
+      <summary class="hit">
+        <span class="n">06</span>
+        <span class="tt">
+          <span class="t1">三个拐点：过去一年大模型能力是怎么跳的</span>
+          <span class="t1b">复盘过去一年大模型的三次能力跃迁。</span>
+          <span class="t2">
+            <span class="chip people">跟人</span>
+            <span class="cost fast">15 分钟</span>
+            <span class="src">people:simonwillison</span>
+          </span>
+        </span>
+        <span class="car">›</span>
+        <button class="star" type="button" aria-pressed="false" aria-label="收藏这一条"
+          data-id="2026-11-25-06" data-date="2026-11-25" data-t="三个拐点：过去一年大模型能力是怎么跳的"
+          data-o="复盘过去一年大模型的三次能力跃迁。" data-hd="1">☆</button>
+      </summary>
+      <div class="det">
+        <span class="k">是什么</span>Simon Willison 把过去 12 个月大语言模型（LLM，用大量文本训练、能读写和推理的模型）的能力变化归成三次拐点：2025-11 的编码智能体（Claude Opus 4.5、GPT-5.1 Codex 开始「默认结果基本对」）、2026 年中的 Fable 类模型（给目标和工具就能硬解复杂问题）、2026 年 9–10 月的 3D 与游戏（Blender 是开源 3D 建模软件，Three.js 是网页 3D 库；模型能出可信模型，Opus 5.5 甚至能花 12 小时把游戏改得「好玩」）。他用自己一年里的项目做例子，不是榜单。
+        <span class="k">为什么值得你花时间</span>你做视频/画布，3D 与游戏能力不是噱头：它意味着「用代码生成可交互场景」的门槛在降，分镜、运镜、场景预演可以更大胆地交给模型；同时它也提醒你，模型能力是锯齿状的——同一代模型在 3D 上很强，在别的地方可能仍会翻车。今天花 15 分钟读一遍，把「哪些环节可以换更强的模型、哪些可以给更长的自主执行」列成一张小表，别只看单点 demo。边界：这是个人体验复盘，不是基准；Fable 5.2 算不算第四次拐点，作者自己也没定。
+        <span class="k">上手成本</span>15 分钟（读复盘）
+        <span class="k">入口</span><a href="https://simonwillison.net/2026/Nov/24/llm-inflection-points/" target="_blank" rel="noopener noreferrer">https://simonwillison.net/2026/Nov/24/llm-inflection-points/</a>
+        <a class="more" href="detail/2026-11-25-06.html">读详情（翻译 + 要点）→</a>
+      </div>
+    </details>
+  <div class="empty" id="empty" style="display:none">这个筛选下没有条目。</div>
+  
+  <div class="wealth"><h4>中概股 · 美股收盘 <a href="detail/2026-11-25-csi.html">详情 ›</a></h4><ul><li>金龙 5146.70 +0.12%（纳指 -1.48%）｜恒指 -0.73%｜恒科 -1.17%｜费半(SOXX) -8.27%</li><li>京东：美股 25.73 +1.66%／港股 97.05 -0.51%</li><li>互联网：阿里(US) -1.37% 阿里(HK) -1.02% 拼多多 +0.09% 网易 -2.68% 百度 -2.79% B站 +1.93% 美团 -3.31% 腾讯 -0.70%</li><li>判断：费半 -8.27% 与纳指 -1.48% 明显背离，先把它当成半导体端的单独风险，而不是全面避险；金龙仅 +0.12%、恒科 -1.17%，说明中概只是没跟着杀、不是新主线，京东美股涨/港股跌仍是收盘时差，今天看恒科开盘会不会补跌、京东港股 97 关口守不守。</li></ul></div>
+  
+  <div class="fold">还有 1 条：①【知情】OpenAI 让 GPT-6 只用推理和代码设计蛋白质：322 个迷你结合蛋白里有 35 个（10.9%）在实验室测到结合，5 个靶点各至少 1 个命中；同一代模型在「从序列预测完整结构」上仍明显落后专用模型——这是「能力锯齿」的又一个样本，暂时没有可用的模型或工具入口（https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities）。</div>
+  <div class="foot">
+    <b>每源今日条数</b><br>✅ hf-org:deepseek-ai 3 · ✅ hf-org:Qwen 3 · ✅ hf-org:zai-org 3 · ✅ hf-org:MiniMaxAI 3 · ✅ hf-org:moonshotai 3 · ✅ vendor:openai 15（正文 05、折叠 1）· ✅ vendor:deepmind 10 · ✅ vendor:mistral 10 · ✅ skills:trending 12（正文 02）· ✅ repo:anthropics/claude-code 3 · ✅ repo:openai/codex 3 · ✅ repo:google-gemini/gemini-cli 3 · ✅ repo:github/spec-kit 3 · ✅ repo:sst/opencode 3 · ✅ repo:modelcontextprotocol/servers 3 · ✅ repo:mattpocock/skills 3 · ✅ repo:deepseek-ai/deepseek-harness 3 · ✅ commit:deepseek-ai/deepseek-harness 6 · ✅ docs:deepseek-api 0（今天没变化，非死源）· ✅ hn:show 12 · ✅ hf:spaces-trending 20（正文 04）· ✅ people:simonwillison 12（正文 03、06）· ✅ hn:stories 6 · ✅ cn:juejin 10（正文 01）· ✅ cn:sspai 10 · ✅ cn:qbitai 10 · ✅ cn:infoq 10 · ✅ market:hxc 1（中概股）· ✅ market:verify 0（今天没有预判账本）· ✅ people:latent-space 6 · ✅ people:interconnects 6 · ✅ people:hf-blog 8 · ✅ people:import-ai 5 · ✅ people:baoyu 5 · ✅ people:one-useful-thing 5 · ❌ people:xhs-财富拾贝 0（失败：页面里没有 __INITIAL_STATE__，可能被风控拦了）
+    <details class="rej"><summary>被过滤器砍掉的 33 条（信任雷达的依据）</summary>
+        <div class="rejrow"><span class="t">3 条（DeepSeek-V4.1-Flash-1017、V4.1-Flash、V4-Flash-Vision-Exp）</span><span class="r">8–10 月旧版，无新能力；近期已同理由砍过</span></div><div class="rejrow"><span class="t">3 条（Qwen-Image-2.1-Turbo、PE-I2I、PE-T2I）</span><span class="r">2 条 seen；PE-T2I 是 9 月旧版</span></div><div class="rejrow"><span class="t">3 条（GLM-5.3-Flash-BF16、GLM-5.3-BF16、GLM-5.3-Flash）</span><span class="r">8 月旧版；两条 BF16 只是同一模型的精度格式</span></div><div class="rejrow"><span class="t">3 条（H3-Image-PE、H3-Image、M3.1-Flash）</span><span class="r">2 条 seen；M3.1-Flash 是 10 月旧版</span></div><div class="rejrow"><span class="t">3 条（Kimi-K3.1-Pro、Kimi-K3、Kimi-K2.7-Code）</span><span class="r">2 条 seen；K2.7-Code 是 6 月旧版</span></div><div class="rejrow"><span class="t">13 条（行星搜索、Intentful、Clay、Shirudo、Richpanel、Perplexity 评测、对抗蒸馏、Hebbia、药物候选、Performance Factory、PR 扫描、Daybreak Red 等）</span><span class="r">客户案例 / 营销 / 安全演示；Shirudo 是 Linux 运行时，与本业无直接关系；iFood 进正文 05，蛋白质设计折叠</span></div><div class="rejrow"><span class="t">10 条（量子算法、Neon、Genie 4、Hydrogen、AlphaGenome 2、Carbon、AlphaProof Code、气象数据、Robotics 2.5、Omni 1.2）</span><span class="r">3 条 seen；Neon / Genie 4 / AlphaProof / Hydrogen / Carbon 已在近几天评过；量子算法是研究</span></div><div class="rejrow"><span class="t">10 条（Le Chonk Studio、NVIDIA、Timestral、慕尼黑、Cloudera、legacy code 等）</span><span class="r">4 条 seen；企业平台 / 工业合作 / 时序 / 旧代码，无新可执行入口</span></div><div class="rejrow"><span class="t">11 条（ai-video-generation、design-mobile-apps、find-skills、website-builder、reddit-automation、video-edit、ai-music、ai-image-generation、ai-video-generation、hyperframes、agent-browser）</span><span class="r">6 条 seen；ai-video-generation 11-15 已评（同属 beltsh，今天回 rank 1）；design-mobile-apps / website-builder / reddit-automation 与主业无直接关系；find-skills 09-18 已评；ui-taste 进正文 02</span></div><div class="rejrow"><span class="t">3 条（v2.1.329–331）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（0.174.0-alpha.2–alpha.4）</span><span class="r">alpha 版本号流水</span></div><div class="rejrow"><span class="t">3 条（v0.71.0–v0.72.0-preview.0）</span><span class="r">nightly / 版本号流水</span></div><div class="rejrow"><span class="t">3 条（1.4.2–1.4.4）</span><span class="r">版本号流水</span></div><div class="rejrow"><span class="t">3 条（v2.4.1、v2.4.0、v2.3.2）</span><span class="r">2.4.0 seen 且 11-24 已评；2.4.1 只是 macOS 12 会话修复；2.3.2 是旧版</span></div><div class="rejrow"><span class="t">3 条（v2.5.0、v2.4.0、v2.3.0）</span><span class="r">2.5.0 / 2.4.0 seen 且 11-24 已评；2.3.0 旧版</span></div><div class="rejrow"><span class="t">3 条（v1.3.0–1.3.2）</span><span class="r">版本号流水（10 月）</span></div><div class="rejrow"><span class="t">3 条（v0.2.3-alpha.1 / alpha.2 / v0.2.2-rc.5）</span><span class="r">alpha 版本号流水</span></div><div class="rejrow"><span class="t">6 条（release / vendor 同步 / 测试提交）</span><span class="r">发布同步与测试提交，无独立能力变化</span></div><div class="rejrow"><span class="t">12 条（Mastra Factory、Type Fighter 2、Foolscap、ExitPath、Voyager 1、Tinnitus、OpenStreetMap、OpenComputer、Drive 3D、Subagent 游戏、Cornhole News、Zero C#）</span><span class="r">游戏 / 可视化 / 写作 / 健康 / 小工具；Mastra 11-20 已评；与 AIGC 主业无直接关系</span></div><div class="rejrow"><span class="t">19 条（moe-blogpost、wan2-2-i2v、minimax-h3-image、harness-leaderboard、slack-moji、bfs-best-face-swap、Qwen face-swap、LTX-2.3-10Eros、clairic、Qwen-Image-Edit-Rapid、TRELLIS.2、tessera、wan2-2-fp8da、minimax-h3-turbo、qwen-image-2.1-uncensored、MINIMAX-H3-Ref2VA、wan222、Krea2T、pi-H3）</span><span class="r">社区换脸 / NSFW / 旧 demo / 缺可读文档；TRELLIS.2 11-15 已评；Reverb-TTS 进正文 04</span></div><div class="rejrow"><span class="t">10 条（Astra 历史谜题、datasette-charts 0.1a0 / 0.2a0、datasette-agent、Ladybird、Select Styling、Muru、Ravi Vakil / Levent Alpöge 引用、llm-gemini 0.38.1）</span><span class="r">引用 / 版本流水 / 浏览器 / 前端小工具；GLM-5.4 与三个拐点进正文 03、06</span></div><div class="rejrow"><span class="t">6 条（Claude 蛋白质、Mastra Factory、Onlook、Drive 3D、Lean 进展图、Claude 黑洞）</span><span class="r">1 条 seen；Claude 蛋白质是研究；Mastra 11-20 已评；Onlook 是设计工具；其余与 AIGC 无直接关系</span></div><div class="rejrow"><span class="t">9 条（ES\</span><span class="r">cn:juejin | 教程 / 数据库 / 安全 / 营销 / 量化；CreatorHub 进正文 01</span></div><div class="rejrow"><span class="t">10 条（社区速递、妙笔、巴黎、派早报 ×2、怪手机、鱼缸、充电上限、少数派共创、App 派评）</span><span class="r">消费电子 / 生活 / 旧闻；与 AIGC 无直接关系</span></div><div class="rejrow"><span class="t">10 条（Google Cloud 峰会、端侧超节点、文心 5.5 开源、方程豹、仰望 U8、MEET2027、OceanBase、亿邦、奇点大会、具身）</span><span class="r">会议 / 汽车 / 行业稿；文心 5.5 是 11-13 已评的 Preview，今天只是当时预告的 Apache 2.0 权重开源，不重复占席</span></div><div class="rejrow"><span class="t">10 条（OceanBase、AI 构建、技术债务、智能体分心、RevOps、智能体分析、销售 AI、Topcoat、Pinterest 聚类、5G 开源派）</span><span class="r">视频 / 会议 / 行业；Topcoat 是 Rust→JS 工具但与 AIGC 无直接关系；技术债务与 Pinterest 是方法但无独立入口</span></div><div class="rejrow"><span class="t">6 条（Riemann、形式化验证、Linear GTM、AINews Jensen、AINews Gemini 4 Neon、Anthropic IPO）</span><span class="r">1 条 seen；通讯 / 访谈 / 观点；形式化验证是解读，不是可上手工具</span></div><div class="rejrow"><span class="t">6 条（Open-source AI without Jensen、open model economy、cyber risk、AA v5、Kimi 播客、open artifacts）</span><span class="r">newsletter / 观点 / 付费研究</span></div><div class="rejrow"><span class="t">8 条（Microduck、RoboTrack、agentic evals、Inkling 2 Mini、harness adapters、DaisyRose、微调时间、时序）</span><span class="r">3 条 seen；Inkling / harness adapters / DaisyRose 近几天已评；RoboTrack / Microduck 是机器人；微调时间与时序是基础设施</span></div><div class="rejrow"><span class="t">5 条（Import AI 478–482）</span><span class="r">newsletter / 观点；482 的昇腾内核基准与本业无直接关系</span></div><div class="rejrow"><span class="t">5 条（NotebookLM、桃花源记、电商 Agent、AI 原生思维、Warp 自进化）</span><span class="r">1 条 seen；其余是 8–9 月旧文</span></div><div class="rejrow"><span class="t">5 条（Fable 5.2、30 Months、Dot and the Swarm、Overhang、Agency and Agents）</span><span class="r">观点 / 旧文</span></div><div class="rejrow"><span class="t">0 条</span><span class="r">源失败（页面里没有 __INITIAL_STATE__，可能被风控拦了），今天没有笔记可进中概股详情页</span></div>
+      </details>
+  </div>
+</div>
+<script>
+var THEME_ORDER=['auto','light','dark'];
+var THEME_LABEL={auto:'◐ 自动',light:'☀ 亮',dark:'☾ 暗'};
+function themeMode(){try{var m=localStorage.getItem('radar.theme');return THEME_ORDER.indexOf(m)>=0?m:'auto'}catch(e){return 'auto'}}
+function themeApply(){
+  var m=themeMode();
+  var dark=(m==='dark')||(m==='auto'&&!!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches));
+  document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+  var b=document.getElementById('themebtn');
+  if(b){
+    b.textContent=THEME_LABEL[m];   /* 显示的是**当前**状态，不是"点了会变成什么" */
+    b.title='主题：'+(m==='auto'?'跟随系统':(m==='dark'?'暗色':'亮色'))+'（点击切换）';
+  }
+}
+function themeWire(){
+  var b=document.getElementById('themebtn');
+  if(b)b.addEventListener('click',function(){
+    var i=THEME_ORDER.indexOf(themeMode());
+    var next=THEME_ORDER[(i+1)%THEME_ORDER.length];
+    try{localStorage.setItem('radar.theme',next)}catch(e){}
+    themeApply();
+  });
+  /* 停在"自动"时，系统换了主题要跟着换（不用刷新页面） */
+  if(window.matchMedia){
+    var mq=window.matchMedia('(prefers-color-scheme: dark)');
+    var h=function(){if(themeMode()==='auto')themeApply()};
+    if(mq.addEventListener)mq.addEventListener('change',h);else if(mq.addListener)mq.addListener(h);
+  }
+  themeApply();
+}
+
+function favOK(){try{localStorage.setItem('radar.probe','1');localStorage.removeItem('radar.probe');return true}catch(e){return false}}
+var FAV_ON=favOK();
+function favEsc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function favAll(){if(!FAV_ON)return[];try{var a=JSON.parse(localStorage.getItem('radar.fav.v1')||'[]');return a instanceof Array?a:[]}catch(e){return[]}}
+function favSave(a){if(!FAV_ON)return;try{localStorage.setItem('radar.fav.v1',JSON.stringify(a))}catch(e){}}
+function favToggle(o){
+  var a=favAll(),i=-1,k;
+  for(k=0;k<a.length;k++){if(a[k].id===o.id){i=k;break}}
+  if(i>=0){a.splice(i,1)}else{a.unshift({id:o.id,date:o.date,t:o.t,o:o.o,hd:o.hd,ts:Date.now()})}
+  favSave(a);return i<0;
+}
+/* 相对路径，所以本机 file:// 打开和线上 Pages 打开都能点 */
+function favURL(x){return location.pathname.replace(/[^/]*$/,'')+(x.hd?'detail/'+x.id+'.html':x.date+'.html')}
+function favPaint(){
+  var a=favAll(),ids={},k;
+  for(k=0;k<a.length;k++){ids[a[k].id]=1}
+  document.querySelectorAll('.star').forEach(function(b){
+    var on=!!ids[b.dataset.id];
+    b.setAttribute('aria-pressed',on?'true':'false');
+    b.textContent=on?'★':'☆';
+    b.title=on?'取消收藏':'收藏这一条';
+    var row=b.closest('.row');
+    if(row)row.classList.toggle('fav',on);
+  });
+  var n=document.getElementById('favn');if(n)n.textContent=String(a.length);
+  var c=document.getElementById('favcnt');if(c)c.textContent=String(a.length);
+  var box=document.getElementById('favbox');
+  if(box)box.style.display=a.length?'':'none';   /* 一条收藏都没有时，别在页面上挂个空盒子 */
+  var list=document.getElementById('favlist');
+  if(list){
+    var h='';
+    for(k=0;k<a.length;k++){
+      var x=a[k];
+      h+='<div class="favrow"><a class="favt" href="'+favURL(x)+'">'+favEsc(x.t)+'</a>'
+       +'<div class="favo">'+favEsc(x.o)+'</div>'
+       +'<div class="favm"><span class="favd">'+favEsc(x.date)+'</span>'
+       +'<button class="favrm" type="button" data-id="'+favEsc(x.id)+'">移除</button></div></div>';
+    }
+    list.innerHTML=h;
+  }
+}
+function favWire(){
+  if(!FAV_ON){
+    /* 浏览器不给存（Safari 打开 file:// 就是这样）→ 干脆不显示星标，免得点了没反应 */
+    document.querySelectorAll('.star').forEach(function(b){b.style.display='none'});
+    return;
+  }
+  document.querySelectorAll('.star').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();   /* 关键：点星只收藏，不展开这一条 */
+      favToggle({id:b.dataset.id,date:b.dataset.date,t:b.dataset.t,o:b.dataset.o,hd:b.dataset.hd==='1'});
+      favPaint();
+      if(typeof afterFav==='function')afterFav();
+    });
+  });
+  var box=document.getElementById('favbox');
+  if(box)box.addEventListener('click',function(e){
+    var rm=e.target.closest('.favrm');
+    if(!rm)return;
+    e.preventDefault();
+    favSave(favAll().filter(function(x){return x.id!==rm.dataset.id}));
+    favPaint();
+    if(typeof afterFav==='function')afterFav();
+  });
+  var cp=document.getElementById('favcopy');
+  if(cp)cp.addEventListener('click',function(){
+    var a=favAll(),lines=[],k;
+    for(k=0;k<a.length;k++)lines.push('- '+a[k].date+' · '+a[k].t+' — '+location.origin+favURL(a[k]));
+    var txt=lines.join(String.fromCharCode(10));
+    var done=function(ok){cp.textContent=ok?'已复制':'复制失败，请长按选择';setTimeout(function(){cp.textContent='复制清单'},1800)};
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)});
+    }else{
+      var ta=document.createElement('textarea');ta.value=txt;
+      ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
+      var ok=false;try{ok=document.execCommand('copy')}catch(e){}
+      document.body.removeChild(ta);done(ok);
+    }
+  });
+  favPaint();
+}
+
+var f='all';
+var rows=[].slice.call(document.querySelectorAll('.row'));
+var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+// 手风琴：任何时候只留一条展开，点开新的、旧的那条自动合上。
+// 不这么做的话八条能全开着 = 整份简报被摊平，"先扫再展开"的分诊就白做了。
+rows.forEach(function(r){
+  r.addEventListener('toggle',function(){
+    if(!r.open) return;
+    rows.forEach(function(o){ if(o!==r&&o.open) o.open=false; });
+    // 刚合上的那条如果在本条上方，页面会整体上移、把本条顶出视口 —— 拉回来
+    if(r.getBoundingClientRect().top<8){
+      r.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'});
+    }
+  });
+});
+
+function apply(){
+  var shown=0;
+  rows.forEach(function(r){
+    var ok = f==='all' || (f==='fast'&&r.dataset.fast==='1') || (f==='tool'&&r.dataset.tool==='1')
+      || (f==='fav'&&r.classList.contains('fav'));
+    r.style.display = ok ? '' : 'none';
+    if(ok) shown++;
+    // 被筛掉时顺手合上：留着它"开着"没意义，切回来还会自己弹开
+    else if(r.open) r.open=false;
+  });
+  document.getElementById('cnt').textContent='显示 '+shown+' / '+rows.length+' 条';
+  document.getElementById('empty').style.display = shown ? 'none' : '';
+  document.querySelectorAll('.seg').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.f===f)); });
+}
+document.querySelectorAll('.seg').forEach(function(b){ b.addEventListener('click',function(){ f=b.dataset.f; apply(); }); });
+/* 收藏变了要重算筛选：正在看「★ 收藏」时取消收藏，那一条得当场消失 */
+function afterFav(){ apply(); }
+themeWire();
+favWire();
+apply();
+</script>
+</body></html>
